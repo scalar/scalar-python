@@ -1,0 +1,41 @@
+# File generated from our OpenAPI spec by Scalar. See README.md for details.
+
+from __future__ import annotations
+
+from typing import List
+from typing_extensions import TypeAlias
+from .._models import BaseModel
+from .slug import Slug
+from .version import Version
+
+__all__ = ["SchemaListResponse", "Schema", "ManagedSchemaVersion"]
+
+class ManagedSchemaVersion(BaseModel):
+
+    uid: str
+
+    createdAt: int
+
+    updatedAt: int
+
+    version: Version
+
+class Schema(BaseModel):
+
+    uid: str
+
+    title: str
+
+    description: str
+
+    slug: Slug
+
+    namespace: str
+
+    isPrivate: bool
+
+    versions: List[ManagedSchemaVersion]
+
+
+
+SchemaListResponse: TypeAlias = List[Schema]
