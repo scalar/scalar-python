@@ -134,7 +134,7 @@ class Scalar(SyncAPIClient):
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
-        self._idempotency_header = "Idempotency-Key"
+        self._idempotency_header = None
         self._default_stream_cls = Stream
 
     @cached_property
@@ -202,7 +202,7 @@ class Scalar(SyncAPIClient):
     @property
     @override
     def qs(self) -> Querystring:
-        return Querystring(array_format="repeat")
+        return Querystring(array_format="comma")
 
     @override
     def _auth_headers(self, security: dict[str, bool]) -> dict[str, str]:
@@ -404,7 +404,7 @@ class AsyncScalar(AsyncAPIClient):
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
-        self._idempotency_header = "Idempotency-Key"
+        self._idempotency_header = None
         self._default_stream_cls = AsyncStream
 
     @cached_property
@@ -472,7 +472,7 @@ class AsyncScalar(AsyncAPIClient):
     @property
     @override
     def qs(self) -> Querystring:
-        return Querystring(array_format="repeat")
+        return Querystring(array_format="comma")
 
     @override
     def _auth_headers(self, security: dict[str, bool]) -> dict[str, str]:

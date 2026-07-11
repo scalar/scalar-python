@@ -17,11 +17,9 @@ from .._response import (
 from .._base_client import make_request_options
 from ..types.theme_list_response import ThemeListResponse, Theme
 from ..types.theme_create_response import ThemeCreateResponse
-from ..types import theme_create_params
+from ..types import theme_create_params, theme_update_params, theme_replace_document_params
 from ..types.theme_update_response import ThemeUpdateResponse
-from ..types import theme_update_params
 from ..types.theme_replace_document_response import ThemeReplaceDocumentResponse
-from ..types import theme_replace_document_params
 from ..types.theme_delete_response import ThemeDeleteResponse
 
 __all__ = ["ThemesResource", "AsyncThemesResource"]
@@ -292,6 +290,7 @@ class ThemesResource(SyncAPIResource):
         """
         if slug is None or (isinstance(slug, str) and not slug):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._get(
             path_template("/v1/themes/{slug}", **{"slug": slug}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
@@ -564,6 +563,7 @@ class AsyncThemesResource(AsyncAPIResource):
         """
         if slug is None or (isinstance(slug, str) and not slug):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._get(
             path_template("/v1/themes/{slug}", **{"slug": slug}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),

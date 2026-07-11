@@ -15,7 +15,7 @@ class TeamSummary(BaseModel):
 
     name: str
 
-    imageUri: Optional[str] = None
+    image_uri: Optional[str] = FieldInfo(alias="imageUri", default=None)
 
 
 

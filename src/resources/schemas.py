@@ -18,20 +18,14 @@ from .._base_client import make_request_options
 from ..types.schema_list_response import SchemaListResponse, Schema, ManagedSchemaVersion
 from ..types.schema_create_response import SchemaCreateResponse
 from ..types.version import Version
-from ..types import schema_create_params
+from ..types import schema_create_params, schema_update_params, schema_create_version_params, schema_create_access_group_params, schema_delete_access_group_params
 from ..types.schema_update_response import SchemaUpdateResponse
-from ..types import schema_update_params
 from ..types.schema_delete_response import SchemaDeleteResponse
 from ..types.schema_delete_version_response import SchemaDeleteVersionResponse
 from ..types.schema_create_version_response import SchemaCreateVersionResponse
-from ..types.version import Version
-from ..types import schema_create_version_params
 from ..types.schema_create_access_group_response import SchemaCreateAccessGroupResponse
 from ..types.slug import Slug
-from ..types import schema_create_access_group_params
 from ..types.schema_delete_access_group_response import SchemaDeleteAccessGroupResponse
-from ..types.slug import Slug
-from ..types import schema_delete_access_group_params
 
 __all__ = ["SchemasResource", "AsyncSchemasResource"]
 
@@ -126,7 +120,7 @@ class SchemasResource(SyncAPIResource):
             schema = client.schemas.create(
                 namespace="namespace",
                 title="",
-                version="",
+                version="x",
                 slug="",
                 document="",
             )
@@ -296,6 +290,7 @@ class SchemasResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         if semver is None or (isinstance(semver, str) and not semver):
             raise ValueError(f"Expected a non-empty value for `semver` but received {semver!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._get(
             path_template("/v1/schemas/{namespace}/{slug}/version/{semver}", **{"namespace": namespace, "slug": slug, "semver": semver}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
@@ -386,7 +381,7 @@ class SchemasResource(SyncAPIResource):
             schema = client.schemas.create_version(
                 namespace="namespace",
                 slug="slug",
-                version="",
+                version="x",
                 document="",
             )
             ```
@@ -441,7 +436,7 @@ class SchemasResource(SyncAPIResource):
             schema = client.schemas.create_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """
@@ -492,7 +487,7 @@ class SchemasResource(SyncAPIResource):
             schema = client.schemas.delete_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """
@@ -601,7 +596,7 @@ class AsyncSchemasResource(AsyncAPIResource):
             schema = await client.schemas.create(
                 namespace="namespace",
                 title="",
-                version="",
+                version="x",
                 slug="",
                 document="",
             )
@@ -771,6 +766,7 @@ class AsyncSchemasResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         if semver is None or (isinstance(semver, str) and not semver):
             raise ValueError(f"Expected a non-empty value for `semver` but received {semver!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._get(
             path_template("/v1/schemas/{namespace}/{slug}/version/{semver}", **{"namespace": namespace, "slug": slug, "semver": semver}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
@@ -861,7 +857,7 @@ class AsyncSchemasResource(AsyncAPIResource):
             schema = await client.schemas.create_version(
                 namespace="namespace",
                 slug="slug",
-                version="",
+                version="x",
                 document="",
             )
             ```
@@ -916,7 +912,7 @@ class AsyncSchemasResource(AsyncAPIResource):
             schema = await client.schemas.create_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """
@@ -967,7 +963,7 @@ class AsyncSchemasResource(AsyncAPIResource):
             schema = await client.schemas.delete_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """

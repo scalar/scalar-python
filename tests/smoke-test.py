@@ -49,7 +49,7 @@ def _smoke_case_2() -> None:
     registry = client.registry.create_api_document(
         namespace="namespace",
         title="",
-        version="",
+        version="x",
         slug="",
         document="",
     )
@@ -99,7 +99,7 @@ def _smoke_case_9() -> None:
     registry = client.registry.create_api_document_version(
         namespace="namespace",
         slug="slug",
-        version="",
+        version="x",
         document="",
     )
 
@@ -107,14 +107,14 @@ def _smoke_case_10() -> None:
     registry = client.registry.create_api_document_access_group(
         namespace="namespace",
         slug="slug",
-        access_group_slug="",
+        access_group_slug="xxx",
     )
 
 def _smoke_case_11() -> None:
     registry = client.registry.delete_api_document_access_group(
         namespace="namespace",
         slug="slug",
-        access_group_slug="",
+        access_group_slug="xxx",
     )
 
 def _smoke_case_12() -> None:
@@ -126,7 +126,7 @@ def _smoke_case_13() -> None:
     schema = client.schemas.create(
         namespace="namespace",
         title="",
-        version="",
+        version="x",
         slug="",
         document="",
     )
@@ -161,7 +161,7 @@ def _smoke_case_18() -> None:
     schema = client.schemas.create_version(
         namespace="namespace",
         slug="slug",
-        version="",
+        version="x",
         document="",
     )
 
@@ -169,14 +169,14 @@ def _smoke_case_19() -> None:
     schema = client.schemas.create_access_group(
         namespace="namespace",
         slug="slug",
-        access_group_slug="",
+        access_group_slug="xxx",
     )
 
 def _smoke_case_20() -> None:
     schema = client.schemas.delete_access_group(
         namespace="namespace",
         slug="slug",
-        access_group_slug="",
+        access_group_slug="xxx",
     )
 
 def _smoke_case_21() -> None:
@@ -240,14 +240,14 @@ def _smoke_case_31() -> None:
     rule = client.rules.create_ruleset_access_group(
         namespace="namespace",
         slug="slug",
-        access_group_slug="",
+        access_group_slug="xxx",
     )
 
 def _smoke_case_32() -> None:
     rule = client.rules.delete_ruleset_access_group(
         namespace="namespace",
         slug="slug",
-        access_group_slug="",
+        access_group_slug="xxx",
     )
 
 def _smoke_case_33() -> None:

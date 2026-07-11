@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 from typing_extensions import Annotated, Required, TypedDict
-from .slug import Slug
+
 from .._utils import PropertyInfo
+
+from .slug import Slug
 
 __all__ = ["RuleCreateRulesetAccessGroupParams"]
 

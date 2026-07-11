@@ -2,7 +2,9 @@
 
 from typing import List
 from typing_extensions import TypeAlias
+
 from .._models import BaseModel
+
 from .slug import Slug
 
 __all__ = ["ThemeListResponse", "Theme"]

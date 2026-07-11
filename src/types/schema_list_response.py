@@ -4,7 +4,11 @@ from __future__ import annotations
 
 from typing import List
 from typing_extensions import TypeAlias
+
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
+
 from .slug import Slug
 from .version import Version
 
@@ -14,9 +18,9 @@ class ManagedSchemaVersion(BaseModel):
 
     uid: str
 
-    createdAt: int
+    created_at: int = FieldInfo(alias="createdAt")
 
-    updatedAt: int
+    updated_at: int = FieldInfo(alias="updatedAt")
 
     version: Version
 
@@ -32,7 +36,7 @@ class Schema(BaseModel):
 
     namespace: str
 
-    isPrivate: bool
+    is_private: bool = FieldInfo(alias="isPrivate")
 
     versions: List[ManagedSchemaVersion]
 

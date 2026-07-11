@@ -2,7 +2,11 @@
 
 from typing import List
 from typing_extensions import TypeAlias
+
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
+
 from .slug import Slug
 
 __all__ = ["RuleListRulesetsResponse", "Rule"]
@@ -19,7 +23,7 @@ class Rule(BaseModel):
 
     namespace: str
 
-    isPrivate: bool
+    is_private: bool = FieldInfo(alias="isPrivate")
 
 
 

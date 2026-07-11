@@ -4,28 +4,32 @@ from __future__ import annotations
 
 from typing import List, Optional
 from typing_extensions import TypeAlias
+
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
+
 from .slug import Slug
 
 __all__ = ["ScalarDocListGuidesResponse", "GithubProject", "ActiveDeployment", "GithubProjectRepository"]
 
 class GithubProjectRepository(BaseModel):
 
-    linkedBy: str
+    linked_by: str = FieldInfo(alias="linkedBy")
 
     id: float
 
     name: str
 
-    configPath: str
+    config_path: str = FieldInfo(alias="configPath")
 
     branch: str
 
-    publishOnMerge: bool
+    publish_on_merge: bool = FieldInfo(alias="publishOnMerge")
 
-    publishPreviews: bool
+    publish_previews: bool = FieldInfo(alias="publishPreviews")
 
-    prComments: bool
+    pr_comments: bool = FieldInfo(alias="prComments")
 
     expired: bool
 
@@ -35,41 +39,41 @@ class ActiveDeployment(BaseModel):
 
     domain: str
 
-    publishedAt: int
+    published_at: int = FieldInfo(alias="publishedAt")
 
 class GithubProject(BaseModel):
 
     uid: str
 
-    createdAt: int
+    created_at: int = FieldInfo(alias="createdAt")
 
-    updatedAt: int
+    updated_at: int = FieldInfo(alias="updatedAt")
 
     name: str
 
-    activeDeployment: Optional[ActiveDeployment] = None
+    active_deployment: Optional[ActiveDeployment] = FieldInfo(alias="activeDeployment", default=None)
 
-    lastPublished: Optional[int] = None
+    last_published: Optional[int] = FieldInfo(alias="lastPublished", default=None)
 
-    lastPublishedUid: Optional[str] = None
+    last_published_uid: Optional[str] = FieldInfo(alias="lastPublishedUid", default=None)
 
-    loginPortalUid: str
+    login_portal_uid: str = FieldInfo(alias="loginPortalUid")
 
-    activeThemeId: str
+    active_theme_id: str = FieldInfo(alias="activeThemeId")
 
-    typesenseId: Optional[float] = None
+    typesense_id: Optional[float] = FieldInfo(alias="typesenseId", default=None)
 
-    isPrivate: bool
+    is_private: bool = FieldInfo(alias="isPrivate")
 
-    agentEnabled: bool
+    agent_enabled: bool = FieldInfo(alias="agentEnabled")
 
-    accessGroups: object
+    access_groups: object = FieldInfo(alias="accessGroups")
 
     slug: Slug
 
-    publishStatus: str
+    publish_status: str = FieldInfo(alias="publishStatus")
 
-    publishMessage: str
+    publish_message: str = FieldInfo(alias="publishMessage")
 
     repository: Optional[GithubProjectRepository] = None
 

@@ -216,11 +216,3 @@ Generated clients support request timeouts and retry temporary failures such as 
 - Python 3.8 or newer
 
 Powered by Scalar.
-
-
-## Contributions
-
-This SDK is generated programmatically. Manual edits to generated files will be
-overwritten on the next build.
-
-### SDK created by [Scalar](https://www.scalar.com/?utm_source=scalar-typescript-sdk-python&utm_campaign=sdk)

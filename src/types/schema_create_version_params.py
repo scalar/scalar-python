@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
+
 from .version import Version
 
 __all__ = ["SchemaCreateVersionParams"]

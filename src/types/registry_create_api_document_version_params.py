@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 from typing_extensions import Annotated, Required, TypedDict
-from .version import Version
+
 from .._utils import PropertyInfo
+
+from .version import Version
 
 __all__ = ["RegistryCreateApiDocumentVersionParams"]
 

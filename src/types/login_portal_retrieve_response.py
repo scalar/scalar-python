@@ -1,11 +1,11 @@
 # File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-from typing_extensions import TypeAlias
 from .._models import BaseModel
+
 from .login_portal_email import LoginPortalEmail
 from .login_portal_page import LoginPortalPage
 
-__all__ = ["LoginPortalRetrieveResponse", "LoginPortalRetrieveResponse"]
+__all__ = ["LoginPortalRetrieveResponse"]
 
 class LoginPortalRetrieveResponse(BaseModel):
 
@@ -21,4 +21,3 @@ class LoginPortalRetrieveResponse(BaseModel):
 
 
 
-LoginPortalRetrieveResponse: TypeAlias = LoginPortalRetrieveResponse

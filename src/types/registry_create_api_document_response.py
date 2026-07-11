@@ -1,24 +1,24 @@
 # File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-from typing_extensions import TypeAlias
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
 
-__all__ = ["RegistryCreateApiDocumentResponse", "RegistryCreateApiDocumentResponse"]
+__all__ = ["RegistryCreateApiDocumentResponse"]
 
 class RegistryCreateApiDocumentResponse(BaseModel):
 
     uid: str
 
-    versionUid: str
+    version_uid: str = FieldInfo(alias="versionUid")
 
     title: str
 
-    jsonSha: str
+    json_sha: str = FieldInfo(alias="jsonSha")
 
-    yamlSha: str
+    yaml_sha: str = FieldInfo(alias="yamlSha")
 
-    versionSha: str
+    version_sha: str = FieldInfo(alias="versionSha")
 
 
 
-RegistryCreateApiDocumentResponse: TypeAlias = RegistryCreateApiDocumentResponse

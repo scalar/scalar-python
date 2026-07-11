@@ -2,7 +2,11 @@
 
 from typing import List, Optional
 from typing_extensions import TypeAlias
+
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
+
 from .slug import Slug
 
 __all__ = ["TeamListResponse", "Team"]
@@ -13,7 +17,7 @@ class Team(BaseModel):
 
     name: str
 
-    imageUri: Optional[str] = None
+    image_uri: Optional[str] = FieldInfo(alias="imageUri", default=None)
 
     slug: Slug
 

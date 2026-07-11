@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
-from .login_portal_email import LoginPortalEmail
-from .login_portal_page import LoginPortalPage
+
+from .shared_params.login_portal_email import LoginPortalEmail
+from .shared_params.login_portal_page import LoginPortalPage
 
 __all__ = ["LoginPortalCreateParams"]
 

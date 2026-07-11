@@ -17,12 +17,11 @@ from .._response import (
 from .._base_client import make_request_options
 from ..types.login_portal_retrieve_response import LoginPortalRetrieveResponse
 from ..types.login_portal_update_response import LoginPortalUpdateResponse
-from ..types import login_portal_update_params
+from ..types import login_portal_update_params, login_portal_create_params
 from ..types.login_portal_delete_response import LoginPortalDeleteResponse
 from ..types.login_portal_create_response import LoginPortalCreateResponse
-from ..types.login_portal_email import LoginPortalEmail
-from ..types.login_portal_page import LoginPortalPage
-from ..types import login_portal_create_params
+from ..types.shared_params.login_portal_email import LoginPortalEmail
+from ..types.shared_params.login_portal_page import LoginPortalPage
 from ..types.login_portal_list_response import LoginPortalListResponse, LoginPortal
 
 __all__ = ["LoginPortalsResource", "AsyncLoginPortalsResource"]

@@ -1,18 +1,18 @@
 # File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-from typing_extensions import TypeAlias
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
 
-__all__ = ["RegistryUpdateApiDocumentVersionResponse", "RegistryUpdateApiDocumentVersionResponse"]
+__all__ = ["RegistryUpdateApiDocumentVersionResponse"]
 
 class RegistryUpdateApiDocumentVersionResponse(BaseModel):
 
-    jsonSha: str
+    json_sha: str = FieldInfo(alias="jsonSha")
 
-    yamlSha: str
+    yaml_sha: str = FieldInfo(alias="yamlSha")
 
-    versionSha: str
+    version_sha: str = FieldInfo(alias="versionSha")
 
 
 
-RegistryUpdateApiDocumentVersionResponse: TypeAlias = RegistryUpdateApiDocumentVersionResponse

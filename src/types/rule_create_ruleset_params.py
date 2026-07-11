@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing_extensions import Annotated, Required, TypedDict
+
 from .._utils import PropertyInfo
 
 __all__ = ["RuleCreateRulesetParams"]

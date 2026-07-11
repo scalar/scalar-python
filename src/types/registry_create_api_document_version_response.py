@@ -6,6 +6,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
+
 from .version import Version
 
 __all__ = ["RegistryCreateApiDocumentVersionResponse", "Tool"]
@@ -17,7 +18,7 @@ class Tool(BaseModel):
 
     method: Literal["delete", "get", "head", "options", "patch", "post", "put", "trace"]
 
-    enabledTools: List[Literal["execute-request", "get-mini-openapi-spec"]]
+    enabled_tools: List[Literal["execute-request", "get-mini-openapi-spec"]] = FieldInfo(alias="enabledTools")
 
 
 

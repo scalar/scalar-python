@@ -113,7 +113,7 @@ Create an API document.
 registry = client.registry.create_api_document(
     namespace="namespace",
     title="",
-    version="",
+    version="x",
     slug="",
     document="",
 )
@@ -229,7 +229,7 @@ Create a new API document version.
 registry = client.registry.create_api_document_version(
     namespace="namespace",
     slug="slug",
-    version="",
+    version="x",
     document="",
 )
 ```
@@ -247,7 +247,7 @@ Add an access group to an API document.
 registry = client.registry.create_api_document_access_group(
     namespace="namespace",
     slug="slug",
-    access_group_slug="",
+    access_group_slug="xxx",
 )
 ```
 
@@ -264,7 +264,7 @@ Remove an access group from an API document.
 registry = client.registry.delete_api_document_access_group(
     namespace="namespace",
     slug="slug",
-    access_group_slug="",
+    access_group_slug="xxx",
 )
 ```
 
@@ -297,7 +297,7 @@ Create a schema in a namespace.
 schema = client.schemas.create(
     namespace="namespace",
     title="",
-    version="",
+    version="x",
     slug="",
     document="",
 )
@@ -379,7 +379,7 @@ Create a schema version.
 schema = client.schemas.create_version(
     namespace="namespace",
     slug="slug",
-    version="",
+    version="x",
     document="",
 )
 ```
@@ -397,7 +397,7 @@ Add an access group to a schema.
 schema = client.schemas.create_access_group(
     namespace="namespace",
     slug="slug",
-    access_group_slug="",
+    access_group_slug="xxx",
 )
 ```
 
@@ -414,7 +414,7 @@ Remove an access group from a schema.
 schema = client.schemas.delete_access_group(
     namespace="namespace",
     slug="slug",
-    access_group_slug="",
+    access_group_slug="xxx",
 )
 ```
 
@@ -586,7 +586,7 @@ Grant an access group to a rule.
 rule = client.rules.create_ruleset_access_group(
     namespace="namespace",
     slug="slug",
-    access_group_slug="",
+    access_group_slug="xxx",
 )
 ```
 
@@ -603,7 +603,7 @@ Remove an access group from a rule.
 rule = client.rules.delete_ruleset_access_group(
     namespace="namespace",
     slug="slug",
-    access_group_slug="",
+    access_group_slug="xxx",
 )
 ```
 

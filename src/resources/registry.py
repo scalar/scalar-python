@@ -19,23 +19,16 @@ from ..types.registry_list_all_api_documents_response import RegistryListAllApiD
 from ..types.registry_list_api_documents_response import RegistryListApiDocumentsResponse, ApiDocument, ManagedDocVersion, Tool
 from ..types.registry_create_api_document_response import RegistryCreateApiDocumentResponse
 from ..types.version import Version
-from ..types import registry_create_api_document_params
+from ..types import registry_create_api_document_params, registry_update_api_document_params, registry_update_api_document_version_params, registry_create_api_document_version_params, registry_create_api_document_access_group_params, registry_delete_api_document_access_group_params
 from ..types.registry_update_api_document_response import RegistryUpdateApiDocumentResponse
-from ..types import registry_update_api_document_params
 from ..types.registry_delete_api_document_response import RegistryDeleteApiDocumentResponse
 from ..types.registry_update_api_document_version_response import RegistryUpdateApiDocumentVersionResponse
-from ..types import registry_update_api_document_version_params
 from ..types.registry_delete_api_document_version_response import RegistryDeleteApiDocumentVersionResponse
 from ..types.registry_list_api_document_version_metadata_response import RegistryListApiDocumentVersionMetadataResponse, Tool
 from ..types.registry_create_api_document_version_response import RegistryCreateApiDocumentVersionResponse, Tool
-from ..types.version import Version
-from ..types import registry_create_api_document_version_params
 from ..types.registry_create_api_document_access_group_response import RegistryCreateApiDocumentAccessGroupResponse
 from ..types.slug import Slug
-from ..types import registry_create_api_document_access_group_params
 from ..types.registry_delete_api_document_access_group_response import RegistryDeleteApiDocumentAccessGroupResponse
-from ..types.slug import Slug
-from ..types import registry_delete_api_document_access_group_params
 
 __all__ = ["RegistryResource", "AsyncRegistryResource"]
 
@@ -165,7 +158,7 @@ class RegistryResource(SyncAPIResource):
             registry = client.registry.create_api_document(
                 namespace="namespace",
                 title="",
-                version="",
+                version="x",
                 slug="",
                 document="",
             )
@@ -339,6 +332,7 @@ class RegistryResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         if semver is None or (isinstance(semver, str) and not semver):
             raise ValueError(f"Expected a non-empty value for `semver` but received {semver!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._get(
             path_template("/v1/apis/{namespace}/{slug}/version/{semver}", **{"namespace": namespace, "slug": slug, "semver": semver}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
@@ -543,7 +537,7 @@ class RegistryResource(SyncAPIResource):
             registry = client.registry.create_api_document_version(
                 namespace="namespace",
                 slug="slug",
-                version="",
+                version="x",
                 document="",
             )
             ```
@@ -600,7 +594,7 @@ class RegistryResource(SyncAPIResource):
             registry = client.registry.create_api_document_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """
@@ -651,7 +645,7 @@ class RegistryResource(SyncAPIResource):
             registry = client.registry.delete_api_document_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """
@@ -795,7 +789,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             registry = await client.registry.create_api_document(
                 namespace="namespace",
                 title="",
-                version="",
+                version="x",
                 slug="",
                 document="",
             )
@@ -969,6 +963,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         if semver is None or (isinstance(semver, str) and not semver):
             raise ValueError(f"Expected a non-empty value for `semver` but received {semver!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._get(
             path_template("/v1/apis/{namespace}/{slug}/version/{semver}", **{"namespace": namespace, "slug": slug, "semver": semver}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
@@ -1173,7 +1168,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             registry = await client.registry.create_api_document_version(
                 namespace="namespace",
                 slug="slug",
-                version="",
+                version="x",
                 document="",
             )
             ```
@@ -1230,7 +1225,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             registry = await client.registry.create_api_document_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """
@@ -1281,7 +1276,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             registry = await client.registry.delete_api_document_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """

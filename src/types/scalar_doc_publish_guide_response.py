@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-from typing_extensions import TypeAlias
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
 
-__all__ = ["ScalarDocPublishGuideResponse", "ScalarDocPublishGuideResponse"]
+__all__ = ["ScalarDocPublishGuideResponse"]
 
 class ScalarDocPublishGuideResponse(BaseModel):
 
-    publishUid: str
+    publish_uid: str = FieldInfo(alias="publishUid")
 
 
 
-ScalarDocPublishGuideResponse: TypeAlias = ScalarDocPublishGuideResponse

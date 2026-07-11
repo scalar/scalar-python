@@ -17,16 +17,12 @@ from .._response import (
 from .._base_client import make_request_options
 from ..types.rule_list_rulesets_response import RuleListRulesetsResponse, Rule
 from ..types.rule_create_ruleset_response import RuleCreateRulesetResponse
-from ..types import rule_create_ruleset_params
+from ..types import rule_create_ruleset_params, rule_update_ruleset_params, rule_create_ruleset_access_group_params, rule_delete_ruleset_access_group_params
 from ..types.rule_update_ruleset_response import RuleUpdateRulesetResponse
-from ..types import rule_update_ruleset_params
 from ..types.rule_delete_ruleset_response import RuleDeleteRulesetResponse
 from ..types.rule_create_ruleset_access_group_response import RuleCreateRulesetAccessGroupResponse
 from ..types.slug import Slug
-from ..types import rule_create_ruleset_access_group_params
 from ..types.rule_delete_ruleset_access_group_response import RuleDeleteRulesetAccessGroupResponse
-from ..types.slug import Slug
-from ..types import rule_delete_ruleset_access_group_params
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -288,6 +284,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if slug is None or (isinstance(slug, str) and not slug):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._get(
             path_template("/v1/rulesets/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
@@ -327,7 +324,7 @@ class RulesResource(SyncAPIResource):
             rule = client.rules.create_ruleset_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """
@@ -378,7 +375,7 @@ class RulesResource(SyncAPIResource):
             rule = client.rules.delete_ruleset_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """
@@ -654,6 +651,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         if slug is None or (isinstance(slug, str) and not slug):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._get(
             path_template("/v1/rulesets/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
@@ -693,7 +691,7 @@ class AsyncRulesResource(AsyncAPIResource):
             rule = await client.rules.create_ruleset_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """
@@ -744,7 +742,7 @@ class AsyncRulesResource(AsyncAPIResource):
             rule = await client.rules.delete_ruleset_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="",
+                access_group_slug="xxx",
             )
             ```
         """
