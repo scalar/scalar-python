@@ -1,0 +1,25 @@
+[project]
+name = "scalar-sdk"
+version = "0.1.0" # x-release-please-version
+description = "API for managing Scalar platform resources.\n\n## TypeScript SDK\n\nFor TypeScript, we provide a SDK that makes using our API even easier.\n\n### Install\n\n```bash\nnpm add @scalar/sdk\n```\n\n### Get a Scalar API key\n\nCreate an API key in your Scalar account:\n\n- Dashboard: https://dashboard.scalar.com/account\n- Store it in `.env`, for example:\n\n```bash\nSCALAR_API_KEY=your_personal_token\n```\n\n### Exchange your API key for an access token\n\nThe personal token is not an access token. Exchange it first with `postv1AuthExchange`.\n\nIf you use the personal token directly for authenticated API calls, the API returns `401 Invalid authentication token`.\n\n```ts\nimport { Scalar } from '@scalar/sdk'\n\nconst scalar = new Scalar()\n\nconst exchange = await scalar.auth.postv1AuthExchange({\n  personalToken: process.env.SCALAR_API_KEY!,\n})\n\nconst accessToken = exchange.accessToken\n```\n\n### Use the access token\n\nConstruct a second client with bearer auth. Use this authenticated client for API calls.\n\n```ts\nimport { Scalar } from '@scalar/sdk'\n\nconst scalar = new Scalar()\n\nconst exchange = await scalar.auth.postv1AuthExchange({\n  personalToken: process.env.SCALAR_API_KEY!,\n})\n\nconst authedScalar = new Scalar({\n  bearerAuth: exchange.accessToken,\n})\n```\n\n### Notes\n\n- The exchange request itself can be made from a client constructed with no arguments (`new Scalar()`).\n- The exchanged access token is valid for 12 hours.\n- Timestamps are Unix seconds.\n\n### Read more\n\n- [@scalar/sdk on npm](https://www.npmjs.com/package/@scalar/sdk)"
+license = "Apache-2.0"
+requires-python = ">= 3.9"
+dependencies = [
+  "httpx>=0.23.0, <1",
+  "pydantic>=1.9.0, <3",
+  "typing-extensions>=4.14, <5",
+  "anyio>=3.5.0, <5",
+  "distro>=1.7.0, <2",
+  "sniffio",
+]
+
+
+[build-system]
+requires = ["hatchling>=1.18.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = "scalar_sdk"
