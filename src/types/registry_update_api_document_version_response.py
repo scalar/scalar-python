@@ -4,9 +4,9 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["RegistryUpdateApiDocumentVersionResponse"]
+__all__ = ["RegistryUpdateAPIDocumentVersionResponse"]
 
-class RegistryUpdateApiDocumentVersionResponse(BaseModel):
+class RegistryUpdateAPIDocumentVersionResponse(BaseModel):
 
     json_sha: str = FieldInfo(alias="jsonSha")
 

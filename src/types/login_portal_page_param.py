@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import Annotated, Required, TypedDict
 
-from ..._utils import PropertyInfo
+from .._utils import PropertyInfo
 
-__all__ = ["LoginPortalPage"]
+__all__ = ["LoginPortalPageParam"]
 
 
-class LoginPortalPage(TypedDict, total=False):
+class LoginPortalPageParam(TypedDict, total=False):
 
     title: Required[str]
 

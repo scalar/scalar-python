@@ -2,6 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-__all__ = ["RegistryRetrieveApiDocumentVersionResponse"]
+__all__ = ["RegistryRetrieveAPIDocumentVersionResponse"]
 
-RegistryRetrieveApiDocumentVersionResponse: TypeAlias = str
+RegistryRetrieveAPIDocumentVersionResponse: TypeAlias = str

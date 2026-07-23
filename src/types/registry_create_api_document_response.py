@@ -4,9 +4,9 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["RegistryCreateApiDocumentResponse"]
+__all__ = ["RegistryCreateAPIDocumentResponse"]
 
-class RegistryCreateApiDocumentResponse(BaseModel):
+class RegistryCreateAPIDocumentResponse(BaseModel):
 
     uid: str
 

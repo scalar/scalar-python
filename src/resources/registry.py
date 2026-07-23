@@ -15,20 +15,20 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.registry_list_all_api_documents_response import RegistryListAllApiDocumentsResponse, ApiDocument, ManagedDocVersion, Tool
-from ..types.registry_list_api_documents_response import RegistryListApiDocumentsResponse, ApiDocument, ManagedDocVersion, Tool
-from ..types.registry_create_api_document_response import RegistryCreateApiDocumentResponse
+from ..types.registry_list_all_api_documents_response import RegistryListAllAPIDocumentsResponse, APIDocument, ManagedDocVersion, Tool
+from ..types.registry_list_api_documents_response import RegistryListAPIDocumentsResponse, APIDocument, ManagedDocVersion, Tool
+from ..types.registry_create_api_document_response import RegistryCreateAPIDocumentResponse
 from ..types.version import Version
 from ..types import registry_create_api_document_params, registry_update_api_document_params, registry_update_api_document_version_params, registry_create_api_document_version_params, registry_create_api_document_access_group_params, registry_delete_api_document_access_group_params
-from ..types.registry_update_api_document_response import RegistryUpdateApiDocumentResponse
-from ..types.registry_delete_api_document_response import RegistryDeleteApiDocumentResponse
-from ..types.registry_update_api_document_version_response import RegistryUpdateApiDocumentVersionResponse
-from ..types.registry_delete_api_document_version_response import RegistryDeleteApiDocumentVersionResponse
-from ..types.registry_list_api_document_version_metadata_response import RegistryListApiDocumentVersionMetadataResponse, Tool
-from ..types.registry_create_api_document_version_response import RegistryCreateApiDocumentVersionResponse, Tool
-from ..types.registry_create_api_document_access_group_response import RegistryCreateApiDocumentAccessGroupResponse
+from ..types.registry_update_api_document_response import RegistryUpdateAPIDocumentResponse
+from ..types.registry_delete_api_document_response import RegistryDeleteAPIDocumentResponse
+from ..types.registry_update_api_document_version_response import RegistryUpdateAPIDocumentVersionResponse
+from ..types.registry_delete_api_document_version_response import RegistryDeleteAPIDocumentVersionResponse
+from ..types.registry_list_api_document_version_metadata_response import RegistryListAPIDocumentVersionMetadataResponse, Tool
+from ..types.registry_create_api_document_version_response import RegistryCreateAPIDocumentVersionResponse, Tool
+from ..types.registry_create_api_document_access_group_response import RegistryCreateAPIDocumentAccessGroupResponse
 from ..types.slug import Slug
-from ..types.registry_delete_api_document_access_group_response import RegistryDeleteApiDocumentAccessGroupResponse
+from ..types.registry_delete_api_document_access_group_response import RegistryDeleteAPIDocumentAccessGroupResponse
 
 __all__ = ["RegistryResource", "AsyncRegistryResource"]
 
@@ -52,7 +52,7 @@ class RegistryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryListAllApiDocumentsResponse:
+    ) -> RegistryListAllAPIDocumentsResponse:
         """
         List all API documents across every namespace the caller can access.
         
@@ -63,7 +63,7 @@ class RegistryResource(SyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryListAllApiDocumentsResponse: Default Response
+            RegistryListAllAPIDocumentsResponse: Default Response
         
         Example:
             ```python
@@ -73,7 +73,7 @@ class RegistryResource(SyncAPIResource):
         return self._get(
             "/v1/apis",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryListAllApiDocumentsResponse,
+            cast_to=RegistryListAllAPIDocumentsResponse,
         )
 
     def list_api_documents(
@@ -86,7 +86,7 @@ class RegistryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryListApiDocumentsResponse:
+    ) -> RegistryListAPIDocumentsResponse:
         """
         List API documents in a namespace.
         
@@ -98,7 +98,7 @@ class RegistryResource(SyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryListApiDocumentsResponse: Default Response
+            RegistryListAPIDocumentsResponse: Default Response
         
         Example:
             ```python
@@ -112,7 +112,7 @@ class RegistryResource(SyncAPIResource):
         return self._get(
             path_template("/v1/apis/{namespace}", **{"namespace": namespace}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryListApiDocumentsResponse,
+            cast_to=RegistryListAPIDocumentsResponse,
         )
 
     def create_api_document(
@@ -132,7 +132,7 @@ class RegistryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryCreateApiDocumentResponse:
+    ) -> RegistryCreateAPIDocumentResponse:
         """
         Create an API document.
         
@@ -151,7 +151,7 @@ class RegistryResource(SyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryCreateApiDocumentResponse: Default Response
+            RegistryCreateAPIDocumentResponse: Default Response
         
         Example:
             ```python
@@ -178,10 +178,10 @@ class RegistryResource(SyncAPIResource):
             "is_private": is_private,
             "document": document,
         },
-            registry_create_api_document_params.RegistryCreateApiDocumentParams,
+            registry_create_api_document_params.RegistryCreateAPIDocumentParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryCreateApiDocumentResponse,
+            cast_to=RegistryCreateAPIDocumentResponse,
         )
 
     def update_api_document(
@@ -199,7 +199,7 @@ class RegistryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUpdateApiDocumentResponse:
+    ) -> RegistryUpdateAPIDocumentResponse:
         """
         Update metadata for an API document.
         
@@ -216,7 +216,7 @@ class RegistryResource(SyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryUpdateApiDocumentResponse: Default Response
+            RegistryUpdateAPIDocumentResponse: Default Response
         
         Example:
             ```python
@@ -239,10 +239,10 @@ class RegistryResource(SyncAPIResource):
             "is_private": is_private,
             "ruleset": ruleset,
         },
-            registry_update_api_document_params.RegistryUpdateApiDocumentParams,
+            registry_update_api_document_params.RegistryUpdateAPIDocumentParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryUpdateApiDocumentResponse,
+            cast_to=RegistryUpdateAPIDocumentResponse,
         )
 
     def delete_api_document(
@@ -256,7 +256,7 @@ class RegistryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryDeleteApiDocumentResponse:
+    ) -> RegistryDeleteAPIDocumentResponse:
         """
         Delete an API document and all versions.
         
@@ -269,7 +269,7 @@ class RegistryResource(SyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryDeleteApiDocumentResponse: Default Response
+            RegistryDeleteAPIDocumentResponse: Default Response
         
         Example:
             ```python
@@ -286,7 +286,7 @@ class RegistryResource(SyncAPIResource):
         return self._delete(
             path_template("/v1/apis/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryDeleteApiDocumentResponse,
+            cast_to=RegistryDeleteAPIDocumentResponse,
         )
 
     def retrieve_api_document_version(
@@ -353,7 +353,7 @@ class RegistryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUpdateApiDocumentVersionResponse:
+    ) -> RegistryUpdateAPIDocumentVersionResponse:
         """
         Update the registry file content for an API document version.
         
@@ -369,7 +369,7 @@ class RegistryResource(SyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryUpdateApiDocumentVersionResponse: Default Response
+            RegistryUpdateAPIDocumentVersionResponse: Default Response
         
         Example:
             ```python
@@ -394,10 +394,10 @@ class RegistryResource(SyncAPIResource):
             "document": document,
             "last_known_version_sha": last_known_version_sha,
         },
-            registry_update_api_document_version_params.RegistryUpdateApiDocumentVersionParams,
+            registry_update_api_document_version_params.RegistryUpdateAPIDocumentVersionParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryUpdateApiDocumentVersionResponse,
+            cast_to=RegistryUpdateAPIDocumentVersionResponse,
         )
 
     def delete_api_document_version(
@@ -412,7 +412,7 @@ class RegistryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryDeleteApiDocumentVersionResponse:
+    ) -> RegistryDeleteAPIDocumentVersionResponse:
         """
         Delete a specific API document version.
         
@@ -426,7 +426,7 @@ class RegistryResource(SyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryDeleteApiDocumentVersionResponse: Default Response
+            RegistryDeleteAPIDocumentVersionResponse: Default Response
         
         Example:
             ```python
@@ -446,7 +446,7 @@ class RegistryResource(SyncAPIResource):
         return self._delete(
             path_template("/v1/apis/{namespace}/{slug}/version/{semver}", **{"namespace": namespace, "slug": slug, "semver": semver}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryDeleteApiDocumentVersionResponse,
+            cast_to=RegistryDeleteAPIDocumentVersionResponse,
         )
 
     def list_api_document_version_metadata(
@@ -461,7 +461,7 @@ class RegistryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryListApiDocumentVersionMetadataResponse:
+    ) -> RegistryListAPIDocumentVersionMetadataResponse:
         """
         Get metadata (uid, content shas, version sha, tags) for a specific API document version.
         
@@ -475,7 +475,7 @@ class RegistryResource(SyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryListApiDocumentVersionMetadataResponse: Default Response
+            RegistryListAPIDocumentVersionMetadataResponse: Default Response
         
         Example:
             ```python
@@ -495,7 +495,7 @@ class RegistryResource(SyncAPIResource):
         return self._get(
             path_template("/v1/apis/{namespace}/{slug}/version/{semver}/metadata", **{"namespace": namespace, "slug": slug, "semver": semver}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryListApiDocumentVersionMetadataResponse,
+            cast_to=RegistryListAPIDocumentVersionMetadataResponse,
         )
 
     def create_api_document_version(
@@ -513,7 +513,7 @@ class RegistryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryCreateApiDocumentVersionResponse:
+    ) -> RegistryCreateAPIDocumentVersionResponse:
         """
         Create a new API document version.
         
@@ -530,7 +530,7 @@ class RegistryResource(SyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryCreateApiDocumentVersionResponse: Default Response
+            RegistryCreateAPIDocumentVersionResponse: Default Response
         
         Example:
             ```python
@@ -555,10 +555,10 @@ class RegistryResource(SyncAPIResource):
             "force": force,
             "last_known_version_sha": last_known_version_sha,
         },
-            registry_create_api_document_version_params.RegistryCreateApiDocumentVersionParams,
+            registry_create_api_document_version_params.RegistryCreateAPIDocumentVersionParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryCreateApiDocumentVersionResponse,
+            cast_to=RegistryCreateAPIDocumentVersionResponse,
         )
 
     def create_api_document_access_group(
@@ -573,7 +573,7 @@ class RegistryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryCreateApiDocumentAccessGroupResponse:
+    ) -> RegistryCreateAPIDocumentAccessGroupResponse:
         """
         Add an access group to an API document.
         
@@ -587,7 +587,7 @@ class RegistryResource(SyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryCreateApiDocumentAccessGroupResponse: Default Response
+            RegistryCreateAPIDocumentAccessGroupResponse: Default Response
         
         Example:
             ```python
@@ -606,10 +606,10 @@ class RegistryResource(SyncAPIResource):
             path_template("/v1/apis/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=maybe_transform(
             {"access_group_slug": access_group_slug},
-            registry_create_api_document_access_group_params.RegistryCreateApiDocumentAccessGroupParams,
+            registry_create_api_document_access_group_params.RegistryCreateAPIDocumentAccessGroupParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryCreateApiDocumentAccessGroupResponse,
+            cast_to=RegistryCreateAPIDocumentAccessGroupResponse,
         )
 
     def delete_api_document_access_group(
@@ -624,7 +624,7 @@ class RegistryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryDeleteApiDocumentAccessGroupResponse:
+    ) -> RegistryDeleteAPIDocumentAccessGroupResponse:
         """
         Remove an access group from an API document.
         
@@ -638,7 +638,7 @@ class RegistryResource(SyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryDeleteApiDocumentAccessGroupResponse: Default Response
+            RegistryDeleteAPIDocumentAccessGroupResponse: Default Response
         
         Example:
             ```python
@@ -657,10 +657,10 @@ class RegistryResource(SyncAPIResource):
             path_template("/v1/apis/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=maybe_transform(
             {"access_group_slug": access_group_slug},
-            registry_delete_api_document_access_group_params.RegistryDeleteApiDocumentAccessGroupParams,
+            registry_delete_api_document_access_group_params.RegistryDeleteAPIDocumentAccessGroupParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryDeleteApiDocumentAccessGroupResponse,
+            cast_to=RegistryDeleteAPIDocumentAccessGroupResponse,
         )
 
 
@@ -683,7 +683,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryListAllApiDocumentsResponse:
+    ) -> RegistryListAllAPIDocumentsResponse:
         """
         List all API documents across every namespace the caller can access.
         
@@ -694,7 +694,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryListAllApiDocumentsResponse: Default Response
+            RegistryListAllAPIDocumentsResponse: Default Response
         
         Example:
             ```python
@@ -704,7 +704,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         return await self._get(
             "/v1/apis",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryListAllApiDocumentsResponse,
+            cast_to=RegistryListAllAPIDocumentsResponse,
         )
 
     async def list_api_documents(
@@ -717,7 +717,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryListApiDocumentsResponse:
+    ) -> RegistryListAPIDocumentsResponse:
         """
         List API documents in a namespace.
         
@@ -729,7 +729,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryListApiDocumentsResponse: Default Response
+            RegistryListAPIDocumentsResponse: Default Response
         
         Example:
             ```python
@@ -743,7 +743,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         return await self._get(
             path_template("/v1/apis/{namespace}", **{"namespace": namespace}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryListApiDocumentsResponse,
+            cast_to=RegistryListAPIDocumentsResponse,
         )
 
     async def create_api_document(
@@ -763,7 +763,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryCreateApiDocumentResponse:
+    ) -> RegistryCreateAPIDocumentResponse:
         """
         Create an API document.
         
@@ -782,7 +782,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryCreateApiDocumentResponse: Default Response
+            RegistryCreateAPIDocumentResponse: Default Response
         
         Example:
             ```python
@@ -809,10 +809,10 @@ class AsyncRegistryResource(AsyncAPIResource):
             "is_private": is_private,
             "document": document,
         },
-            registry_create_api_document_params.RegistryCreateApiDocumentParams,
+            registry_create_api_document_params.RegistryCreateAPIDocumentParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryCreateApiDocumentResponse,
+            cast_to=RegistryCreateAPIDocumentResponse,
         )
 
     async def update_api_document(
@@ -830,7 +830,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUpdateApiDocumentResponse:
+    ) -> RegistryUpdateAPIDocumentResponse:
         """
         Update metadata for an API document.
         
@@ -847,7 +847,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryUpdateApiDocumentResponse: Default Response
+            RegistryUpdateAPIDocumentResponse: Default Response
         
         Example:
             ```python
@@ -870,10 +870,10 @@ class AsyncRegistryResource(AsyncAPIResource):
             "is_private": is_private,
             "ruleset": ruleset,
         },
-            registry_update_api_document_params.RegistryUpdateApiDocumentParams,
+            registry_update_api_document_params.RegistryUpdateAPIDocumentParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryUpdateApiDocumentResponse,
+            cast_to=RegistryUpdateAPIDocumentResponse,
         )
 
     async def delete_api_document(
@@ -887,7 +887,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryDeleteApiDocumentResponse:
+    ) -> RegistryDeleteAPIDocumentResponse:
         """
         Delete an API document and all versions.
         
@@ -900,7 +900,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryDeleteApiDocumentResponse: Default Response
+            RegistryDeleteAPIDocumentResponse: Default Response
         
         Example:
             ```python
@@ -917,7 +917,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         return await self._delete(
             path_template("/v1/apis/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryDeleteApiDocumentResponse,
+            cast_to=RegistryDeleteAPIDocumentResponse,
         )
 
     async def retrieve_api_document_version(
@@ -984,7 +984,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryUpdateApiDocumentVersionResponse:
+    ) -> RegistryUpdateAPIDocumentVersionResponse:
         """
         Update the registry file content for an API document version.
         
@@ -1000,7 +1000,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryUpdateApiDocumentVersionResponse: Default Response
+            RegistryUpdateAPIDocumentVersionResponse: Default Response
         
         Example:
             ```python
@@ -1025,10 +1025,10 @@ class AsyncRegistryResource(AsyncAPIResource):
             "document": document,
             "last_known_version_sha": last_known_version_sha,
         },
-            registry_update_api_document_version_params.RegistryUpdateApiDocumentVersionParams,
+            registry_update_api_document_version_params.RegistryUpdateAPIDocumentVersionParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryUpdateApiDocumentVersionResponse,
+            cast_to=RegistryUpdateAPIDocumentVersionResponse,
         )
 
     async def delete_api_document_version(
@@ -1043,7 +1043,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryDeleteApiDocumentVersionResponse:
+    ) -> RegistryDeleteAPIDocumentVersionResponse:
         """
         Delete a specific API document version.
         
@@ -1057,7 +1057,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryDeleteApiDocumentVersionResponse: Default Response
+            RegistryDeleteAPIDocumentVersionResponse: Default Response
         
         Example:
             ```python
@@ -1077,7 +1077,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         return await self._delete(
             path_template("/v1/apis/{namespace}/{slug}/version/{semver}", **{"namespace": namespace, "slug": slug, "semver": semver}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryDeleteApiDocumentVersionResponse,
+            cast_to=RegistryDeleteAPIDocumentVersionResponse,
         )
 
     async def list_api_document_version_metadata(
@@ -1092,7 +1092,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryListApiDocumentVersionMetadataResponse:
+    ) -> RegistryListAPIDocumentVersionMetadataResponse:
         """
         Get metadata (uid, content shas, version sha, tags) for a specific API document version.
         
@@ -1106,7 +1106,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryListApiDocumentVersionMetadataResponse: Default Response
+            RegistryListAPIDocumentVersionMetadataResponse: Default Response
         
         Example:
             ```python
@@ -1126,7 +1126,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         return await self._get(
             path_template("/v1/apis/{namespace}/{slug}/version/{semver}/metadata", **{"namespace": namespace, "slug": slug, "semver": semver}),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryListApiDocumentVersionMetadataResponse,
+            cast_to=RegistryListAPIDocumentVersionMetadataResponse,
         )
 
     async def create_api_document_version(
@@ -1144,7 +1144,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryCreateApiDocumentVersionResponse:
+    ) -> RegistryCreateAPIDocumentVersionResponse:
         """
         Create a new API document version.
         
@@ -1161,7 +1161,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryCreateApiDocumentVersionResponse: Default Response
+            RegistryCreateAPIDocumentVersionResponse: Default Response
         
         Example:
             ```python
@@ -1186,10 +1186,10 @@ class AsyncRegistryResource(AsyncAPIResource):
             "force": force,
             "last_known_version_sha": last_known_version_sha,
         },
-            registry_create_api_document_version_params.RegistryCreateApiDocumentVersionParams,
+            registry_create_api_document_version_params.RegistryCreateAPIDocumentVersionParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryCreateApiDocumentVersionResponse,
+            cast_to=RegistryCreateAPIDocumentVersionResponse,
         )
 
     async def create_api_document_access_group(
@@ -1204,7 +1204,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryCreateApiDocumentAccessGroupResponse:
+    ) -> RegistryCreateAPIDocumentAccessGroupResponse:
         """
         Add an access group to an API document.
         
@@ -1218,7 +1218,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryCreateApiDocumentAccessGroupResponse: Default Response
+            RegistryCreateAPIDocumentAccessGroupResponse: Default Response
         
         Example:
             ```python
@@ -1237,10 +1237,10 @@ class AsyncRegistryResource(AsyncAPIResource):
             path_template("/v1/apis/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=await async_maybe_transform(
             {"access_group_slug": access_group_slug},
-            registry_create_api_document_access_group_params.RegistryCreateApiDocumentAccessGroupParams,
+            registry_create_api_document_access_group_params.RegistryCreateAPIDocumentAccessGroupParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryCreateApiDocumentAccessGroupResponse,
+            cast_to=RegistryCreateAPIDocumentAccessGroupResponse,
         )
 
     async def delete_api_document_access_group(
@@ -1255,7 +1255,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> RegistryDeleteApiDocumentAccessGroupResponse:
+    ) -> RegistryDeleteAPIDocumentAccessGroupResponse:
         """
         Remove an access group from an API document.
         
@@ -1269,7 +1269,7 @@ class AsyncRegistryResource(AsyncAPIResource):
             timeout: Override the client-level default timeout for this request, in seconds.
         
         Returns:
-            RegistryDeleteApiDocumentAccessGroupResponse: Default Response
+            RegistryDeleteAPIDocumentAccessGroupResponse: Default Response
         
         Example:
             ```python
@@ -1288,10 +1288,10 @@ class AsyncRegistryResource(AsyncAPIResource):
             path_template("/v1/apis/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=await async_maybe_transform(
             {"access_group_slug": access_group_slug},
-            registry_delete_api_document_access_group_params.RegistryDeleteApiDocumentAccessGroupParams,
+            registry_delete_api_document_access_group_params.RegistryDeleteAPIDocumentAccessGroupParams,
         ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=RegistryDeleteApiDocumentAccessGroupResponse,
+            cast_to=RegistryDeleteAPIDocumentAccessGroupResponse,
         )
 
 

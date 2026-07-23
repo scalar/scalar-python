@@ -82,7 +82,7 @@ List all API documents across every namespace the caller can access.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryListAllApiDocumentsResponse`](./src/types/registry_list_all_api_documents_response.py) |
+| Response | [`RegistryListAllAPIDocumentsResponse`](./src/types/registry_list_all_api_documents_response.py) |
 
 ```python
 registry = client.registry.list_all_api_documents()
@@ -94,7 +94,7 @@ List API documents in a namespace.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryListApiDocumentsResponse`](./src/types/registry_list_api_documents_response.py) |
+| Response | [`RegistryListAPIDocumentsResponse`](./src/types/registry_list_api_documents_response.py) |
 
 ```python
 registry = client.registry.list_api_documents(
@@ -108,8 +108,8 @@ Create an API document.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryCreateApiDocumentParams`](./src/types/registry_create_api_document_params.py) |
-| Response | [`RegistryCreateApiDocumentResponse`](./src/types/registry_create_api_document_response.py) |
+| Request | [`RegistryCreateAPIDocumentParams`](./src/types/registry_create_api_document_params.py) |
+| Response | [`RegistryCreateAPIDocumentResponse`](./src/types/registry_create_api_document_response.py) |
 
 ```python
 registry = client.registry.create_api_document(
@@ -127,8 +127,8 @@ Update metadata for an API document.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryUpdateApiDocumentParams`](./src/types/registry_update_api_document_params.py) |
-| Response | [`RegistryUpdateApiDocumentResponse`](./src/types/registry_update_api_document_response.py) |
+| Request | [`RegistryUpdateAPIDocumentParams`](./src/types/registry_update_api_document_params.py) |
+| Response | [`RegistryUpdateAPIDocumentResponse`](./src/types/registry_update_api_document_response.py) |
 
 ```python
 registry = client.registry.update_api_document(
@@ -143,7 +143,7 @@ Delete an API document and all versions.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryDeleteApiDocumentResponse`](./src/types/registry_delete_api_document_response.py) |
+| Response | [`RegistryDeleteAPIDocumentResponse`](./src/types/registry_delete_api_document_response.py) |
 
 ```python
 registry = client.registry.delete_api_document(
@@ -158,7 +158,7 @@ Get a specific API document version.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryRetrieveApiDocumentVersionResponse`](./src/types/registry_retrieve_api_document_version_response.py) |
+| Response | [`RegistryRetrieveAPIDocumentVersionResponse`](./src/types/registry_retrieve_api_document_version_response.py) |
 
 ```python
 registry = client.registry.retrieve_api_document_version(
@@ -174,8 +174,8 @@ Update the registry file content for an API document version.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryUpdateApiDocumentVersionParams`](./src/types/registry_update_api_document_version_params.py) |
-| Response | [`RegistryUpdateApiDocumentVersionResponse`](./src/types/registry_update_api_document_version_response.py) |
+| Request | [`RegistryUpdateAPIDocumentVersionParams`](./src/types/registry_update_api_document_version_params.py) |
+| Response | [`RegistryUpdateAPIDocumentVersionResponse`](./src/types/registry_update_api_document_version_response.py) |
 
 ```python
 registry = client.registry.update_api_document_version(
@@ -192,7 +192,7 @@ Delete a specific API document version.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryDeleteApiDocumentVersionResponse`](./src/types/registry_delete_api_document_version_response.py) |
+| Response | [`RegistryDeleteAPIDocumentVersionResponse`](./src/types/registry_delete_api_document_version_response.py) |
 
 ```python
 registry = client.registry.delete_api_document_version(
@@ -208,7 +208,7 @@ Get metadata (uid, content shas, version sha, tags) for a specific API document 
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryListApiDocumentVersionMetadataResponse`](./src/types/registry_list_api_document_version_metadata_response.py) |
+| Response | [`RegistryListAPIDocumentVersionMetadataResponse`](./src/types/registry_list_api_document_version_metadata_response.py) |
 
 ```python
 registry = client.registry.list_api_document_version_metadata(
@@ -224,8 +224,8 @@ Create a new API document version.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryCreateApiDocumentVersionParams`](./src/types/registry_create_api_document_version_params.py) |
-| Response | [`RegistryCreateApiDocumentVersionResponse`](./src/types/registry_create_api_document_version_response.py) |
+| Request | [`RegistryCreateAPIDocumentVersionParams`](./src/types/registry_create_api_document_version_params.py) |
+| Response | [`RegistryCreateAPIDocumentVersionResponse`](./src/types/registry_create_api_document_version_response.py) |
 
 ```python
 registry = client.registry.create_api_document_version(
@@ -242,8 +242,8 @@ Add an access group to an API document.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryCreateApiDocumentAccessGroupParams`](./src/types/registry_create_api_document_access_group_params.py) |
-| Response | [`RegistryCreateApiDocumentAccessGroupResponse`](./src/types/registry_create_api_document_access_group_response.py) |
+| Request | [`RegistryCreateAPIDocumentAccessGroupParams`](./src/types/registry_create_api_document_access_group_params.py) |
+| Response | [`RegistryCreateAPIDocumentAccessGroupResponse`](./src/types/registry_create_api_document_access_group_response.py) |
 
 ```python
 registry = client.registry.create_api_document_access_group(
@@ -259,8 +259,8 @@ Remove an access group from an API document.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryDeleteApiDocumentAccessGroupParams`](./src/types/registry_delete_api_document_access_group_params.py) |
-| Response | [`RegistryDeleteApiDocumentAccessGroupResponse`](./src/types/registry_delete_api_document_access_group_response.py) |
+| Request | [`RegistryDeleteAPIDocumentAccessGroupParams`](./src/types/registry_delete_api_document_access_group_params.py) |
+| Response | [`RegistryDeleteAPIDocumentAccessGroupResponse`](./src/types/registry_delete_api_document_access_group_response.py) |
 
 ```python
 registry = client.registry.delete_api_document_access_group(

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .shared_params.login_portal_email import LoginPortalEmail
-from .shared_params.login_portal_page import LoginPortalPage
+from .login_portal_email_param import LoginPortalEmailParam
+from .login_portal_page_param import LoginPortalPageParam
 
 __all__ = ["LoginPortalCreateParams"]
 
@@ -16,6 +16,6 @@ class LoginPortalCreateParams(TypedDict, total=False):
 
     slug: Required[str]
 
-    email: Required[LoginPortalEmail]
+    email: Required[LoginPortalEmailParam]
 
-    page: Required[LoginPortalPage]
+    page: Required[LoginPortalPageParam]
