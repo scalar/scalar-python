@@ -12,7 +12,7 @@ from .._models import BaseModel
 from .version import Version
 from .slug import Slug
 
-__all__ = ["RegistryListApiDocumentsResponse", "ApiDocument", "ManagedDocVersion", "Tool"]
+__all__ = ["RegistryListAPIDocumentsResponse", "APIDocument", "ManagedDocVersion", "Tool"]
 
 class Tool(BaseModel):
 
@@ -44,7 +44,7 @@ class ManagedDocVersion(BaseModel):
 
     version_sha: Optional[str] = FieldInfo(alias="versionSha", default=None)
 
-class ApiDocument(BaseModel):
+class APIDocument(BaseModel):
 
     uid: str
 
@@ -66,4 +66,4 @@ class ApiDocument(BaseModel):
 
 
 
-RegistryListApiDocumentsResponse: TypeAlias = List[ApiDocument]
+RegistryListAPIDocumentsResponse: TypeAlias = List[APIDocument]

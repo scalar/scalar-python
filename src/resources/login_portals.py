@@ -20,8 +20,8 @@ from ..types.login_portal_update_response import LoginPortalUpdateResponse
 from ..types import login_portal_update_params, login_portal_create_params
 from ..types.login_portal_delete_response import LoginPortalDeleteResponse
 from ..types.login_portal_create_response import LoginPortalCreateResponse
-from ..types.shared_params.login_portal_email import LoginPortalEmail
-from ..types.shared_params.login_portal_page import LoginPortalPage
+from ..types.login_portal_email_param import LoginPortalEmailParam
+from ..types.login_portal_page_param import LoginPortalPageParam
 from ..types.login_portal_list_response import LoginPortalListResponse, LoginPortal
 
 __all__ = ["LoginPortalsResource", "AsyncLoginPortalsResource"]
@@ -165,8 +165,8 @@ class LoginPortalsResource(SyncAPIResource):
         *,
         title: str,
         slug: str,
-        email: LoginPortalEmail,
-        page: LoginPortalPage,
+        email: LoginPortalEmailParam,
+        page: LoginPortalPageParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -387,8 +387,8 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
         *,
         title: str,
         slug: str,
-        email: LoginPortalEmail,
-        page: LoginPortalPage,
+        email: LoginPortalEmailParam,
+        page: LoginPortalPageParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

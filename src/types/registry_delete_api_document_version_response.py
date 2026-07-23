@@ -2,6 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-__all__ = ["RegistryDeleteApiDocumentVersionResponse"]
+__all__ = ["RegistryDeleteAPIDocumentVersionResponse"]
 
-RegistryDeleteApiDocumentVersionResponse: TypeAlias = None
+RegistryDeleteAPIDocumentVersionResponse: TypeAlias = None

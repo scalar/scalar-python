@@ -9,7 +9,7 @@ from .._models import BaseModel
 
 from .version import Version
 
-__all__ = ["RegistryListApiDocumentVersionMetadataResponse", "Tool"]
+__all__ = ["RegistryListAPIDocumentVersionMetadataResponse", "Tool"]
 
 
 class Tool(BaseModel):
@@ -22,7 +22,7 @@ class Tool(BaseModel):
 
 
 
-class RegistryListApiDocumentVersionMetadataResponse(BaseModel):
+class RegistryListAPIDocumentVersionMetadataResponse(BaseModel):
 
     uid: str
 

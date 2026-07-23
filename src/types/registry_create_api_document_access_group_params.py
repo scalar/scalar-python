@@ -8,10 +8,10 @@ from .._utils import PropertyInfo
 
 from .slug import Slug
 
-__all__ = ["RegistryCreateApiDocumentAccessGroupParams"]
+__all__ = ["RegistryCreateAPIDocumentAccessGroupParams"]
 
 
-class RegistryCreateApiDocumentAccessGroupParams(TypedDict, total=False):
+class RegistryCreateAPIDocumentAccessGroupParams(TypedDict, total=False):
 
     namespace: Required[str]
 
