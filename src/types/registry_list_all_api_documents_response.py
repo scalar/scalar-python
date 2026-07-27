@@ -12,9 +12,9 @@ from .._models import BaseModel
 from .version import Version
 from .slug import Slug
 
-__all__ = ["RegistryListAllAPIDocumentsResponse", "APIDocument", "ManagedDocVersion", "Tool"]
+__all__ = ["RegistryListAllAPIDocumentsResponse", "APIDocument", "Version", "VersionTool"]
 
-class Tool(BaseModel):
+class VersionTool(BaseModel):
 
     path: str
 
@@ -22,7 +22,7 @@ class Tool(BaseModel):
 
     enabled_tools: List[Literal["execute-request", "get-mini-openapi-spec"]] = FieldInfo(alias="enabledTools")
 
-class ManagedDocVersion(BaseModel):
+class Version(BaseModel):
 
     uid: str
 
@@ -36,7 +36,7 @@ class ManagedDocVersion(BaseModel):
 
     tags: List[str]
 
-    tools: Optional[List[Tool]] = None
+    tools: Optional[List[VersionTool]] = None
 
     yaml_sha: Optional[str] = FieldInfo(alias="yamlSha", default=None)
 
@@ -62,7 +62,7 @@ class APIDocument(BaseModel):
 
     tags: object
 
-    versions: List[ManagedDocVersion]
+    versions: List[Version]
 
 
 

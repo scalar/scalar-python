@@ -15,8 +15,8 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.registry_list_all_api_documents_response import RegistryListAllAPIDocumentsResponse, APIDocument, ManagedDocVersion, Tool
-from ..types.registry_list_api_documents_response import RegistryListAPIDocumentsResponse, APIDocument, ManagedDocVersion, Tool
+from ..types.registry_list_all_api_documents_response import RegistryListAllAPIDocumentsResponse
+from ..types.registry_list_api_documents_response import RegistryListAPIDocumentsResponse
 from ..types.registry_create_api_document_response import RegistryCreateAPIDocumentResponse
 from ..types.version import Version
 from ..types import registry_create_api_document_params, registry_update_api_document_params, registry_update_api_document_version_params, registry_create_api_document_version_params, registry_create_api_document_access_group_params, registry_delete_api_document_access_group_params
@@ -24,8 +24,8 @@ from ..types.registry_update_api_document_response import RegistryUpdateAPIDocum
 from ..types.registry_delete_api_document_response import RegistryDeleteAPIDocumentResponse
 from ..types.registry_update_api_document_version_response import RegistryUpdateAPIDocumentVersionResponse
 from ..types.registry_delete_api_document_version_response import RegistryDeleteAPIDocumentVersionResponse
-from ..types.registry_list_api_document_version_metadata_response import RegistryListAPIDocumentVersionMetadataResponse, Tool
-from ..types.registry_create_api_document_version_response import RegistryCreateAPIDocumentVersionResponse, Tool
+from ..types.registry_list_api_document_version_metadata_response import RegistryListAPIDocumentVersionMetadataResponse
+from ..types.registry_create_api_document_version_response import RegistryCreateAPIDocumentVersionResponse
 from ..types.registry_create_api_document_access_group_response import RegistryCreateAPIDocumentAccessGroupResponse
 from ..types.slug import Slug
 from ..types.registry_delete_api_document_access_group_response import RegistryDeleteAPIDocumentAccessGroupResponse

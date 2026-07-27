@@ -11,9 +11,9 @@ from .._models import BaseModel
 
 from .slug import Slug
 
-__all__ = ["ScalarDocListGuidesResponse", "GithubProject", "ActiveDeployment", "GithubProjectRepository"]
+__all__ = ["ScalarDocListGuidesResponse", "GithubProject", "ActiveDeployment", "Repository"]
 
-class GithubProjectRepository(BaseModel):
+class Repository(BaseModel):
 
     linked_by: str = FieldInfo(alias="linkedBy")
 
@@ -75,7 +75,7 @@ class GithubProject(BaseModel):
 
     publish_message: str = FieldInfo(alias="publishMessage")
 
-    repository: Optional[GithubProjectRepository] = None
+    repository: Optional[Repository] = None
 
 
 

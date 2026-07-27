@@ -17,7 +17,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.scalar_doc_list_guides_response import ScalarDocListGuidesResponse, GithubProject, ActiveDeployment, GithubProjectRepository
+from ..types.scalar_doc_list_guides_response import ScalarDocListGuidesResponse
 from ..types.scalar_doc_create_guide_response import ScalarDocCreateGuideResponse
 from ..types.slug import Slug
 from ..types import scalar_doc_create_guide_params
