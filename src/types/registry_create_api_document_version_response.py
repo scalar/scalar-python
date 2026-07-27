@@ -9,7 +9,7 @@ from .._models import BaseModel
 
 from .version import Version
 
-__all__ = ["RegistryCreateApiDocumentVersionResponse", "Tool"]
+__all__ = ["RegistryCreateAPIDocumentVersionResponse", "Tool"]
 
 
 class Tool(BaseModel):
@@ -22,7 +22,7 @@ class Tool(BaseModel):
 
 
 
-class RegistryCreateApiDocumentVersionResponse(BaseModel):
+class RegistryCreateAPIDocumentVersionResponse(BaseModel):
 
     uid: str
 

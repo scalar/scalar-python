@@ -8,10 +8,10 @@ from .._utils import PropertyInfo
 
 from .version import Version
 
-__all__ = ["RegistryCreateApiDocumentParams"]
+__all__ = ["RegistryCreateAPIDocumentParams"]
 
 
-class RegistryCreateApiDocumentParams(TypedDict, total=False):
+class RegistryCreateAPIDocumentParams(TypedDict, total=False):
 
     title: Required[str]
 

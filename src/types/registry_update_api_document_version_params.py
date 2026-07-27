@@ -6,10 +6,10 @@ from typing_extensions import Annotated, Required, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["RegistryUpdateApiDocumentVersionParams"]
+__all__ = ["RegistryUpdateAPIDocumentVersionParams"]
 
 
-class RegistryUpdateApiDocumentVersionParams(TypedDict, total=False):
+class RegistryUpdateAPIDocumentVersionParams(TypedDict, total=False):
 
     namespace: Required[str]
 
