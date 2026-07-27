@@ -22,7 +22,7 @@ from ..types.login_portal_delete_response import LoginPortalDeleteResponse
 from ..types.login_portal_create_response import LoginPortalCreateResponse
 from ..types.login_portal_email_param import LoginPortalEmailParam
 from ..types.login_portal_page_param import LoginPortalPageParam
-from ..types.login_portal_list_response import LoginPortalListResponse, LoginPortal
+from ..types.login_portal_list_response import LoginPortalListResponse
 
 __all__ = ["LoginPortalsResource", "AsyncLoginPortalsResource"]
 

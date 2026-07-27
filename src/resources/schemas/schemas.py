@@ -31,7 +31,7 @@ from .access_group import (
     AccessGroupResourceWithStreamingResponse,
     AsyncAccessGroupResourceWithStreamingResponse,
 )
-from ...types.schema_list_response import SchemaListResponse, Schema, ManagedSchemaVersion
+from ...types.schema_list_response import SchemaListResponse
 from ...types.schema_create_response import SchemaCreateResponse
 from ...types.version import Version
 from ...types import schema_create_params, schema_update_params

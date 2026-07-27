@@ -23,7 +23,7 @@ from ._types import (
 )
 from ._utils import is_given, is_mapping_t, get_async_library
 from ._compat import cached_property
-from ._exceptions import APIStatusError
+from ._exceptions import APIStatusError, ScalarError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -53,7 +53,7 @@ __all__ = ["Scalar", "AsyncScalar", "Client", "AsyncClient", "Timeout", "Transpo
 
 class Scalar(SyncAPIClient):
     # client options
-    bearer_auth: str | None
+    bearer_auth: str
 
     def __init__(
         self,
@@ -85,6 +85,10 @@ class Scalar(SyncAPIClient):
         """
         if bearer_auth is None:
             bearer_auth = os.environ.get("BEARER_AUTH")
+        if bearer_auth is None:
+            raise ScalarError(
+                "The bearer_auth client option must be set either by passing bearer_auth to the client or by setting the BEARER_AUTH environment variable"
+            )
         self.bearer_auth = bearer_auth
         if base_url is None:
             base_url = os.environ.get("SCALAR_BASE_URL")
@@ -296,7 +300,7 @@ class Scalar(SyncAPIClient):
 
 class AsyncScalar(AsyncAPIClient):
     # client options
-    bearer_auth: str | None
+    bearer_auth: str
 
     def __init__(
         self,
@@ -328,6 +332,10 @@ class AsyncScalar(AsyncAPIClient):
         """
         if bearer_auth is None:
             bearer_auth = os.environ.get("BEARER_AUTH")
+        if bearer_auth is None:
+            raise ScalarError(
+                "The bearer_auth client option must be set either by passing bearer_auth to the client or by setting the BEARER_AUTH environment variable"
+            )
         self.bearer_auth = bearer_auth
         if base_url is None:
             base_url = os.environ.get("SCALAR_BASE_URL")
