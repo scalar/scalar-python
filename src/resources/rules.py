@@ -15,7 +15,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.rule_list_rulesets_response import RuleListRulesetsResponse, Rule
+from ..types.rule_list_rulesets_response import RuleListRulesetsResponse
 from ..types.rule_create_ruleset_response import RuleCreateRulesetResponse
 from ..types import rule_create_ruleset_params, rule_update_ruleset_params, rule_create_ruleset_access_group_params, rule_delete_ruleset_access_group_params
 from ..types.rule_update_ruleset_response import RuleUpdateRulesetResponse

@@ -6,10 +6,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["AuthenticationListCurrentUserResponse", "TeamSummary"]
+__all__ = ["AuthenticationListCurrentUserResponse", "Team"]
 
 
-class TeamSummary(BaseModel):
+class Team(BaseModel):
 
     uid: str
 
@@ -35,4 +35,4 @@ class AuthenticationListCurrentUserResponse(BaseModel):
 
     has_github: bool = FieldInfo(alias="hasGithub")
 
-    teams: List[TeamSummary]
+    teams: List[Team]

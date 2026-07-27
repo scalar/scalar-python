@@ -4,8 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
+from .._types import Body, Query, Headers, NotGiven, not_given
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -15,7 +14,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.team_list_response import TeamListResponse, Team
+from ..types.team_list_response import TeamListResponse
 
 __all__ = ["TeamsResource", "AsyncTeamsResource"]
 

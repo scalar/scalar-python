@@ -12,9 +12,9 @@ from .._models import BaseModel
 from .slug import Slug
 from .version import Version
 
-__all__ = ["SchemaListResponse", "Schema", "ManagedSchemaVersion"]
+__all__ = ["SchemaListResponse", "Schema", "Version"]
 
-class ManagedSchemaVersion(BaseModel):
+class Version(BaseModel):
 
     uid: str
 
@@ -38,7 +38,7 @@ class Schema(BaseModel):
 
     is_private: bool = FieldInfo(alias="isPrivate")
 
-    versions: List[ManagedSchemaVersion]
+    versions: List[Version]
 
 
 

@@ -15,7 +15,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.theme_list_response import ThemeListResponse, Theme
+from ..types.theme_list_response import ThemeListResponse
 from ..types.theme_create_response import ThemeCreateResponse
 from ..types import theme_create_params, theme_update_params, theme_replace_document_params
 from ..types.theme_update_response import ThemeUpdateResponse

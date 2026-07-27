@@ -20,7 +20,7 @@
       },
       {
         "lang": "Go",
-        "description": "```sh\ngo get scalar-api\n```"
+        "description": "```sh\ngo get scalar-go\n```"
       }
     ]
   },
