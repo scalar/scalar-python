@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.2](https://github.com/scalar/scalar-python/compare/v0.3.1...v0.3.2) (2026-07-28)
+
+
+### Chores
+
+* **api:** regenerate SDK ([099aa9f](https://github.com/scalar/scalar-python/commit/099aa9f8b3261e0ef995755200c397cfae9a0a80))
+* **api:** update generated SDK content ([5d70014](https://github.com/scalar/scalar-python/commit/5d70014cc5b36aab6db5eaa4d487c4bd5b7258f0))
+* **api:** update generated SDK content ([a06d6cc](https://github.com/scalar/scalar-python/commit/a06d6cc862a5f29399a26aedb7d6c5ad124e7ff7))
+
 ## [0.3.1](https://github.com/scalar/scalar-python/compare/v0.3.0...v0.3.1) (2026-07-27)
 
 
