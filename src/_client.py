@@ -182,9 +182,9 @@ class Scalar(SyncAPIClient):
     def qs(self) -> Querystring:
         return Querystring(array_format="comma")
 
+    @property
     @override
-    def _auth_headers(self, security: dict[str, bool]) -> dict[str, str]:
-        _ = security
+    def auth_headers(self) -> dict[str, str]:
         return {
             **self._bearer_auth_header_auth,
         }
@@ -429,9 +429,9 @@ class AsyncScalar(AsyncAPIClient):
     def qs(self) -> Querystring:
         return Querystring(array_format="comma")
 
+    @property
     @override
-    def _auth_headers(self, security: dict[str, bool]) -> dict[str, str]:
-        _ = security
+    def auth_headers(self) -> dict[str, str]:
         return {
             **self._bearer_auth_header_auth,
         }
