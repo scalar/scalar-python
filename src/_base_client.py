@@ -478,12 +478,6 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
     ) -> _exceptions.APIStatusError:
         raise NotImplementedError()
 
-    def _auth_headers(
-        self,
-        security: SecurityOptions,  # noqa: ARG002
-    ) -> dict[str, str]:
-        return {}
-
     def _auth_query(
         self,
         security: SecurityOptions,  # noqa: ARG002
@@ -511,7 +505,9 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
         retries_taken: int = 0,
     ) -> httpx.Headers:
         custom_headers = options.headers or {}
-        headers_dict = _merge_mappings({**self._auth_headers(options.security), **self.default_headers}, custom_headers)
+        # Auth headers are folded into `default_headers` (matching Stainless), so
+        # merging `default_headers` here already applies the configured credentials.
+        headers_dict = _merge_mappings(self.default_headers, custom_headers)
         self._validate_headers(headers_dict, custom_headers, params, cookies)
 
         # headers are case-insensitive while dictionaries are not.
@@ -754,6 +750,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
             "Content-Type": "application/json",
             "User-Agent": self.user_agent,
             **self.platform_headers(),
+            **self.auth_headers,
             **self._custom_headers,
         }
 
