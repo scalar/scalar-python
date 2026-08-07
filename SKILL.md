@@ -41,6 +41,7 @@ client = Scalar(
 )
 
 registry = client.registry.list_all_api_documents()
+
 print(registry)
 ```
 

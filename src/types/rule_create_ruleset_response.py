@@ -6,5 +6,4 @@ __all__ = ["RuleCreateRulesetResponse"]
 
 
 class RuleCreateRulesetResponse(BaseModel):
-
     uid: str

@@ -9,8 +9,8 @@ from .slug import Slug
 
 __all__ = ["ThemeListResponse", "Theme"]
 
-class Theme(BaseModel):
 
+class Theme(BaseModel):
     uid: str
 
     name: str
@@ -18,7 +18,6 @@ class Theme(BaseModel):
     description: str
 
     slug: Slug
-
 
 
 ThemeListResponse: TypeAlias = List[Theme]

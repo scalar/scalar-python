@@ -505,7 +505,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
         retries_taken: int = 0,
     ) -> httpx.Headers:
         custom_headers = options.headers or {}
-        # Auth headers are folded into `default_headers` (matching Stainless), so
+        # Auth headers are folded into `default_headers` (matching the reference SDKs), so
         # merging `default_headers` here already applies the configured credentials.
         headers_dict = _merge_mappings(self.default_headers, custom_headers)
         self._validate_headers(headers_dict, custom_headers, params, cookies)
@@ -1831,9 +1831,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         options: FinalRequestOptions,
         cursor_config: Optional[CursorPageConfig] = None,
     ) -> AsyncPaginator[_T, AsyncPageT]:
-        return AsyncPaginator(
-            client=self, options=options, page_cls=page, model=model, cursor_config=cursor_config
-        )
+        return AsyncPaginator(client=self, options=options, page_cls=page, model=model, cursor_config=cursor_config)
 
     @overload
     async def get(

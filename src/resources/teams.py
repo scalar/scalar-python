@@ -20,7 +20,6 @@ __all__ = ["TeamsResource", "AsyncTeamsResource"]
 
 
 class TeamsResource(SyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> TeamsResourceWithRawResponse:
         return TeamsResourceWithRawResponse(self)
@@ -41,16 +40,16 @@ class TeamsResource(SyncAPIResource):
     ) -> TeamListResponse:
         """
         List all available teams
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             TeamListResponse: Default Response
-        
+
         Example:
             ```python
             team = client.teams.list()
@@ -58,13 +57,14 @@ class TeamsResource(SyncAPIResource):
         """
         return self._get(
             "/v1/teams",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=TeamListResponse,
         )
 
 
 class AsyncTeamsResource(AsyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> AsyncTeamsResourceWithRawResponse:
         return AsyncTeamsResourceWithRawResponse(self)
@@ -85,16 +85,16 @@ class AsyncTeamsResource(AsyncAPIResource):
     ) -> TeamListResponse:
         """
         List all available teams
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             TeamListResponse: Default Response
-        
+
         Example:
             ```python
             team = await client.teams.list()
@@ -102,7 +102,9 @@ class AsyncTeamsResource(AsyncAPIResource):
         """
         return await self._get(
             "/v1/teams",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=TeamListResponse,
         )
 

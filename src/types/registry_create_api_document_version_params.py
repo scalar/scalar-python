@@ -12,7 +12,6 @@ __all__ = ["RegistryCreateAPIDocumentVersionParams"]
 
 
 class RegistryCreateAPIDocumentVersionParams(TypedDict, total=False):
-
     namespace: Required[str]
 
     version: Required[Version]

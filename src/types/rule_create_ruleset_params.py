@@ -10,7 +10,6 @@ __all__ = ["RuleCreateRulesetParams"]
 
 
 class RuleCreateRulesetParams(TypedDict, total=False):
-
     title: Required[str]
 
     description: str

@@ -8,7 +8,6 @@ __all__ = ["LoginPortalEmail"]
 
 
 class LoginPortalEmail(BaseModel):
-
     logo: str
 
     logo_size: str = FieldInfo(alias="logoSize")

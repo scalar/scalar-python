@@ -10,7 +10,6 @@ __all__ = ["RuleUpdateRulesetParams"]
 
 
 class RuleUpdateRulesetParams(TypedDict, total=False):
-
     path_namespace: Required[Annotated[str, PropertyInfo(alias="namespace")]]
 
     body_namespace: Annotated[str, PropertyInfo(alias="namespace")]

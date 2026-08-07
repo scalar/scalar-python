@@ -27,7 +27,6 @@ __all__ = ["ScalarDocsResource", "AsyncScalarDocsResource"]
 
 
 class ScalarDocsResource(SyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> ScalarDocsResourceWithRawResponse:
         return ScalarDocsResourceWithRawResponse(self)
@@ -48,16 +47,16 @@ class ScalarDocsResource(SyncAPIResource):
     ) -> ScalarDocListGuidesResponse:
         """
         List all guide projects.
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ScalarDocListGuidesResponse: Default Response
-        
+
         Example:
             ```python
             scalar_doc = client.scalar_docs.list_guides()
@@ -65,7 +64,9 @@ class ScalarDocsResource(SyncAPIResource):
         """
         return self._get(
             "/v1/guides",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ScalarDocListGuidesResponse,
         )
 
@@ -86,7 +87,7 @@ class ScalarDocsResource(SyncAPIResource):
     ) -> ScalarDocCreateGuideResponse:
         """
         Create a guide project.
-        
+
         Args:
             name: Body parameter.
             slug: Body parameter.
@@ -97,10 +98,10 @@ class ScalarDocsResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ScalarDocCreateGuideResponse: Default Response
-        
+
         Example:
             ```python
             scalar_doc = client.scalar_docs.create_guide(
@@ -114,16 +115,18 @@ class ScalarDocsResource(SyncAPIResource):
         return self._post(
             "/v1/guides",
             body=maybe_transform(
-            {
-            "name": name,
-            "slug": slug,
-            "is_private": is_private,
-            "allowed_users": allowed_users,
-            "allowed_domains": allowed_domains,
-        },
-            scalar_doc_create_guide_params.ScalarDocCreateGuideParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "name": name,
+                    "slug": slug,
+                    "is_private": is_private,
+                    "allowed_users": allowed_users,
+                    "allowed_domains": allowed_domains,
+                },
+                scalar_doc_create_guide_params.ScalarDocCreateGuideParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ScalarDocCreateGuideResponse,
         )
 
@@ -140,17 +143,17 @@ class ScalarDocsResource(SyncAPIResource):
     ) -> ScalarDocPublishGuideResponse:
         """
         Start a new publish process.
-        
+
         Args:
             slug: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ScalarDocPublishGuideResponse: Default Response
-        
+
         Example:
             ```python
             scalar_doc = client.scalar_docs.publish_guide(
@@ -162,13 +165,14 @@ class ScalarDocsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return self._post(
             path_template("/v1/guides/{slug}/publish", **{"slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ScalarDocPublishGuideResponse,
         )
 
 
 class AsyncScalarDocsResource(AsyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> AsyncScalarDocsResourceWithRawResponse:
         return AsyncScalarDocsResourceWithRawResponse(self)
@@ -189,16 +193,16 @@ class AsyncScalarDocsResource(AsyncAPIResource):
     ) -> ScalarDocListGuidesResponse:
         """
         List all guide projects.
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ScalarDocListGuidesResponse: Default Response
-        
+
         Example:
             ```python
             scalar_doc = await client.scalar_docs.list_guides()
@@ -206,7 +210,9 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         """
         return await self._get(
             "/v1/guides",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ScalarDocListGuidesResponse,
         )
 
@@ -227,7 +233,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
     ) -> ScalarDocCreateGuideResponse:
         """
         Create a guide project.
-        
+
         Args:
             name: Body parameter.
             slug: Body parameter.
@@ -238,10 +244,10 @@ class AsyncScalarDocsResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ScalarDocCreateGuideResponse: Default Response
-        
+
         Example:
             ```python
             scalar_doc = await client.scalar_docs.create_guide(
@@ -255,16 +261,18 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         return await self._post(
             "/v1/guides",
             body=await async_maybe_transform(
-            {
-            "name": name,
-            "slug": slug,
-            "is_private": is_private,
-            "allowed_users": allowed_users,
-            "allowed_domains": allowed_domains,
-        },
-            scalar_doc_create_guide_params.ScalarDocCreateGuideParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "name": name,
+                    "slug": slug,
+                    "is_private": is_private,
+                    "allowed_users": allowed_users,
+                    "allowed_domains": allowed_domains,
+                },
+                scalar_doc_create_guide_params.ScalarDocCreateGuideParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ScalarDocCreateGuideResponse,
         )
 
@@ -281,17 +289,17 @@ class AsyncScalarDocsResource(AsyncAPIResource):
     ) -> ScalarDocPublishGuideResponse:
         """
         Start a new publish process.
-        
+
         Args:
             slug: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ScalarDocPublishGuideResponse: Default Response
-        
+
         Example:
             ```python
             scalar_doc = await client.scalar_docs.publish_guide(
@@ -303,7 +311,9 @@ class AsyncScalarDocsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return await self._post(
             path_template("/v1/guides/{slug}/publish", **{"slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ScalarDocPublishGuideResponse,
         )
 

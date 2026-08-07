@@ -42,7 +42,6 @@ __all__ = ["SchemasResource", "AsyncSchemasResource"]
 
 
 class SchemasResource(SyncAPIResource):
-
     @cached_property
     def version(self) -> VersionResource:
         return VersionResource(self._client)
@@ -72,17 +71,17 @@ class SchemasResource(SyncAPIResource):
     ) -> SchemaListResponse:
         """
         List schemas in a namespace.
-        
+
         Args:
             namespace: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             SchemaListResponse: Default Response
-        
+
         Example:
             ```python
             schema = client.schemas.list(
@@ -94,7 +93,9 @@ class SchemasResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         return self._get(
             path_template("/v1/schemas/{namespace}", **{"namespace": namespace}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=SchemaListResponse,
         )
 
@@ -117,7 +118,7 @@ class SchemasResource(SyncAPIResource):
     ) -> SchemaCreateResponse:
         """
         Create a schema in a namespace.
-        
+
         Args:
             namespace: Path parameter.
             title: Body parameter.
@@ -130,10 +131,10 @@ class SchemasResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             SchemaCreateResponse: Default Response
-        
+
         Example:
             ```python
             schema = client.schemas.create(
@@ -150,17 +151,19 @@ class SchemasResource(SyncAPIResource):
         return self._post(
             path_template("/v1/schemas/{namespace}", **{"namespace": namespace}),
             body=maybe_transform(
-            {
-            "title": title,
-            "description": description,
-            "version": version,
-            "slug": slug,
-            "is_private": is_private,
-            "document": document,
-        },
-            schema_create_params.SchemaCreateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "title": title,
+                    "description": description,
+                    "version": version,
+                    "slug": slug,
+                    "is_private": is_private,
+                    "document": document,
+                },
+                schema_create_params.SchemaCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=SchemaCreateResponse,
         )
 
@@ -181,7 +184,7 @@ class SchemasResource(SyncAPIResource):
     ) -> SchemaUpdateResponse:
         """
         Update schema metadata.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -192,10 +195,10 @@ class SchemasResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             SchemaUpdateResponse: Default Response
-        
+
         Example:
             ```python
             schema = client.schemas.update(
@@ -211,14 +214,16 @@ class SchemasResource(SyncAPIResource):
         return self._patch(
             path_template("/v1/schemas/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
             body=maybe_transform(
-            {
-            "title": title,
-            "description": description,
-            "is_private": is_private,
-        },
-            schema_update_params.SchemaUpdateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "title": title,
+                    "description": description,
+                    "is_private": is_private,
+                },
+                schema_update_params.SchemaUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=SchemaUpdateResponse,
         )
 
@@ -236,7 +241,7 @@ class SchemasResource(SyncAPIResource):
     ) -> SchemaDeleteResponse:
         """
         Delete a schema and all related versions.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -244,10 +249,10 @@ class SchemasResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             SchemaDeleteResponse: Default Response
-        
+
         Example:
             ```python
             schema = client.schemas.delete(
@@ -262,13 +267,14 @@ class SchemasResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return self._delete(
             path_template("/v1/schemas/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=SchemaDeleteResponse,
         )
 
 
 class AsyncSchemasResource(AsyncAPIResource):
-
     @cached_property
     def version(self) -> AsyncVersionResource:
         return AsyncVersionResource(self._client)
@@ -298,17 +304,17 @@ class AsyncSchemasResource(AsyncAPIResource):
     ) -> SchemaListResponse:
         """
         List schemas in a namespace.
-        
+
         Args:
             namespace: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             SchemaListResponse: Default Response
-        
+
         Example:
             ```python
             schema = await client.schemas.list(
@@ -320,7 +326,9 @@ class AsyncSchemasResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         return await self._get(
             path_template("/v1/schemas/{namespace}", **{"namespace": namespace}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=SchemaListResponse,
         )
 
@@ -343,7 +351,7 @@ class AsyncSchemasResource(AsyncAPIResource):
     ) -> SchemaCreateResponse:
         """
         Create a schema in a namespace.
-        
+
         Args:
             namespace: Path parameter.
             title: Body parameter.
@@ -356,10 +364,10 @@ class AsyncSchemasResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             SchemaCreateResponse: Default Response
-        
+
         Example:
             ```python
             schema = await client.schemas.create(
@@ -376,17 +384,19 @@ class AsyncSchemasResource(AsyncAPIResource):
         return await self._post(
             path_template("/v1/schemas/{namespace}", **{"namespace": namespace}),
             body=await async_maybe_transform(
-            {
-            "title": title,
-            "description": description,
-            "version": version,
-            "slug": slug,
-            "is_private": is_private,
-            "document": document,
-        },
-            schema_create_params.SchemaCreateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "title": title,
+                    "description": description,
+                    "version": version,
+                    "slug": slug,
+                    "is_private": is_private,
+                    "document": document,
+                },
+                schema_create_params.SchemaCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=SchemaCreateResponse,
         )
 
@@ -407,7 +417,7 @@ class AsyncSchemasResource(AsyncAPIResource):
     ) -> SchemaUpdateResponse:
         """
         Update schema metadata.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -418,10 +428,10 @@ class AsyncSchemasResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             SchemaUpdateResponse: Default Response
-        
+
         Example:
             ```python
             schema = await client.schemas.update(
@@ -437,14 +447,16 @@ class AsyncSchemasResource(AsyncAPIResource):
         return await self._patch(
             path_template("/v1/schemas/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
             body=await async_maybe_transform(
-            {
-            "title": title,
-            "description": description,
-            "is_private": is_private,
-        },
-            schema_update_params.SchemaUpdateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "title": title,
+                    "description": description,
+                    "is_private": is_private,
+                },
+                schema_update_params.SchemaUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=SchemaUpdateResponse,
         )
 
@@ -462,7 +474,7 @@ class AsyncSchemasResource(AsyncAPIResource):
     ) -> SchemaDeleteResponse:
         """
         Delete a schema and all related versions.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -470,10 +482,10 @@ class AsyncSchemasResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             SchemaDeleteResponse: Default Response
-        
+
         Example:
             ```python
             schema = await client.schemas.delete(
@@ -488,7 +500,9 @@ class AsyncSchemasResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return await self._delete(
             path_template("/v1/schemas/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=SchemaDeleteResponse,
         )
 
