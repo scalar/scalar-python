@@ -12,7 +12,6 @@ __all__ = ["SchemaCreateParams"]
 
 
 class SchemaCreateParams(TypedDict, total=False):
-
     title: Required[str]
 
     description: str

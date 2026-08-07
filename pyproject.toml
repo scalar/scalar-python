@@ -26,3 +26,6 @@ packages = ["src"]
 
 [tool.hatch.build.targets.wheel.sources]
 "src" = "scalar_sdk"
+
+[tool.ruff]
+line-length = 120

@@ -10,7 +10,6 @@ __all__ = ["SchemaUpdateParams"]
 
 
 class SchemaUpdateParams(TypedDict, total=False):
-
     namespace: Required[str]
 
     title: str

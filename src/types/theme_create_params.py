@@ -8,7 +8,6 @@ __all__ = ["ThemeCreateParams"]
 
 
 class ThemeCreateParams(TypedDict, total=False):
-
     name: Required[str]
 
     description: str

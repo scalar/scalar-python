@@ -13,7 +13,6 @@ __all__ = ["RegistryCreateAPIDocumentVersionResponse", "Tool"]
 
 
 class Tool(BaseModel):
-
     path: str
 
     method: Literal["delete", "get", "head", "options", "patch", "post", "put", "trace"]
@@ -21,9 +20,7 @@ class Tool(BaseModel):
     enabled_tools: List[Literal["execute-request", "get-mini-openapi-spec"]] = FieldInfo(alias="enabledTools")
 
 
-
 class RegistryCreateAPIDocumentVersionResponse(BaseModel):
-
     uid: str
 
     created_at: float = FieldInfo(alias="createdAt")

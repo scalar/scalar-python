@@ -6,13 +6,10 @@ from .._models import BaseModel
 
 __all__ = ["RegistryUpdateAPIDocumentVersionResponse"]
 
-class RegistryUpdateAPIDocumentVersionResponse(BaseModel):
 
+class RegistryUpdateAPIDocumentVersionResponse(BaseModel):
     json_sha: str = FieldInfo(alias="jsonSha")
 
     yaml_sha: str = FieldInfo(alias="yamlSha")
 
     version_sha: str = FieldInfo(alias="versionSha")
-
-
-

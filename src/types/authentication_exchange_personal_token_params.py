@@ -10,5 +10,4 @@ __all__ = ["AuthenticationExchangePersonalTokenParams"]
 
 
 class AuthenticationExchangePersonalTokenParams(TypedDict, total=False):
-
     personal_token: Required[Annotated[str, PropertyInfo(alias="personalToken")]]

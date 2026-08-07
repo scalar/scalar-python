@@ -9,14 +9,13 @@ from .slug import Slug
 
 __all__ = ["LoginPortalListResponse", "LoginPortal"]
 
-class LoginPortal(BaseModel):
 
+class LoginPortal(BaseModel):
     uid: str
 
     title: str
 
     slug: Slug
-
 
 
 LoginPortalListResponse: TypeAlias = List[LoginPortal]

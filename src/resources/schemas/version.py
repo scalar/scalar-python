@@ -24,7 +24,6 @@ __all__ = ["VersionResource", "AsyncVersionResource"]
 
 
 class VersionResource(SyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> VersionResourceWithRawResponse:
         return VersionResourceWithRawResponse(self)
@@ -48,7 +47,7 @@ class VersionResource(SyncAPIResource):
     ) -> str:
         """
         Get a specific schema version document.
-        
+
         Args:
             semver: Path parameter.
             namespace: Path parameter.
@@ -57,10 +56,10 @@ class VersionResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             str: Default Response
-        
+
         Example:
             ```python
             version = client.schemas.version.retrieve_schema(
@@ -78,8 +77,13 @@ class VersionResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `semver` but received {semver!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._get(
-            path_template("/v1/schemas/{namespace}/{slug}/version/{semver}", **{"namespace": namespace, "slug": slug, "semver": semver}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            path_template(
+                "/v1/schemas/{namespace}/{slug}/version/{semver}",
+                **{"namespace": namespace, "slug": slug, "semver": semver},
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=str,
         )
 
@@ -98,7 +102,7 @@ class VersionResource(SyncAPIResource):
     ) -> VersionDeleteSchemaResponse:
         """
         Delete a schema version.
-        
+
         Args:
             semver: Path parameter.
             namespace: Path parameter.
@@ -107,10 +111,10 @@ class VersionResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             VersionDeleteSchemaResponse: Default Response
-        
+
         Example:
             ```python
             version = client.schemas.version.delete_schema(
@@ -127,8 +131,13 @@ class VersionResource(SyncAPIResource):
         if semver is None or (isinstance(semver, str) and not semver):
             raise ValueError(f"Expected a non-empty value for `semver` but received {semver!r}")
         return self._delete(
-            path_template("/v1/schemas/{namespace}/{slug}/version/{semver}", **{"namespace": namespace, "slug": slug, "semver": semver}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            path_template(
+                "/v1/schemas/{namespace}/{slug}/version/{semver}",
+                **{"namespace": namespace, "slug": slug, "semver": semver},
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=VersionDeleteSchemaResponse,
         )
 
@@ -148,7 +157,7 @@ class VersionResource(SyncAPIResource):
     ) -> VersionCreateSchemaResponse:
         """
         Create a schema version.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -158,10 +167,10 @@ class VersionResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             VersionCreateSchemaResponse: Default Response
-        
+
         Example:
             ```python
             version = client.schemas.version.create_schema(
@@ -179,19 +188,20 @@ class VersionResource(SyncAPIResource):
         return self._post(
             path_template("/v1/schemas/{namespace}/{slug}/version", **{"namespace": namespace, "slug": slug}),
             body=maybe_transform(
-            {
-            "version": version,
-            "document": document,
-        },
-            version_create_schema_params.VersionCreateSchemaParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "version": version,
+                    "document": document,
+                },
+                version_create_schema_params.VersionCreateSchemaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=VersionCreateSchemaResponse,
         )
 
 
 class AsyncVersionResource(AsyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> AsyncVersionResourceWithRawResponse:
         return AsyncVersionResourceWithRawResponse(self)
@@ -215,7 +225,7 @@ class AsyncVersionResource(AsyncAPIResource):
     ) -> str:
         """
         Get a specific schema version document.
-        
+
         Args:
             semver: Path parameter.
             namespace: Path parameter.
@@ -224,10 +234,10 @@ class AsyncVersionResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             str: Default Response
-        
+
         Example:
             ```python
             version = await client.schemas.version.retrieve_schema(
@@ -245,8 +255,13 @@ class AsyncVersionResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `semver` but received {semver!r}")
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._get(
-            path_template("/v1/schemas/{namespace}/{slug}/version/{semver}", **{"namespace": namespace, "slug": slug, "semver": semver}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            path_template(
+                "/v1/schemas/{namespace}/{slug}/version/{semver}",
+                **{"namespace": namespace, "slug": slug, "semver": semver},
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=str,
         )
 
@@ -265,7 +280,7 @@ class AsyncVersionResource(AsyncAPIResource):
     ) -> VersionDeleteSchemaResponse:
         """
         Delete a schema version.
-        
+
         Args:
             semver: Path parameter.
             namespace: Path parameter.
@@ -274,10 +289,10 @@ class AsyncVersionResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             VersionDeleteSchemaResponse: Default Response
-        
+
         Example:
             ```python
             version = await client.schemas.version.delete_schema(
@@ -294,8 +309,13 @@ class AsyncVersionResource(AsyncAPIResource):
         if semver is None or (isinstance(semver, str) and not semver):
             raise ValueError(f"Expected a non-empty value for `semver` but received {semver!r}")
         return await self._delete(
-            path_template("/v1/schemas/{namespace}/{slug}/version/{semver}", **{"namespace": namespace, "slug": slug, "semver": semver}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            path_template(
+                "/v1/schemas/{namespace}/{slug}/version/{semver}",
+                **{"namespace": namespace, "slug": slug, "semver": semver},
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=VersionDeleteSchemaResponse,
         )
 
@@ -315,7 +335,7 @@ class AsyncVersionResource(AsyncAPIResource):
     ) -> VersionCreateSchemaResponse:
         """
         Create a schema version.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -325,10 +345,10 @@ class AsyncVersionResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             VersionCreateSchemaResponse: Default Response
-        
+
         Example:
             ```python
             version = await client.schemas.version.create_schema(
@@ -346,13 +366,15 @@ class AsyncVersionResource(AsyncAPIResource):
         return await self._post(
             path_template("/v1/schemas/{namespace}/{slug}/version", **{"namespace": namespace, "slug": slug}),
             body=await async_maybe_transform(
-            {
-            "version": version,
-            "document": document,
-        },
-            version_create_schema_params.VersionCreateSchemaParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "version": version,
+                    "document": document,
+                },
+                version_create_schema_params.VersionCreateSchemaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=VersionCreateSchemaResponse,
         )
 

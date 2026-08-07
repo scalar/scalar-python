@@ -13,8 +13,8 @@ from .slug import Slug
 
 __all__ = ["ScalarDocListGuidesResponse", "GithubProject", "ActiveDeployment", "Repository"]
 
-class Repository(BaseModel):
 
+class Repository(BaseModel):
     linked_by: str = FieldInfo(alias="linkedBy")
 
     id: float
@@ -33,16 +33,16 @@ class Repository(BaseModel):
 
     expired: bool
 
-class ActiveDeployment(BaseModel):
 
+class ActiveDeployment(BaseModel):
     uid: str
 
     domain: str
 
     published_at: int = FieldInfo(alias="publishedAt")
 
-class GithubProject(BaseModel):
 
+class GithubProject(BaseModel):
     uid: str
 
     created_at: int = FieldInfo(alias="createdAt")
@@ -76,7 +76,6 @@ class GithubProject(BaseModel):
     publish_message: str = FieldInfo(alias="publishMessage")
 
     repository: Optional[Repository] = None
-
 
 
 ScalarDocListGuidesResponse: TypeAlias = List[GithubProject]

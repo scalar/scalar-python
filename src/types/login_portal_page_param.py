@@ -10,7 +10,6 @@ __all__ = ["LoginPortalPageParam"]
 
 
 class LoginPortalPageParam(TypedDict, total=False):
-
     title: Required[str]
 
     description: Required[str]

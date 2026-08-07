@@ -33,7 +33,17 @@ from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._version import __version__
 
 if TYPE_CHECKING:
-    from .resources import registry, schemas, login_portals, rules, themes, teams, scalar_docs, namespaces, authentication
+    from .resources import (
+        registry,
+        schemas,
+        login_portals,
+        rules,
+        themes,
+        teams,
+        scalar_docs,
+        namespaces,
+        authentication,
+    )
     from .resources.registry import RegistryResource, AsyncRegistryResource
     from .resources.schemas import SchemasResource, AsyncSchemasResource
     from .resources.login_portals import LoginPortalsResource, AsyncLoginPortalsResource
@@ -192,14 +202,12 @@ class Scalar(SyncAPIClient):
     @override
     def _auth_query(self, security: dict[str, bool]) -> dict[str, str]:
         _ = security
-        return {
-        }
+        return {}
 
     @override
     def _auth_cookies(self, security: dict[str, bool]) -> dict[str, str]:
         _ = security
-        return {
-        }
+        return {}
 
     @property
     def _bearer_auth_header_auth(self) -> dict[str, str]:
@@ -207,7 +215,6 @@ class Scalar(SyncAPIClient):
         if value is None:
             return {}
         return {"Authorization": f"Bearer {value}"}
-
 
     @property
     @override
@@ -231,7 +238,6 @@ class Scalar(SyncAPIClient):
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
         raise TypeError("Could not resolve authentication method. Expected Authorization to be set.")
-
 
     def copy(
         self,
@@ -439,14 +445,12 @@ class AsyncScalar(AsyncAPIClient):
     @override
     def _auth_query(self, security: dict[str, bool]) -> dict[str, str]:
         _ = security
-        return {
-        }
+        return {}
 
     @override
     def _auth_cookies(self, security: dict[str, bool]) -> dict[str, str]:
         _ = security
-        return {
-        }
+        return {}
 
     @property
     def _bearer_auth_header_auth(self) -> dict[str, str]:
@@ -454,7 +458,6 @@ class AsyncScalar(AsyncAPIClient):
         if value is None:
             return {}
         return {"Authorization": f"Bearer {value}"}
-
 
     @property
     @override
@@ -478,7 +481,6 @@ class AsyncScalar(AsyncAPIClient):
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
         raise TypeError("Could not resolve authentication method. Expected Authorization to be set.")
-
 
     def copy(
         self,

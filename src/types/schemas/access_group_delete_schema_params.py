@@ -12,7 +12,6 @@ __all__ = ["AccessGroupDeleteSchemaParams"]
 
 
 class AccessGroupDeleteSchemaParams(TypedDict, total=False):
-
     namespace: Required[str]
 
     access_group_slug: Required[Annotated[Slug, PropertyInfo(alias="accessGroupSlug")]]

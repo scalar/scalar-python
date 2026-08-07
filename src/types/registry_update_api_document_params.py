@@ -10,7 +10,6 @@ __all__ = ["RegistryUpdateAPIDocumentParams"]
 
 
 class RegistryUpdateAPIDocumentParams(TypedDict, total=False):
-
     namespace: Required[str]
 
     title: str

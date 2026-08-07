@@ -14,8 +14,8 @@ from .version import Version
 
 __all__ = ["SchemaListResponse", "Schema", "Version"]
 
-class Version(BaseModel):
 
+class Version(BaseModel):
     uid: str
 
     created_at: int = FieldInfo(alias="createdAt")
@@ -24,8 +24,8 @@ class Version(BaseModel):
 
     version: Version
 
-class Schema(BaseModel):
 
+class Schema(BaseModel):
     uid: str
 
     title: str
@@ -39,7 +39,6 @@ class Schema(BaseModel):
     is_private: bool = FieldInfo(alias="isPrivate")
 
     versions: List[Version]
-
 
 
 SchemaListResponse: TypeAlias = List[Schema]

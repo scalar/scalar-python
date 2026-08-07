@@ -8,5 +8,4 @@ __all__ = ["ThemeReplaceDocumentParams"]
 
 
 class ThemeReplaceDocumentParams(TypedDict, total=False):
-
     document: Required[str]

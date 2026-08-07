@@ -11,8 +11,8 @@ from .slug import Slug
 
 __all__ = ["RuleListRulesetsResponse", "Rule"]
 
-class Rule(BaseModel):
 
+class Rule(BaseModel):
     uid: str
 
     title: str
@@ -24,7 +24,6 @@ class Rule(BaseModel):
     namespace: str
 
     is_private: bool = FieldInfo(alias="isPrivate")
-
 
 
 RuleListRulesetsResponse: TypeAlias = List[Rule]

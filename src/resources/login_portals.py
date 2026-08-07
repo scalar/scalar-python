@@ -28,7 +28,6 @@ __all__ = ["LoginPortalsResource", "AsyncLoginPortalsResource"]
 
 
 class LoginPortalsResource(SyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> LoginPortalsResourceWithRawResponse:
         return LoginPortalsResourceWithRawResponse(self)
@@ -50,17 +49,17 @@ class LoginPortalsResource(SyncAPIResource):
     ) -> LoginPortalRetrieveResponse:
         """
         Get a login portal by slug.
-        
+
         Args:
             slug: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             LoginPortalRetrieveResponse: Default Response
-        
+
         Example:
             ```python
             login_portal = client.login_portals.retrieve(
@@ -72,7 +71,9 @@ class LoginPortalsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return self._get(
             path_template("/v1/login-portals/{slug}", **{"slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=LoginPortalRetrieveResponse,
         )
 
@@ -90,7 +91,7 @@ class LoginPortalsResource(SyncAPIResource):
     ) -> LoginPortalUpdateResponse:
         """
         Update metadata for a login portal.
-        
+
         Args:
             slug: Path parameter.
             title: Body parameter.
@@ -98,10 +99,10 @@ class LoginPortalsResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             LoginPortalUpdateResponse: Default Response
-        
+
         Example:
             ```python
             login_portal = client.login_portals.update(
@@ -114,10 +115,12 @@ class LoginPortalsResource(SyncAPIResource):
         return self._patch(
             path_template("/v1/login-portals/{slug}", **{"slug": slug}),
             body=maybe_transform(
-            {"title": title},
-            login_portal_update_params.LoginPortalUpdateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"title": title},
+                login_portal_update_params.LoginPortalUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=LoginPortalUpdateResponse,
         )
 
@@ -134,17 +137,17 @@ class LoginPortalsResource(SyncAPIResource):
     ) -> LoginPortalDeleteResponse:
         """
         Delete a login portal.
-        
+
         Args:
             slug: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             LoginPortalDeleteResponse: Default Response
-        
+
         Example:
             ```python
             login_portal = client.login_portals.delete(
@@ -156,7 +159,9 @@ class LoginPortalsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return self._delete(
             path_template("/v1/login-portals/{slug}", **{"slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=LoginPortalDeleteResponse,
         )
 
@@ -176,7 +181,7 @@ class LoginPortalsResource(SyncAPIResource):
     ) -> LoginPortalCreateResponse:
         """
         Create a login portal for the current team.
-        
+
         Args:
             title: Body parameter.
             slug: Body parameter.
@@ -186,32 +191,61 @@ class LoginPortalsResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             LoginPortalCreateResponse: Default Response
-        
+
         Example:
             ```python
             login_portal = client.login_portals.create(
                 title="",
                 slug="",
-                email={"logo": "", "logo_size": "100", "button_text": "Login", "message": "Click to access private documentation hosted by scalar.com", "title": "Private Docs", "main_color": "#2a2f45", "main_background": "#f6f6f6", "card_color": "2a2f45", "card_background": "#fff", "button_color": "#fff", "button_background": "#0f0f0f"},
-                page={"title": "Scalar Private Docs", "description": "Login to access your documentation", "head": "", "script": "", "theme": "", "company_name": "", "logo": "", "logo_url": "", "favicon": "", "terms_link": "", "privacy_link": "", "form_title": "Scalar Private Docs", "form_description": "Login to access your documentation", "form_image": ""},
+                email={
+                    "logo": "",
+                    "logo_size": "100",
+                    "button_text": "Login",
+                    "message": "Click to access private documentation hosted by scalar.com",
+                    "title": "Private Docs",
+                    "main_color": "#2a2f45",
+                    "main_background": "#f6f6f6",
+                    "card_color": "2a2f45",
+                    "card_background": "#fff",
+                    "button_color": "#fff",
+                    "button_background": "#0f0f0f",
+                },
+                page={
+                    "title": "Scalar Private Docs",
+                    "description": "Login to access your documentation",
+                    "head": "",
+                    "script": "",
+                    "theme": "",
+                    "company_name": "",
+                    "logo": "",
+                    "logo_url": "",
+                    "favicon": "",
+                    "terms_link": "",
+                    "privacy_link": "",
+                    "form_title": "Scalar Private Docs",
+                    "form_description": "Login to access your documentation",
+                    "form_image": "",
+                },
             )
             ```
         """
         return self._post(
             "/v1/login-portals",
             body=maybe_transform(
-            {
-            "title": title,
-            "slug": slug,
-            "email": email,
-            "page": page,
-        },
-            login_portal_create_params.LoginPortalCreateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "title": title,
+                    "slug": slug,
+                    "email": email,
+                    "page": page,
+                },
+                login_portal_create_params.LoginPortalCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=LoginPortalCreateResponse,
         )
 
@@ -227,16 +261,16 @@ class LoginPortalsResource(SyncAPIResource):
     ) -> LoginPortalListResponse:
         """
         List all login portals for the current team.
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             LoginPortalListResponse: Default Response
-        
+
         Example:
             ```python
             login_portal = client.login_portals.list()
@@ -244,13 +278,14 @@ class LoginPortalsResource(SyncAPIResource):
         """
         return self._get(
             "/v1/login-portals",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=LoginPortalListResponse,
         )
 
 
 class AsyncLoginPortalsResource(AsyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> AsyncLoginPortalsResourceWithRawResponse:
         return AsyncLoginPortalsResourceWithRawResponse(self)
@@ -272,17 +307,17 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
     ) -> LoginPortalRetrieveResponse:
         """
         Get a login portal by slug.
-        
+
         Args:
             slug: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             LoginPortalRetrieveResponse: Default Response
-        
+
         Example:
             ```python
             login_portal = await client.login_portals.retrieve(
@@ -294,7 +329,9 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return await self._get(
             path_template("/v1/login-portals/{slug}", **{"slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=LoginPortalRetrieveResponse,
         )
 
@@ -312,7 +349,7 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
     ) -> LoginPortalUpdateResponse:
         """
         Update metadata for a login portal.
-        
+
         Args:
             slug: Path parameter.
             title: Body parameter.
@@ -320,10 +357,10 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             LoginPortalUpdateResponse: Default Response
-        
+
         Example:
             ```python
             login_portal = await client.login_portals.update(
@@ -336,10 +373,12 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
         return await self._patch(
             path_template("/v1/login-portals/{slug}", **{"slug": slug}),
             body=await async_maybe_transform(
-            {"title": title},
-            login_portal_update_params.LoginPortalUpdateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"title": title},
+                login_portal_update_params.LoginPortalUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=LoginPortalUpdateResponse,
         )
 
@@ -356,17 +395,17 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
     ) -> LoginPortalDeleteResponse:
         """
         Delete a login portal.
-        
+
         Args:
             slug: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             LoginPortalDeleteResponse: Default Response
-        
+
         Example:
             ```python
             login_portal = await client.login_portals.delete(
@@ -378,7 +417,9 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return await self._delete(
             path_template("/v1/login-portals/{slug}", **{"slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=LoginPortalDeleteResponse,
         )
 
@@ -398,7 +439,7 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
     ) -> LoginPortalCreateResponse:
         """
         Create a login portal for the current team.
-        
+
         Args:
             title: Body parameter.
             slug: Body parameter.
@@ -408,32 +449,61 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             LoginPortalCreateResponse: Default Response
-        
+
         Example:
             ```python
             login_portal = await client.login_portals.create(
                 title="",
                 slug="",
-                email={"logo": "", "logo_size": "100", "button_text": "Login", "message": "Click to access private documentation hosted by scalar.com", "title": "Private Docs", "main_color": "#2a2f45", "main_background": "#f6f6f6", "card_color": "2a2f45", "card_background": "#fff", "button_color": "#fff", "button_background": "#0f0f0f"},
-                page={"title": "Scalar Private Docs", "description": "Login to access your documentation", "head": "", "script": "", "theme": "", "company_name": "", "logo": "", "logo_url": "", "favicon": "", "terms_link": "", "privacy_link": "", "form_title": "Scalar Private Docs", "form_description": "Login to access your documentation", "form_image": ""},
+                email={
+                    "logo": "",
+                    "logo_size": "100",
+                    "button_text": "Login",
+                    "message": "Click to access private documentation hosted by scalar.com",
+                    "title": "Private Docs",
+                    "main_color": "#2a2f45",
+                    "main_background": "#f6f6f6",
+                    "card_color": "2a2f45",
+                    "card_background": "#fff",
+                    "button_color": "#fff",
+                    "button_background": "#0f0f0f",
+                },
+                page={
+                    "title": "Scalar Private Docs",
+                    "description": "Login to access your documentation",
+                    "head": "",
+                    "script": "",
+                    "theme": "",
+                    "company_name": "",
+                    "logo": "",
+                    "logo_url": "",
+                    "favicon": "",
+                    "terms_link": "",
+                    "privacy_link": "",
+                    "form_title": "Scalar Private Docs",
+                    "form_description": "Login to access your documentation",
+                    "form_image": "",
+                },
             )
             ```
         """
         return await self._post(
             "/v1/login-portals",
             body=await async_maybe_transform(
-            {
-            "title": title,
-            "slug": slug,
-            "email": email,
-            "page": page,
-        },
-            login_portal_create_params.LoginPortalCreateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "title": title,
+                    "slug": slug,
+                    "email": email,
+                    "page": page,
+                },
+                login_portal_create_params.LoginPortalCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=LoginPortalCreateResponse,
         )
 
@@ -449,16 +519,16 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
     ) -> LoginPortalListResponse:
         """
         List all login portals for the current team.
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             LoginPortalListResponse: Default Response
-        
+
         Example:
             ```python
             login_portal = await client.login_portals.list()
@@ -466,7 +536,9 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
         """
         return await self._get(
             "/v1/login-portals",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=LoginPortalListResponse,
         )
 

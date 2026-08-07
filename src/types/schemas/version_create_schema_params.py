@@ -10,7 +10,6 @@ __all__ = ["VersionCreateSchemaParams"]
 
 
 class VersionCreateSchemaParams(TypedDict, total=False):
-
     namespace: Required[str]
 
     version: Required[Version]

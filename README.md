@@ -42,6 +42,7 @@ client = Scalar(
 )
 
 registry = client.registry.list_all_api_documents()
+
 print(registry)
 ```
 
@@ -60,9 +61,11 @@ import asyncio
 
 from scalar_sdk import AsyncScalar
 
+
 async def main() -> None:
     client = AsyncScalar()
     registry = await client.registry.list_all_api_documents()
+
 
 asyncio.run(main())
 ```

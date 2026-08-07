@@ -8,7 +8,6 @@ __all__ = ["LoginPortalPage"]
 
 
 class LoginPortalPage(BaseModel):
-
     title: str
 
     description: str

@@ -11,8 +11,8 @@ from .slug import Slug
 
 __all__ = ["TeamListResponse", "Team"]
 
-class Team(BaseModel):
 
+class Team(BaseModel):
     uid: str
 
     name: str
@@ -22,7 +22,6 @@ class Team(BaseModel):
     slug: Slug
 
     theme: str
-
 
 
 TeamListResponse: TypeAlias = List[Team]

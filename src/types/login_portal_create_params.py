@@ -11,7 +11,6 @@ __all__ = ["LoginPortalCreateParams"]
 
 
 class LoginPortalCreateParams(TypedDict, total=False):
-
     title: Required[str]
 
     slug: Required[str]

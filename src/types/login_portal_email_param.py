@@ -10,7 +10,6 @@ __all__ = ["LoginPortalEmailParam"]
 
 
 class LoginPortalEmailParam(TypedDict, total=False):
-
     logo: Required[str]
 
     logo_size: Required[Annotated[str, PropertyInfo(alias="logoSize")]]
