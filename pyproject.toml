@@ -1,6 +1,6 @@
 [project]
 name = "scalar-sdk"
-version = "0.3.3" # x-release-please-version
+version = "0.3.4" # x-release-please-version
 description = "API for managing Scalar platform resources."
 readme = "README.md"
 license = "Apache-2.0"
