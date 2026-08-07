@@ -4,11 +4,8 @@ from .._models import BaseModel
 
 __all__ = ["ScalarDocCreateGuideResponse"]
 
-class ScalarDocCreateGuideResponse(BaseModel):
 
+class ScalarDocCreateGuideResponse(BaseModel):
     uid: str
 
     slug: str
-
-
-

@@ -7,8 +7,8 @@ from .login_portal_page import LoginPortalPage
 
 __all__ = ["LoginPortalRetrieveResponse"]
 
-class LoginPortalRetrieveResponse(BaseModel):
 
+class LoginPortalRetrieveResponse(BaseModel):
     uid: str
 
     title: str
@@ -18,6 +18,3 @@ class LoginPortalRetrieveResponse(BaseModel):
     email: LoginPortalEmail
 
     page: LoginPortalPage
-
-
-

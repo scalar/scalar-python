@@ -12,7 +12,6 @@ __all__ = ["RuleDeleteRulesetAccessGroupParams"]
 
 
 class RuleDeleteRulesetAccessGroupParams(TypedDict, total=False):
-
     namespace: Required[str]
 
     access_group_slug: Required[Annotated[Slug, PropertyInfo(alias="accessGroupSlug")]]

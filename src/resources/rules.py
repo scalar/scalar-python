@@ -17,7 +17,12 @@ from .._response import (
 from .._base_client import make_request_options
 from ..types.rule_list_rulesets_response import RuleListRulesetsResponse
 from ..types.rule_create_ruleset_response import RuleCreateRulesetResponse
-from ..types import rule_create_ruleset_params, rule_update_ruleset_params, rule_create_ruleset_access_group_params, rule_delete_ruleset_access_group_params
+from ..types import (
+    rule_create_ruleset_params,
+    rule_update_ruleset_params,
+    rule_create_ruleset_access_group_params,
+    rule_delete_ruleset_access_group_params,
+)
 from ..types.rule_update_ruleset_response import RuleUpdateRulesetResponse
 from ..types.rule_delete_ruleset_response import RuleDeleteRulesetResponse
 from ..types.rule_create_ruleset_access_group_response import RuleCreateRulesetAccessGroupResponse
@@ -28,7 +33,6 @@ __all__ = ["RulesResource", "AsyncRulesResource"]
 
 
 class RulesResource(SyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> RulesResourceWithRawResponse:
         return RulesResourceWithRawResponse(self)
@@ -50,17 +54,17 @@ class RulesResource(SyncAPIResource):
     ) -> RuleListRulesetsResponse:
         """
         List all rulesets in a namespace.
-        
+
         Args:
             namespace: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleListRulesetsResponse: Default Response
-        
+
         Example:
             ```python
             rule = client.rules.list_rulesets(
@@ -72,7 +76,9 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         return self._get(
             path_template("/v1/rulesets/{namespace}", **{"namespace": namespace}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleListRulesetsResponse,
         )
 
@@ -94,7 +100,7 @@ class RulesResource(SyncAPIResource):
     ) -> RuleCreateRulesetResponse:
         """
         Create a rule in a namespace.
-        
+
         Args:
             namespace: Path parameter.
             title: Body parameter.
@@ -106,10 +112,10 @@ class RulesResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleCreateRulesetResponse: Default Response
-        
+
         Example:
             ```python
             rule = client.rules.create_ruleset(
@@ -125,16 +131,18 @@ class RulesResource(SyncAPIResource):
         return self._post(
             path_template("/v1/rulesets/{namespace}", **{"namespace": namespace}),
             body=maybe_transform(
-            {
-            "title": title,
-            "description": description,
-            "slug": slug,
-            "is_private": is_private,
-            "document": document,
-        },
-            rule_create_ruleset_params.RuleCreateRulesetParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "title": title,
+                    "description": description,
+                    "slug": slug,
+                    "is_private": is_private,
+                    "document": document,
+                },
+                rule_create_ruleset_params.RuleCreateRulesetParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleCreateRulesetResponse,
         )
 
@@ -157,7 +165,7 @@ class RulesResource(SyncAPIResource):
     ) -> RuleUpdateRulesetResponse:
         """
         Update rule metadata by slug.
-        
+
         Args:
             path_slug: Path parameter.
             path_namespace: Path parameter.
@@ -170,10 +178,10 @@ class RulesResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleUpdateRulesetResponse: Default Response
-        
+
         Example:
             ```python
             rule = client.rules.update_ruleset(
@@ -189,16 +197,18 @@ class RulesResource(SyncAPIResource):
         return self._patch(
             path_template("/v1/rulesets/{namespace}/{slug}", **{"namespace": path_namespace, "slug": path_slug}),
             body=maybe_transform(
-            {
-            "body_namespace": body_namespace,
-            "body_slug": body_slug,
-            "title": title,
-            "description": description,
-            "is_private": is_private,
-        },
-            rule_update_ruleset_params.RuleUpdateRulesetParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "body_namespace": body_namespace,
+                    "body_slug": body_slug,
+                    "title": title,
+                    "description": description,
+                    "is_private": is_private,
+                },
+                rule_update_ruleset_params.RuleUpdateRulesetParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleUpdateRulesetResponse,
         )
 
@@ -216,7 +226,7 @@ class RulesResource(SyncAPIResource):
     ) -> RuleDeleteRulesetResponse:
         """
         Delete a rule by slug.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -224,10 +234,10 @@ class RulesResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleDeleteRulesetResponse: Default Response
-        
+
         Example:
             ```python
             rule = client.rules.delete_ruleset(
@@ -242,7 +252,9 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return self._delete(
             path_template("/v1/rulesets/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleDeleteRulesetResponse,
         )
 
@@ -260,7 +272,7 @@ class RulesResource(SyncAPIResource):
     ) -> str:
         """
         Get a rule document by slug.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -268,10 +280,10 @@ class RulesResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             str: Default Response
-        
+
         Example:
             ```python
             rule = client.rules.retrieve_ruleset_document(
@@ -287,7 +299,9 @@ class RulesResource(SyncAPIResource):
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._get(
             path_template("/v1/rulesets/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=str,
         )
 
@@ -306,7 +320,7 @@ class RulesResource(SyncAPIResource):
     ) -> RuleCreateRulesetAccessGroupResponse:
         """
         Grant an access group to a rule.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -315,10 +329,10 @@ class RulesResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleCreateRulesetAccessGroupResponse: Default Response
-        
+
         Example:
             ```python
             rule = client.rules.create_ruleset_access_group(
@@ -335,10 +349,12 @@ class RulesResource(SyncAPIResource):
         return self._post(
             path_template("/v1/rulesets/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=maybe_transform(
-            {"access_group_slug": access_group_slug},
-            rule_create_ruleset_access_group_params.RuleCreateRulesetAccessGroupParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"access_group_slug": access_group_slug},
+                rule_create_ruleset_access_group_params.RuleCreateRulesetAccessGroupParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleCreateRulesetAccessGroupResponse,
         )
 
@@ -357,7 +373,7 @@ class RulesResource(SyncAPIResource):
     ) -> RuleDeleteRulesetAccessGroupResponse:
         """
         Remove an access group from a rule.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -366,10 +382,10 @@ class RulesResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleDeleteRulesetAccessGroupResponse: Default Response
-        
+
         Example:
             ```python
             rule = client.rules.delete_ruleset_access_group(
@@ -386,16 +402,17 @@ class RulesResource(SyncAPIResource):
         return self._delete(
             path_template("/v1/rulesets/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=maybe_transform(
-            {"access_group_slug": access_group_slug},
-            rule_delete_ruleset_access_group_params.RuleDeleteRulesetAccessGroupParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"access_group_slug": access_group_slug},
+                rule_delete_ruleset_access_group_params.RuleDeleteRulesetAccessGroupParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleDeleteRulesetAccessGroupResponse,
         )
 
 
 class AsyncRulesResource(AsyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> AsyncRulesResourceWithRawResponse:
         return AsyncRulesResourceWithRawResponse(self)
@@ -417,17 +434,17 @@ class AsyncRulesResource(AsyncAPIResource):
     ) -> RuleListRulesetsResponse:
         """
         List all rulesets in a namespace.
-        
+
         Args:
             namespace: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleListRulesetsResponse: Default Response
-        
+
         Example:
             ```python
             rule = await client.rules.list_rulesets(
@@ -439,7 +456,9 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace` but received {namespace!r}")
         return await self._get(
             path_template("/v1/rulesets/{namespace}", **{"namespace": namespace}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleListRulesetsResponse,
         )
 
@@ -461,7 +480,7 @@ class AsyncRulesResource(AsyncAPIResource):
     ) -> RuleCreateRulesetResponse:
         """
         Create a rule in a namespace.
-        
+
         Args:
             namespace: Path parameter.
             title: Body parameter.
@@ -473,10 +492,10 @@ class AsyncRulesResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleCreateRulesetResponse: Default Response
-        
+
         Example:
             ```python
             rule = await client.rules.create_ruleset(
@@ -492,16 +511,18 @@ class AsyncRulesResource(AsyncAPIResource):
         return await self._post(
             path_template("/v1/rulesets/{namespace}", **{"namespace": namespace}),
             body=await async_maybe_transform(
-            {
-            "title": title,
-            "description": description,
-            "slug": slug,
-            "is_private": is_private,
-            "document": document,
-        },
-            rule_create_ruleset_params.RuleCreateRulesetParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "title": title,
+                    "description": description,
+                    "slug": slug,
+                    "is_private": is_private,
+                    "document": document,
+                },
+                rule_create_ruleset_params.RuleCreateRulesetParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleCreateRulesetResponse,
         )
 
@@ -524,7 +545,7 @@ class AsyncRulesResource(AsyncAPIResource):
     ) -> RuleUpdateRulesetResponse:
         """
         Update rule metadata by slug.
-        
+
         Args:
             path_slug: Path parameter.
             path_namespace: Path parameter.
@@ -537,10 +558,10 @@ class AsyncRulesResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleUpdateRulesetResponse: Default Response
-        
+
         Example:
             ```python
             rule = await client.rules.update_ruleset(
@@ -556,16 +577,18 @@ class AsyncRulesResource(AsyncAPIResource):
         return await self._patch(
             path_template("/v1/rulesets/{namespace}/{slug}", **{"namespace": path_namespace, "slug": path_slug}),
             body=await async_maybe_transform(
-            {
-            "body_namespace": body_namespace,
-            "body_slug": body_slug,
-            "title": title,
-            "description": description,
-            "is_private": is_private,
-        },
-            rule_update_ruleset_params.RuleUpdateRulesetParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "body_namespace": body_namespace,
+                    "body_slug": body_slug,
+                    "title": title,
+                    "description": description,
+                    "is_private": is_private,
+                },
+                rule_update_ruleset_params.RuleUpdateRulesetParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleUpdateRulesetResponse,
         )
 
@@ -583,7 +606,7 @@ class AsyncRulesResource(AsyncAPIResource):
     ) -> RuleDeleteRulesetResponse:
         """
         Delete a rule by slug.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -591,10 +614,10 @@ class AsyncRulesResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleDeleteRulesetResponse: Default Response
-        
+
         Example:
             ```python
             rule = await client.rules.delete_ruleset(
@@ -609,7 +632,9 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return await self._delete(
             path_template("/v1/rulesets/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleDeleteRulesetResponse,
         )
 
@@ -627,7 +652,7 @@ class AsyncRulesResource(AsyncAPIResource):
     ) -> str:
         """
         Get a rule document by slug.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -635,10 +660,10 @@ class AsyncRulesResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             str: Default Response
-        
+
         Example:
             ```python
             rule = await client.rules.retrieve_ruleset_document(
@@ -654,7 +679,9 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._get(
             path_template("/v1/rulesets/{namespace}/{slug}", **{"namespace": namespace, "slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=str,
         )
 
@@ -673,7 +700,7 @@ class AsyncRulesResource(AsyncAPIResource):
     ) -> RuleCreateRulesetAccessGroupResponse:
         """
         Grant an access group to a rule.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -682,10 +709,10 @@ class AsyncRulesResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleCreateRulesetAccessGroupResponse: Default Response
-        
+
         Example:
             ```python
             rule = await client.rules.create_ruleset_access_group(
@@ -702,10 +729,12 @@ class AsyncRulesResource(AsyncAPIResource):
         return await self._post(
             path_template("/v1/rulesets/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=await async_maybe_transform(
-            {"access_group_slug": access_group_slug},
-            rule_create_ruleset_access_group_params.RuleCreateRulesetAccessGroupParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"access_group_slug": access_group_slug},
+                rule_create_ruleset_access_group_params.RuleCreateRulesetAccessGroupParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleCreateRulesetAccessGroupResponse,
         )
 
@@ -724,7 +753,7 @@ class AsyncRulesResource(AsyncAPIResource):
     ) -> RuleDeleteRulesetAccessGroupResponse:
         """
         Remove an access group from a rule.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -733,10 +762,10 @@ class AsyncRulesResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             RuleDeleteRulesetAccessGroupResponse: Default Response
-        
+
         Example:
             ```python
             rule = await client.rules.delete_ruleset_access_group(
@@ -753,10 +782,12 @@ class AsyncRulesResource(AsyncAPIResource):
         return await self._delete(
             path_template("/v1/rulesets/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=await async_maybe_transform(
-            {"access_group_slug": access_group_slug},
-            rule_delete_ruleset_access_group_params.RuleDeleteRulesetAccessGroupParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"access_group_slug": access_group_slug},
+                rule_delete_ruleset_access_group_params.RuleDeleteRulesetAccessGroupParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=RuleDeleteRulesetAccessGroupResponse,
         )
 

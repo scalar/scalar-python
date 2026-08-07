@@ -12,7 +12,6 @@ __all__ = ["RegistryCreateAPIDocumentParams"]
 
 
 class RegistryCreateAPIDocumentParams(TypedDict, total=False):
-
     title: Required[str]
 
     description: str

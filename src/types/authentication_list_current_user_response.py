@@ -10,7 +10,6 @@ __all__ = ["AuthenticationListCurrentUserResponse", "Team"]
 
 
 class Team(BaseModel):
-
     uid: str
 
     name: str
@@ -18,9 +17,7 @@ class Team(BaseModel):
     image_uri: Optional[str] = FieldInfo(alias="imageUri", default=None)
 
 
-
 class AuthenticationListCurrentUserResponse(BaseModel):
-
     uid: str
 
     created_at: int = FieldInfo(alias="createdAt")

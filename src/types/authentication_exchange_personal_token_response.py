@@ -6,9 +6,6 @@ from .._models import BaseModel
 
 __all__ = ["AuthenticationExchangePersonalTokenResponse"]
 
+
 class AuthenticationExchangePersonalTokenResponse(BaseModel):
-
     access_token: str = FieldInfo(alias="accessToken")
-
-
-

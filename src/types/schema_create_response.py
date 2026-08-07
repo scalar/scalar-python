@@ -6,5 +6,4 @@ __all__ = ["SchemaCreateResponse"]
 
 
 class SchemaCreateResponse(BaseModel):
-
     uid: str

@@ -6,8 +6,8 @@ from .._models import BaseModel
 
 __all__ = ["RegistryCreateAPIDocumentResponse"]
 
-class RegistryCreateAPIDocumentResponse(BaseModel):
 
+class RegistryCreateAPIDocumentResponse(BaseModel):
     uid: str
 
     version_uid: str = FieldInfo(alias="versionUid")
@@ -19,6 +19,3 @@ class RegistryCreateAPIDocumentResponse(BaseModel):
     yaml_sha: str = FieldInfo(alias="yamlSha")
 
     version_sha: str = FieldInfo(alias="versionSha")
-
-
-

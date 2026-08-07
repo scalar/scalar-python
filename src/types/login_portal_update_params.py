@@ -8,5 +8,4 @@ __all__ = ["LoginPortalUpdateParams"]
 
 
 class LoginPortalUpdateParams(TypedDict, total=False):
-
     title: str

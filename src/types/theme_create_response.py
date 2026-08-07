@@ -6,5 +6,4 @@ __all__ = ["ThemeCreateResponse"]
 
 
 class ThemeCreateResponse(BaseModel):
-
     uid: str

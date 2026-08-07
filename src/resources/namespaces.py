@@ -20,7 +20,6 @@ __all__ = ["NamespacesResource", "AsyncNamespacesResource"]
 
 
 class NamespacesResource(SyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> NamespacesResourceWithRawResponse:
         return NamespacesResourceWithRawResponse(self)
@@ -41,16 +40,16 @@ class NamespacesResource(SyncAPIResource):
     ) -> NamespaceListResponse:
         """
         Get all namespaces for the current team
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             NamespaceListResponse: Default Response
-        
+
         Example:
             ```python
             namespace = client.namespaces.list()
@@ -58,13 +57,14 @@ class NamespacesResource(SyncAPIResource):
         """
         return self._get(
             "/v1/namespaces",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=NamespaceListResponse,
         )
 
 
 class AsyncNamespacesResource(AsyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> AsyncNamespacesResourceWithRawResponse:
         return AsyncNamespacesResourceWithRawResponse(self)
@@ -85,16 +85,16 @@ class AsyncNamespacesResource(AsyncAPIResource):
     ) -> NamespaceListResponse:
         """
         Get all namespaces for the current team
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             NamespaceListResponse: Default Response
-        
+
         Example:
             ```python
             namespace = await client.namespaces.list()
@@ -102,7 +102,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
         """
         return await self._get(
             "/v1/namespaces",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=NamespaceListResponse,
         )
 

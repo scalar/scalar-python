@@ -482,8 +482,35 @@ Create a login portal for the current team.
 login_portal = client.login_portals.create(
     title="",
     slug="",
-    email={"logo": "", "logo_size": "100", "button_text": "Login", "message": "Click to access private documentation hosted by scalar.com", "title": "Private Docs", "main_color": "#2a2f45", "main_background": "#f6f6f6", "card_color": "2a2f45", "card_background": "#fff", "button_color": "#fff", "button_background": "#0f0f0f"},
-    page={"title": "Scalar Private Docs", "description": "Login to access your documentation", "head": "", "script": "", "theme": "", "company_name": "", "logo": "", "logo_url": "", "favicon": "", "terms_link": "", "privacy_link": "", "form_title": "Scalar Private Docs", "form_description": "Login to access your documentation", "form_image": ""},
+    email={
+        "logo": "",
+        "logo_size": "100",
+        "button_text": "Login",
+        "message": "Click to access private documentation hosted by scalar.com",
+        "title": "Private Docs",
+        "main_color": "#2a2f45",
+        "main_background": "#f6f6f6",
+        "card_color": "2a2f45",
+        "card_background": "#fff",
+        "button_color": "#fff",
+        "button_background": "#0f0f0f",
+    },
+    page={
+        "title": "Scalar Private Docs",
+        "description": "Login to access your documentation",
+        "head": "",
+        "script": "",
+        "theme": "",
+        "company_name": "",
+        "logo": "",
+        "logo_url": "",
+        "favicon": "",
+        "terms_link": "",
+        "privacy_link": "",
+        "form_title": "Scalar Private Docs",
+        "form_description": "Login to access your documentation",
+        "form_image": "",
+    },
 )
 ```
 

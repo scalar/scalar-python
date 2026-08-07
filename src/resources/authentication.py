@@ -23,7 +23,6 @@ __all__ = ["AuthenticationResource", "AsyncAuthenticationResource"]
 
 
 class AuthenticationResource(SyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> AuthenticationResourceWithRawResponse:
         return AuthenticationResourceWithRawResponse(self)
@@ -45,17 +44,17 @@ class AuthenticationResource(SyncAPIResource):
     ) -> AuthenticationExchangePersonalTokenResponse:
         """
         Exchange an API key for an access token.
-        
+
         Args:
             personal_token: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             AuthenticationExchangePersonalTokenResponse: Default Response
-        
+
         Example:
             ```python
             authentication = client.authentication.exchange_personal_token(
@@ -66,10 +65,12 @@ class AuthenticationResource(SyncAPIResource):
         return self._post(
             "/v1/auth/exchange",
             body=maybe_transform(
-            {"personal_token": personal_token},
-            authentication_exchange_personal_token_params.AuthenticationExchangePersonalTokenParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"personal_token": personal_token},
+                authentication_exchange_personal_token_params.AuthenticationExchangePersonalTokenParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AuthenticationExchangePersonalTokenResponse,
         )
 
@@ -85,16 +86,16 @@ class AuthenticationResource(SyncAPIResource):
     ) -> AuthenticationListCurrentUserResponse:
         """
         Get the authenticated user, including their available teams and theme.
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             AuthenticationListCurrentUserResponse: Default Response
-        
+
         Example:
             ```python
             authentication = client.authentication.list_current_user()
@@ -102,13 +103,14 @@ class AuthenticationResource(SyncAPIResource):
         """
         return self._get(
             "/v1/auth/me",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AuthenticationListCurrentUserResponse,
         )
 
 
 class AsyncAuthenticationResource(AsyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> AsyncAuthenticationResourceWithRawResponse:
         return AsyncAuthenticationResourceWithRawResponse(self)
@@ -130,17 +132,17 @@ class AsyncAuthenticationResource(AsyncAPIResource):
     ) -> AuthenticationExchangePersonalTokenResponse:
         """
         Exchange an API key for an access token.
-        
+
         Args:
             personal_token: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             AuthenticationExchangePersonalTokenResponse: Default Response
-        
+
         Example:
             ```python
             authentication = await client.authentication.exchange_personal_token(
@@ -151,10 +153,12 @@ class AsyncAuthenticationResource(AsyncAPIResource):
         return await self._post(
             "/v1/auth/exchange",
             body=await async_maybe_transform(
-            {"personal_token": personal_token},
-            authentication_exchange_personal_token_params.AuthenticationExchangePersonalTokenParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"personal_token": personal_token},
+                authentication_exchange_personal_token_params.AuthenticationExchangePersonalTokenParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AuthenticationExchangePersonalTokenResponse,
         )
 
@@ -170,16 +174,16 @@ class AsyncAuthenticationResource(AsyncAPIResource):
     ) -> AuthenticationListCurrentUserResponse:
         """
         Get the authenticated user, including their available teams and theme.
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             AuthenticationListCurrentUserResponse: Default Response
-        
+
         Example:
             ```python
             authentication = await client.authentication.list_current_user()
@@ -187,7 +191,9 @@ class AsyncAuthenticationResource(AsyncAPIResource):
         """
         return await self._get(
             "/v1/auth/me",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AuthenticationListCurrentUserResponse,
         )
 

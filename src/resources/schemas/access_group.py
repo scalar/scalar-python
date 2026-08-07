@@ -24,7 +24,6 @@ __all__ = ["AccessGroupResource", "AsyncAccessGroupResource"]
 
 
 class AccessGroupResource(SyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> AccessGroupResourceWithRawResponse:
         return AccessGroupResourceWithRawResponse(self)
@@ -48,7 +47,7 @@ class AccessGroupResource(SyncAPIResource):
     ) -> AccessGroupCreateSchemaResponse:
         """
         Add an access group to a schema.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -57,10 +56,10 @@ class AccessGroupResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             AccessGroupCreateSchemaResponse: Default Response
-        
+
         Example:
             ```python
             access_group = client.schemas.access_group.create_schema(
@@ -77,10 +76,12 @@ class AccessGroupResource(SyncAPIResource):
         return self._post(
             path_template("/v1/schemas/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=maybe_transform(
-            {"access_group_slug": access_group_slug},
-            access_group_create_schema_params.AccessGroupCreateSchemaParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"access_group_slug": access_group_slug},
+                access_group_create_schema_params.AccessGroupCreateSchemaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AccessGroupCreateSchemaResponse,
         )
 
@@ -99,7 +100,7 @@ class AccessGroupResource(SyncAPIResource):
     ) -> AccessGroupDeleteSchemaResponse:
         """
         Remove an access group from a schema.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -108,10 +109,10 @@ class AccessGroupResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             AccessGroupDeleteSchemaResponse: Default Response
-        
+
         Example:
             ```python
             access_group = client.schemas.access_group.delete_schema(
@@ -128,16 +129,17 @@ class AccessGroupResource(SyncAPIResource):
         return self._delete(
             path_template("/v1/schemas/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=maybe_transform(
-            {"access_group_slug": access_group_slug},
-            access_group_delete_schema_params.AccessGroupDeleteSchemaParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"access_group_slug": access_group_slug},
+                access_group_delete_schema_params.AccessGroupDeleteSchemaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AccessGroupDeleteSchemaResponse,
         )
 
 
 class AsyncAccessGroupResource(AsyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> AsyncAccessGroupResourceWithRawResponse:
         return AsyncAccessGroupResourceWithRawResponse(self)
@@ -161,7 +163,7 @@ class AsyncAccessGroupResource(AsyncAPIResource):
     ) -> AccessGroupCreateSchemaResponse:
         """
         Add an access group to a schema.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -170,10 +172,10 @@ class AsyncAccessGroupResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             AccessGroupCreateSchemaResponse: Default Response
-        
+
         Example:
             ```python
             access_group = await client.schemas.access_group.create_schema(
@@ -190,10 +192,12 @@ class AsyncAccessGroupResource(AsyncAPIResource):
         return await self._post(
             path_template("/v1/schemas/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=await async_maybe_transform(
-            {"access_group_slug": access_group_slug},
-            access_group_create_schema_params.AccessGroupCreateSchemaParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"access_group_slug": access_group_slug},
+                access_group_create_schema_params.AccessGroupCreateSchemaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AccessGroupCreateSchemaResponse,
         )
 
@@ -212,7 +216,7 @@ class AsyncAccessGroupResource(AsyncAPIResource):
     ) -> AccessGroupDeleteSchemaResponse:
         """
         Remove an access group from a schema.
-        
+
         Args:
             slug: Path parameter.
             namespace: Path parameter.
@@ -221,10 +225,10 @@ class AsyncAccessGroupResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             AccessGroupDeleteSchemaResponse: Default Response
-        
+
         Example:
             ```python
             access_group = await client.schemas.access_group.delete_schema(
@@ -241,10 +245,12 @@ class AsyncAccessGroupResource(AsyncAPIResource):
         return await self._delete(
             path_template("/v1/schemas/{namespace}/{slug}/access-group", **{"namespace": namespace, "slug": slug}),
             body=await async_maybe_transform(
-            {"access_group_slug": access_group_slug},
-            access_group_delete_schema_params.AccessGroupDeleteSchemaParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"access_group_slug": access_group_slug},
+                access_group_delete_schema_params.AccessGroupDeleteSchemaParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AccessGroupDeleteSchemaResponse,
         )
 

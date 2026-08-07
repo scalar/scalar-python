@@ -13,7 +13,6 @@ __all__ = ["ScalarDocCreateGuideParams"]
 
 
 class ScalarDocCreateGuideParams(TypedDict, total=False):
-
     name: Required[str]
 
     slug: Slug

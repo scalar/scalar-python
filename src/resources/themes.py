@@ -26,7 +26,6 @@ __all__ = ["ThemesResource", "AsyncThemesResource"]
 
 
 class ThemesResource(SyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> ThemesResourceWithRawResponse:
         return ThemesResourceWithRawResponse(self)
@@ -47,16 +46,16 @@ class ThemesResource(SyncAPIResource):
     ) -> ThemeListResponse:
         """
         List all team themes.
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ThemeListResponse: Default Response
-        
+
         Example:
             ```python
             theme = client.themes.list()
@@ -64,7 +63,9 @@ class ThemesResource(SyncAPIResource):
         """
         return self._get(
             "/v1/themes",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ThemeListResponse,
         )
 
@@ -84,7 +85,7 @@ class ThemesResource(SyncAPIResource):
     ) -> ThemeCreateResponse:
         """
         Create a team theme.
-        
+
         Args:
             name: Body parameter.
             description: Body parameter.
@@ -94,10 +95,10 @@ class ThemesResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ThemeCreateResponse: Default Response
-        
+
         Example:
             ```python
             theme = client.themes.create(
@@ -110,15 +111,17 @@ class ThemesResource(SyncAPIResource):
         return self._post(
             "/v1/themes",
             body=maybe_transform(
-            {
-            "name": name,
-            "description": description,
-            "slug": slug,
-            "document": document,
-        },
-            theme_create_params.ThemeCreateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "name": name,
+                    "description": description,
+                    "slug": slug,
+                    "document": document,
+                },
+                theme_create_params.ThemeCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ThemeCreateResponse,
         )
 
@@ -137,7 +140,7 @@ class ThemesResource(SyncAPIResource):
     ) -> ThemeUpdateResponse:
         """
         Update theme metadata.
-        
+
         Args:
             slug: Path parameter.
             name: Body parameter.
@@ -146,10 +149,10 @@ class ThemesResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ThemeUpdateResponse: Default Response
-        
+
         Example:
             ```python
             theme = client.themes.update(
@@ -162,13 +165,15 @@ class ThemesResource(SyncAPIResource):
         return self._patch(
             path_template("/v1/themes/{slug}", **{"slug": slug}),
             body=maybe_transform(
-            {
-            "name": name,
-            "description": description,
-        },
-            theme_update_params.ThemeUpdateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "name": name,
+                    "description": description,
+                },
+                theme_update_params.ThemeUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ThemeUpdateResponse,
         )
 
@@ -186,7 +191,7 @@ class ThemesResource(SyncAPIResource):
     ) -> ThemeReplaceDocumentResponse:
         """
         Replace the theme document.
-        
+
         Args:
             slug: Path parameter.
             document: Body parameter.
@@ -194,10 +199,10 @@ class ThemesResource(SyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ThemeReplaceDocumentResponse: Default Response
-        
+
         Example:
             ```python
             theme = client.themes.replace_document(
@@ -211,10 +216,12 @@ class ThemesResource(SyncAPIResource):
         return self._put(
             path_template("/v1/themes/{slug}", **{"slug": slug}),
             body=maybe_transform(
-            {"document": document},
-            theme_replace_document_params.ThemeReplaceDocumentParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"document": document},
+                theme_replace_document_params.ThemeReplaceDocumentParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ThemeReplaceDocumentResponse,
         )
 
@@ -231,17 +238,17 @@ class ThemesResource(SyncAPIResource):
     ) -> ThemeDeleteResponse:
         """
         Delete a theme by slug.
-        
+
         Args:
             slug: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ThemeDeleteResponse: Default Response
-        
+
         Example:
             ```python
             theme = client.themes.delete(
@@ -253,7 +260,9 @@ class ThemesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return self._delete(
             path_template("/v1/themes/{slug}", **{"slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ThemeDeleteResponse,
         )
 
@@ -270,17 +279,17 @@ class ThemesResource(SyncAPIResource):
     ) -> str:
         """
         Get the theme document by slug.
-        
+
         Args:
             slug: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             str: Default Response
-        
+
         Example:
             ```python
             theme = client.themes.retrieve(
@@ -293,13 +302,14 @@ class ThemesResource(SyncAPIResource):
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._get(
             path_template("/v1/themes/{slug}", **{"slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=str,
         )
 
 
 class AsyncThemesResource(AsyncAPIResource):
-
     @cached_property
     def with_raw_response(self) -> AsyncThemesResourceWithRawResponse:
         return AsyncThemesResourceWithRawResponse(self)
@@ -320,16 +330,16 @@ class AsyncThemesResource(AsyncAPIResource):
     ) -> ThemeListResponse:
         """
         List all team themes.
-        
+
         Args:
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ThemeListResponse: Default Response
-        
+
         Example:
             ```python
             theme = await client.themes.list()
@@ -337,7 +347,9 @@ class AsyncThemesResource(AsyncAPIResource):
         """
         return await self._get(
             "/v1/themes",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ThemeListResponse,
         )
 
@@ -357,7 +369,7 @@ class AsyncThemesResource(AsyncAPIResource):
     ) -> ThemeCreateResponse:
         """
         Create a team theme.
-        
+
         Args:
             name: Body parameter.
             description: Body parameter.
@@ -367,10 +379,10 @@ class AsyncThemesResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ThemeCreateResponse: Default Response
-        
+
         Example:
             ```python
             theme = await client.themes.create(
@@ -383,15 +395,17 @@ class AsyncThemesResource(AsyncAPIResource):
         return await self._post(
             "/v1/themes",
             body=await async_maybe_transform(
-            {
-            "name": name,
-            "description": description,
-            "slug": slug,
-            "document": document,
-        },
-            theme_create_params.ThemeCreateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "name": name,
+                    "description": description,
+                    "slug": slug,
+                    "document": document,
+                },
+                theme_create_params.ThemeCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ThemeCreateResponse,
         )
 
@@ -410,7 +424,7 @@ class AsyncThemesResource(AsyncAPIResource):
     ) -> ThemeUpdateResponse:
         """
         Update theme metadata.
-        
+
         Args:
             slug: Path parameter.
             name: Body parameter.
@@ -419,10 +433,10 @@ class AsyncThemesResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ThemeUpdateResponse: Default Response
-        
+
         Example:
             ```python
             theme = await client.themes.update(
@@ -435,13 +449,15 @@ class AsyncThemesResource(AsyncAPIResource):
         return await self._patch(
             path_template("/v1/themes/{slug}", **{"slug": slug}),
             body=await async_maybe_transform(
-            {
-            "name": name,
-            "description": description,
-        },
-            theme_update_params.ThemeUpdateParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {
+                    "name": name,
+                    "description": description,
+                },
+                theme_update_params.ThemeUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ThemeUpdateResponse,
         )
 
@@ -459,7 +475,7 @@ class AsyncThemesResource(AsyncAPIResource):
     ) -> ThemeReplaceDocumentResponse:
         """
         Replace the theme document.
-        
+
         Args:
             slug: Path parameter.
             document: Body parameter.
@@ -467,10 +483,10 @@ class AsyncThemesResource(AsyncAPIResource):
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ThemeReplaceDocumentResponse: Default Response
-        
+
         Example:
             ```python
             theme = await client.themes.replace_document(
@@ -484,10 +500,12 @@ class AsyncThemesResource(AsyncAPIResource):
         return await self._put(
             path_template("/v1/themes/{slug}", **{"slug": slug}),
             body=await async_maybe_transform(
-            {"document": document},
-            theme_replace_document_params.ThemeReplaceDocumentParams,
-        ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+                {"document": document},
+                theme_replace_document_params.ThemeReplaceDocumentParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ThemeReplaceDocumentResponse,
         )
 
@@ -504,17 +522,17 @@ class AsyncThemesResource(AsyncAPIResource):
     ) -> ThemeDeleteResponse:
         """
         Delete a theme by slug.
-        
+
         Args:
             slug: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             ThemeDeleteResponse: Default Response
-        
+
         Example:
             ```python
             theme = await client.themes.delete(
@@ -526,7 +544,9 @@ class AsyncThemesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `slug` but received {slug!r}")
         return await self._delete(
             path_template("/v1/themes/{slug}", **{"slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=ThemeDeleteResponse,
         )
 
@@ -543,17 +563,17 @@ class AsyncThemesResource(AsyncAPIResource):
     ) -> str:
         """
         Get the theme document by slug.
-        
+
         Args:
             slug: Path parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
-        
+
         Returns:
             str: Default Response
-        
+
         Example:
             ```python
             theme = await client.themes.retrieve(
@@ -566,7 +586,9 @@ class AsyncThemesResource(AsyncAPIResource):
         extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._get(
             path_template("/v1/themes/{slug}", **{"slug": slug}),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=str,
         )
 

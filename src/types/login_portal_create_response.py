@@ -6,5 +6,4 @@ __all__ = ["LoginPortalCreateResponse"]
 
 
 class LoginPortalCreateResponse(BaseModel):
-
     uid: str

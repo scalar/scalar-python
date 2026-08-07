@@ -14,16 +14,16 @@ from .slug import Slug
 
 __all__ = ["RegistryListAllAPIDocumentsResponse", "APIDocument", "Version", "VersionTool"]
 
-class VersionTool(BaseModel):
 
+class VersionTool(BaseModel):
     path: str
 
     method: Literal["delete", "get", "head", "options", "patch", "post", "put", "trace"]
 
     enabled_tools: List[Literal["execute-request", "get-mini-openapi-spec"]] = FieldInfo(alias="enabledTools")
 
-class Version(BaseModel):
 
+class Version(BaseModel):
     uid: str
 
     created_at: float = FieldInfo(alias="createdAt")
@@ -44,8 +44,8 @@ class Version(BaseModel):
 
     version_sha: Optional[str] = FieldInfo(alias="versionSha", default=None)
 
-class APIDocument(BaseModel):
 
+class APIDocument(BaseModel):
     uid: str
 
     version: Version
@@ -63,7 +63,6 @@ class APIDocument(BaseModel):
     tags: object
 
     versions: List[Version]
-
 
 
 RegistryListAllAPIDocumentsResponse: TypeAlias = List[APIDocument]

@@ -8,7 +8,6 @@ __all__ = ["ThemeUpdateParams"]
 
 
 class ThemeUpdateParams(TypedDict, total=False):
-
     name: str
 
     description: str
