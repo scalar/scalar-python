@@ -76,13 +76,15 @@ client = Scalar(
 
 ## `Registry`
 
+Registry
+
 ### List all API Documents
 
 List all API documents across every namespace the caller can access.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryListAllAPIDocumentsResponse`](./src/types/registry_list_all_api_documents_response.py) |
+| Response | [`RegistryListAllAPIDocumentsResponse`](./src/scalar_sdk/types/registry_list_all_api_documents_response.py) |
 
 ```python
 registry = client.registry.list_all_api_documents()
@@ -94,7 +96,7 @@ List API documents in a namespace.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryListAPIDocumentsResponse`](./src/types/registry_list_api_documents_response.py) |
+| Response | [`RegistryListAPIDocumentsResponse`](./src/scalar_sdk/types/registry_list_api_documents_response.py) |
 
 ```python
 registry = client.registry.list_api_documents(
@@ -108,8 +110,8 @@ Create an API document.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryCreateAPIDocumentParams`](./src/types/registry_create_api_document_params.py) |
-| Response | [`RegistryCreateAPIDocumentResponse`](./src/types/registry_create_api_document_response.py) |
+| Request | [`RegistryCreateAPIDocumentParams`](./src/scalar_sdk/types/registry_create_api_document_params.py) |
+| Response | [`RegistryCreateAPIDocumentResponse`](./src/scalar_sdk/types/registry_create_api_document_response.py) |
 
 ```python
 registry = client.registry.create_api_document(
@@ -127,8 +129,8 @@ Update metadata for an API document.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryUpdateAPIDocumentParams`](./src/types/registry_update_api_document_params.py) |
-| Response | [`RegistryUpdateAPIDocumentResponse`](./src/types/registry_update_api_document_response.py) |
+| Request | [`RegistryUpdateAPIDocumentParams`](./src/scalar_sdk/types/registry_update_api_document_params.py) |
+| Response | [`RegistryUpdateAPIDocumentResponse`](./src/scalar_sdk/types/registry_update_api_document_response.py) |
 
 ```python
 registry = client.registry.update_api_document(
@@ -143,7 +145,7 @@ Delete an API document and all versions.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryDeleteAPIDocumentResponse`](./src/types/registry_delete_api_document_response.py) |
+| Response | [`RegistryDeleteAPIDocumentResponse`](./src/scalar_sdk/types/registry_delete_api_document_response.py) |
 
 ```python
 registry = client.registry.delete_api_document(
@@ -158,7 +160,7 @@ Get a specific API document version.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryRetrieveAPIDocumentVersionResponse`](./src/types/registry_retrieve_api_document_version_response.py) |
+| Response | [`RegistryRetrieveAPIDocumentVersionResponse`](./src/scalar_sdk/types/registry_retrieve_api_document_version_response.py) |
 
 ```python
 registry = client.registry.retrieve_api_document_version(
@@ -174,8 +176,8 @@ Update the registry file content for an API document version.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryUpdateAPIDocumentVersionParams`](./src/types/registry_update_api_document_version_params.py) |
-| Response | [`RegistryUpdateAPIDocumentVersionResponse`](./src/types/registry_update_api_document_version_response.py) |
+| Request | [`RegistryUpdateAPIDocumentVersionParams`](./src/scalar_sdk/types/registry_update_api_document_version_params.py) |
+| Response | [`RegistryUpdateAPIDocumentVersionResponse`](./src/scalar_sdk/types/registry_update_api_document_version_response.py) |
 
 ```python
 registry = client.registry.update_api_document_version(
@@ -192,7 +194,7 @@ Delete a specific API document version.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryDeleteAPIDocumentVersionResponse`](./src/types/registry_delete_api_document_version_response.py) |
+| Response | [`RegistryDeleteAPIDocumentVersionResponse`](./src/scalar_sdk/types/registry_delete_api_document_version_response.py) |
 
 ```python
 registry = client.registry.delete_api_document_version(
@@ -208,7 +210,7 @@ Get metadata (uid, content shas, version sha, tags) for a specific API document 
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RegistryListAPIDocumentVersionMetadataResponse`](./src/types/registry_list_api_document_version_metadata_response.py) |
+| Response | [`ManagedDocVersion`](./src/scalar_sdk/types/shared/managed_doc_version.py) |
 
 ```python
 registry = client.registry.list_api_document_version_metadata(
@@ -224,8 +226,8 @@ Create a new API document version.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryCreateAPIDocumentVersionParams`](./src/types/registry_create_api_document_version_params.py) |
-| Response | [`RegistryCreateAPIDocumentVersionResponse`](./src/types/registry_create_api_document_version_response.py) |
+| Request | [`RegistryCreateAPIDocumentVersionParams`](./src/scalar_sdk/types/registry_create_api_document_version_params.py) |
+| Response | [`ManagedDocVersion`](./src/scalar_sdk/types/shared/managed_doc_version.py) |
 
 ```python
 registry = client.registry.create_api_document_version(
@@ -242,8 +244,8 @@ Add an access group to an API document.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryCreateAPIDocumentAccessGroupParams`](./src/types/registry_create_api_document_access_group_params.py) |
-| Response | [`RegistryCreateAPIDocumentAccessGroupResponse`](./src/types/registry_create_api_document_access_group_response.py) |
+| Request | [`RegistryCreateAPIDocumentAccessGroupParams`](./src/scalar_sdk/types/registry_create_api_document_access_group_params.py) |
+| Response | [`RegistryCreateAPIDocumentAccessGroupResponse`](./src/scalar_sdk/types/registry_create_api_document_access_group_response.py) |
 
 ```python
 registry = client.registry.create_api_document_access_group(
@@ -259,8 +261,8 @@ Remove an access group from an API document.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RegistryDeleteAPIDocumentAccessGroupParams`](./src/types/registry_delete_api_document_access_group_params.py) |
-| Response | [`RegistryDeleteAPIDocumentAccessGroupResponse`](./src/types/registry_delete_api_document_access_group_response.py) |
+| Request | [`RegistryDeleteAPIDocumentAccessGroupParams`](./src/scalar_sdk/types/registry_delete_api_document_access_group_params.py) |
+| Response | [`RegistryDeleteAPIDocumentAccessGroupResponse`](./src/scalar_sdk/types/registry_delete_api_document_access_group_response.py) |
 
 ```python
 registry = client.registry.delete_api_document_access_group(
@@ -272,13 +274,15 @@ registry = client.registry.delete_api_document_access_group(
 
 ## `Schemas`
 
+Schemas
+
 ### List all shared components
 
 List schemas in a namespace.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`SchemaListResponse`](./src/types/schema_list_response.py) |
+| Response | [`SchemaListResponse`](./src/scalar_sdk/types/schema_list_response.py) |
 
 ```python
 schema = client.schemas.list(
@@ -292,8 +296,8 @@ Create a schema in a namespace.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`SchemaCreateParams`](./src/types/schema_create_params.py) |
-| Response | [`SchemaCreateResponse`](./src/types/schema_create_response.py) |
+| Request | [`SchemaCreateParams`](./src/scalar_sdk/types/schema_create_params.py) |
+| Response | [`UID`](./src/scalar_sdk/types/shared/uid.py) |
 
 ```python
 schema = client.schemas.create(
@@ -311,8 +315,8 @@ Update schema metadata.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`SchemaUpdateParams`](./src/types/schema_update_params.py) |
-| Response | [`SchemaUpdateResponse`](./src/types/schema_update_response.py) |
+| Request | [`SchemaUpdateParams`](./src/scalar_sdk/types/schema_update_params.py) |
+| Response | [`SchemaUpdateResponse`](./src/scalar_sdk/types/schema_update_response.py) |
 
 ```python
 schema = client.schemas.update(
@@ -327,7 +331,7 @@ Delete a schema and all related versions.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`SchemaDeleteResponse`](./src/types/schema_delete_response.py) |
+| Response | [`SchemaDeleteResponse`](./src/scalar_sdk/types/schema_delete_response.py) |
 
 ```python
 schema = client.schemas.delete(
@@ -338,16 +342,18 @@ schema = client.schemas.delete(
 
 ### `Schemas Version`
 
+Schemas
+
 #### Get a shared component document
 
 Get a specific schema version document.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`VersionRetrieveSchemaResponse`](./src/types/schemas/version_retrieve_schema_response.py) |
+| Response | [`VersionRetrieveResponse`](./src/scalar_sdk/types/schemas/version_retrieve_response.py) |
 
 ```python
-version = client.schemas.version.retrieve_schema(
+version = client.schemas.version.retrieve(
     namespace="namespace",
     slug="slug",
     semver="semver",
@@ -360,10 +366,10 @@ Delete a schema version.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`VersionDeleteSchemaResponse`](./src/types/schemas/version_delete_schema_response.py) |
+| Response | [`VersionDeleteResponse`](./src/scalar_sdk/types/schemas/version_delete_response.py) |
 
 ```python
-version = client.schemas.version.delete_schema(
+version = client.schemas.version.delete(
     namespace="namespace",
     slug="slug",
     semver="semver",
@@ -376,11 +382,11 @@ Create a schema version.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`VersionCreateSchemaParams`](./src/types/schemas/version_create_schema_params.py) |
-| Response | [`VersionCreateSchemaResponse`](./src/types/schemas/version_create_schema_response.py) |
+| Request | [`VersionCreateParams`](./src/scalar_sdk/types/schemas/version_create_params.py) |
+| Response | [`UID`](./src/scalar_sdk/types/shared/uid.py) |
 
 ```python
-version = client.schemas.version.create_schema(
+version = client.schemas.version.create(
     namespace="namespace",
     slug="slug",
     version="x",
@@ -390,17 +396,19 @@ version = client.schemas.version.create_schema(
 
 ### `Schemas AccessGroup`
 
+Schemas
+
 #### Add shared component access group
 
 Add an access group to a schema.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`AccessGroupCreateSchemaParams`](./src/types/schemas/access_group_create_schema_params.py) |
-| Response | [`AccessGroupCreateSchemaResponse`](./src/types/schemas/access_group_create_schema_response.py) |
+| Request | [`AccessGroupCreateParams`](./src/scalar_sdk/types/schemas/access_group_create_params.py) |
+| Response | [`AccessGroupCreateResponse`](./src/scalar_sdk/types/schemas/access_group_create_response.py) |
 
 ```python
-access_group = client.schemas.access_group.create_schema(
+access_group = client.schemas.access_group.create(
     namespace="namespace",
     slug="slug",
     access_group_slug="xxx",
@@ -413,11 +421,11 @@ Remove an access group from a schema.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`AccessGroupDeleteSchemaParams`](./src/types/schemas/access_group_delete_schema_params.py) |
-| Response | [`AccessGroupDeleteSchemaResponse`](./src/types/schemas/access_group_delete_schema_response.py) |
+| Request | [`AccessGroupDeleteParams`](./src/scalar_sdk/types/schemas/access_group_delete_params.py) |
+| Response | [`AccessGroupDeleteResponse`](./src/scalar_sdk/types/schemas/access_group_delete_response.py) |
 
 ```python
-access_group = client.schemas.access_group.delete_schema(
+access_group = client.schemas.access_group.delete(
     namespace="namespace",
     slug="slug",
     access_group_slug="xxx",
@@ -426,13 +434,15 @@ access_group = client.schemas.access_group.delete_schema(
 
 ## `LoginPortals`
 
+Login Portals
+
 ### Get a login portal
 
 Get a login portal by slug.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`LoginPortalRetrieveResponse`](./src/types/login_portal_retrieve_response.py) |
+| Response | [`LoginPortalRetrieveResponse`](./src/scalar_sdk/types/login_portal_retrieve_response.py) |
 
 ```python
 login_portal = client.login_portals.retrieve(
@@ -446,8 +456,8 @@ Update metadata for a login portal.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`LoginPortalUpdateParams`](./src/types/login_portal_update_params.py) |
-| Response | [`LoginPortalUpdateResponse`](./src/types/login_portal_update_response.py) |
+| Request | [`LoginPortalUpdateParams`](./src/scalar_sdk/types/login_portal_update_params.py) |
+| Response | [`LoginPortalUpdateResponse`](./src/scalar_sdk/types/login_portal_update_response.py) |
 
 ```python
 login_portal = client.login_portals.update(
@@ -461,7 +471,7 @@ Delete a login portal.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`LoginPortalDeleteResponse`](./src/types/login_portal_delete_response.py) |
+| Response | [`LoginPortalDeleteResponse`](./src/scalar_sdk/types/login_portal_delete_response.py) |
 
 ```python
 login_portal = client.login_portals.delete(
@@ -475,8 +485,8 @@ Create a login portal for the current team.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`LoginPortalCreateParams`](./src/types/login_portal_create_params.py) |
-| Response | [`LoginPortalCreateResponse`](./src/types/login_portal_create_response.py) |
+| Request | [`LoginPortalCreateParams`](./src/scalar_sdk/types/login_portal_create_params.py) |
+| Response | [`UID`](./src/scalar_sdk/types/shared/uid.py) |
 
 ```python
 login_portal = client.login_portals.create(
@@ -520,7 +530,7 @@ List all login portals for the current team.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`LoginPortalListResponse`](./src/types/login_portal_list_response.py) |
+| Response | [`LoginPortalListResponse`](./src/scalar_sdk/types/login_portal_list_response.py) |
 
 ```python
 login_portal = client.login_portals.list()
@@ -528,13 +538,15 @@ login_portal = client.login_portals.list()
 
 ## `Rules`
 
+Rules
+
 ### List all rules
 
 List all rulesets in a namespace.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RuleListRulesetsResponse`](./src/types/rule_list_rulesets_response.py) |
+| Response | [`RuleListRulesetsResponse`](./src/scalar_sdk/types/rule_list_rulesets_response.py) |
 
 ```python
 rule = client.rules.list_rulesets(
@@ -548,8 +560,8 @@ Create a rule in a namespace.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RuleCreateRulesetParams`](./src/types/rule_create_ruleset_params.py) |
-| Response | [`RuleCreateRulesetResponse`](./src/types/rule_create_ruleset_response.py) |
+| Request | [`RuleCreateRulesetParams`](./src/scalar_sdk/types/rule_create_ruleset_params.py) |
+| Response | [`UID`](./src/scalar_sdk/types/shared/uid.py) |
 
 ```python
 rule = client.rules.create_ruleset(
@@ -566,8 +578,8 @@ Update rule metadata by slug.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RuleUpdateRulesetParams`](./src/types/rule_update_ruleset_params.py) |
-| Response | [`RuleUpdateRulesetResponse`](./src/types/rule_update_ruleset_response.py) |
+| Request | [`RuleUpdateRulesetParams`](./src/scalar_sdk/types/rule_update_ruleset_params.py) |
+| Response | [`RuleUpdateRulesetResponse`](./src/scalar_sdk/types/rule_update_ruleset_response.py) |
 
 ```python
 rule = client.rules.update_ruleset(
@@ -582,7 +594,7 @@ Delete a rule by slug.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RuleDeleteRulesetResponse`](./src/types/rule_delete_ruleset_response.py) |
+| Response | [`RuleDeleteRulesetResponse`](./src/scalar_sdk/types/rule_delete_ruleset_response.py) |
 
 ```python
 rule = client.rules.delete_ruleset(
@@ -597,7 +609,7 @@ Get a rule document by slug.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`RuleRetrieveRulesetDocumentResponse`](./src/types/rule_retrieve_ruleset_document_response.py) |
+| Response | [`RuleRetrieveRulesetDocumentResponse`](./src/scalar_sdk/types/rule_retrieve_ruleset_document_response.py) |
 
 ```python
 rule = client.rules.retrieve_ruleset_document(
@@ -612,8 +624,8 @@ Grant an access group to a rule.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RuleCreateRulesetAccessGroupParams`](./src/types/rule_create_ruleset_access_group_params.py) |
-| Response | [`RuleCreateRulesetAccessGroupResponse`](./src/types/rule_create_ruleset_access_group_response.py) |
+| Request | [`RuleCreateRulesetAccessGroupParams`](./src/scalar_sdk/types/rule_create_ruleset_access_group_params.py) |
+| Response | [`RuleCreateRulesetAccessGroupResponse`](./src/scalar_sdk/types/rule_create_ruleset_access_group_response.py) |
 
 ```python
 rule = client.rules.create_ruleset_access_group(
@@ -629,8 +641,8 @@ Remove an access group from a rule.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`RuleDeleteRulesetAccessGroupParams`](./src/types/rule_delete_ruleset_access_group_params.py) |
-| Response | [`RuleDeleteRulesetAccessGroupResponse`](./src/types/rule_delete_ruleset_access_group_response.py) |
+| Request | [`RuleDeleteRulesetAccessGroupParams`](./src/scalar_sdk/types/rule_delete_ruleset_access_group_params.py) |
+| Response | [`RuleDeleteRulesetAccessGroupResponse`](./src/scalar_sdk/types/rule_delete_ruleset_access_group_response.py) |
 
 ```python
 rule = client.rules.delete_ruleset_access_group(
@@ -642,13 +654,15 @@ rule = client.rules.delete_ruleset_access_group(
 
 ## `Themes`
 
+Themes
+
 ### List all themes
 
 List all team themes.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`ThemeListResponse`](./src/types/theme_list_response.py) |
+| Response | [`ThemeListResponse`](./src/scalar_sdk/types/theme_list_response.py) |
 
 ```python
 theme = client.themes.list()
@@ -660,8 +674,8 @@ Create a team theme.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`ThemeCreateParams`](./src/types/theme_create_params.py) |
-| Response | [`ThemeCreateResponse`](./src/types/theme_create_response.py) |
+| Request | [`ThemeCreateParams`](./src/scalar_sdk/types/theme_create_params.py) |
+| Response | [`UID`](./src/scalar_sdk/types/shared/uid.py) |
 
 ```python
 theme = client.themes.create(
@@ -677,8 +691,8 @@ Update theme metadata.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`ThemeUpdateParams`](./src/types/theme_update_params.py) |
-| Response | [`ThemeUpdateResponse`](./src/types/theme_update_response.py) |
+| Request | [`ThemeUpdateParams`](./src/scalar_sdk/types/theme_update_params.py) |
+| Response | [`ThemeUpdateResponse`](./src/scalar_sdk/types/theme_update_response.py) |
 
 ```python
 theme = client.themes.update(
@@ -692,8 +706,8 @@ Replace the theme document.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`ThemeReplaceDocumentParams`](./src/types/theme_replace_document_params.py) |
-| Response | [`ThemeReplaceDocumentResponse`](./src/types/theme_replace_document_response.py) |
+| Request | [`ThemeReplaceDocumentParams`](./src/scalar_sdk/types/theme_replace_document_params.py) |
+| Response | [`ThemeReplaceDocumentResponse`](./src/scalar_sdk/types/theme_replace_document_response.py) |
 
 ```python
 theme = client.themes.replace_document(
@@ -708,7 +722,7 @@ Delete a theme by slug.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`ThemeDeleteResponse`](./src/types/theme_delete_response.py) |
+| Response | [`ThemeDeleteResponse`](./src/scalar_sdk/types/theme_delete_response.py) |
 
 ```python
 theme = client.themes.delete(
@@ -722,7 +736,7 @@ Get the theme document by slug.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`ThemeRetrieveResponse`](./src/types/theme_retrieve_response.py) |
+| Response | [`ThemeRetrieveResponse`](./src/scalar_sdk/types/theme_retrieve_response.py) |
 
 ```python
 theme = client.themes.retrieve(
@@ -732,13 +746,15 @@ theme = client.themes.retrieve(
 
 ## `Teams`
 
+Teams
+
 ### List teams
 
 List all available teams
 
 | Direction | Type |
 | --- | --- |
-| Response | [`TeamListResponse`](./src/types/team_list_response.py) |
+| Response | [`TeamListResponse`](./src/scalar_sdk/types/team_list_response.py) |
 
 ```python
 team = client.teams.list()
@@ -746,13 +762,15 @@ team = client.teams.list()
 
 ## `ScalarDocs`
 
+Scalar Docs
+
 ### List all projects
 
 List all guide projects.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`ScalarDocListGuidesResponse`](./src/types/scalar_doc_list_guides_response.py) |
+| Response | [`ScalarDocListGuidesResponse`](./src/scalar_sdk/types/scalar_doc_list_guides_response.py) |
 
 ```python
 scalar_doc = client.scalar_docs.list_guides()
@@ -764,8 +782,8 @@ Create a guide project.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`ScalarDocCreateGuideParams`](./src/types/scalar_doc_create_guide_params.py) |
-| Response | [`ScalarDocCreateGuideResponse`](./src/types/scalar_doc_create_guide_response.py) |
+| Request | [`ScalarDocCreateGuideParams`](./src/scalar_sdk/types/scalar_doc_create_guide_params.py) |
+| Response | [`ScalarDocCreateGuideResponse`](./src/scalar_sdk/types/scalar_doc_create_guide_response.py) |
 
 ```python
 scalar_doc = client.scalar_docs.create_guide(
@@ -782,7 +800,7 @@ Start a new publish process.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`ScalarDocPublishGuideResponse`](./src/types/scalar_doc_publish_guide_response.py) |
+| Response | [`ScalarDocPublishGuideResponse`](./src/scalar_sdk/types/scalar_doc_publish_guide_response.py) |
 
 ```python
 scalar_doc = client.scalar_docs.publish_guide(
@@ -792,13 +810,15 @@ scalar_doc = client.scalar_docs.publish_guide(
 
 ## `Namespaces`
 
+Namespaces
+
 ### List namespaces
 
 Get all namespaces for the current team
 
 | Direction | Type |
 | --- | --- |
-| Response | [`NamespaceListResponse`](./src/types/namespace_list_response.py) |
+| Response | [`NamespaceListResponse`](./src/scalar_sdk/types/namespace_list_response.py) |
 
 ```python
 namespace = client.namespaces.list()
@@ -806,14 +826,16 @@ namespace = client.namespaces.list()
 
 ## `Authentication`
 
+Authentication
+
 ### Exchange token
 
 Exchange an API key for an access token.
 
 | Direction | Type |
 | --- | --- |
-| Request | [`AuthenticationExchangePersonalTokenParams`](./src/types/authentication_exchange_personal_token_params.py) |
-| Response | [`AuthenticationExchangePersonalTokenResponse`](./src/types/authentication_exchange_personal_token_response.py) |
+| Request | [`AuthenticationExchangePersonalTokenParams`](./src/scalar_sdk/types/authentication_exchange_personal_token_params.py) |
+| Response | [`AuthenticationExchangePersonalTokenResponse`](./src/scalar_sdk/types/authentication_exchange_personal_token_response.py) |
 
 ```python
 authentication = client.authentication.exchange_personal_token(
@@ -827,7 +849,7 @@ Get the authenticated user, including their available teams and theme.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`AuthenticationListCurrentUserResponse`](./src/types/authentication_list_current_user_response.py) |
+| Response | [`AuthenticationListCurrentUserResponse`](./src/scalar_sdk/types/authentication_list_current_user_response.py) |
 
 ```python
 authentication = client.authentication.list_current_user()
