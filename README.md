@@ -1,6 +1,6 @@
-# Scalar
+# Scalar API
 
-This library provides convenient access to the Scalar REST API from Python.
+This library provides convenient access to the Scalar API from Python.
 
 The full API of this library can be found in [api.md](./api.md).
 
@@ -35,9 +35,9 @@ pip install scalar-sdk
 ```python
 import os
 
-from scalar_sdk import Scalar
+from scalar_sdk import ScalarAPI
 
-client = Scalar(
+client = ScalarAPI(
     bearer_auth=os.environ.get("BEARER_AUTH"),
 )
 
@@ -54,16 +54,16 @@ See the [API reference](./api.md) for every available operation.
 
 ## Async
 
-Every client has an `Async` counterpart (`AsyncScalar`) exposing the same resource tree with `await`.
+Every client has an `Async` counterpart (`AsyncScalarAPI`) exposing the same resource tree with `await`.
 
 ```python
 import asyncio
 
-from scalar_sdk import AsyncScalar
+from scalar_sdk import AsyncScalarAPI
 
 
 async def main() -> None:
-    client = AsyncScalar()
+    client = AsyncScalarAPI()
     registry = await client.registry.list_all_api_documents()
 
 
@@ -109,9 +109,9 @@ Documented error statuses: `400`, `401`, `403`, `404`, `422`, `500`.
 Configure the generated client by setting any of these options when you create it.
 
 ```python
-from scalar_sdk import Scalar
+from scalar_sdk import ScalarAPI
 
-client = Scalar(
+client = ScalarAPI(
     timeout=60.0,
     max_retries=2,
 )

@@ -1,9 +1,9 @@
 ---
-name: scalar-python-sdk
+name: scalar-api-python-sdk
 description: "Python SDK for Scalar API. Use when writing Python code that calls Scalar API with the scalar-sdk package: installing it, constructing and authenticating the client, and calling API operations."
 ---
 
-# Scalar Python SDK
+# Scalar API Python SDK
 
 Generated Python client for Scalar API, published as `scalar-sdk`. Use the generated client instead of hand-writing HTTP requests.
 
@@ -18,9 +18,9 @@ pip install scalar-sdk
 ```python
 import os
 
-from scalar_sdk import Scalar
+from scalar_sdk import ScalarAPI
 
-client = Scalar(
+client = ScalarAPI(
     bearer_auth=os.environ.get("BEARER_AUTH"),
 )
 ```
@@ -34,9 +34,9 @@ Provide credentials using the options below. Environment variables are read auto
 ```python
 import os
 
-from scalar_sdk import Scalar
+from scalar_sdk import ScalarAPI
 
-client = Scalar(
+client = ScalarAPI(
     bearer_auth=os.environ.get("BEARER_AUTH"),
 )
 

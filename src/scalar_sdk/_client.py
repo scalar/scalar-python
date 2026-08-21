@@ -23,7 +23,7 @@ from ._types import (
 )
 from ._utils import is_given, is_mapping_t, get_async_library
 from ._compat import cached_property
-from ._exceptions import APIStatusError, ScalarError
+from ._exceptions import APIStatusError, ScalarAPIError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -58,10 +58,19 @@ if TYPE_CHECKING:
 # threads cannot deadlock on CPython import locks (see CPython 3.14).
 _RESOURCE_IMPORT_LOCK = threading.RLock()
 
-__all__ = ["Scalar", "AsyncScalar", "Client", "AsyncClient", "Timeout", "Transport", "ProxiesTypes", "RequestOptions"]
+__all__ = [
+    "ScalarAPI",
+    "AsyncScalarAPI",
+    "Client",
+    "AsyncClient",
+    "Timeout",
+    "Transport",
+    "ProxiesTypes",
+    "RequestOptions",
+]
 
 
-class Scalar(SyncAPIClient):
+class ScalarAPI(SyncAPIClient):
     # client options
     bearer_auth: str
 
@@ -88,7 +97,7 @@ class Scalar(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous Scalar client instance.
+        """Construct a new synchronous ScalarAPI client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `bearer_auth` from `BEARER_AUTH`
@@ -96,7 +105,7 @@ class Scalar(SyncAPIClient):
         if bearer_auth is None:
             bearer_auth = os.environ.get("BEARER_AUTH")
         if bearer_auth is None:
-            raise ScalarError(
+            raise ScalarAPIError(
                 "The bearer_auth client option must be set either by passing bearer_auth to the client or by setting the BEARER_AUTH environment variable"
             )
         self.bearer_auth = bearer_auth
@@ -180,12 +189,12 @@ class Scalar(SyncAPIClient):
         return AuthenticationResource(self)
 
     @cached_property
-    def with_raw_response(self) -> ScalarWithRawResponse:
-        return ScalarWithRawResponse(self)
+    def with_raw_response(self) -> ScalarAPIWithRawResponse:
+        return ScalarAPIWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ScalarWithStreamedResponse:
-        return ScalarWithStreamedResponse(self)
+    def with_streaming_response(self) -> ScalarAPIWithStreamedResponse:
+        return ScalarAPIWithStreamedResponse(self)
 
     @property
     @override
@@ -306,7 +315,7 @@ class Scalar(SyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class AsyncScalar(AsyncAPIClient):
+class AsyncScalarAPI(AsyncAPIClient):
     # client options
     bearer_auth: str
 
@@ -333,7 +342,7 @@ class AsyncScalar(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async AsyncScalar client instance.
+        """Construct a new async AsyncScalarAPI client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `bearer_auth` from `BEARER_AUTH`
@@ -341,7 +350,7 @@ class AsyncScalar(AsyncAPIClient):
         if bearer_auth is None:
             bearer_auth = os.environ.get("BEARER_AUTH")
         if bearer_auth is None:
-            raise ScalarError(
+            raise ScalarAPIError(
                 "The bearer_auth client option must be set either by passing bearer_auth to the client or by setting the BEARER_AUTH environment variable"
             )
         self.bearer_auth = bearer_auth
@@ -425,12 +434,12 @@ class AsyncScalar(AsyncAPIClient):
         return AsyncAuthenticationResource(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncScalarWithRawResponse:
-        return AsyncScalarWithRawResponse(self)
+    def with_raw_response(self) -> AsyncScalarAPIWithRawResponse:
+        return AsyncScalarAPIWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncScalarWithStreamedResponse:
-        return AsyncScalarWithStreamedResponse(self)
+    def with_streaming_response(self) -> AsyncScalarAPIWithStreamedResponse:
+        return AsyncScalarAPIWithStreamedResponse(self)
 
     @property
     @override
@@ -551,10 +560,10 @@ class AsyncScalar(AsyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class ScalarWithRawResponse:
-    _client: Scalar
+class ScalarAPIWithRawResponse:
+    _client: ScalarAPI
 
-    def __init__(self, client: Scalar) -> None:
+    def __init__(self, client: ScalarAPI) -> None:
         self._client = client
 
     @cached_property
@@ -612,10 +621,10 @@ class ScalarWithRawResponse:
         return AuthenticationResourceWithRawResponse(self._client.authentication)
 
 
-class AsyncScalarWithRawResponse:
-    _client: AsyncScalar
+class AsyncScalarAPIWithRawResponse:
+    _client: AsyncScalarAPI
 
-    def __init__(self, client: AsyncScalar) -> None:
+    def __init__(self, client: AsyncScalarAPI) -> None:
         self._client = client
 
     @cached_property
@@ -673,10 +682,10 @@ class AsyncScalarWithRawResponse:
         return AsyncAuthenticationResourceWithRawResponse(self._client.authentication)
 
 
-class ScalarWithStreamedResponse:
-    _client: Scalar
+class ScalarAPIWithStreamedResponse:
+    _client: ScalarAPI
 
-    def __init__(self, client: Scalar) -> None:
+    def __init__(self, client: ScalarAPI) -> None:
         self._client = client
 
     @cached_property
@@ -734,10 +743,10 @@ class ScalarWithStreamedResponse:
         return AuthenticationResourceWithStreamingResponse(self._client.authentication)
 
 
-class AsyncScalarWithStreamedResponse:
-    _client: AsyncScalar
+class AsyncScalarAPIWithStreamedResponse:
+    _client: AsyncScalarAPI
 
-    def __init__(self, client: AsyncScalar) -> None:
+    def __init__(self, client: AsyncScalarAPI) -> None:
         self._client = client
 
     @cached_property
@@ -796,5 +805,5 @@ class AsyncScalarWithStreamedResponse:
 
 
 # Alias names for the documented `Client` / `AsyncClient` symbols.
-Client = Scalar
-AsyncClient = AsyncScalar
+Client = ScalarAPI
+AsyncClient = AsyncScalarAPI
