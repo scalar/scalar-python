@@ -18,9 +18,9 @@ pip install scalar-sdk
 ```python
 import os
 
-from scalar_sdk import Scalar
+from scalar_sdk import ScalarAPI
 
-client = Scalar(
+client = ScalarAPI(
     bearer_auth=os.environ.get("BEARER_AUTH"),
 )
 ```
@@ -34,9 +34,9 @@ Provide credentials using the options below. Environment variables are read auto
 ```python
 import os
 
-from scalar_sdk import Scalar
+from scalar_sdk import ScalarAPI
 
-client = Scalar(
+client = ScalarAPI(
     bearer_auth=os.environ.get("BEARER_AUTH"),
 )
 

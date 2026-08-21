@@ -3,7 +3,7 @@
     ".": {
       "release-type": "python",
       "extra-files": [
-        "src/_version.py"
+        "src/scalar_sdk/_version.py"
       ]
     }
   },
