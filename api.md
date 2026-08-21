@@ -67,9 +67,9 @@ Complete reference of every operation, grouped by resource. See [the README](./R
 ```python
 import os
 
-from scalar_sdk import ScalarAPI
+from scalar_sdk import Scalar
 
-client = ScalarAPI(
+client = Scalar(
     bearer_auth=os.environ.get("BEARER_AUTH"),
 )
 ```
