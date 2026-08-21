@@ -5,7 +5,7 @@ description = "API for managing Scalar platform resources."
 readme = "README.md"
 license = "Apache-2.0"
 authors = [
-  { name = "Scalar API" },
+  { name = "Scalar" },
 ]
 requires-python = ">= 3.9"
 dependencies = [

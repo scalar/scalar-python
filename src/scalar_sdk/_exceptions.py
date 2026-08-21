@@ -20,11 +20,11 @@ __all__ = [
 ]
 
 
-class ScalarAPIError(Exception):
+class ScalarError(Exception):
     pass
 
 
-class APIError(ScalarAPIError):
+class APIError(ScalarError):
     message: str
     request: httpx.Request
 
@@ -110,7 +110,7 @@ class InternalServerError(APIStatusError):
     pass
 
 
-class WebSocketConnectionClosedError(ScalarAPIError):
+class WebSocketConnectionClosedError(ScalarError):
     """Raised when a WebSocket connection closes with unsent messages."""
 
     unsent_messages: list[str]
@@ -120,7 +120,7 @@ class WebSocketConnectionClosedError(ScalarAPIError):
         self.unsent_messages = unsent_messages
 
 
-class WebSocketQueueFullError(ScalarAPIError):
+class WebSocketQueueFullError(ScalarError):
     """Raised when the outgoing WebSocket message queue exceeds its byte-size limit."""
 
     pass
