@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.4.0](https://github.com/scalar/scalar-python/compare/v0.3.4...v0.4.0) (2026-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Renamed SDK from `Scalar` to `ScalarApi`.
+* **api:** 6 breaking changes to the SDK surface.
+    - Renamed SDK from `ScalarApi` to `Scalar`.
+    - Removed operation `schemas.version.retrieveSchema` (`GET /v1/schemas/{namespace}/{slug}/version/{semver}`).
+    - Removed operation `schemas.version.deleteSchema` (`DELETE /v1/schemas/{namespace}/{slug}/version/{semver}`).
+    - Removed operation `schemas.version.createSchema` (`POST /v1/schemas/{namespace}/{slug}/version`).
+    - Removed operation `schemas.accessGroup.createSchema` (`POST /v1/schemas/{namespace}/{slug}/access-group`).
+    - Removed operation `schemas.accessGroup.deleteSchema` (`DELETE /v1/schemas/{namespace}/{slug}/access-group`).
+
+### Features
+
+* **api:** update SDK name ([156e926](https://github.com/scalar/scalar-python/commit/156e92616882950a750ce49455a89c60f90f503e))
+* **api:** update SDK name (+11 more changes) ([9b3dd40](https://github.com/scalar/scalar-python/commit/9b3dd40c025884baf2f7aca12ae15e33edbc030e))
+
+
+### Chores
+
+* **api:** update generated SDK content ([587ef06](https://github.com/scalar/scalar-python/commit/587ef06f85c6f8c531c2df965f3e6294e558b1f3))
+
 ## [0.3.4](https://github.com/scalar/scalar-python/compare/v0.3.3...v0.3.4) (2026-08-07)
 
 
