@@ -1,6 +1,6 @@
-# Scalar API
+# Scalar
 
-This library provides convenient access to the Scalar API from Python.
+This library provides convenient access to the Scalar REST API from Python.
 
 The full API of this library can be found in [api.md](./api.md).
 

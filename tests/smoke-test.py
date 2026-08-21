@@ -160,7 +160,7 @@ def _smoke_case_15() -> None:
 
 
 def _smoke_case_16() -> None:
-    version = client.schemas.version.retrieve_schema(
+    version = client.schemas.version.retrieve(
         namespace="namespace",
         slug="slug",
         semver="semver",
@@ -168,7 +168,7 @@ def _smoke_case_16() -> None:
 
 
 def _smoke_case_17() -> None:
-    version = client.schemas.version.delete_schema(
+    version = client.schemas.version.delete(
         namespace="namespace",
         slug="slug",
         semver="semver",
@@ -176,7 +176,7 @@ def _smoke_case_17() -> None:
 
 
 def _smoke_case_18() -> None:
-    version = client.schemas.version.create_schema(
+    version = client.schemas.version.create(
         namespace="namespace",
         slug="slug",
         version="x",
@@ -185,7 +185,7 @@ def _smoke_case_18() -> None:
 
 
 def _smoke_case_19() -> None:
-    access_group = client.schemas.access_group.create_schema(
+    access_group = client.schemas.access_group.create(
         namespace="namespace",
         slug="slug",
         access_group_slug="xxx",
@@ -193,7 +193,7 @@ def _smoke_case_19() -> None:
 
 
 def _smoke_case_20() -> None:
-    access_group = client.schemas.access_group.delete_schema(
+    access_group = client.schemas.access_group.delete(
         namespace="namespace",
         slug="slug",
         access_group_slug="xxx",
@@ -482,31 +482,31 @@ cases: list[SmokeCase] = [
         "run": _smoke_case_15,
     },
     {
-        "operation": "retrieveSchema",
+        "operation": "retrieve",
         "method": "GET",
         "path": "/v1/schemas/{namespace}/{slug}/version/{semver}",
         "run": _smoke_case_16,
     },
     {
-        "operation": "deleteSchema",
+        "operation": "delete",
         "method": "DELETE",
         "path": "/v1/schemas/{namespace}/{slug}/version/{semver}",
         "run": _smoke_case_17,
     },
     {
-        "operation": "createSchema",
+        "operation": "create",
         "method": "POST",
         "path": "/v1/schemas/{namespace}/{slug}/version",
         "run": _smoke_case_18,
     },
     {
-        "operation": "createSchema",
+        "operation": "create",
         "method": "POST",
         "path": "/v1/schemas/{namespace}/{slug}/access-group",
         "run": _smoke_case_19,
     },
     {
-        "operation": "deleteSchema",
+        "operation": "delete",
         "method": "DELETE",
         "path": "/v1/schemas/{namespace}/{slug}/access-group",
         "run": _smoke_case_20,

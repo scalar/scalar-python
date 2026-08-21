@@ -45,7 +45,7 @@ registry = client.registry.list_all_api_documents()
 print(registry)
 ```
 
-Method names, parameter shapes, and response types are generated from the API description — do not guess them. Look up the exact call signature in [api.md](./api.md) before writing a call.
+Method names, parameter shapes, and response types are generated from the API description — do not guess them. Look up the exact call signature in [api.md](../../../api.md) before writing a call.
 
 ## Error handling
 
@@ -67,5 +67,5 @@ except APIStatusError as err:
 
 ## Reference files
 
-- [README.md](./README.md) — full feature tour: client options, retries and timeouts, logging.
-- [api.md](./api.md) — complete catalogue of every operation with request and response types.
+- [README.md](../../../README.md) — full feature tour: client options, retries and timeouts, logging.
+- [api.md](../../../api.md) — complete catalogue of every operation with request and response types.
