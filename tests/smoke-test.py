@@ -14,27 +14,35 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any, Callable, TypedDict
 
-from scalar_sdk import ScalarAPI
+from scalar_sdk import Scalar
 
 # The shared smoke-test runner injects base URL and credentials through the same
 # environment variables the generated client reads in normal use.
-client = ScalarAPI(max_retries=0, timeout=30)
+client = Scalar(max_retries=0, timeout=30)
 
 
 class SmokeResult(TypedDict, total=False):
     operation: str
     method: str
     path: str
+    label: str
     status: str
     durationMs: int
     error: str
 
 
-class SmokeCase(TypedDict):
+class _SmokeCaseBase(TypedDict):
     operation: str
     method: str
     path: str
     run: Callable[[], Any]
+
+
+# `label` says which of an operation's two calls this is — "required params" or "all params".
+# It sits in a total=False extension because it is absent when the operation contributed a
+# single case, while the fields above are always present.
+class SmokeCase(_SmokeCaseBase, total=False):
+    label: str
 
 
 def _smoke_case_0() -> None:
@@ -58,20 +66,44 @@ def _smoke_case_2() -> None:
 
 
 def _smoke_case_3() -> None:
+    registry = client.registry.create_api_document(
+        namespace="namespace",
+        title="",
+        description="",
+        version="x",
+        slug="",
+        ruleset="",
+        is_private=False,
+        document="",
+    )
+
+
+def _smoke_case_4() -> None:
     registry = client.registry.update_api_document(
         namespace="namespace",
         slug="slug",
     )
 
 
-def _smoke_case_4() -> None:
+def _smoke_case_5() -> None:
+    registry = client.registry.update_api_document(
+        namespace="namespace",
+        slug="slug",
+        title="",
+        description="",
+        is_private=False,
+        ruleset="",
+    )
+
+
+def _smoke_case_6() -> None:
     registry = client.registry.delete_api_document(
         namespace="namespace",
         slug="slug",
     )
 
 
-def _smoke_case_5() -> None:
+def _smoke_case_7() -> None:
     registry = client.registry.retrieve_api_document_version(
         namespace="namespace",
         slug="slug",
@@ -79,7 +111,7 @@ def _smoke_case_5() -> None:
     )
 
 
-def _smoke_case_6() -> None:
+def _smoke_case_8() -> None:
     registry = client.registry.update_api_document_version(
         namespace="namespace",
         slug="slug",
@@ -88,7 +120,17 @@ def _smoke_case_6() -> None:
     )
 
 
-def _smoke_case_7() -> None:
+def _smoke_case_9() -> None:
+    registry = client.registry.update_api_document_version(
+        namespace="namespace",
+        slug="slug",
+        semver="semver",
+        document="",
+        last_known_version_sha="",
+    )
+
+
+def _smoke_case_10() -> None:
     registry = client.registry.delete_api_document_version(
         namespace="namespace",
         slug="slug",
@@ -96,7 +138,7 @@ def _smoke_case_7() -> None:
     )
 
 
-def _smoke_case_8() -> None:
+def _smoke_case_11() -> None:
     registry = client.registry.list_api_document_version_metadata(
         namespace="namespace",
         slug="slug",
@@ -104,7 +146,7 @@ def _smoke_case_8() -> None:
     )
 
 
-def _smoke_case_9() -> None:
+def _smoke_case_12() -> None:
     registry = client.registry.create_api_document_version(
         namespace="namespace",
         slug="slug",
@@ -113,7 +155,18 @@ def _smoke_case_9() -> None:
     )
 
 
-def _smoke_case_10() -> None:
+def _smoke_case_13() -> None:
+    registry = client.registry.create_api_document_version(
+        namespace="namespace",
+        slug="slug",
+        version="x",
+        document="",
+        force=False,
+        last_known_version_sha="",
+    )
+
+
+def _smoke_case_14() -> None:
     registry = client.registry.create_api_document_access_group(
         namespace="namespace",
         slug="slug",
@@ -121,7 +174,7 @@ def _smoke_case_10() -> None:
     )
 
 
-def _smoke_case_11() -> None:
+def _smoke_case_15() -> None:
     registry = client.registry.delete_api_document_access_group(
         namespace="namespace",
         slug="slug",
@@ -129,13 +182,13 @@ def _smoke_case_11() -> None:
     )
 
 
-def _smoke_case_12() -> None:
+def _smoke_case_16() -> None:
     schema = client.schemas.list(
         namespace="namespace",
     )
 
 
-def _smoke_case_13() -> None:
+def _smoke_case_17() -> None:
     schema = client.schemas.create(
         namespace="namespace",
         title="",
@@ -145,21 +198,43 @@ def _smoke_case_13() -> None:
     )
 
 
-def _smoke_case_14() -> None:
+def _smoke_case_18() -> None:
+    schema = client.schemas.create(
+        namespace="namespace",
+        title="",
+        description="",
+        version="x",
+        slug="",
+        is_private=False,
+        document="",
+    )
+
+
+def _smoke_case_19() -> None:
     schema = client.schemas.update(
         namespace="namespace",
         slug="slug",
     )
 
 
-def _smoke_case_15() -> None:
+def _smoke_case_20() -> None:
+    schema = client.schemas.update(
+        namespace="namespace",
+        slug="slug",
+        title="",
+        description="",
+        is_private=False,
+    )
+
+
+def _smoke_case_21() -> None:
     schema = client.schemas.delete(
         namespace="namespace",
         slug="slug",
     )
 
 
-def _smoke_case_16() -> None:
+def _smoke_case_22() -> None:
     version = client.schemas.version.retrieve(
         namespace="namespace",
         slug="slug",
@@ -167,7 +242,7 @@ def _smoke_case_16() -> None:
     )
 
 
-def _smoke_case_17() -> None:
+def _smoke_case_23() -> None:
     version = client.schemas.version.delete(
         namespace="namespace",
         slug="slug",
@@ -175,7 +250,7 @@ def _smoke_case_17() -> None:
     )
 
 
-def _smoke_case_18() -> None:
+def _smoke_case_24() -> None:
     version = client.schemas.version.create(
         namespace="namespace",
         slug="slug",
@@ -184,7 +259,7 @@ def _smoke_case_18() -> None:
     )
 
 
-def _smoke_case_19() -> None:
+def _smoke_case_25() -> None:
     access_group = client.schemas.access_group.create(
         namespace="namespace",
         slug="slug",
@@ -192,7 +267,7 @@ def _smoke_case_19() -> None:
     )
 
 
-def _smoke_case_20() -> None:
+def _smoke_case_26() -> None:
     access_group = client.schemas.access_group.delete(
         namespace="namespace",
         slug="slug",
@@ -200,25 +275,32 @@ def _smoke_case_20() -> None:
     )
 
 
-def _smoke_case_21() -> None:
+def _smoke_case_27() -> None:
     login_portal = client.login_portals.retrieve(
         slug="slug",
     )
 
 
-def _smoke_case_22() -> None:
+def _smoke_case_28() -> None:
     login_portal = client.login_portals.update(
         slug="slug",
     )
 
 
-def _smoke_case_23() -> None:
+def _smoke_case_29() -> None:
+    login_portal = client.login_portals.update(
+        slug="slug",
+        title="",
+    )
+
+
+def _smoke_case_30() -> None:
     login_portal = client.login_portals.delete(
         slug="slug",
     )
 
 
-def _smoke_case_24() -> None:
+def _smoke_case_31() -> None:
     login_portal = client.login_portals.create(
         title="",
         slug="",
@@ -254,17 +336,17 @@ def _smoke_case_24() -> None:
     )
 
 
-def _smoke_case_25() -> None:
+def _smoke_case_32() -> None:
     login_portal = client.login_portals.list()
 
 
-def _smoke_case_26() -> None:
+def _smoke_case_33() -> None:
     rule = client.rules.list_rulesets(
         namespace="namespace",
     )
 
 
-def _smoke_case_27() -> None:
+def _smoke_case_34() -> None:
     rule = client.rules.create_ruleset(
         namespace="namespace",
         title="",
@@ -273,28 +355,51 @@ def _smoke_case_27() -> None:
     )
 
 
-def _smoke_case_28() -> None:
+def _smoke_case_35() -> None:
+    rule = client.rules.create_ruleset(
+        namespace="namespace",
+        title="",
+        description="",
+        slug="",
+        is_private=False,
+        document="",
+    )
+
+
+def _smoke_case_36() -> None:
     rule = client.rules.update_ruleset(
         path_namespace="namespace",
         path_slug="slug",
     )
 
 
-def _smoke_case_29() -> None:
+def _smoke_case_37() -> None:
+    rule = client.rules.update_ruleset(
+        path_namespace="namespace",
+        path_slug="slug",
+        body_namespace="",
+        body_slug="",
+        title="",
+        description="",
+        is_private=False,
+    )
+
+
+def _smoke_case_38() -> None:
     rule = client.rules.delete_ruleset(
         namespace="namespace",
         slug="slug",
     )
 
 
-def _smoke_case_30() -> None:
+def _smoke_case_39() -> None:
     rule = client.rules.retrieve_ruleset_document(
         namespace="namespace",
         slug="slug",
     )
 
 
-def _smoke_case_31() -> None:
+def _smoke_case_40() -> None:
     rule = client.rules.create_ruleset_access_group(
         namespace="namespace",
         slug="slug",
@@ -302,7 +407,7 @@ def _smoke_case_31() -> None:
     )
 
 
-def _smoke_case_32() -> None:
+def _smoke_case_41() -> None:
     rule = client.rules.delete_ruleset_access_group(
         namespace="namespace",
         slug="slug",
@@ -310,11 +415,11 @@ def _smoke_case_32() -> None:
     )
 
 
-def _smoke_case_33() -> None:
+def _smoke_case_42() -> None:
     theme = client.themes.list()
 
 
-def _smoke_case_34() -> None:
+def _smoke_case_43() -> None:
     theme = client.themes.create(
         name="",
         slug="",
@@ -322,40 +427,57 @@ def _smoke_case_34() -> None:
     )
 
 
-def _smoke_case_35() -> None:
+def _smoke_case_44() -> None:
+    theme = client.themes.create(
+        name="",
+        description="",
+        slug="",
+        document="",
+    )
+
+
+def _smoke_case_45() -> None:
     theme = client.themes.update(
         slug="slug",
     )
 
 
-def _smoke_case_36() -> None:
+def _smoke_case_46() -> None:
+    theme = client.themes.update(
+        slug="slug",
+        name="",
+        description="",
+    )
+
+
+def _smoke_case_47() -> None:
     theme = client.themes.replace_document(
         slug="slug",
         document="",
     )
 
 
-def _smoke_case_37() -> None:
+def _smoke_case_48() -> None:
     theme = client.themes.delete(
         slug="slug",
     )
 
 
-def _smoke_case_38() -> None:
+def _smoke_case_49() -> None:
     theme = client.themes.retrieve(
         slug="slug",
     )
 
 
-def _smoke_case_39() -> None:
+def _smoke_case_50() -> None:
     team = client.teams.list()
 
 
-def _smoke_case_40() -> None:
+def _smoke_case_51() -> None:
     scalar_doc = client.scalar_docs.list_guides()
 
 
-def _smoke_case_41() -> None:
+def _smoke_case_52() -> None:
     scalar_doc = client.scalar_docs.create_guide(
         name="",
         is_private=False,
@@ -364,23 +486,33 @@ def _smoke_case_41() -> None:
     )
 
 
-def _smoke_case_42() -> None:
+def _smoke_case_53() -> None:
+    scalar_doc = client.scalar_docs.create_guide(
+        name="",
+        slug="xxx",
+        is_private=False,
+        allowed_users=[],
+        allowed_domains=[],
+    )
+
+
+def _smoke_case_54() -> None:
     scalar_doc = client.scalar_docs.publish_guide(
         slug="slug",
     )
 
 
-def _smoke_case_43() -> None:
+def _smoke_case_55() -> None:
     namespace = client.namespaces.list()
 
 
-def _smoke_case_44() -> None:
+def _smoke_case_56() -> None:
     authentication = client.authentication.exchange_personal_token(
         personal_token="",
     )
 
 
-def _smoke_case_45() -> None:
+def _smoke_case_57() -> None:
     authentication = client.authentication.list_current_user()
 
 
@@ -401,265 +533,361 @@ cases: list[SmokeCase] = [
         "operation": "createApiDocument",
         "method": "POST",
         "path": "/v1/apis/{namespace}",
+        "label": "required params",
         "run": _smoke_case_2,
+    },
+    {
+        "operation": "createApiDocument",
+        "method": "POST",
+        "path": "/v1/apis/{namespace}",
+        "label": "all params",
+        "run": _smoke_case_3,
     },
     {
         "operation": "updateApiDocument",
         "method": "PATCH",
         "path": "/v1/apis/{namespace}/{slug}",
-        "run": _smoke_case_3,
+        "label": "required params",
+        "run": _smoke_case_4,
+    },
+    {
+        "operation": "updateApiDocument",
+        "method": "PATCH",
+        "path": "/v1/apis/{namespace}/{slug}",
+        "label": "all params",
+        "run": _smoke_case_5,
     },
     {
         "operation": "deleteApiDocument",
         "method": "DELETE",
         "path": "/v1/apis/{namespace}/{slug}",
-        "run": _smoke_case_4,
+        "run": _smoke_case_6,
     },
     {
         "operation": "retrieveApiDocumentVersion",
         "method": "GET",
         "path": "/v1/apis/{namespace}/{slug}/version/{semver}",
-        "run": _smoke_case_5,
+        "run": _smoke_case_7,
     },
     {
         "operation": "updateApiDocumentVersion",
         "method": "PATCH",
         "path": "/v1/apis/{namespace}/{slug}/version/{semver}",
-        "run": _smoke_case_6,
+        "label": "required params",
+        "run": _smoke_case_8,
+    },
+    {
+        "operation": "updateApiDocumentVersion",
+        "method": "PATCH",
+        "path": "/v1/apis/{namespace}/{slug}/version/{semver}",
+        "label": "all params",
+        "run": _smoke_case_9,
     },
     {
         "operation": "deleteApiDocumentVersion",
         "method": "DELETE",
         "path": "/v1/apis/{namespace}/{slug}/version/{semver}",
-        "run": _smoke_case_7,
+        "run": _smoke_case_10,
     },
     {
         "operation": "listApiDocumentVersionMetadata",
         "method": "GET",
         "path": "/v1/apis/{namespace}/{slug}/version/{semver}/metadata",
-        "run": _smoke_case_8,
+        "run": _smoke_case_11,
     },
     {
         "operation": "createApiDocumentVersion",
         "method": "POST",
         "path": "/v1/apis/{namespace}/{slug}/version",
-        "run": _smoke_case_9,
+        "label": "required params",
+        "run": _smoke_case_12,
+    },
+    {
+        "operation": "createApiDocumentVersion",
+        "method": "POST",
+        "path": "/v1/apis/{namespace}/{slug}/version",
+        "label": "all params",
+        "run": _smoke_case_13,
     },
     {
         "operation": "createApiDocumentAccessGroup",
         "method": "POST",
         "path": "/v1/apis/{namespace}/{slug}/access-group",
-        "run": _smoke_case_10,
+        "run": _smoke_case_14,
     },
     {
         "operation": "deleteApiDocumentAccessGroup",
         "method": "DELETE",
         "path": "/v1/apis/{namespace}/{slug}/access-group",
-        "run": _smoke_case_11,
+        "run": _smoke_case_15,
     },
     {
         "operation": "list",
         "method": "GET",
         "path": "/v1/schemas/{namespace}",
-        "run": _smoke_case_12,
+        "run": _smoke_case_16,
     },
     {
         "operation": "create",
         "method": "POST",
         "path": "/v1/schemas/{namespace}",
-        "run": _smoke_case_13,
-    },
-    {
-        "operation": "update",
-        "method": "PATCH",
-        "path": "/v1/schemas/{namespace}/{slug}",
-        "run": _smoke_case_14,
-    },
-    {
-        "operation": "delete",
-        "method": "DELETE",
-        "path": "/v1/schemas/{namespace}/{slug}",
-        "run": _smoke_case_15,
-    },
-    {
-        "operation": "retrieve",
-        "method": "GET",
-        "path": "/v1/schemas/{namespace}/{slug}/version/{semver}",
-        "run": _smoke_case_16,
-    },
-    {
-        "operation": "delete",
-        "method": "DELETE",
-        "path": "/v1/schemas/{namespace}/{slug}/version/{semver}",
+        "label": "required params",
         "run": _smoke_case_17,
     },
     {
         "operation": "create",
         "method": "POST",
-        "path": "/v1/schemas/{namespace}/{slug}/version",
+        "path": "/v1/schemas/{namespace}",
+        "label": "all params",
         "run": _smoke_case_18,
-    },
-    {
-        "operation": "create",
-        "method": "POST",
-        "path": "/v1/schemas/{namespace}/{slug}/access-group",
-        "run": _smoke_case_19,
-    },
-    {
-        "operation": "delete",
-        "method": "DELETE",
-        "path": "/v1/schemas/{namespace}/{slug}/access-group",
-        "run": _smoke_case_20,
-    },
-    {
-        "operation": "retrieve",
-        "method": "GET",
-        "path": "/v1/login-portals/{slug}",
-        "run": _smoke_case_21,
     },
     {
         "operation": "update",
         "method": "PATCH",
-        "path": "/v1/login-portals/{slug}",
+        "path": "/v1/schemas/{namespace}/{slug}",
+        "label": "required params",
+        "run": _smoke_case_19,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/schemas/{namespace}/{slug}",
+        "label": "all params",
+        "run": _smoke_case_20,
+    },
+    {
+        "operation": "delete",
+        "method": "DELETE",
+        "path": "/v1/schemas/{namespace}/{slug}",
+        "run": _smoke_case_21,
+    },
+    {
+        "operation": "retrieve",
+        "method": "GET",
+        "path": "/v1/schemas/{namespace}/{slug}/version/{semver}",
         "run": _smoke_case_22,
     },
     {
         "operation": "delete",
         "method": "DELETE",
-        "path": "/v1/login-portals/{slug}",
+        "path": "/v1/schemas/{namespace}/{slug}/version/{semver}",
         "run": _smoke_case_23,
     },
     {
         "operation": "create",
         "method": "POST",
-        "path": "/v1/login-portals",
+        "path": "/v1/schemas/{namespace}/{slug}/version",
         "run": _smoke_case_24,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/schemas/{namespace}/{slug}/access-group",
+        "run": _smoke_case_25,
+    },
+    {
+        "operation": "delete",
+        "method": "DELETE",
+        "path": "/v1/schemas/{namespace}/{slug}/access-group",
+        "run": _smoke_case_26,
+    },
+    {
+        "operation": "retrieve",
+        "method": "GET",
+        "path": "/v1/login-portals/{slug}",
+        "run": _smoke_case_27,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/login-portals/{slug}",
+        "label": "required params",
+        "run": _smoke_case_28,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/login-portals/{slug}",
+        "label": "all params",
+        "run": _smoke_case_29,
+    },
+    {
+        "operation": "delete",
+        "method": "DELETE",
+        "path": "/v1/login-portals/{slug}",
+        "run": _smoke_case_30,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/login-portals",
+        "run": _smoke_case_31,
     },
     {
         "operation": "list",
         "method": "GET",
         "path": "/v1/login-portals",
-        "run": _smoke_case_25,
+        "run": _smoke_case_32,
     },
     {
         "operation": "listRulesets",
         "method": "GET",
         "path": "/v1/rulesets/{namespace}",
-        "run": _smoke_case_26,
+        "run": _smoke_case_33,
     },
     {
         "operation": "createRuleset",
         "method": "POST",
         "path": "/v1/rulesets/{namespace}",
-        "run": _smoke_case_27,
+        "label": "required params",
+        "run": _smoke_case_34,
+    },
+    {
+        "operation": "createRuleset",
+        "method": "POST",
+        "path": "/v1/rulesets/{namespace}",
+        "label": "all params",
+        "run": _smoke_case_35,
     },
     {
         "operation": "updateRuleset",
         "method": "PATCH",
         "path": "/v1/rulesets/{namespace}/{slug}",
-        "run": _smoke_case_28,
+        "label": "required params",
+        "run": _smoke_case_36,
+    },
+    {
+        "operation": "updateRuleset",
+        "method": "PATCH",
+        "path": "/v1/rulesets/{namespace}/{slug}",
+        "label": "all params",
+        "run": _smoke_case_37,
     },
     {
         "operation": "deleteRuleset",
         "method": "DELETE",
         "path": "/v1/rulesets/{namespace}/{slug}",
-        "run": _smoke_case_29,
+        "run": _smoke_case_38,
     },
     {
         "operation": "retrieveRulesetDocument",
         "method": "GET",
         "path": "/v1/rulesets/{namespace}/{slug}",
-        "run": _smoke_case_30,
+        "run": _smoke_case_39,
     },
     {
         "operation": "createRulesetAccessGroup",
         "method": "POST",
         "path": "/v1/rulesets/{namespace}/{slug}/access-group",
-        "run": _smoke_case_31,
+        "run": _smoke_case_40,
     },
     {
         "operation": "deleteRulesetAccessGroup",
         "method": "DELETE",
         "path": "/v1/rulesets/{namespace}/{slug}/access-group",
-        "run": _smoke_case_32,
+        "run": _smoke_case_41,
     },
     {
         "operation": "list",
         "method": "GET",
         "path": "/v1/themes",
-        "run": _smoke_case_33,
+        "run": _smoke_case_42,
     },
     {
         "operation": "create",
         "method": "POST",
         "path": "/v1/themes",
-        "run": _smoke_case_34,
+        "label": "required params",
+        "run": _smoke_case_43,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/themes",
+        "label": "all params",
+        "run": _smoke_case_44,
     },
     {
         "operation": "update",
         "method": "PATCH",
         "path": "/v1/themes/{slug}",
-        "run": _smoke_case_35,
+        "label": "required params",
+        "run": _smoke_case_45,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/themes/{slug}",
+        "label": "all params",
+        "run": _smoke_case_46,
     },
     {
         "operation": "replaceDocument",
         "method": "PUT",
         "path": "/v1/themes/{slug}",
-        "run": _smoke_case_36,
+        "run": _smoke_case_47,
     },
     {
         "operation": "delete",
         "method": "DELETE",
         "path": "/v1/themes/{slug}",
-        "run": _smoke_case_37,
+        "run": _smoke_case_48,
     },
     {
         "operation": "retrieve",
         "method": "GET",
         "path": "/v1/themes/{slug}",
-        "run": _smoke_case_38,
+        "run": _smoke_case_49,
     },
     {
         "operation": "list",
         "method": "GET",
         "path": "/v1/teams",
-        "run": _smoke_case_39,
+        "run": _smoke_case_50,
     },
     {
         "operation": "listGuides",
         "method": "GET",
         "path": "/v1/guides",
-        "run": _smoke_case_40,
+        "run": _smoke_case_51,
     },
     {
         "operation": "createGuide",
         "method": "POST",
         "path": "/v1/guides",
-        "run": _smoke_case_41,
+        "label": "required params",
+        "run": _smoke_case_52,
+    },
+    {
+        "operation": "createGuide",
+        "method": "POST",
+        "path": "/v1/guides",
+        "label": "all params",
+        "run": _smoke_case_53,
     },
     {
         "operation": "publishGuide",
         "method": "POST",
         "path": "/v1/guides/{slug}/publish",
-        "run": _smoke_case_42,
+        "run": _smoke_case_54,
     },
     {
         "operation": "list",
         "method": "GET",
         "path": "/v1/namespaces",
-        "run": _smoke_case_43,
+        "run": _smoke_case_55,
     },
     {
         "operation": "exchangePersonalToken",
         "method": "POST",
         "path": "/v1/auth/exchange",
-        "run": _smoke_case_44,
+        "run": _smoke_case_56,
     },
     {
         "operation": "listCurrentUser",
         "method": "GET",
         "path": "/v1/auth/me",
-        "run": _smoke_case_45,
+        "run": _smoke_case_57,
     },
 ]
 
@@ -686,22 +914,33 @@ def _smoke_concurrency(case_count: int) -> int:
     return min(DEFAULT_SMOKE_CONCURRENCY, case_count)
 
 
+def _case_identity(case: SmokeCase) -> SmokeResult:
+    # `label` is carried through only when the operation contributed both of its calls, so a
+    # single-case operation reports exactly as it did before there were two.
+    identity: SmokeResult = {
+        "operation": case["operation"],
+        "method": case["method"],
+        "path": case["path"],
+    }
+    label = case.get("label")
+    if label:
+        identity["label"] = label
+    return identity
+
+
 def _run_case(case: SmokeCase) -> SmokeResult:
     started_at = time.monotonic()
+    identity = _case_identity(case)
     try:
         case["run"]()
         return {
-            "operation": case["operation"],
-            "method": case["method"],
-            "path": case["path"],
+            **identity,
             "status": "passed",
             "durationMs": int((time.monotonic() - started_at) * 1000),
         }
     except Exception:
         return {
-            "operation": case["operation"],
-            "method": case["method"],
-            "path": case["path"],
+            **identity,
             "status": "failed",
             "durationMs": int((time.monotonic() - started_at) * 1000),
             "error": traceback.format_exc(),
@@ -726,11 +965,14 @@ def main() -> None:
         )
     else:
         for result in results:
+            suffix = f" [{result['label']}]" if result.get("label") else ""
             if result["status"] == "passed":
-                print(f"PASS {result['operation']} ({result['method']} {result['path']}) {result['durationMs']}ms")
+                print(
+                    f"PASS {result['operation']}{suffix} ({result['method']} {result['path']}) {result['durationMs']}ms"
+                )
             else:
                 print(
-                    f"FAIL {result['operation']} ({result['method']} {result['path']})\n{result.get('error', '')}",
+                    f"FAIL {result['operation']}{suffix} ({result['method']} {result['path']})\n{result.get('error', '')}",
                     file=sys.stderr,
                 )
         if not results:

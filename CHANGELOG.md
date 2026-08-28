@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.5.0](https://github.com/scalar/scalar-python/compare/v0.4.0...v0.5.0) (2026-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Renamed SDK from `ScalarApi` to `Scalar`.
+
+### Features
+
+* **api:** update SDK name ([d787c68](https://github.com/scalar/scalar-python/commit/d787c6833be3a8f11983bd7137f00d8c0d36a16e))
+
+
+### Chores
+
+* **api:** regenerate SDK ([e3346ee](https://github.com/scalar/scalar-python/commit/e3346ee1366606a30a1ce8a0096a4f1173c9679b))
+* **api:** regenerate SDK ([71e2c52](https://github.com/scalar/scalar-python/commit/71e2c52e27e7d1e4c7f6cfe6b03cdb9ae80566fd))
+
 ## [0.4.0](https://github.com/scalar/scalar-python/compare/v0.3.4...v0.4.0) (2026-08-21)
 
 
