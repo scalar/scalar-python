@@ -68,6 +68,8 @@ class ScalarDocListGuidesResponseItem(BaseModel):
 
     login_portal_uid: str = FieldInfo(alias="loginPortalUid")
 
+    user_info_hook_url: str = FieldInfo(alias="userInfoHookUrl")
+
     active_theme_id: str = FieldInfo(alias="activeThemeId")
 
     typesense_id: Optional[float] = FieldInfo(alias="typesenseId", default=None)
@@ -75,6 +77,8 @@ class ScalarDocListGuidesResponseItem(BaseModel):
     is_private: bool = FieldInfo(alias="isPrivate")
 
     agent_enabled: bool = FieldInfo(alias="agentEnabled")
+
+    analytics_enabled: bool = FieldInfo(alias="analyticsEnabled")
 
     access_groups: object = FieldInfo(alias="accessGroups")
 

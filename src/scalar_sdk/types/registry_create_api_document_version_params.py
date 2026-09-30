@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, Required, TypedDict
-
-from .._utils import PropertyInfo
+from typing_extensions import Required, TypedDict
 
 from .version import Version
 
@@ -19,5 +17,3 @@ class RegistryCreateAPIDocumentVersionParams(TypedDict, total=False):
     document: Required[str]
 
     force: bool
-
-    last_known_version_sha: Annotated[str, PropertyInfo(alias="lastKnownVersionSha")]

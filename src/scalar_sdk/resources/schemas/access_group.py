@@ -65,7 +65,7 @@ class AccessGroupResource(SyncAPIResource):
             access_group = client.schemas.access_group.create(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="xxx",
+                access_group_slug="x",
             )
             ```
         """
@@ -118,7 +118,7 @@ class AccessGroupResource(SyncAPIResource):
             access_group = client.schemas.access_group.delete(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="xxx",
+                access_group_slug="x",
             )
             ```
         """
@@ -181,7 +181,7 @@ class AsyncAccessGroupResource(AsyncAPIResource):
             access_group = await client.schemas.access_group.create(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="xxx",
+                access_group_slug="x",
             )
             ```
         """
@@ -234,7 +234,7 @@ class AsyncAccessGroupResource(AsyncAPIResource):
             access_group = await client.schemas.access_group.delete(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="xxx",
+                access_group_slug="x",
             )
             ```
         """

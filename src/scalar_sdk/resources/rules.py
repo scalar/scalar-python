@@ -338,7 +338,7 @@ class RulesResource(SyncAPIResource):
             rule = client.rules.create_ruleset_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="xxx",
+                access_group_slug="x",
             )
             ```
         """
@@ -391,7 +391,7 @@ class RulesResource(SyncAPIResource):
             rule = client.rules.delete_ruleset_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="xxx",
+                access_group_slug="x",
             )
             ```
         """
@@ -718,7 +718,7 @@ class AsyncRulesResource(AsyncAPIResource):
             rule = await client.rules.create_ruleset_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="xxx",
+                access_group_slug="x",
             )
             ```
         """
@@ -771,7 +771,7 @@ class AsyncRulesResource(AsyncAPIResource):
             rule = await client.rules.delete_ruleset_access_group(
                 namespace="namespace",
                 slug="slug",
-                access_group_slug="xxx",
+                access_group_slug="x",
             )
             ```
         """

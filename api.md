@@ -251,7 +251,7 @@ Add an access group to an API document.
 registry = client.registry.create_api_document_access_group(
     namespace="namespace",
     slug="slug",
-    access_group_slug="xxx",
+    access_group_slug="x",
 )
 ```
 
@@ -268,7 +268,7 @@ Remove an access group from an API document.
 registry = client.registry.delete_api_document_access_group(
     namespace="namespace",
     slug="slug",
-    access_group_slug="xxx",
+    access_group_slug="x",
 )
 ```
 
@@ -383,7 +383,7 @@ Create a schema version.
 | Direction | Type |
 | --- | --- |
 | Request | [`VersionCreateParams`](./src/scalar_sdk/types/schemas/version_create_params.py) |
-| Response | [`UID`](./src/scalar_sdk/types/shared/uid.py) |
+| Response | [`VersionCreateResponse`](./src/scalar_sdk/types/schemas/version_create_response.py) |
 
 ```python
 version = client.schemas.version.create(
@@ -411,7 +411,7 @@ Add an access group to a schema.
 access_group = client.schemas.access_group.create(
     namespace="namespace",
     slug="slug",
-    access_group_slug="xxx",
+    access_group_slug="x",
 )
 ```
 
@@ -428,7 +428,7 @@ Remove an access group from a schema.
 access_group = client.schemas.access_group.delete(
     namespace="namespace",
     slug="slug",
-    access_group_slug="xxx",
+    access_group_slug="x",
 )
 ```
 
@@ -500,7 +500,7 @@ login_portal = client.login_portals.create(
         "title": "Private Docs",
         "main_color": "#2a2f45",
         "main_background": "#f6f6f6",
-        "card_color": "2a2f45",
+        "card_color": "#2a2f45",
         "card_background": "#fff",
         "button_color": "#fff",
         "button_background": "#0f0f0f",
@@ -631,7 +631,7 @@ Grant an access group to a rule.
 rule = client.rules.create_ruleset_access_group(
     namespace="namespace",
     slug="slug",
-    access_group_slug="xxx",
+    access_group_slug="x",
 )
 ```
 
@@ -648,7 +648,7 @@ Remove an access group from a rule.
 rule = client.rules.delete_ruleset_access_group(
     namespace="namespace",
     slug="slug",
-    access_group_slug="xxx",
+    access_group_slug="x",
 )
 ```
 

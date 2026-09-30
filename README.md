@@ -79,10 +79,12 @@ Pass credentials to the generated client constructor. Environment variables are 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `bearer_auth` | `string \| provider` | - | Credential for the BearerAuth scheme. Defaults to BEARER_AUTH. |
+| `o_auth2` | `string \| provider` | - | Authorization code with PKCE (S256), for apps acting on behalf of a Scalar user. Each scope implies the weaker ones. Defaults to SCALAR_O_AUTH2. |
 
 Declared schemes:
 
 - `BearerAuth` bearer token
+- `OAuth2` OAuth2/OpenID Connect
 
 <br />
 
@@ -120,6 +122,7 @@ client = Scalar(
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `bearer_auth` | `str \| None` | `os.environ.get("BEARER_AUTH")` | Credential for the BearerAuth scheme. |
+| `o_auth2` | `str \| None` | `os.environ.get("SCALAR_O_AUTH2")` | Authorization code with PKCE (S256), for apps acting on behalf of a Scalar user. Each scope implies the weaker ones. |
 | `base_url` | `str \| httpx.URL \| None` | - | Override the default API base URL. |
 | `timeout` | `float \| Timeout \| None` | `60.0` | Maximum time in seconds to wait for a response before aborting a request. |
 | `max_retries` | `int` | `2` | Number of retries for temporary failures. |
