@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, Required, TypedDict
-
-from .._utils import PropertyInfo
+from typing_extensions import Required, TypedDict
 
 __all__ = ["RegistryUpdateAPIDocumentVersionParams"]
 
@@ -15,5 +13,3 @@ class RegistryUpdateAPIDocumentVersionParams(TypedDict, total=False):
     slug: Required[str]
 
     document: Required[str]
-
-    last_known_version_sha: Annotated[str, PropertyInfo(alias="lastKnownVersionSha")]

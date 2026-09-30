@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 from typing_extensions import TypeAlias
 
 from pydantic import Field as FieldInfo
@@ -26,6 +26,10 @@ class SchemaListResponseItemVersion(BaseModel):
     updated_at: Timestamp = FieldInfo(alias="updatedAt")
 
     version: Version
+
+    yaml_sha: Optional[str] = FieldInfo(alias="yamlSha", default=None)
+
+    json_sha: Optional[str] = FieldInfo(alias="jsonSha", default=None)
 
 
 class SchemaListResponseItem(BaseModel):

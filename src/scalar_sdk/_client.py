@@ -23,7 +23,7 @@ from ._types import (
 )
 from ._utils import is_given, is_mapping_t, get_async_library
 from ._compat import cached_property
-from ._exceptions import APIStatusError, ScalarError
+from ._exceptions import APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -63,12 +63,14 @@ __all__ = ["Scalar", "AsyncScalar", "Client", "AsyncClient", "Timeout", "Transpo
 
 class Scalar(SyncAPIClient):
     # client options
-    bearer_auth: str
+    bearer_auth: str | None
+    o_auth2: str | None
 
     def __init__(
         self,
         *,
         bearer_auth: str | None = None,
+        o_auth2: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -95,11 +97,10 @@ class Scalar(SyncAPIClient):
         """
         if bearer_auth is None:
             bearer_auth = os.environ.get("BEARER_AUTH")
-        if bearer_auth is None:
-            raise ScalarError(
-                "The bearer_auth client option must be set either by passing bearer_auth to the client or by setting the BEARER_AUTH environment variable"
-            )
         self.bearer_auth = bearer_auth
+        if o_auth2 is None:
+            o_auth2 = os.environ.get("SCALAR_O_AUTH2")
+        self.o_auth2 = o_auth2
         if base_url is None:
             base_url = os.environ.get("SCALAR_BASE_URL")
         if base_url is None:
@@ -197,6 +198,7 @@ class Scalar(SyncAPIClient):
     def auth_headers(self) -> dict[str, str]:
         return {
             **self._bearer_auth_header_auth,
+            **self._o_auth2_header_auth,
         }
 
     @override
@@ -212,6 +214,13 @@ class Scalar(SyncAPIClient):
     @property
     def _bearer_auth_header_auth(self) -> dict[str, str]:
         value = self.bearer_auth
+        if value is None:
+            return {}
+        return {"Authorization": f"Bearer {value}"}
+
+    @property
+    def _o_auth2_header_auth(self) -> dict[str, str]:
+        value = self.o_auth2
         if value is None:
             return {}
         return {"Authorization": f"Bearer {value}"}
@@ -238,13 +247,14 @@ class Scalar(SyncAPIClient):
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
         raise TypeError(
-            '"Could not resolve authentication method. Expected the bearer_auth to be set. Or for the `Authorization` headers to be explicitly omitted"'
+            '"Could not resolve authentication method. Expected either bearer_auth or o_auth2 to be set. Or for the `Authorization` headers to be explicitly omitted"'
         )
 
     def copy(
         self,
         *,
         bearer_auth: str | None = None,
+        o_auth2: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -273,6 +283,7 @@ class Scalar(SyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             bearer_auth=bearer_auth or self.bearer_auth,
+            o_auth2=o_auth2 or self.o_auth2,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -308,12 +319,14 @@ class Scalar(SyncAPIClient):
 
 class AsyncScalar(AsyncAPIClient):
     # client options
-    bearer_auth: str
+    bearer_auth: str | None
+    o_auth2: str | None
 
     def __init__(
         self,
         *,
         bearer_auth: str | None = None,
+        o_auth2: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -340,11 +353,10 @@ class AsyncScalar(AsyncAPIClient):
         """
         if bearer_auth is None:
             bearer_auth = os.environ.get("BEARER_AUTH")
-        if bearer_auth is None:
-            raise ScalarError(
-                "The bearer_auth client option must be set either by passing bearer_auth to the client or by setting the BEARER_AUTH environment variable"
-            )
         self.bearer_auth = bearer_auth
+        if o_auth2 is None:
+            o_auth2 = os.environ.get("SCALAR_O_AUTH2")
+        self.o_auth2 = o_auth2
         if base_url is None:
             base_url = os.environ.get("SCALAR_BASE_URL")
         if base_url is None:
@@ -442,6 +454,7 @@ class AsyncScalar(AsyncAPIClient):
     def auth_headers(self) -> dict[str, str]:
         return {
             **self._bearer_auth_header_auth,
+            **self._o_auth2_header_auth,
         }
 
     @override
@@ -457,6 +470,13 @@ class AsyncScalar(AsyncAPIClient):
     @property
     def _bearer_auth_header_auth(self) -> dict[str, str]:
         value = self.bearer_auth
+        if value is None:
+            return {}
+        return {"Authorization": f"Bearer {value}"}
+
+    @property
+    def _o_auth2_header_auth(self) -> dict[str, str]:
+        value = self.o_auth2
         if value is None:
             return {}
         return {"Authorization": f"Bearer {value}"}
@@ -483,13 +503,14 @@ class AsyncScalar(AsyncAPIClient):
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
         raise TypeError(
-            '"Could not resolve authentication method. Expected the bearer_auth to be set. Or for the `Authorization` headers to be explicitly omitted"'
+            '"Could not resolve authentication method. Expected either bearer_auth or o_auth2 to be set. Or for the `Authorization` headers to be explicitly omitted"'
         )
 
     def copy(
         self,
         *,
         bearer_auth: str | None = None,
+        o_auth2: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -518,6 +539,7 @@ class AsyncScalar(AsyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             bearer_auth=bearer_auth or self.bearer_auth,
+            o_auth2=o_auth2 or self.o_auth2,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
