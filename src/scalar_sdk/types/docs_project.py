@@ -22,7 +22,7 @@ class DocsProject(BaseModel):
 
     is_private: bool = FieldInfo(alias="isPrivate")
 
-    access_groups: object = FieldInfo(alias="accessGroups")
+    access_groups: str = FieldInfo(alias="accessGroups")
 
     login_portal_uid: str = FieldInfo(alias="loginPortalUid")
 

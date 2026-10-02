@@ -61,8 +61,8 @@ class DomainsResource(SyncAPIResource):
         Example:
             ```python
             domain = client.access_groups.domains.create(
-                slug="slug",
-                domain="",
+                slug="acme-api",
+                domain="example.com",
             )
             ```
         """
@@ -109,8 +109,8 @@ class DomainsResource(SyncAPIResource):
         Example:
             ```python
             domain = client.access_groups.domains.delete(
-                slug="slug",
-                domain="",
+                slug="acme-api",
+                domain="example.com",
             )
             ```
         """
@@ -167,8 +167,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         Example:
             ```python
             domain = await client.access_groups.domains.create(
-                slug="slug",
-                domain="",
+                slug="acme-api",
+                domain="example.com",
             )
             ```
         """
@@ -215,8 +215,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         Example:
             ```python
             domain = await client.access_groups.domains.delete(
-                slug="slug",
-                domain="",
+                slug="acme-api",
+                domain="example.com",
             )
             ```
         """

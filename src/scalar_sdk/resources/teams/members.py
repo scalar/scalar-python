@@ -97,7 +97,7 @@ class MembersResource(SyncAPIResource):
         Example:
             ```python
             member = client.teams.members.update(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
                 role="owner",
             )
             ```
@@ -143,7 +143,7 @@ class MembersResource(SyncAPIResource):
         Example:
             ```python
             member = client.teams.members.delete(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -231,7 +231,7 @@ class AsyncMembersResource(AsyncAPIResource):
         Example:
             ```python
             member = await client.teams.members.update(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
                 role="owner",
             )
             ```
@@ -277,7 +277,7 @@ class AsyncMembersResource(AsyncAPIResource):
         Example:
             ```python
             member = await client.teams.members.delete(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """

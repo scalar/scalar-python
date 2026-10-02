@@ -58,7 +58,7 @@ class AuthenticationResource(SyncAPIResource):
         Example:
             ```python
             authentication = client.authentication.exchange_personal_token(
-                personal_token="",
+                personal_token="scalar_example_personal_token",
             )
             ```
         """
@@ -146,7 +146,7 @@ class AsyncAuthenticationResource(AsyncAPIResource):
         Example:
             ```python
             authentication = await client.authentication.exchange_personal_token(
-                personal_token="",
+                personal_token="scalar_example_personal_token",
             )
             ```
         """

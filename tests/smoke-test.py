@@ -51,258 +51,258 @@ def _smoke_case_0() -> None:
 
 def _smoke_case_1() -> None:
     registry = client.registry.list_api_documents(
-        namespace="namespace",
+        namespace="acme",
     )
 
 
 def _smoke_case_2() -> None:
     registry = client.registry.create_api_document(
-        namespace="namespace",
-        title="",
-        version="x",
-        slug="",
-        document="",
+        namespace="acme",
+        title="Acme API",
+        version="1.2.0",
+        slug="acme-api",
+        document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
     )
 
 
 def _smoke_case_3() -> None:
     registry = client.registry.create_api_document(
-        namespace="namespace",
-        title="",
-        description="",
-        version="x",
-        slug="",
-        ruleset="",
+        namespace="acme",
+        title="Acme API",
+        description="API for managing Acme products and orders.",
+        version="1.2.0",
+        slug="acme-api",
+        ruleset='extends: ["spectral:oas"]',
         is_private=False,
-        document="",
+        document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
     )
 
 
 def _smoke_case_4() -> None:
     registry = client.registry.update_api_document(
-        namespace="namespace",
-        slug="slug",
+        namespace="acme",
+        slug="acme-api",
     )
 
 
 def _smoke_case_5() -> None:
     registry = client.registry.update_api_document(
-        namespace="namespace",
-        slug="slug",
-        title="",
-        description="",
+        namespace="acme",
+        slug="acme-api",
+        title="Acme API",
+        description="API for managing Acme products and orders.",
         is_private=False,
-        ruleset="",
+        ruleset='extends: ["spectral:oas"]',
     )
 
 
 def _smoke_case_6() -> None:
     registry = client.registry.delete_api_document(
-        namespace="namespace",
-        slug="slug",
+        namespace="acme",
+        slug="acme-api",
     )
 
 
 def _smoke_case_7() -> None:
     registry = client.registry.retrieve_api_document_version(
-        namespace="namespace",
-        slug="slug",
-        semver="semver",
+        namespace="acme",
+        slug="acme-api",
+        semver="1.2.0",
     )
 
 
 def _smoke_case_8() -> None:
     registry = client.registry.update_api_document_version(
-        namespace="namespace",
-        slug="slug",
-        semver="semver",
-        document="",
+        namespace="acme",
+        slug="acme-api",
+        semver="1.2.0",
+        document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
     )
 
 
 def _smoke_case_9() -> None:
     registry = client.registry.delete_api_document_version(
-        namespace="namespace",
-        slug="slug",
-        semver="semver",
+        namespace="acme",
+        slug="acme-api",
+        semver="1.2.0",
     )
 
 
 def _smoke_case_10() -> None:
     registry = client.registry.list_api_document_version_metadata(
-        namespace="namespace",
-        slug="slug",
-        semver="semver",
+        namespace="acme",
+        slug="acme-api",
+        semver="1.2.0",
     )
 
 
 def _smoke_case_11() -> None:
     registry = client.registry.create_api_document_version(
-        namespace="namespace",
-        slug="slug",
-        version="x",
-        document="",
+        namespace="acme",
+        slug="acme-api",
+        version="1.2.0",
+        document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
     )
 
 
 def _smoke_case_12() -> None:
     registry = client.registry.create_api_document_version(
-        namespace="namespace",
-        slug="slug",
-        version="x",
-        document="",
+        namespace="acme",
+        slug="acme-api",
+        version="1.2.0",
+        document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
         force=False,
     )
 
 
 def _smoke_case_13() -> None:
     registry = client.registry.create_api_document_access_group(
-        namespace="namespace",
-        slug="slug",
-        access_group_slug="x",
+        namespace="acme",
+        slug="acme-api",
+        access_group_slug="acme-api",
     )
 
 
 def _smoke_case_14() -> None:
     registry = client.registry.delete_api_document_access_group(
-        namespace="namespace",
-        slug="slug",
-        access_group_slug="x",
+        namespace="acme",
+        slug="acme-api",
+        access_group_slug="acme-api",
     )
 
 
 def _smoke_case_15() -> None:
     schema = client.schemas.list(
-        namespace="namespace",
+        namespace="acme",
     )
 
 
 def _smoke_case_16() -> None:
     schema = client.schemas.create(
-        namespace="namespace",
-        title="",
-        version="x",
-        slug="",
-        document="",
+        namespace="acme",
+        title="Customer",
+        version="1.2.0",
+        slug="customer",
+        document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
     )
 
 
 def _smoke_case_17() -> None:
     schema = client.schemas.create(
-        namespace="namespace",
-        title="",
-        description="",
-        version="x",
-        slug="",
+        namespace="acme",
+        title="Customer",
+        description="API for managing Acme products and orders.",
+        version="1.2.0",
+        slug="customer",
         is_private=False,
-        document="",
+        document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
     )
 
 
 def _smoke_case_18() -> None:
     schema = client.schemas.update(
-        namespace="namespace",
-        slug="slug",
+        namespace="acme",
+        slug="customer",
     )
 
 
 def _smoke_case_19() -> None:
     schema = client.schemas.update(
-        namespace="namespace",
-        slug="slug",
-        title="",
-        description="",
+        namespace="acme",
+        slug="customer",
+        title="Customer",
+        description="API for managing Acme products and orders.",
         is_private=False,
     )
 
 
 def _smoke_case_20() -> None:
     schema = client.schemas.delete(
-        namespace="namespace",
-        slug="slug",
+        namespace="acme",
+        slug="customer",
     )
 
 
 def _smoke_case_21() -> None:
     version = client.schemas.version.retrieve(
-        namespace="namespace",
-        slug="slug",
-        semver="semver",
+        namespace="acme",
+        slug="customer",
+        semver="1.2.0",
     )
 
 
 def _smoke_case_22() -> None:
     version = client.schemas.version.delete(
-        namespace="namespace",
-        slug="slug",
-        semver="semver",
+        namespace="acme",
+        slug="customer",
+        semver="1.2.0",
     )
 
 
 def _smoke_case_23() -> None:
     version = client.schemas.version.create(
-        namespace="namespace",
-        slug="slug",
-        version="x",
-        document="",
+        namespace="acme",
+        slug="customer",
+        version="1.2.0",
+        document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
     )
 
 
 def _smoke_case_24() -> None:
     version = client.schemas.version.create(
-        namespace="namespace",
-        slug="slug",
-        version="x",
-        document="",
+        namespace="acme",
+        slug="customer",
+        version="1.2.0",
+        document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
         force=False,
     )
 
 
 def _smoke_case_25() -> None:
     access_group = client.schemas.access_group.create(
-        namespace="namespace",
-        slug="slug",
-        access_group_slug="x",
+        namespace="acme",
+        slug="customer",
+        access_group_slug="acme-api",
     )
 
 
 def _smoke_case_26() -> None:
     access_group = client.schemas.access_group.delete(
-        namespace="namespace",
-        slug="slug",
-        access_group_slug="x",
+        namespace="acme",
+        slug="customer",
+        access_group_slug="acme-api",
     )
 
 
 def _smoke_case_27() -> None:
     login_portal = client.login_portals.retrieve(
-        slug="slug",
+        slug="acme-login",
     )
 
 
 def _smoke_case_28() -> None:
     login_portal = client.login_portals.update(
-        slug="slug",
+        slug="acme-login",
     )
 
 
 def _smoke_case_29() -> None:
     login_portal = client.login_portals.update(
-        slug="slug",
-        title="",
+        slug="acme-login",
+        title="Acme Private Documentation",
     )
 
 
 def _smoke_case_30() -> None:
     login_portal = client.login_portals.delete(
-        slug="slug",
+        slug="acme-login",
     )
 
 
 def _smoke_case_31() -> None:
     login_portal = client.login_portals.create(
-        title="",
-        slug="",
+        title="Acme Private Documentation",
+        slug="acme-login",
         email={
             "logo": "",
             "logo_size": "100",
@@ -345,124 +345,124 @@ def _smoke_case_33() -> None:
 
 def _smoke_case_34() -> None:
     access_group = client.access_groups.create(
-        name="",
-        slug="x",
-        allowed_domains={},
+        name="Engineering",
+        slug="engineering",
+        allowed_domains="example.com",
     )
 
 
 def _smoke_case_35() -> None:
     access_group = client.access_groups.retrieve(
-        slug="slug",
+        slug="acme-api",
     )
 
 
 def _smoke_case_36() -> None:
     access_group = client.access_groups.update(
-        path_slug="slug",
+        path_slug="acme-api",
     )
 
 
 def _smoke_case_37() -> None:
     access_group = client.access_groups.update(
-        path_slug="slug",
-        name="",
-        body_slug="x",
+        path_slug="acme-api",
+        name="Engineering",
+        body_slug="engineering",
     )
 
 
 def _smoke_case_38() -> None:
     access_group = client.access_groups.delete(
-        slug="slug",
+        slug="acme-api",
     )
 
 
 def _smoke_case_39() -> None:
     domain = client.access_groups.domains.create(
-        slug="slug",
-        domain="",
+        slug="acme-api",
+        domain="example.com",
     )
 
 
 def _smoke_case_40() -> None:
     domain = client.access_groups.domains.delete(
-        slug="slug",
-        domain="",
+        slug="acme-api",
+        domain="example.com",
     )
 
 
 def _smoke_case_41() -> None:
     rule = client.rules.list_rulesets(
-        namespace="namespace",
+        namespace="acme",
     )
 
 
 def _smoke_case_42() -> None:
     rule = client.rules.create_ruleset(
-        namespace="namespace",
-        title="",
-        slug="",
-        document="",
+        namespace="acme",
+        title="Acme API Rules",
+        slug="acme-rules",
+        document='extends: ["spectral:oas"]\nrules:\n  info-contact: warn\n',
     )
 
 
 def _smoke_case_43() -> None:
     rule = client.rules.create_ruleset(
-        namespace="namespace",
-        title="",
-        description="",
-        slug="",
+        namespace="acme",
+        title="Acme API Rules",
+        description="API for managing Acme products and orders.",
+        slug="acme-rules",
         is_private=False,
-        document="",
+        document='extends: ["spectral:oas"]\nrules:\n  info-contact: warn\n',
     )
 
 
 def _smoke_case_44() -> None:
     rule = client.rules.update_ruleset(
-        path_namespace="namespace",
-        path_slug="slug",
+        path_namespace="acme",
+        path_slug="acme-rules",
     )
 
 
 def _smoke_case_45() -> None:
     rule = client.rules.update_ruleset(
-        path_namespace="namespace",
-        path_slug="slug",
-        body_namespace="",
-        body_slug="",
-        title="",
-        description="",
+        path_namespace="acme",
+        path_slug="acme-rules",
+        body_namespace="acme",
+        body_slug="acme-rules",
+        title="Acme API Rules",
+        description="API for managing Acme products and orders.",
         is_private=False,
     )
 
 
 def _smoke_case_46() -> None:
     rule = client.rules.delete_ruleset(
-        namespace="namespace",
-        slug="slug",
+        namespace="acme",
+        slug="acme-rules",
     )
 
 
 def _smoke_case_47() -> None:
     rule = client.rules.retrieve_ruleset_document(
-        namespace="namespace",
-        slug="slug",
+        namespace="acme",
+        slug="acme-rules",
     )
 
 
 def _smoke_case_48() -> None:
     rule = client.rules.create_ruleset_access_group(
-        namespace="namespace",
-        slug="slug",
-        access_group_slug="x",
+        namespace="acme",
+        slug="acme-rules",
+        access_group_slug="acme-api",
     )
 
 
 def _smoke_case_49() -> None:
     rule = client.rules.delete_ruleset_access_group(
-        namespace="namespace",
-        slug="slug",
-        access_group_slug="x",
+        namespace="acme",
+        slug="acme-rules",
+        access_group_slug="acme-api",
     )
 
 
@@ -472,51 +472,51 @@ def _smoke_case_50() -> None:
 
 def _smoke_case_51() -> None:
     theme = client.themes.create(
-        name="",
-        slug="",
-        document="",
+        name="Acme Theme",
+        slug="acme-theme",
+        document=":root { --scalar-color-1: #1f2937; }",
     )
 
 
 def _smoke_case_52() -> None:
     theme = client.themes.create(
-        name="",
-        description="",
-        slug="",
-        document="",
+        name="Acme Theme",
+        description="API for managing Acme products and orders.",
+        slug="acme-theme",
+        document=":root { --scalar-color-1: #1f2937; }",
     )
 
 
 def _smoke_case_53() -> None:
     theme = client.themes.update(
-        slug="slug",
+        slug="acme-theme",
     )
 
 
 def _smoke_case_54() -> None:
     theme = client.themes.update(
-        slug="slug",
-        name="",
-        description="",
+        slug="acme-theme",
+        name="Acme Theme",
+        description="API for managing Acme products and orders.",
     )
 
 
 def _smoke_case_55() -> None:
     theme = client.themes.replace_document(
-        slug="slug",
-        document="",
+        slug="acme-theme",
+        document=":root { --scalar-color-1: #1f2937; }",
     )
 
 
 def _smoke_case_56() -> None:
     theme = client.themes.delete(
-        slug="slug",
+        slug="acme-theme",
     )
 
 
 def _smoke_case_57() -> None:
     theme = client.themes.retrieve(
-        slug="slug",
+        slug="acme-theme",
     )
 
 
@@ -530,33 +530,33 @@ def _smoke_case_59() -> None:
 
 def _smoke_case_60() -> None:
     member = client.teams.members.update(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
         role="owner",
     )
 
 
 def _smoke_case_61() -> None:
     member = client.teams.members.delete(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
     )
 
 
 def _smoke_case_62() -> None:
     invite = client.teams.invites.member(
-        email="user@example.com",
+        email="alex@example.com",
         role="owner",
     )
 
 
 def _smoke_case_63() -> None:
     invite = client.teams.invites.resend(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
     )
 
 
 def _smoke_case_64() -> None:
     invite = client.teams.invites.cancel(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
     )
 
 
@@ -566,7 +566,7 @@ def _smoke_case_65() -> None:
 
 def _smoke_case_66() -> None:
     scalar_doc = client.scalar_docs.create_guide(
-        name="",
+        name="Acme Documentation",
         is_private=False,
         allowed_users=[],
         allowed_domains=[],
@@ -575,8 +575,8 @@ def _smoke_case_66() -> None:
 
 def _smoke_case_67() -> None:
     scalar_doc = client.scalar_docs.create_guide(
-        name="",
-        slug="x",
+        name="Acme Documentation",
+        slug="acme-docs",
         is_private=False,
         allowed_users=[],
         allowed_domains=[],
@@ -585,7 +585,7 @@ def _smoke_case_67() -> None:
 
 def _smoke_case_68() -> None:
     scalar_doc = client.scalar_docs.publish_guide(
-        slug="slug",
+        slug="acme-docs",
     )
 
 
@@ -595,115 +595,118 @@ def _smoke_case_69() -> None:
 
 def _smoke_case_70() -> None:
     scalar_doc = client.scalar_docs.list_projects(
-        limit=1,
+        limit=20,
     )
 
 
 def _smoke_case_71() -> None:
     scalar_doc = client.scalar_docs.create_project(
-        name="",
+        name="Acme Documentation",
         provider="forgejo",
     )
 
 
 def _smoke_case_72() -> None:
     scalar_doc = client.scalar_docs.create_project(
-        name="",
-        slug="x",
+        name="Acme Documentation",
+        slug="acme-docs",
         is_private=False,
-        blank=False,
+        blank=True,
         provider="forgejo",
-        github_repository={"installation_id": 0, "repo_id": 0},
-        bitbucket_repository={"workspace_uuid": "", "repo_uuid": ""},
+        github_repository={"installation_id": 84, "repo_id": 123456789},
+        bitbucket_repository={
+            "workspace_uuid": "{12345678-1234-4234-8234-123456789abc}",
+            "repo_uuid": "{abcdef01-1234-4234-8234-123456789abc}",
+        },
     )
 
 
 def _smoke_case_73() -> None:
     scalar_doc = client.scalar_docs.retrieve_project(
-        slug="slug",
+        slug="acme-docs",
     )
 
 
 def _smoke_case_74() -> None:
     scalar_doc = client.scalar_docs.update_project(
-        slug="slug",
+        slug="acme-docs",
     )
 
 
 def _smoke_case_75() -> None:
     scalar_doc = client.scalar_docs.update_project(
-        slug="slug",
-        name="",
+        slug="acme-docs",
+        name="Acme Documentation",
         is_private=False,
-        access_groups=["xxxxx"],
-        login_portal_uid="xxxxx",
-        active_theme_id="xxxxx",
-        agent_enabled=False,
-        analytics_enabled=False,
+        access_groups=["UakgbKJ5m9gl0JDMbcJqL"],
+        login_portal_uid="LakgbKJ5m9gl0JDMbcJqL",
+        active_theme_id="TakgbKJ5m9gl0JDMbcJqL",
+        agent_enabled=True,
+        analytics_enabled=True,
     )
 
 
 def _smoke_case_76() -> None:
     scalar_doc = client.scalar_docs.delete_project(
-        slug="slug",
+        slug="acme-docs",
     )
 
 
 def _smoke_case_77() -> None:
     scalar_doc = client.scalar_docs.publish_project(
-        slug="slug",
+        slug="acme-docs",
     )
 
 
 def _smoke_case_78() -> None:
     scalar_doc = client.scalar_docs.publish_project(
-        slug="slug",
-        commit_sha="",
+        slug="acme-docs",
+        commit_sha="0123456789abcdef0123456789abcdef01234567",
         preview=False,
-        config_path="",
+        config_path="scalar.config.json",
     )
 
 
 def _smoke_case_79() -> None:
     scalar_doc = client.scalar_docs.list_project_config(
-        slug="slug",
+        slug="acme-docs",
     )
 
 
 def _smoke_case_80() -> None:
     scalar_doc = client.scalar_docs.list_project_config(
-        slug="slug",
-        ref="ref",
+        slug="acme-docs",
+        ref="main",
     )
 
 
 def _smoke_case_81() -> None:
     scalar_doc = client.scalar_docs.update_project_config(
-        slug="slug",
-        content="",
+        slug="acme-docs",
+        content='{"name":"Acme Documentation"}',
     )
 
 
 def _smoke_case_82() -> None:
     scalar_doc = client.scalar_docs.update_project_config(
-        slug="slug",
-        content="",
-        ref="",
-        base_token="",
-        message="",
-        path="",
+        slug="acme-docs",
+        content='{"name":"Acme Documentation"}',
+        ref="main",
+        base_token="example-edit-token",
+        message="Update documentation configuration",
+        path="scalar.config.json",
     )
 
 
 def _smoke_case_83() -> None:
     scalar_doc = client.scalar_docs.list_project_domain(
-        slug="slug",
+        slug="acme-docs",
     )
 
 
 def _smoke_case_84() -> None:
     scalar_doc = client.scalar_docs.list_project_domain_status(
-        slug="slug",
+        slug="acme-docs",
     )
 
 
@@ -713,7 +716,7 @@ def _smoke_case_85() -> None:
 
 def _smoke_case_86() -> None:
     authentication = client.authentication.exchange_personal_token(
-        personal_token="",
+        personal_token="scalar_example_personal_token",
     )
 
 
@@ -727,129 +730,129 @@ def _smoke_case_88() -> None:
 
 def _smoke_case_89() -> None:
     sdk = client.sdks.list(
-        limit=1,
+        limit=20,
     )
 
 
 def _smoke_case_90() -> None:
     sdk = client.sdks.create(
-        api_uid="xxxxx",
+        api_uid="UakgbKJ5m9gl0JDMbcJqL",
         languages=["typescript"],
     )
 
 
 def _smoke_case_91() -> None:
     sdk = client.sdks.create(
-        api_uid="xxxxx",
+        api_uid="UakgbKJ5m9gl0JDMbcJqL",
         languages=["typescript"],
-        title="",
-        slug="x",
-        class_name="",
-        config="",
+        title="Acme SDK",
+        slug="acme-sdk",
+        class_name="Acme",
+        config='{"targets":{"typescript":{"packageName":"@acme/sdk"}}}',
     )
 
 
 def _smoke_case_92() -> None:
     sdk = client.sdks.retrieve(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
     )
 
 
 def _smoke_case_93() -> None:
     sdk = client.sdks.update(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
     )
 
 
 def _smoke_case_94() -> None:
     sdk = client.sdks.update(
-        uid="uidxx",
-        title="",
-        slug="x",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
+        title="Acme SDK",
+        slug="acme-sdk",
         is_private=False,
-        config="",
-        api_uid="xxxxx",
-        api_version="",
+        config='{"targets":{"typescript":{"packageName":"@acme/sdk"}}}',
+        api_uid="UakgbKJ5m9gl0JDMbcJqL",
+        api_version="1.2.0",
     )
 
 
 def _smoke_case_95() -> None:
     sdk = client.sdks.delete(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
     )
 
 
 def _smoke_case_96() -> None:
     sdk = client.sdks.build(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
     )
 
 
 def _smoke_case_97() -> None:
     sdk = client.sdks.build(
-        uid="uidxx",
-        version="",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
+        version="1.2.0",
         languages=["typescript"],
     )
 
 
 def _smoke_case_98() -> None:
     version = client.sdks.versions.create(
-        uid="uidxx",
-        version="",
-        api_version="",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
+        version="1.2.0",
+        api_version="1.2.0",
     )
 
 
 def _smoke_case_99() -> None:
     version = client.sdks.versions.delete(
-        uid="uidxx",
-        version="version",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
+        version="1.2.0",
     )
 
 
 def _smoke_case_100() -> None:
     repository = client.sdks.repositories.link(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
         language="typescript",
-        repository_id=0,
-        base_branch="",
+        repository_id=123456789,
+        base_branch="main",
     )
 
 
 def _smoke_case_101() -> None:
     repository = client.sdks.repositories.link(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
         language="typescript",
-        repository_id=0,
-        base_branch="",
-        prerelease_type="",
+        repository_id=123456789,
+        base_branch="main",
+        prerelease_type="beta",
     )
 
 
 def _smoke_case_102() -> None:
     repository = client.sdks.repositories.unlink(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
         language="typescript",
     )
 
 
 def _smoke_case_103() -> None:
     repository = client.sdks.repositories.update_publishing(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
         language="typescript",
-        publish_on_merge=False,
+        publish_on_merge=True,
     )
 
 
 def _smoke_case_104() -> None:
     repository = client.sdks.repositories.update_publishing(
-        uid="uidxx",
+        uid="UakgbKJ5m9gl0JDMbcJqL",
         language="typescript",
-        publish_on_merge=False,
+        publish_on_merge=True,
         auth_method="oidc",
         access="public",
-        tag="",
+        tag="latest",
     )
 
 
@@ -859,118 +862,118 @@ def _smoke_case_105() -> None:
 
 def _smoke_case_106() -> None:
     server = client.mcp.servers.create(
-        name="x",
+        name="Acme MCP",
     )
 
 
 def _smoke_case_107() -> None:
     server = client.mcp.servers.create(
-        name="x",
-        slug="x",
-        version_uids=[""],
-        project_uids=[""],
+        name="Acme MCP",
+        slug="acme-mcp",
+        version_uids=["VakgbKJ5m9gl0JDMbcJqL"],
+        project_uids=["PakgbKJ5m9gl0JDMbcJqL"],
     )
 
 
 def _smoke_case_108() -> None:
     server = client.mcp.servers.retrieve(
-        id="id",
+        id="42",
     )
 
 
 def _smoke_case_109() -> None:
     server = client.mcp.servers.update(
-        id="id",
+        id="42",
     )
 
 
 def _smoke_case_110() -> None:
     server = client.mcp.servers.update(
-        id="id",
-        name="x",
-        slug="x",
-        auto_add_operations=False,
-        operations=[""],
-        docs_pages=[""],
+        id="42",
+        name="Acme MCP",
+        slug="acme-mcp",
+        auto_add_operations=True,
+        operations=["42"],
+        docs_pages=["getting-started"],
     )
 
 
 def _smoke_case_111() -> None:
     server = client.mcp.servers.delete(
-        id="id",
+        id="42",
     )
 
 
 def _smoke_case_112() -> None:
     installation = client.mcp.servers.installations.list(
-        id="id",
+        id="42",
     )
 
 
 def _smoke_case_113() -> None:
     installation = client.mcp.servers.installations.create(
-        id="id",
-        name="x",
+        id="42",
+        name="Acme MCP",
         document_auth={},
     )
 
 
 def _smoke_case_114() -> None:
     installation = client.mcp.servers.installations.create(
-        id="id",
-        name="x",
-        slug="x",
+        id="42",
+        name="Acme MCP",
+        slug="acme-mcp",
         document_auth={},
     )
 
 
 def _smoke_case_115() -> None:
     installation = client.mcp.servers.installations.retrieve(
-        id="id",
-        installation_id="installationId",
+        id="42",
+        installation_id="84",
     )
 
 
 def _smoke_case_116() -> None:
     installation = client.mcp.servers.installations.update(
-        id="id",
-        installation_id="installationId",
+        id="42",
+        installation_id="84",
     )
 
 
 def _smoke_case_117() -> None:
     installation = client.mcp.servers.installations.update(
-        id="id",
-        installation_id="installationId",
-        name="x",
-        slug="x",
+        id="42",
+        installation_id="84",
+        name="Acme MCP",
+        slug="acme-mcp",
         is_private=False,
-        login_portal_uid="",
+        login_portal_uid="LakgbKJ5m9gl0JDMbcJqL",
         document_auth={},
-        mcp_version="",
+        mcp_version="1.2.0",
     )
 
 
 def _smoke_case_118() -> None:
     installation = client.mcp.servers.installations.delete(
-        id="id",
-        installation_id="installationId",
+        id="42",
+        installation_id="84",
     )
 
 
 def _smoke_case_119() -> None:
     installation = client.mcp.servers.installations.create_access_group(
-        id="id",
-        installation_id="installationId",
-        access_group_uid="xxxxx",
+        id="42",
+        installation_id="84",
+        access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
     )
 
 
 def _smoke_case_120() -> None:
     installation = client.mcp.servers.installations.delete_access_group(
-        id="id",
-        installation_id="installationId",
-        access_group_uid="xxxxx",
+        id="42",
+        installation_id="84",
+        access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
     )
 
 

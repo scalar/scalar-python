@@ -83,10 +83,10 @@ class RepositoriesResource(SyncAPIResource):
         Example:
             ```python
             repository = client.sdks.repositories.link(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
                 language="typescript",
-                repository_id=0,
-                base_branch="",
+                repository_id=123456789,
+                base_branch="main",
             )
             ```
         """
@@ -152,7 +152,7 @@ class RepositoriesResource(SyncAPIResource):
         Example:
             ```python
             repository = client.sdks.repositories.unlink(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
                 language="typescript",
             )
             ```
@@ -220,9 +220,9 @@ class RepositoriesResource(SyncAPIResource):
         Example:
             ```python
             repository = client.sdks.repositories.update_publishing(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
                 language="typescript",
-                publish_on_merge=False,
+                publish_on_merge=True,
             )
             ```
         """
@@ -306,10 +306,10 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         Example:
             ```python
             repository = await client.sdks.repositories.link(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
                 language="typescript",
-                repository_id=0,
-                base_branch="",
+                repository_id=123456789,
+                base_branch="main",
             )
             ```
         """
@@ -375,7 +375,7 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         Example:
             ```python
             repository = await client.sdks.repositories.unlink(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
                 language="typescript",
             )
             ```
@@ -443,9 +443,9 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         Example:
             ```python
             repository = await client.sdks.repositories.update_publishing(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
                 language="typescript",
-                publish_on_merge=False,
+                publish_on_merge=True,
             )
             ```
         """

@@ -110,7 +110,7 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.list_api_documents(
-                namespace="namespace",
+                namespace="acme",
             )
             ```
         """
@@ -165,11 +165,11 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.create_api_document(
-                namespace="namespace",
-                title="",
-                version="x",
-                slug="",
-                document="",
+                namespace="acme",
+                title="Acme API",
+                version="1.2.0",
+                slug="acme-api",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -232,8 +232,8 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.update_api_document(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-api",
             )
             ```
         """
@@ -287,8 +287,8 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.delete_api_document(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-api",
             )
             ```
         """
@@ -335,9 +335,9 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.retrieve_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -392,10 +392,10 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.update_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
-                document="",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -451,9 +451,9 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.delete_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -505,9 +505,9 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.list_api_document_version_metadata(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -563,10 +563,10 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.create_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                version="x",
-                document="",
+                namespace="acme",
+                slug="acme-api",
+                version="1.2.0",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -621,9 +621,9 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.create_api_document_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="x",
+                namespace="acme",
+                slug="acme-api",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -674,9 +674,9 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.delete_api_document_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="x",
+                namespace="acme",
+                slug="acme-api",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -768,7 +768,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.list_api_documents(
-                namespace="namespace",
+                namespace="acme",
             )
             ```
         """
@@ -823,11 +823,11 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.create_api_document(
-                namespace="namespace",
-                title="",
-                version="x",
-                slug="",
-                document="",
+                namespace="acme",
+                title="Acme API",
+                version="1.2.0",
+                slug="acme-api",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -890,8 +890,8 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.update_api_document(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-api",
             )
             ```
         """
@@ -945,8 +945,8 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.delete_api_document(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-api",
             )
             ```
         """
@@ -993,9 +993,9 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.retrieve_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -1050,10 +1050,10 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.update_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
-                document="",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -1109,9 +1109,9 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.delete_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -1163,9 +1163,9 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.list_api_document_version_metadata(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -1221,10 +1221,10 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.create_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                version="x",
-                document="",
+                namespace="acme",
+                slug="acme-api",
+                version="1.2.0",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -1279,9 +1279,9 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.create_api_document_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="x",
+                namespace="acme",
+                slug="acme-api",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -1332,9 +1332,9 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.delete_api_document_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="x",
+                namespace="acme",
+                slug="acme-api",
+                access_group_slug="acme-api",
             )
             ```
         """

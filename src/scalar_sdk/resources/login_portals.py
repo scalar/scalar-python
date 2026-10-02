@@ -63,7 +63,7 @@ class LoginPortalsResource(SyncAPIResource):
         Example:
             ```python
             login_portal = client.login_portals.retrieve(
-                slug="slug",
+                slug="acme-login",
             )
             ```
         """
@@ -106,7 +106,7 @@ class LoginPortalsResource(SyncAPIResource):
         Example:
             ```python
             login_portal = client.login_portals.update(
-                slug="slug",
+                slug="acme-login",
             )
             ```
         """
@@ -151,7 +151,7 @@ class LoginPortalsResource(SyncAPIResource):
         Example:
             ```python
             login_portal = client.login_portals.delete(
-                slug="slug",
+                slug="acme-login",
             )
             ```
         """
@@ -198,8 +198,8 @@ class LoginPortalsResource(SyncAPIResource):
         Example:
             ```python
             login_portal = client.login_portals.create(
-                title="",
-                slug="",
+                title="Acme Private Documentation",
+                slug="acme-login",
                 email={
                     "logo": "",
                     "logo_size": "100",
@@ -321,7 +321,7 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
         Example:
             ```python
             login_portal = await client.login_portals.retrieve(
-                slug="slug",
+                slug="acme-login",
             )
             ```
         """
@@ -364,7 +364,7 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
         Example:
             ```python
             login_portal = await client.login_portals.update(
-                slug="slug",
+                slug="acme-login",
             )
             ```
         """
@@ -409,7 +409,7 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
         Example:
             ```python
             login_portal = await client.login_portals.delete(
-                slug="slug",
+                slug="acme-login",
             )
             ```
         """
@@ -456,8 +456,8 @@ class AsyncLoginPortalsResource(AsyncAPIResource):
         Example:
             ```python
             login_portal = await client.login_portals.create(
-                title="",
-                slug="",
+                title="Acme Private Documentation",
+                slug="acme-login",
                 email={
                     "logo": "",
                     "logo_size": "100",

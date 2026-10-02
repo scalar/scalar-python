@@ -63,7 +63,7 @@ class InvitesResource(SyncAPIResource):
         Example:
             ```python
             invite = client.teams.invites.member(
-                email="user@example.com",
+                email="alex@example.com",
                 role="owner",
             )
             ```
@@ -110,7 +110,7 @@ class InvitesResource(SyncAPIResource):
         Example:
             ```python
             invite = client.teams.invites.resend(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -151,7 +151,7 @@ class InvitesResource(SyncAPIResource):
         Example:
             ```python
             invite = client.teams.invites.cancel(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -204,7 +204,7 @@ class AsyncInvitesResource(AsyncAPIResource):
         Example:
             ```python
             invite = await client.teams.invites.member(
-                email="user@example.com",
+                email="alex@example.com",
                 role="owner",
             )
             ```
@@ -251,7 +251,7 @@ class AsyncInvitesResource(AsyncAPIResource):
         Example:
             ```python
             invite = await client.teams.invites.resend(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -292,7 +292,7 @@ class AsyncInvitesResource(AsyncAPIResource):
         Example:
             ```python
             invite = await client.teams.invites.cancel(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """

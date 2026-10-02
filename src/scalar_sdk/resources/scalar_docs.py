@@ -125,7 +125,7 @@ class ScalarDocsResource(SyncAPIResource):
         Example:
             ```python
             scalar_doc = client.scalar_docs.create_guide(
-                name="",
+                name="Acme Documentation",
                 is_private=False,
                 allowed_users=[],
                 allowed_domains=[],
@@ -177,7 +177,7 @@ class ScalarDocsResource(SyncAPIResource):
         Example:
             ```python
             scalar_doc = client.scalar_docs.publish_guide(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -271,7 +271,7 @@ class ScalarDocsResource(SyncAPIResource):
         Example:
             ```python
             scalar_doc = client.scalar_docs.create_project(
-                name="",
+                name="Acme Documentation",
                 provider="forgejo",
             )
             ```
@@ -323,7 +323,7 @@ class ScalarDocsResource(SyncAPIResource):
         Example:
             ```python
             scalar_doc = client.scalar_docs.retrieve_project(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -378,7 +378,7 @@ class ScalarDocsResource(SyncAPIResource):
         Example:
             ```python
             scalar_doc = client.scalar_docs.update_project(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -431,7 +431,7 @@ class ScalarDocsResource(SyncAPIResource):
         Example:
             ```python
             scalar_doc = client.scalar_docs.delete_project(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -478,7 +478,7 @@ class ScalarDocsResource(SyncAPIResource):
         Example:
             ```python
             scalar_doc = client.scalar_docs.publish_project(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -529,7 +529,7 @@ class ScalarDocsResource(SyncAPIResource):
         Example:
             ```python
             scalar_doc = client.scalar_docs.list_project_config(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -586,8 +586,8 @@ class ScalarDocsResource(SyncAPIResource):
         Example:
             ```python
             scalar_doc = client.scalar_docs.update_project_config(
-                slug="slug",
-                content="",
+                slug="acme-docs",
+                content='{"name":"Acme Documentation"}',
             )
             ```
         """
@@ -638,7 +638,7 @@ class ScalarDocsResource(SyncAPIResource):
         Example:
             ```python
             scalar_doc = client.scalar_docs.list_project_domain(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -679,7 +679,7 @@ class ScalarDocsResource(SyncAPIResource):
         Example:
             ```python
             scalar_doc = client.scalar_docs.list_project_domain_status(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -773,7 +773,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         Example:
             ```python
             scalar_doc = await client.scalar_docs.create_guide(
-                name="",
+                name="Acme Documentation",
                 is_private=False,
                 allowed_users=[],
                 allowed_domains=[],
@@ -825,7 +825,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         Example:
             ```python
             scalar_doc = await client.scalar_docs.publish_guide(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -921,7 +921,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         Example:
             ```python
             scalar_doc = await client.scalar_docs.create_project(
-                name="",
+                name="Acme Documentation",
                 provider="forgejo",
             )
             ```
@@ -973,7 +973,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         Example:
             ```python
             scalar_doc = await client.scalar_docs.retrieve_project(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -1028,7 +1028,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         Example:
             ```python
             scalar_doc = await client.scalar_docs.update_project(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -1081,7 +1081,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         Example:
             ```python
             scalar_doc = await client.scalar_docs.delete_project(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -1128,7 +1128,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         Example:
             ```python
             scalar_doc = await client.scalar_docs.publish_project(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -1179,7 +1179,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         Example:
             ```python
             scalar_doc = await client.scalar_docs.list_project_config(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -1236,8 +1236,8 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         Example:
             ```python
             scalar_doc = await client.scalar_docs.update_project_config(
-                slug="slug",
-                content="",
+                slug="acme-docs",
+                content='{"name":"Acme Documentation"}',
             )
             ```
         """
@@ -1288,7 +1288,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         Example:
             ```python
             scalar_doc = await client.scalar_docs.list_project_domain(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """
@@ -1329,7 +1329,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         Example:
             ```python
             scalar_doc = await client.scalar_docs.list_project_domain_status(
-                slug="slug",
+                slug="acme-docs",
             )
             ```
         """

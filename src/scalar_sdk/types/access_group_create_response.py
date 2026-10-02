@@ -18,6 +18,6 @@ class AccessGroupCreateResponse(BaseModel):
 
     slug: Slug
 
-    allowed_domains: object = FieldInfo(alias="allowedDomains")
+    allowed_domains: str = FieldInfo(alias="allowedDomains")
 
-    allowed_emails: object = FieldInfo(alias="allowedEmails")
+    allowed_emails: str = FieldInfo(alias="allowedEmails")
