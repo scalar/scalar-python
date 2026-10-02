@@ -3,29 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from pydantic import Field as FieldInfo
+from .rule import Rule
 
-from .._models import BaseModel
+__all__ = ["RuleListRulesetsResponse"]
 
-from .shared.nanoid import Nanoid
-from .slug import Slug
-from .shared.namespace import Namespace
-
-__all__ = ["RuleListRulesetsResponse", "RuleListRulesetsResponseItem"]
-
-
-class RuleListRulesetsResponseItem(BaseModel):
-    uid: Nanoid
-
-    title: str
-
-    description: str
-
-    slug: Slug
-
-    namespace: Namespace
-
-    is_private: bool = FieldInfo(alias="isPrivate")
-
-
-RuleListRulesetsResponse: TypeAlias = List[RuleListRulesetsResponseItem]
+RuleListRulesetsResponse: TypeAlias = List[Rule]

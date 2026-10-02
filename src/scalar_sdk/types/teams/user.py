@@ -4,30 +4,24 @@ from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
-from .._models import BaseModel
+from ..._models import BaseModel
 
-from .shared.nanoid import Nanoid
-from .shared.timestamp import Timestamp
+from ..shared.nanoid import Nanoid
+from ..shared.timestamp import Timestamp
+from .email import Email
+from ..team_summary import TeamSummary
 
-__all__ = ["AuthenticationListCurrentUserResponse", "Team"]
-
-
-class Team(BaseModel):
-    uid: Nanoid
-
-    name: str
-
-    image_uri: Optional[str] = FieldInfo(alias="imageUri", default=None)
+__all__ = ["User"]
 
 
-class AuthenticationListCurrentUserResponse(BaseModel):
+class User(BaseModel):
     uid: Nanoid
 
     created_at: Timestamp = FieldInfo(alias="createdAt")
 
     updated_at: Timestamp = FieldInfo(alias="updatedAt")
 
-    email: str
+    email: Email
 
     theme: Optional[str] = None
 
@@ -35,4 +29,4 @@ class AuthenticationListCurrentUserResponse(BaseModel):
 
     has_github: bool = FieldInfo(alias="hasGithub")
 
-    teams: List[Team]
+    teams: List[TeamSummary]

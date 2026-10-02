@@ -37,22 +37,30 @@ if TYPE_CHECKING:
         registry,
         schemas,
         login_portals,
+        access_groups,
         rules,
         themes,
         teams,
         scalar_docs,
         namespaces,
         authentication,
+        sdks,
+        mcp,
+        o_auth,
     )
     from .resources.registry import RegistryResource, AsyncRegistryResource
     from .resources.schemas import SchemasResource, AsyncSchemasResource
     from .resources.login_portals import LoginPortalsResource, AsyncLoginPortalsResource
+    from .resources.access_groups import AccessGroupsResource, AsyncAccessGroupsResource
     from .resources.rules import RulesResource, AsyncRulesResource
     from .resources.themes import ThemesResource, AsyncThemesResource
     from .resources.teams import TeamsResource, AsyncTeamsResource
     from .resources.scalar_docs import ScalarDocsResource, AsyncScalarDocsResource
     from .resources.namespaces import NamespacesResource, AsyncNamespacesResource
     from .resources.authentication import AuthenticationResource, AsyncAuthenticationResource
+    from .resources.sdks import SdksResource, AsyncSdksResource
+    from .resources.mcp import McpResource, AsyncMcpResource
+    from .resources.o_auth import OAuthResource, AsyncOAuthResource
 
 # Serializes lazy resource imports so concurrent cold access from multiple
 # threads cannot deadlock on CPython import locks (see CPython 3.14).
@@ -145,6 +153,12 @@ class Scalar(SyncAPIClient):
         return LoginPortalsResource(self)
 
     @cached_property
+    def access_groups(self) -> "AccessGroupsResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AccessGroupsResource
+        return AccessGroupsResource(self)
+
+    @cached_property
     def rules(self) -> "RulesResource":
         with _RESOURCE_IMPORT_LOCK:
             from .resources.rules import RulesResource
@@ -179,6 +193,24 @@ class Scalar(SyncAPIClient):
         with _RESOURCE_IMPORT_LOCK:
             from .resources.authentication import AuthenticationResource
         return AuthenticationResource(self)
+
+    @cached_property
+    def sdks(self) -> "SdksResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import SdksResource
+        return SdksResource(self)
+
+    @cached_property
+    def mcp(self) -> "McpResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import McpResource
+        return McpResource(self)
+
+    @cached_property
+    def o_auth(self) -> "OAuthResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.o_auth import OAuthResource
+        return OAuthResource(self)
 
     @cached_property
     def with_raw_response(self) -> ScalarWithRawResponse:
@@ -401,6 +433,12 @@ class AsyncScalar(AsyncAPIClient):
         return AsyncLoginPortalsResource(self)
 
     @cached_property
+    def access_groups(self) -> "AsyncAccessGroupsResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AsyncAccessGroupsResource
+        return AsyncAccessGroupsResource(self)
+
+    @cached_property
     def rules(self) -> "AsyncRulesResource":
         with _RESOURCE_IMPORT_LOCK:
             from .resources.rules import AsyncRulesResource
@@ -435,6 +473,24 @@ class AsyncScalar(AsyncAPIClient):
         with _RESOURCE_IMPORT_LOCK:
             from .resources.authentication import AsyncAuthenticationResource
         return AsyncAuthenticationResource(self)
+
+    @cached_property
+    def sdks(self) -> "AsyncSdksResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import AsyncSdksResource
+        return AsyncSdksResource(self)
+
+    @cached_property
+    def mcp(self) -> "AsyncMcpResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import AsyncMcpResource
+        return AsyncMcpResource(self)
+
+    @cached_property
+    def o_auth(self) -> "AsyncOAuthResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.o_auth import AsyncOAuthResource
+        return AsyncOAuthResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncScalarWithRawResponse:
@@ -598,6 +654,12 @@ class ScalarWithRawResponse:
         return LoginPortalsResourceWithRawResponse(self._client.login_portals)
 
     @cached_property
+    def access_groups(self) -> access_groups.AccessGroupsResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AccessGroupsResourceWithRawResponse
+        return AccessGroupsResourceWithRawResponse(self._client.access_groups)
+
+    @cached_property
     def rules(self) -> rules.RulesResourceWithRawResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.rules import RulesResourceWithRawResponse
@@ -633,6 +695,24 @@ class ScalarWithRawResponse:
             from .resources.authentication import AuthenticationResourceWithRawResponse
         return AuthenticationResourceWithRawResponse(self._client.authentication)
 
+    @cached_property
+    def sdks(self) -> sdks.SdksResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import SdksResourceWithRawResponse
+        return SdksResourceWithRawResponse(self._client.sdks)
+
+    @cached_property
+    def mcp(self) -> mcp.McpResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import McpResourceWithRawResponse
+        return McpResourceWithRawResponse(self._client.mcp)
+
+    @cached_property
+    def o_auth(self) -> o_auth.OAuthResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.o_auth import OAuthResourceWithRawResponse
+        return OAuthResourceWithRawResponse(self._client.o_auth)
+
 
 class AsyncScalarWithRawResponse:
     _client: AsyncScalar
@@ -657,6 +737,12 @@ class AsyncScalarWithRawResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.login_portals import AsyncLoginPortalsResourceWithRawResponse
         return AsyncLoginPortalsResourceWithRawResponse(self._client.login_portals)
+
+    @cached_property
+    def access_groups(self) -> access_groups.AsyncAccessGroupsResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AsyncAccessGroupsResourceWithRawResponse
+        return AsyncAccessGroupsResourceWithRawResponse(self._client.access_groups)
 
     @cached_property
     def rules(self) -> rules.AsyncRulesResourceWithRawResponse:
@@ -694,6 +780,24 @@ class AsyncScalarWithRawResponse:
             from .resources.authentication import AsyncAuthenticationResourceWithRawResponse
         return AsyncAuthenticationResourceWithRawResponse(self._client.authentication)
 
+    @cached_property
+    def sdks(self) -> sdks.AsyncSdksResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import AsyncSdksResourceWithRawResponse
+        return AsyncSdksResourceWithRawResponse(self._client.sdks)
+
+    @cached_property
+    def mcp(self) -> mcp.AsyncMcpResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import AsyncMcpResourceWithRawResponse
+        return AsyncMcpResourceWithRawResponse(self._client.mcp)
+
+    @cached_property
+    def o_auth(self) -> o_auth.AsyncOAuthResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.o_auth import AsyncOAuthResourceWithRawResponse
+        return AsyncOAuthResourceWithRawResponse(self._client.o_auth)
+
 
 class ScalarWithStreamedResponse:
     _client: Scalar
@@ -718,6 +822,12 @@ class ScalarWithStreamedResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.login_portals import LoginPortalsResourceWithStreamingResponse
         return LoginPortalsResourceWithStreamingResponse(self._client.login_portals)
+
+    @cached_property
+    def access_groups(self) -> access_groups.AccessGroupsResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AccessGroupsResourceWithStreamingResponse
+        return AccessGroupsResourceWithStreamingResponse(self._client.access_groups)
 
     @cached_property
     def rules(self) -> rules.RulesResourceWithStreamingResponse:
@@ -755,6 +865,24 @@ class ScalarWithStreamedResponse:
             from .resources.authentication import AuthenticationResourceWithStreamingResponse
         return AuthenticationResourceWithStreamingResponse(self._client.authentication)
 
+    @cached_property
+    def sdks(self) -> sdks.SdksResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import SdksResourceWithStreamingResponse
+        return SdksResourceWithStreamingResponse(self._client.sdks)
+
+    @cached_property
+    def mcp(self) -> mcp.McpResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import McpResourceWithStreamingResponse
+        return McpResourceWithStreamingResponse(self._client.mcp)
+
+    @cached_property
+    def o_auth(self) -> o_auth.OAuthResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.o_auth import OAuthResourceWithStreamingResponse
+        return OAuthResourceWithStreamingResponse(self._client.o_auth)
+
 
 class AsyncScalarWithStreamedResponse:
     _client: AsyncScalar
@@ -779,6 +907,12 @@ class AsyncScalarWithStreamedResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.login_portals import AsyncLoginPortalsResourceWithStreamingResponse
         return AsyncLoginPortalsResourceWithStreamingResponse(self._client.login_portals)
+
+    @cached_property
+    def access_groups(self) -> access_groups.AsyncAccessGroupsResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AsyncAccessGroupsResourceWithStreamingResponse
+        return AsyncAccessGroupsResourceWithStreamingResponse(self._client.access_groups)
 
     @cached_property
     def rules(self) -> rules.AsyncRulesResourceWithStreamingResponse:
@@ -815,6 +949,24 @@ class AsyncScalarWithStreamedResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.authentication import AsyncAuthenticationResourceWithStreamingResponse
         return AsyncAuthenticationResourceWithStreamingResponse(self._client.authentication)
+
+    @cached_property
+    def sdks(self) -> sdks.AsyncSdksResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import AsyncSdksResourceWithStreamingResponse
+        return AsyncSdksResourceWithStreamingResponse(self._client.sdks)
+
+    @cached_property
+    def mcp(self) -> mcp.AsyncMcpResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import AsyncMcpResourceWithStreamingResponse
+        return AsyncMcpResourceWithStreamingResponse(self._client.mcp)
+
+    @cached_property
+    def o_auth(self) -> o_auth.AsyncOAuthResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.o_auth import AsyncOAuthResourceWithStreamingResponse
+        return AsyncOAuthResourceWithStreamingResponse(self._client.o_auth)
 
 
 # Alias names for the documented `Client` / `AsyncClient` symbols.

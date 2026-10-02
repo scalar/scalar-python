@@ -1,51 +1,10 @@
 # File generated from our OpenAPI spec by Scalar. See README.md for details.
 
-from __future__ import annotations
-
-from typing import List, Optional
+from typing import List
 from typing_extensions import TypeAlias
 
-from pydantic import Field as FieldInfo
+from .schema import Schema
 
-from .._models import BaseModel
+__all__ = ["SchemaListResponse"]
 
-from .shared.nanoid import Nanoid
-from .slug import Slug
-from .shared.namespace import Namespace
-from .shared.timestamp import Timestamp
-from .version import Version
-
-__all__ = ["SchemaListResponse", "SchemaListResponseItem", "SchemaListResponseItemVersion"]
-
-
-class SchemaListResponseItemVersion(BaseModel):
-    uid: Nanoid
-
-    created_at: Timestamp = FieldInfo(alias="createdAt")
-
-    updated_at: Timestamp = FieldInfo(alias="updatedAt")
-
-    version: Version
-
-    yaml_sha: Optional[str] = FieldInfo(alias="yamlSha", default=None)
-
-    json_sha: Optional[str] = FieldInfo(alias="jsonSha", default=None)
-
-
-class SchemaListResponseItem(BaseModel):
-    uid: Nanoid
-
-    title: str
-
-    description: str
-
-    slug: Slug
-
-    namespace: Namespace
-
-    is_private: bool = FieldInfo(alias="isPrivate")
-
-    versions: List[SchemaListResponseItemVersion]
-
-
-SchemaListResponse: TypeAlias = List[SchemaListResponseItem]
+SchemaListResponse: TypeAlias = List[Schema]

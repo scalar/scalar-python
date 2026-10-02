@@ -9,6 +9,7 @@ from ..._models import BaseModel
 
 from .nanoid import Nanoid
 from ..version import Version
+from ..method import Method
 
 __all__ = ["ManagedDocVersion", "Tool"]
 
@@ -16,7 +17,7 @@ __all__ = ["ManagedDocVersion", "Tool"]
 class Tool(BaseModel):
     path: str
 
-    method: Literal["delete", "get", "head", "options", "patch", "post", "put", "query", "trace"]
+    method: Method
 
     enabled_tools: List[Literal["execute-request", "get-mini-openapi-spec"]] = FieldInfo(alias="enabledTools")
 

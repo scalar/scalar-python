@@ -3,22 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .._models import BaseModel
+from .theme import Theme
 
-from .shared.nanoid import Nanoid
-from .slug import Slug
+__all__ = ["ThemeListResponse"]
 
-__all__ = ["ThemeListResponse", "ThemeListResponseItem"]
-
-
-class ThemeListResponseItem(BaseModel):
-    uid: Nanoid
-
-    name: str
-
-    description: str
-
-    slug: Slug
-
-
-ThemeListResponse: TypeAlias = List[ThemeListResponseItem]
+ThemeListResponse: TypeAlias = List[Theme]
