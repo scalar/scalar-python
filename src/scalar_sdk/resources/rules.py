@@ -68,7 +68,7 @@ class RulesResource(SyncAPIResource):
         Example:
             ```python
             rule = client.rules.list_rulesets(
-                namespace="namespace",
+                namespace="acme",
             )
             ```
         """
@@ -119,10 +119,10 @@ class RulesResource(SyncAPIResource):
         Example:
             ```python
             rule = client.rules.create_ruleset(
-                namespace="namespace",
-                title="",
-                slug="",
-                document="",
+                namespace="acme",
+                title="Acme API Rules",
+                slug="acme-rules",
+                document='extends: ["spectral:oas"]\\nrules:\\n  info-contact: warn\\n',
             )
             ```
         """
@@ -185,8 +185,8 @@ class RulesResource(SyncAPIResource):
         Example:
             ```python
             rule = client.rules.update_ruleset(
-                path_namespace="namespace",
-                path_slug="slug",
+                path_namespace="acme",
+                path_slug="acme-rules",
             )
             ```
         """
@@ -241,8 +241,8 @@ class RulesResource(SyncAPIResource):
         Example:
             ```python
             rule = client.rules.delete_ruleset(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-rules",
             )
             ```
         """
@@ -287,8 +287,8 @@ class RulesResource(SyncAPIResource):
         Example:
             ```python
             rule = client.rules.retrieve_ruleset_document(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-rules",
             )
             ```
         """
@@ -336,9 +336,9 @@ class RulesResource(SyncAPIResource):
         Example:
             ```python
             rule = client.rules.create_ruleset_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="acme-rules",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -389,9 +389,9 @@ class RulesResource(SyncAPIResource):
         Example:
             ```python
             rule = client.rules.delete_ruleset_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="acme-rules",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -448,7 +448,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Example:
             ```python
             rule = await client.rules.list_rulesets(
-                namespace="namespace",
+                namespace="acme",
             )
             ```
         """
@@ -499,10 +499,10 @@ class AsyncRulesResource(AsyncAPIResource):
         Example:
             ```python
             rule = await client.rules.create_ruleset(
-                namespace="namespace",
-                title="",
-                slug="",
-                document="",
+                namespace="acme",
+                title="Acme API Rules",
+                slug="acme-rules",
+                document='extends: ["spectral:oas"]\\nrules:\\n  info-contact: warn\\n',
             )
             ```
         """
@@ -565,8 +565,8 @@ class AsyncRulesResource(AsyncAPIResource):
         Example:
             ```python
             rule = await client.rules.update_ruleset(
-                path_namespace="namespace",
-                path_slug="slug",
+                path_namespace="acme",
+                path_slug="acme-rules",
             )
             ```
         """
@@ -621,8 +621,8 @@ class AsyncRulesResource(AsyncAPIResource):
         Example:
             ```python
             rule = await client.rules.delete_ruleset(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-rules",
             )
             ```
         """
@@ -667,8 +667,8 @@ class AsyncRulesResource(AsyncAPIResource):
         Example:
             ```python
             rule = await client.rules.retrieve_ruleset_document(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-rules",
             )
             ```
         """
@@ -716,9 +716,9 @@ class AsyncRulesResource(AsyncAPIResource):
         Example:
             ```python
             rule = await client.rules.create_ruleset_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="acme-rules",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -769,9 +769,9 @@ class AsyncRulesResource(AsyncAPIResource):
         Example:
             ```python
             rule = await client.rules.delete_ruleset_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="acme-rules",
+                access_group_slug="acme-api",
             )
             ```
         """

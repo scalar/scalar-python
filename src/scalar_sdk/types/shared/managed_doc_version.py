@@ -9,6 +9,7 @@ from ..._models import BaseModel
 
 from .nanoid import Nanoid
 from ..version import Version
+from ..method import Method
 
 __all__ = ["ManagedDocVersion", "Tool"]
 
@@ -16,7 +17,7 @@ __all__ = ["ManagedDocVersion", "Tool"]
 class Tool(BaseModel):
     path: str
 
-    method: Literal["delete", "get", "head", "options", "patch", "post", "put", "trace"]
+    method: Method
 
     enabled_tools: List[Literal["execute-request", "get-mini-openapi-spec"]] = FieldInfo(alias="enabledTools")
 
@@ -30,6 +31,8 @@ class ManagedDocVersion(BaseModel):
 
     upgraded: bool
 
+    endpoint_count: Optional[int] = FieldInfo(alias="endpointCount", default=None)
+
     embed_status: Optional[Literal["complete", "failed"]] = FieldInfo(alias="embedStatus", default=None)
 
     tags: List[str]
@@ -39,5 +42,3 @@ class ManagedDocVersion(BaseModel):
     yaml_sha: Optional[str] = FieldInfo(alias="yamlSha", default=None)
 
     json_sha: Optional[str] = FieldInfo(alias="jsonSha", default=None)
-
-    version_sha: Optional[str] = FieldInfo(alias="versionSha", default=None)

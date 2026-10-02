@@ -110,7 +110,7 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.list_api_documents(
-                namespace="namespace",
+                namespace="acme",
             )
             ```
         """
@@ -165,11 +165,11 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.create_api_document(
-                namespace="namespace",
-                title="",
-                version="x",
-                slug="",
-                document="",
+                namespace="acme",
+                title="Acme API",
+                version="1.2.0",
+                slug="acme-api",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -232,8 +232,8 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.update_api_document(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-api",
             )
             ```
         """
@@ -287,8 +287,8 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.delete_api_document(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-api",
             )
             ```
         """
@@ -335,9 +335,9 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.retrieve_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -366,7 +366,6 @@ class RegistryResource(SyncAPIResource):
         namespace: str,
         slug: str,
         document: str,
-        last_known_version_sha: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -382,7 +381,6 @@ class RegistryResource(SyncAPIResource):
             namespace: Path parameter.
             slug: Path parameter.
             document: Body parameter.
-            last_known_version_sha: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
@@ -394,10 +392,10 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.update_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
-                document="",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -413,10 +411,7 @@ class RegistryResource(SyncAPIResource):
                 **{"namespace": namespace, "slug": slug, "semver": semver},
             ),
             body=maybe_transform(
-                {
-                    "document": document,
-                    "last_known_version_sha": last_known_version_sha,
-                },
+                {"document": document},
                 registry_update_api_document_version_params.RegistryUpdateAPIDocumentVersionParams,
             ),
             options=make_request_options(
@@ -456,9 +451,9 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.delete_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -510,9 +505,9 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.list_api_document_version_metadata(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -541,7 +536,6 @@ class RegistryResource(SyncAPIResource):
         version: Version,
         document: str,
         force: bool | Omit = omit,
-        last_known_version_sha: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -558,7 +552,6 @@ class RegistryResource(SyncAPIResource):
             version: Body parameter.
             document: Body parameter.
             force: Body parameter.
-            last_known_version_sha: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
@@ -570,10 +563,10 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.create_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                version="x",
-                document="",
+                namespace="acme",
+                slug="acme-api",
+                version="1.2.0",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -588,7 +581,6 @@ class RegistryResource(SyncAPIResource):
                     "version": version,
                     "document": document,
                     "force": force,
-                    "last_known_version_sha": last_known_version_sha,
                 },
                 registry_create_api_document_version_params.RegistryCreateAPIDocumentVersionParams,
             ),
@@ -629,9 +621,9 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.create_api_document_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="acme-api",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -682,9 +674,9 @@ class RegistryResource(SyncAPIResource):
         Example:
             ```python
             registry = client.registry.delete_api_document_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="acme-api",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -776,7 +768,7 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.list_api_documents(
-                namespace="namespace",
+                namespace="acme",
             )
             ```
         """
@@ -831,11 +823,11 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.create_api_document(
-                namespace="namespace",
-                title="",
-                version="x",
-                slug="",
-                document="",
+                namespace="acme",
+                title="Acme API",
+                version="1.2.0",
+                slug="acme-api",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -898,8 +890,8 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.update_api_document(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-api",
             )
             ```
         """
@@ -953,8 +945,8 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.delete_api_document(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="acme-api",
             )
             ```
         """
@@ -1001,9 +993,9 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.retrieve_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -1032,7 +1024,6 @@ class AsyncRegistryResource(AsyncAPIResource):
         namespace: str,
         slug: str,
         document: str,
-        last_known_version_sha: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1048,7 +1039,6 @@ class AsyncRegistryResource(AsyncAPIResource):
             namespace: Path parameter.
             slug: Path parameter.
             document: Body parameter.
-            last_known_version_sha: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
@@ -1060,10 +1050,10 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.update_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
-                document="",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -1079,10 +1069,7 @@ class AsyncRegistryResource(AsyncAPIResource):
                 **{"namespace": namespace, "slug": slug, "semver": semver},
             ),
             body=await async_maybe_transform(
-                {
-                    "document": document,
-                    "last_known_version_sha": last_known_version_sha,
-                },
+                {"document": document},
                 registry_update_api_document_version_params.RegistryUpdateAPIDocumentVersionParams,
             ),
             options=make_request_options(
@@ -1122,9 +1109,9 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.delete_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -1176,9 +1163,9 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.list_api_document_version_metadata(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="acme-api",
+                semver="1.2.0",
             )
             ```
         """
@@ -1207,7 +1194,6 @@ class AsyncRegistryResource(AsyncAPIResource):
         version: Version,
         document: str,
         force: bool | Omit = omit,
-        last_known_version_sha: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1224,7 +1210,6 @@ class AsyncRegistryResource(AsyncAPIResource):
             version: Body parameter.
             document: Body parameter.
             force: Body parameter.
-            last_known_version_sha: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
@@ -1236,10 +1221,10 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.create_api_document_version(
-                namespace="namespace",
-                slug="slug",
-                version="x",
-                document="",
+                namespace="acme",
+                slug="acme-api",
+                version="1.2.0",
+                document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
             )
             ```
         """
@@ -1254,7 +1239,6 @@ class AsyncRegistryResource(AsyncAPIResource):
                     "version": version,
                     "document": document,
                     "force": force,
-                    "last_known_version_sha": last_known_version_sha,
                 },
                 registry_create_api_document_version_params.RegistryCreateAPIDocumentVersionParams,
             ),
@@ -1295,9 +1279,9 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.create_api_document_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="acme-api",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -1348,9 +1332,9 @@ class AsyncRegistryResource(AsyncAPIResource):
         Example:
             ```python
             registry = await client.registry.delete_api_document_access_group(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="acme-api",
+                access_group_slug="acme-api",
             )
             ```
         """

@@ -24,6 +24,14 @@ from .login_portals import (
     LoginPortalsResourceWithStreamingResponse,
     AsyncLoginPortalsResourceWithStreamingResponse,
 )
+from .access_groups import (
+    AccessGroupsResource,
+    AsyncAccessGroupsResource,
+    AccessGroupsResourceWithRawResponse,
+    AsyncAccessGroupsResourceWithRawResponse,
+    AccessGroupsResourceWithStreamingResponse,
+    AsyncAccessGroupsResourceWithStreamingResponse,
+)
 from .rules import (
     RulesResource,
     AsyncRulesResource,
@@ -72,6 +80,22 @@ from .authentication import (
     AuthenticationResourceWithStreamingResponse,
     AsyncAuthenticationResourceWithStreamingResponse,
 )
+from .sdks import (
+    SdksResource,
+    AsyncSdksResource,
+    SdksResourceWithRawResponse,
+    AsyncSdksResourceWithRawResponse,
+    SdksResourceWithStreamingResponse,
+    AsyncSdksResourceWithStreamingResponse,
+)
+from .mcp import (
+    McpResource,
+    AsyncMcpResource,
+    McpResourceWithRawResponse,
+    AsyncMcpResourceWithRawResponse,
+    McpResourceWithStreamingResponse,
+    AsyncMcpResourceWithStreamingResponse,
+)
 
 __all__ = [
     "RegistryResource",
@@ -92,6 +116,12 @@ __all__ = [
     "AsyncLoginPortalsResourceWithRawResponse",
     "LoginPortalsResourceWithStreamingResponse",
     "AsyncLoginPortalsResourceWithStreamingResponse",
+    "AccessGroupsResource",
+    "AsyncAccessGroupsResource",
+    "AccessGroupsResourceWithRawResponse",
+    "AsyncAccessGroupsResourceWithRawResponse",
+    "AccessGroupsResourceWithStreamingResponse",
+    "AsyncAccessGroupsResourceWithStreamingResponse",
     "RulesResource",
     "AsyncRulesResource",
     "RulesResourceWithRawResponse",
@@ -128,4 +158,16 @@ __all__ = [
     "AsyncAuthenticationResourceWithRawResponse",
     "AuthenticationResourceWithStreamingResponse",
     "AsyncAuthenticationResourceWithStreamingResponse",
+    "SdksResource",
+    "AsyncSdksResource",
+    "SdksResourceWithRawResponse",
+    "AsyncSdksResourceWithRawResponse",
+    "SdksResourceWithStreamingResponse",
+    "AsyncSdksResourceWithStreamingResponse",
+    "McpResource",
+    "AsyncMcpResource",
+    "McpResourceWithRawResponse",
+    "AsyncMcpResourceWithRawResponse",
+    "McpResourceWithStreamingResponse",
+    "AsyncMcpResourceWithStreamingResponse",
 ]

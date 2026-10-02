@@ -85,7 +85,7 @@ class SchemasResource(SyncAPIResource):
         Example:
             ```python
             schema = client.schemas.list(
-                namespace="namespace",
+                namespace="acme",
             )
             ```
         """
@@ -138,11 +138,11 @@ class SchemasResource(SyncAPIResource):
         Example:
             ```python
             schema = client.schemas.create(
-                namespace="namespace",
-                title="",
-                version="x",
-                slug="",
-                document="",
+                namespace="acme",
+                title="Customer",
+                version="1.2.0",
+                slug="customer",
+                document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
             )
             ```
         """
@@ -202,8 +202,8 @@ class SchemasResource(SyncAPIResource):
         Example:
             ```python
             schema = client.schemas.update(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="customer",
             )
             ```
         """
@@ -256,8 +256,8 @@ class SchemasResource(SyncAPIResource):
         Example:
             ```python
             schema = client.schemas.delete(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="customer",
             )
             ```
         """
@@ -318,7 +318,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         Example:
             ```python
             schema = await client.schemas.list(
-                namespace="namespace",
+                namespace="acme",
             )
             ```
         """
@@ -371,11 +371,11 @@ class AsyncSchemasResource(AsyncAPIResource):
         Example:
             ```python
             schema = await client.schemas.create(
-                namespace="namespace",
-                title="",
-                version="x",
-                slug="",
-                document="",
+                namespace="acme",
+                title="Customer",
+                version="1.2.0",
+                slug="customer",
+                document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
             )
             ```
         """
@@ -435,8 +435,8 @@ class AsyncSchemasResource(AsyncAPIResource):
         Example:
             ```python
             schema = await client.schemas.update(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="customer",
             )
             ```
         """
@@ -489,8 +489,8 @@ class AsyncSchemasResource(AsyncAPIResource):
         Example:
             ```python
             schema = await client.schemas.delete(
-                namespace="namespace",
-                slug="slug",
+                namespace="acme",
+                slug="customer",
             )
             ```
         """

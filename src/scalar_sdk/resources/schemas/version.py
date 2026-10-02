@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -16,7 +16,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.schemas.version_delete_response import VersionDeleteResponse
-from ...types.shared.uid import UID
+from ...types.schemas.version_create_response import VersionCreateResponse
 from ...types.version import Version
 from ...types.schemas import version_create_params
 
@@ -63,9 +63,9 @@ class VersionResource(SyncAPIResource):
         Example:
             ```python
             version = client.schemas.version.retrieve(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="customer",
+                semver="1.2.0",
             )
             ```
         """
@@ -118,9 +118,9 @@ class VersionResource(SyncAPIResource):
         Example:
             ```python
             version = client.schemas.version.delete(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="customer",
+                semver="1.2.0",
             )
             ```
         """
@@ -148,13 +148,14 @@ class VersionResource(SyncAPIResource):
         namespace: str,
         version: Version,
         document: str,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UID:
+    ) -> VersionCreateResponse:
         """
         Create a schema version.
 
@@ -163,21 +164,22 @@ class VersionResource(SyncAPIResource):
             namespace: Path parameter.
             version: Body parameter.
             document: Body parameter.
+            force: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
 
         Returns:
-            UID: Default Response
+            VersionCreateResponse: Default Response
 
         Example:
             ```python
             version = client.schemas.version.create(
-                namespace="namespace",
-                slug="slug",
-                version="x",
-                document="",
+                namespace="acme",
+                slug="customer",
+                version="1.2.0",
+                document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
             )
             ```
         """
@@ -191,13 +193,14 @@ class VersionResource(SyncAPIResource):
                 {
                     "version": version,
                     "document": document,
+                    "force": force,
                 },
                 version_create_params.VersionCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UID,
+            cast_to=VersionCreateResponse,
         )
 
 
@@ -241,9 +244,9 @@ class AsyncVersionResource(AsyncAPIResource):
         Example:
             ```python
             version = await client.schemas.version.retrieve(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="customer",
+                semver="1.2.0",
             )
             ```
         """
@@ -296,9 +299,9 @@ class AsyncVersionResource(AsyncAPIResource):
         Example:
             ```python
             version = await client.schemas.version.delete(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="customer",
+                semver="1.2.0",
             )
             ```
         """
@@ -326,13 +329,14 @@ class AsyncVersionResource(AsyncAPIResource):
         namespace: str,
         version: Version,
         document: str,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UID:
+    ) -> VersionCreateResponse:
         """
         Create a schema version.
 
@@ -341,21 +345,22 @@ class AsyncVersionResource(AsyncAPIResource):
             namespace: Path parameter.
             version: Body parameter.
             document: Body parameter.
+            force: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
             timeout: Override the client-level default timeout for this request, in seconds.
 
         Returns:
-            UID: Default Response
+            VersionCreateResponse: Default Response
 
         Example:
             ```python
             version = await client.schemas.version.create(
-                namespace="namespace",
-                slug="slug",
-                version="x",
-                document="",
+                namespace="acme",
+                slug="customer",
+                version="1.2.0",
+                document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
             )
             ```
         """
@@ -369,13 +374,14 @@ class AsyncVersionResource(AsyncAPIResource):
                 {
                     "version": version,
                     "document": document,
+                    "force": force,
                 },
                 version_create_params.VersionCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UID,
+            cast_to=VersionCreateResponse,
         )
 
 

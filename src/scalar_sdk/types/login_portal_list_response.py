@@ -3,20 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .._models import BaseModel
+from .login_portal import LoginPortal
 
-from .shared.nanoid import Nanoid
-from .slug import Slug
+__all__ = ["LoginPortalListResponse"]
 
-__all__ = ["LoginPortalListResponse", "LoginPortalListResponseItem"]
-
-
-class LoginPortalListResponseItem(BaseModel):
-    uid: Nanoid
-
-    title: str
-
-    slug: Slug
-
-
-LoginPortalListResponse: TypeAlias = List[LoginPortalListResponseItem]
+LoginPortalListResponse: TypeAlias = List[LoginPortal]

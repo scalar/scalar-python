@@ -63,9 +63,9 @@ class AccessGroupResource(SyncAPIResource):
         Example:
             ```python
             access_group = client.schemas.access_group.create(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="customer",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -116,9 +116,9 @@ class AccessGroupResource(SyncAPIResource):
         Example:
             ```python
             access_group = client.schemas.access_group.delete(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="customer",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -179,9 +179,9 @@ class AsyncAccessGroupResource(AsyncAPIResource):
         Example:
             ```python
             access_group = await client.schemas.access_group.create(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="customer",
+                access_group_slug="acme-api",
             )
             ```
         """
@@ -232,9 +232,9 @@ class AsyncAccessGroupResource(AsyncAPIResource):
         Example:
             ```python
             access_group = await client.schemas.access_group.delete(
-                namespace="namespace",
-                slug="slug",
-                access_group_slug="xxx",
+                namespace="acme",
+                slug="customer",
+                access_group_slug="acme-api",
             )
             ```
         """
