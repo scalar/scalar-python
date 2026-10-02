@@ -102,9 +102,9 @@ class ThemesResource(SyncAPIResource):
         Example:
             ```python
             theme = client.themes.create(
-                name="",
-                slug="",
-                document="",
+                name="Acme Theme",
+                slug="acme-theme",
+                document=":root { --scalar-color-1: #1f2937; }",
             )
             ```
         """
@@ -156,7 +156,7 @@ class ThemesResource(SyncAPIResource):
         Example:
             ```python
             theme = client.themes.update(
-                slug="slug",
+                slug="acme-theme",
             )
             ```
         """
@@ -206,8 +206,8 @@ class ThemesResource(SyncAPIResource):
         Example:
             ```python
             theme = client.themes.replace_document(
-                slug="slug",
-                document="",
+                slug="acme-theme",
+                document=":root { --scalar-color-1: #1f2937; }",
             )
             ```
         """
@@ -252,7 +252,7 @@ class ThemesResource(SyncAPIResource):
         Example:
             ```python
             theme = client.themes.delete(
-                slug="slug",
+                slug="acme-theme",
             )
             ```
         """
@@ -293,7 +293,7 @@ class ThemesResource(SyncAPIResource):
         Example:
             ```python
             theme = client.themes.retrieve(
-                slug="slug",
+                slug="acme-theme",
             )
             ```
         """
@@ -386,9 +386,9 @@ class AsyncThemesResource(AsyncAPIResource):
         Example:
             ```python
             theme = await client.themes.create(
-                name="",
-                slug="",
-                document="",
+                name="Acme Theme",
+                slug="acme-theme",
+                document=":root { --scalar-color-1: #1f2937; }",
             )
             ```
         """
@@ -440,7 +440,7 @@ class AsyncThemesResource(AsyncAPIResource):
         Example:
             ```python
             theme = await client.themes.update(
-                slug="slug",
+                slug="acme-theme",
             )
             ```
         """
@@ -490,8 +490,8 @@ class AsyncThemesResource(AsyncAPIResource):
         Example:
             ```python
             theme = await client.themes.replace_document(
-                slug="slug",
-                document="",
+                slug="acme-theme",
+                document=":root { --scalar-color-1: #1f2937; }",
             )
             ```
         """
@@ -536,7 +536,7 @@ class AsyncThemesResource(AsyncAPIResource):
         Example:
             ```python
             theme = await client.themes.delete(
-                slug="slug",
+                slug="acme-theme",
             )
             ```
         """
@@ -577,7 +577,7 @@ class AsyncThemesResource(AsyncAPIResource):
         Example:
             ```python
             theme = await client.themes.retrieve(
-                slug="slug",
+                slug="acme-theme",
             )
             ```
         """

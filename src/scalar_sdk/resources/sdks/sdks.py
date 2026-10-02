@@ -158,7 +158,7 @@ class SdksResource(SyncAPIResource):
         Example:
             ```python
             sdk = client.sdks.create(
-                api_uid="xxxxx",
+                api_uid="UakgbKJ5m9gl0JDMbcJqL",
                 languages=["typescript"],
             )
             ```
@@ -209,7 +209,7 @@ class SdksResource(SyncAPIResource):
         Example:
             ```python
             sdk = client.sdks.retrieve(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -262,7 +262,7 @@ class SdksResource(SyncAPIResource):
         Example:
             ```python
             sdk = client.sdks.update(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -314,7 +314,7 @@ class SdksResource(SyncAPIResource):
         Example:
             ```python
             sdk = client.sdks.delete(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -376,7 +376,7 @@ class SdksResource(SyncAPIResource):
         Example:
             ```python
             sdk = client.sdks.build(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -509,7 +509,7 @@ class AsyncSdksResource(AsyncAPIResource):
         Example:
             ```python
             sdk = await client.sdks.create(
-                api_uid="xxxxx",
+                api_uid="UakgbKJ5m9gl0JDMbcJqL",
                 languages=["typescript"],
             )
             ```
@@ -560,7 +560,7 @@ class AsyncSdksResource(AsyncAPIResource):
         Example:
             ```python
             sdk = await client.sdks.retrieve(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -613,7 +613,7 @@ class AsyncSdksResource(AsyncAPIResource):
         Example:
             ```python
             sdk = await client.sdks.update(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -665,7 +665,7 @@ class AsyncSdksResource(AsyncAPIResource):
         Example:
             ```python
             sdk = await client.sdks.delete(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -727,7 +727,7 @@ class AsyncSdksResource(AsyncAPIResource):
         Example:
             ```python
             sdk = await client.sdks.build(
-                uid="uidxx",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """

@@ -70,7 +70,7 @@ class InstallationsResource(SyncAPIResource):
         Example:
             ```python
             installation = client.mcp.servers.installations.list(
-                id="id",
+                id="42",
             )
             ```
         """
@@ -117,8 +117,8 @@ class InstallationsResource(SyncAPIResource):
         Example:
             ```python
             installation = client.mcp.servers.installations.create(
-                id="id",
-                name="x",
+                id="42",
+                name="Acme MCP",
                 document_auth={},
             )
             ```
@@ -170,8 +170,8 @@ class InstallationsResource(SyncAPIResource):
         Example:
             ```python
             installation = client.mcp.servers.installations.retrieve(
-                id="id",
-                installation_id="installationId",
+                id="42",
+                installation_id="84",
             )
             ```
         """
@@ -230,8 +230,8 @@ class InstallationsResource(SyncAPIResource):
         Example:
             ```python
             installation = client.mcp.servers.installations.update(
-                id="id",
-                installation_id="installationId",
+                id="42",
+                installation_id="84",
             )
             ```
         """
@@ -289,8 +289,8 @@ class InstallationsResource(SyncAPIResource):
         Example:
             ```python
             installation = client.mcp.servers.installations.delete(
-                id="id",
-                installation_id="installationId",
+                id="42",
+                installation_id="84",
             )
             ```
         """
@@ -339,9 +339,9 @@ class InstallationsResource(SyncAPIResource):
         Example:
             ```python
             installation = client.mcp.servers.installations.create_access_group(
-                id="id",
-                installation_id="installationId",
-                access_group_uid="xxxxx",
+                id="42",
+                installation_id="84",
+                access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -395,9 +395,9 @@ class InstallationsResource(SyncAPIResource):
         Example:
             ```python
             installation = client.mcp.servers.installations.delete_access_group(
-                id="id",
-                installation_id="installationId",
-                access_group_uid="xxxxx",
+                id="42",
+                installation_id="84",
+                access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -457,7 +457,7 @@ class AsyncInstallationsResource(AsyncAPIResource):
         Example:
             ```python
             installation = await client.mcp.servers.installations.list(
-                id="id",
+                id="42",
             )
             ```
         """
@@ -504,8 +504,8 @@ class AsyncInstallationsResource(AsyncAPIResource):
         Example:
             ```python
             installation = await client.mcp.servers.installations.create(
-                id="id",
-                name="x",
+                id="42",
+                name="Acme MCP",
                 document_auth={},
             )
             ```
@@ -557,8 +557,8 @@ class AsyncInstallationsResource(AsyncAPIResource):
         Example:
             ```python
             installation = await client.mcp.servers.installations.retrieve(
-                id="id",
-                installation_id="installationId",
+                id="42",
+                installation_id="84",
             )
             ```
         """
@@ -617,8 +617,8 @@ class AsyncInstallationsResource(AsyncAPIResource):
         Example:
             ```python
             installation = await client.mcp.servers.installations.update(
-                id="id",
-                installation_id="installationId",
+                id="42",
+                installation_id="84",
             )
             ```
         """
@@ -676,8 +676,8 @@ class AsyncInstallationsResource(AsyncAPIResource):
         Example:
             ```python
             installation = await client.mcp.servers.installations.delete(
-                id="id",
-                installation_id="installationId",
+                id="42",
+                installation_id="84",
             )
             ```
         """
@@ -726,9 +726,9 @@ class AsyncInstallationsResource(AsyncAPIResource):
         Example:
             ```python
             installation = await client.mcp.servers.installations.create_access_group(
-                id="id",
-                installation_id="installationId",
-                access_group_uid="xxxxx",
+                id="42",
+                installation_id="84",
+                access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """
@@ -782,9 +782,9 @@ class AsyncInstallationsResource(AsyncAPIResource):
         Example:
             ```python
             installation = await client.mcp.servers.installations.delete_access_group(
-                id="id",
-                installation_id="installationId",
-                access_group_uid="xxxxx",
+                id="42",
+                installation_id="84",
+                access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
         """

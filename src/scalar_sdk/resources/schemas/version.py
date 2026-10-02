@@ -63,9 +63,9 @@ class VersionResource(SyncAPIResource):
         Example:
             ```python
             version = client.schemas.version.retrieve(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="customer",
+                semver="1.2.0",
             )
             ```
         """
@@ -118,9 +118,9 @@ class VersionResource(SyncAPIResource):
         Example:
             ```python
             version = client.schemas.version.delete(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="customer",
+                semver="1.2.0",
             )
             ```
         """
@@ -176,10 +176,10 @@ class VersionResource(SyncAPIResource):
         Example:
             ```python
             version = client.schemas.version.create(
-                namespace="namespace",
-                slug="slug",
-                version="x",
-                document="",
+                namespace="acme",
+                slug="customer",
+                version="1.2.0",
+                document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
             )
             ```
         """
@@ -244,9 +244,9 @@ class AsyncVersionResource(AsyncAPIResource):
         Example:
             ```python
             version = await client.schemas.version.retrieve(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="customer",
+                semver="1.2.0",
             )
             ```
         """
@@ -299,9 +299,9 @@ class AsyncVersionResource(AsyncAPIResource):
         Example:
             ```python
             version = await client.schemas.version.delete(
-                namespace="namespace",
-                slug="slug",
-                semver="semver",
+                namespace="acme",
+                slug="customer",
+                semver="1.2.0",
             )
             ```
         """
@@ -357,10 +357,10 @@ class AsyncVersionResource(AsyncAPIResource):
         Example:
             ```python
             version = await client.schemas.version.create(
-                namespace="namespace",
-                slug="slug",
-                version="x",
-                document="",
+                namespace="acme",
+                slug="customer",
+                version="1.2.0",
+                document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
             )
             ```
         """

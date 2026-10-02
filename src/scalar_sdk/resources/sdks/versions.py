@@ -62,9 +62,9 @@ class VersionsResource(SyncAPIResource):
         Example:
             ```python
             version = client.sdks.versions.create(
-                uid="uidxx",
-                version="",
-                api_version="",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
+                version="1.2.0",
+                api_version="1.2.0",
             )
             ```
         """
@@ -114,8 +114,8 @@ class VersionsResource(SyncAPIResource):
         Example:
             ```python
             version = client.sdks.versions.delete(
-                uid="uidxx",
-                version="version",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
+                version="1.2.0",
             )
             ```
         """
@@ -172,9 +172,9 @@ class AsyncVersionsResource(AsyncAPIResource):
         Example:
             ```python
             version = await client.sdks.versions.create(
-                uid="uidxx",
-                version="",
-                api_version="",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
+                version="1.2.0",
+                api_version="1.2.0",
             )
             ```
         """
@@ -224,8 +224,8 @@ class AsyncVersionsResource(AsyncAPIResource):
         Example:
             ```python
             version = await client.sdks.versions.delete(
-                uid="uidxx",
-                version="version",
+                uid="UakgbKJ5m9gl0JDMbcJqL",
+                version="1.2.0",
             )
             ```
         """

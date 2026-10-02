@@ -160,7 +160,7 @@ List API documents in a namespace.
 
 ```python
 registry = client.registry.list_api_documents(
-    namespace="namespace",
+    namespace="acme",
 )
 ```
 
@@ -175,11 +175,11 @@ Create an API document.
 
 ```python
 registry = client.registry.create_api_document(
-    namespace="namespace",
-    title="",
-    version="x",
-    slug="",
-    document="",
+    namespace="acme",
+    title="Acme API",
+    version="1.2.0",
+    slug="acme-api",
+    document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
 )
 ```
 
@@ -194,8 +194,8 @@ Update metadata for an API document.
 
 ```python
 registry = client.registry.update_api_document(
-    namespace="namespace",
-    slug="slug",
+    namespace="acme",
+    slug="acme-api",
 )
 ```
 
@@ -209,8 +209,8 @@ Delete an API document and all versions.
 
 ```python
 registry = client.registry.delete_api_document(
-    namespace="namespace",
-    slug="slug",
+    namespace="acme",
+    slug="acme-api",
 )
 ```
 
@@ -224,9 +224,9 @@ Get a specific API document version.
 
 ```python
 registry = client.registry.retrieve_api_document_version(
-    namespace="namespace",
-    slug="slug",
-    semver="semver",
+    namespace="acme",
+    slug="acme-api",
+    semver="1.2.0",
 )
 ```
 
@@ -241,10 +241,10 @@ Update the registry file content for an API document version.
 
 ```python
 registry = client.registry.update_api_document_version(
-    namespace="namespace",
-    slug="slug",
-    semver="semver",
-    document="",
+    namespace="acme",
+    slug="acme-api",
+    semver="1.2.0",
+    document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
 )
 ```
 
@@ -258,9 +258,9 @@ Delete a specific API document version.
 
 ```python
 registry = client.registry.delete_api_document_version(
-    namespace="namespace",
-    slug="slug",
-    semver="semver",
+    namespace="acme",
+    slug="acme-api",
+    semver="1.2.0",
 )
 ```
 
@@ -274,9 +274,9 @@ Get metadata (uid, content shas, version sha, tags) for a specific API document 
 
 ```python
 registry = client.registry.list_api_document_version_metadata(
-    namespace="namespace",
-    slug="slug",
-    semver="semver",
+    namespace="acme",
+    slug="acme-api",
+    semver="1.2.0",
 )
 ```
 
@@ -291,10 +291,10 @@ Create a new API document version.
 
 ```python
 registry = client.registry.create_api_document_version(
-    namespace="namespace",
-    slug="slug",
-    version="x",
-    document="",
+    namespace="acme",
+    slug="acme-api",
+    version="1.2.0",
+    document='{"openapi":"3.1.0","info":{"title":"Acme API","version":"1.2.0"},"paths":{}}',
 )
 ```
 
@@ -309,9 +309,9 @@ Add an access group to an API document.
 
 ```python
 registry = client.registry.create_api_document_access_group(
-    namespace="namespace",
-    slug="slug",
-    access_group_slug="x",
+    namespace="acme",
+    slug="acme-api",
+    access_group_slug="acme-api",
 )
 ```
 
@@ -326,9 +326,9 @@ Remove an access group from an API document.
 
 ```python
 registry = client.registry.delete_api_document_access_group(
-    namespace="namespace",
-    slug="slug",
-    access_group_slug="x",
+    namespace="acme",
+    slug="acme-api",
+    access_group_slug="acme-api",
 )
 ```
 
@@ -346,7 +346,7 @@ List schemas in a namespace.
 
 ```python
 schema = client.schemas.list(
-    namespace="namespace",
+    namespace="acme",
 )
 ```
 
@@ -361,11 +361,11 @@ Create a schema in a namespace.
 
 ```python
 schema = client.schemas.create(
-    namespace="namespace",
-    title="",
-    version="x",
-    slug="",
-    document="",
+    namespace="acme",
+    title="Customer",
+    version="1.2.0",
+    slug="customer",
+    document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
 )
 ```
 
@@ -380,8 +380,8 @@ Update schema metadata.
 
 ```python
 schema = client.schemas.update(
-    namespace="namespace",
-    slug="slug",
+    namespace="acme",
+    slug="customer",
 )
 ```
 
@@ -395,8 +395,8 @@ Delete a schema and all related versions.
 
 ```python
 schema = client.schemas.delete(
-    namespace="namespace",
-    slug="slug",
+    namespace="acme",
+    slug="customer",
 )
 ```
 
@@ -414,9 +414,9 @@ Get a specific schema version document.
 
 ```python
 version = client.schemas.version.retrieve(
-    namespace="namespace",
-    slug="slug",
-    semver="semver",
+    namespace="acme",
+    slug="customer",
+    semver="1.2.0",
 )
 ```
 
@@ -430,9 +430,9 @@ Delete a schema version.
 
 ```python
 version = client.schemas.version.delete(
-    namespace="namespace",
-    slug="slug",
-    semver="semver",
+    namespace="acme",
+    slug="customer",
+    semver="1.2.0",
 )
 ```
 
@@ -447,10 +447,10 @@ Create a schema version.
 
 ```python
 version = client.schemas.version.create(
-    namespace="namespace",
-    slug="slug",
-    version="x",
-    document="",
+    namespace="acme",
+    slug="customer",
+    version="1.2.0",
+    document='{"type":"object","properties":{"name":{"type":"string","examples":["Acme"]}}}',
 )
 ```
 
@@ -469,9 +469,9 @@ Add an access group to a schema.
 
 ```python
 access_group = client.schemas.access_group.create(
-    namespace="namespace",
-    slug="slug",
-    access_group_slug="x",
+    namespace="acme",
+    slug="customer",
+    access_group_slug="acme-api",
 )
 ```
 
@@ -486,9 +486,9 @@ Remove an access group from a schema.
 
 ```python
 access_group = client.schemas.access_group.delete(
-    namespace="namespace",
-    slug="slug",
-    access_group_slug="x",
+    namespace="acme",
+    slug="customer",
+    access_group_slug="acme-api",
 )
 ```
 
@@ -506,7 +506,7 @@ Get a login portal by slug.
 
 ```python
 login_portal = client.login_portals.retrieve(
-    slug="slug",
+    slug="acme-login",
 )
 ```
 
@@ -521,7 +521,7 @@ Update metadata for a login portal.
 
 ```python
 login_portal = client.login_portals.update(
-    slug="slug",
+    slug="acme-login",
 )
 ```
 
@@ -535,7 +535,7 @@ Delete a login portal.
 
 ```python
 login_portal = client.login_portals.delete(
-    slug="slug",
+    slug="acme-login",
 )
 ```
 
@@ -550,8 +550,8 @@ Create a login portal for the current team.
 
 ```python
 login_portal = client.login_portals.create(
-    title="",
-    slug="",
+    title="Acme Private Documentation",
+    slug="acme-login",
     email={
         "logo": "",
         "logo_size": "100",
@@ -623,7 +623,7 @@ Get a group and its email and domain allowlists by slug.
 
 ```python
 access_group = client.access_groups.retrieve(
-    slug="slug",
+    slug="acme-api",
 )
 ```
 
@@ -638,7 +638,7 @@ Update group metadata. Requires docs edit permission. After changing the slug, u
 
 ```python
 access_group = client.access_groups.update(
-    path_slug="slug",
+    path_slug="acme-api",
 )
 ```
 
@@ -652,7 +652,7 @@ Delete a group and remove its project assignments. Requires docs edit permission
 
 ```python
 access_group = client.access_groups.delete(
-    slug="slug",
+    slug="acme-api",
 )
 ```
 
@@ -671,8 +671,8 @@ Allow an exact email domain in a group. Requires docs edit permission. A group s
 
 ```python
 domain = client.access_groups.domains.create(
-    slug="slug",
-    domain="",
+    slug="acme-api",
+    domain="example.com",
 )
 ```
 
@@ -687,8 +687,8 @@ Remove an exact email domain from a group. Requires docs edit permission. Other 
 
 ```python
 domain = client.access_groups.domains.delete(
-    slug="slug",
-    domain="",
+    slug="acme-api",
+    domain="example.com",
 )
 ```
 
@@ -706,7 +706,7 @@ List all rulesets in a namespace.
 
 ```python
 rule = client.rules.list_rulesets(
-    namespace="namespace",
+    namespace="acme",
 )
 ```
 
@@ -721,10 +721,10 @@ Create a rule in a namespace.
 
 ```python
 rule = client.rules.create_ruleset(
-    namespace="namespace",
-    title="",
-    slug="",
-    document="",
+    namespace="acme",
+    title="Acme API Rules",
+    slug="acme-rules",
+    document='extends: ["spectral:oas"]\nrules:\n  info-contact: warn\n',
 )
 ```
 
@@ -739,8 +739,8 @@ Update rule metadata by slug.
 
 ```python
 rule = client.rules.update_ruleset(
-    path_namespace="namespace",
-    path_slug="slug",
+    path_namespace="acme",
+    path_slug="acme-rules",
 )
 ```
 
@@ -754,8 +754,8 @@ Delete a rule by slug.
 
 ```python
 rule = client.rules.delete_ruleset(
-    namespace="namespace",
-    slug="slug",
+    namespace="acme",
+    slug="acme-rules",
 )
 ```
 
@@ -769,8 +769,8 @@ Get a rule document by slug.
 
 ```python
 rule = client.rules.retrieve_ruleset_document(
-    namespace="namespace",
-    slug="slug",
+    namespace="acme",
+    slug="acme-rules",
 )
 ```
 
@@ -785,9 +785,9 @@ Grant an access group to a rule.
 
 ```python
 rule = client.rules.create_ruleset_access_group(
-    namespace="namespace",
-    slug="slug",
-    access_group_slug="x",
+    namespace="acme",
+    slug="acme-rules",
+    access_group_slug="acme-api",
 )
 ```
 
@@ -802,9 +802,9 @@ Remove an access group from a rule.
 
 ```python
 rule = client.rules.delete_ruleset_access_group(
-    namespace="namespace",
-    slug="slug",
-    access_group_slug="x",
+    namespace="acme",
+    slug="acme-rules",
+    access_group_slug="acme-api",
 )
 ```
 
@@ -835,9 +835,9 @@ Create a team theme.
 
 ```python
 theme = client.themes.create(
-    name="",
-    slug="",
-    document="",
+    name="Acme Theme",
+    slug="acme-theme",
+    document=":root { --scalar-color-1: #1f2937; }",
 )
 ```
 
@@ -852,7 +852,7 @@ Update theme metadata.
 
 ```python
 theme = client.themes.update(
-    slug="slug",
+    slug="acme-theme",
 )
 ```
 
@@ -867,8 +867,8 @@ Replace the theme document.
 
 ```python
 theme = client.themes.replace_document(
-    slug="slug",
-    document="",
+    slug="acme-theme",
+    document=":root { --scalar-color-1: #1f2937; }",
 )
 ```
 
@@ -882,7 +882,7 @@ Delete a theme by slug.
 
 ```python
 theme = client.themes.delete(
-    slug="slug",
+    slug="acme-theme",
 )
 ```
 
@@ -896,7 +896,7 @@ Get the theme document by slug.
 
 ```python
 theme = client.themes.retrieve(
-    slug="slug",
+    slug="acme-theme",
 )
 ```
 
@@ -943,7 +943,7 @@ Change what a member of the current team is allowed to do.
 
 ```python
 member = client.teams.members.update(
-    uid="uidxx",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
     role="owner",
 )
 ```
@@ -958,7 +958,7 @@ Remove someone from the current team.
 
 ```python
 member = client.teams.members.delete(
-    uid="uidxx",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
 )
 ```
 
@@ -977,7 +977,7 @@ Invite someone to the current team by email.
 
 ```python
 invite = client.teams.invites.member(
-    email="user@example.com",
+    email="alex@example.com",
     role="owner",
 )
 ```
@@ -992,7 +992,7 @@ Send the invite email again.
 
 ```python
 invite = client.teams.invites.resend(
-    uid="uidxx",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
 )
 ```
 
@@ -1006,7 +1006,7 @@ Withdraw an invite that has not been accepted.
 
 ```python
 invite = client.teams.invites.cancel(
-    uid="uidxx",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
 )
 ```
 
@@ -1037,7 +1037,7 @@ Create a guide project.
 
 ```python
 scalar_doc = client.scalar_docs.create_guide(
-    name="",
+    name="Acme Documentation",
     is_private=False,
     allowed_users=[],
     allowed_domains=[],
@@ -1054,7 +1054,7 @@ Start a new publish process.
 
 ```python
 scalar_doc = client.scalar_docs.publish_guide(
-    slug="slug",
+    slug="acme-docs",
 )
 ```
 
@@ -1082,7 +1082,7 @@ Create a docs project. Omit `provider` to have Scalar host the repository.
 
 ```python
 scalar_doc = client.scalar_docs.create_project(
-    name="",
+    name="Acme Documentation",
     provider="forgejo",
 )
 ```
@@ -1097,7 +1097,7 @@ Get a single docs project by its slug.
 
 ```python
 scalar_doc = client.scalar_docs.retrieve_project(
-    slug="slug",
+    slug="acme-docs",
 )
 ```
 
@@ -1112,7 +1112,7 @@ Update project settings. Set `isPrivate` with `accessGroups` to put the site beh
 
 ```python
 scalar_doc = client.scalar_docs.update_project(
-    slug="slug",
+    slug="acme-docs",
 )
 ```
 
@@ -1126,7 +1126,7 @@ Delete a docs project, its deploys, its publish records and its cached builds.
 
 ```python
 scalar_doc = client.scalar_docs.delete_project(
-    slug="slug",
+    slug="acme-docs",
 )
 ```
 
@@ -1141,7 +1141,7 @@ Start a build and deploy. The returned `publishUid` identifies the publish recor
 
 ```python
 scalar_doc = client.scalar_docs.publish_project(
-    slug="slug",
+    slug="acme-docs",
 )
 ```
 
@@ -1156,7 +1156,7 @@ Read `scalar.config.json` straight from the project repository, without cloning 
 
 ```python
 scalar_doc = client.scalar_docs.list_project_config(
-    slug="slug",
+    slug="acme-docs",
 )
 ```
 
@@ -1171,8 +1171,8 @@ Commit `scalar.config.json` straight to the project repository. Pass the `baseTo
 
 ```python
 scalar_doc = client.scalar_docs.update_project_config(
-    slug="slug",
-    content="",
+    slug="acme-docs",
+    content='{"name":"Acme Documentation"}',
 )
 ```
 
@@ -1186,7 +1186,7 @@ The domains the project serves on — the Scalar-hosted one and the custom one, 
 
 ```python
 scalar_doc = client.scalar_docs.list_project_domain(
-    slug="slug",
+    slug="acme-docs",
 )
 ```
 
@@ -1200,7 +1200,7 @@ Whether the project custom domain points at Scalar yet. `expected` is the CNAME 
 
 ```python
 scalar_doc = client.scalar_docs.list_project_domain_status(
-    slug="slug",
+    slug="acme-docs",
 )
 ```
 
@@ -1235,7 +1235,7 @@ Exchange an API key for an access token.
 
 ```python
 authentication = client.authentication.exchange_personal_token(
-    personal_token="",
+    personal_token="scalar_example_personal_token",
 )
 ```
 
@@ -1279,7 +1279,7 @@ Create an SDK from an API document, targeting one or more languages.
 
 ```python
 sdk = client.sdks.create(
-    api_uid="xxxxx",
+    api_uid="UakgbKJ5m9gl0JDMbcJqL",
     languages=["typescript"],
 )
 ```
@@ -1294,7 +1294,7 @@ Get a single SDK by its uid.
 
 ```python
 sdk = client.sdks.retrieve(
-    uid="uidxx",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
 )
 ```
 
@@ -1309,7 +1309,7 @@ Update SDK metadata, its linked API, or its config.
 
 ```python
 sdk = client.sdks.update(
-    uid="uidxx",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
 )
 ```
 
@@ -1323,7 +1323,7 @@ Delete an SDK and every version it holds.
 
 ```python
 sdk = client.sdks.delete(
-    uid="uidxx",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
 )
 ```
 
@@ -1338,7 +1338,7 @@ Start a build. Omit `version` to build the current work — the open draft, else
 
 ```python
 sdk = client.sdks.build(
-    uid="uidxx",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
 )
 ```
 
@@ -1357,9 +1357,9 @@ Create a new SDK version against a specific API version.
 
 ```python
 version = client.sdks.versions.create(
-    uid="uidxx",
-    version="",
-    api_version="",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
+    version="1.2.0",
+    api_version="1.2.0",
 )
 ```
 
@@ -1373,8 +1373,8 @@ Permanently delete one version of an SDK.
 
 ```python
 version = client.sdks.versions.delete(
-    uid="uidxx",
-    version="version",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
+    version="1.2.0",
 )
 ```
 
@@ -1393,10 +1393,10 @@ Link one language target to a GitHub repository, so builds sync there.
 
 ```python
 repository = client.sdks.repositories.link(
-    uid="uidxx",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
     language="typescript",
-    repository_id=0,
-    base_branch="",
+    repository_id=123456789,
+    base_branch="main",
 )
 ```
 
@@ -1410,7 +1410,7 @@ Unlink one language target from its repository.
 
 ```python
 repository = client.sdks.repositories.unlink(
-    uid="uidxx",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
     language="typescript",
 )
 ```
@@ -1426,9 +1426,9 @@ Toggle publish-on-merge and the release settings for a linked target.
 
 ```python
 repository = client.sdks.repositories.update_publishing(
-    uid="uidxx",
+    uid="UakgbKJ5m9gl0JDMbcJqL",
     language="typescript",
-    publish_on_merge=False,
+    publish_on_merge=True,
 )
 ```
 
@@ -1461,7 +1461,7 @@ Create an MCP server over one or more API document versions. The response carrie
 
 ```python
 server = client.mcp.servers.create(
-    name="x",
+    name="Acme MCP",
 )
 ```
 
@@ -1475,7 +1475,7 @@ Get a single MCP server by its id.
 
 ```python
 server = client.mcp.servers.retrieve(
-    id="id",
+    id="42",
 )
 ```
 
@@ -1490,7 +1490,7 @@ Update MCP server metadata and which tools it exposes.
 
 ```python
 server = client.mcp.servers.update(
-    id="id",
+    id="42",
 )
 ```
 
@@ -1504,7 +1504,7 @@ Delete an MCP server and every installation it serves.
 
 ```python
 server = client.mcp.servers.delete(
-    id="id",
+    id="42",
 )
 ```
 
@@ -1522,7 +1522,7 @@ List the installations of an MCP server. An installation is what an MCP client c
 
 ```python
 installation = client.mcp.servers.installations.list(
-    id="id",
+    id="42",
 )
 ```
 
@@ -1537,8 +1537,8 @@ Create an installation of an MCP server. `documentAuth` holds the credentials th
 
 ```python
 installation = client.mcp.servers.installations.create(
-    id="id",
-    name="x",
+    id="42",
+    name="Acme MCP",
     document_auth={},
 )
 ```
@@ -1553,8 +1553,8 @@ Get a single installation of an MCP server.
 
 ```python
 installation = client.mcp.servers.installations.retrieve(
-    id="id",
-    installation_id="installationId",
+    id="42",
+    installation_id="84",
 )
 ```
 
@@ -1569,8 +1569,8 @@ Update an installation. Set `isPrivate` and add access groups to put it behind a
 
 ```python
 installation = client.mcp.servers.installations.update(
-    id="id",
-    installation_id="installationId",
+    id="42",
+    installation_id="84",
 )
 ```
 
@@ -1584,8 +1584,8 @@ Delete an installation of an MCP server.
 
 ```python
 installation = client.mcp.servers.installations.delete(
-    id="id",
-    installation_id="installationId",
+    id="42",
+    installation_id="84",
 )
 ```
 
@@ -1600,9 +1600,9 @@ Let an access group reach a private installation.
 
 ```python
 installation = client.mcp.servers.installations.create_access_group(
-    id="id",
-    installation_id="installationId",
-    access_group_uid="xxxxx",
+    id="42",
+    installation_id="84",
+    access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
 )
 ```
 
@@ -1617,9 +1617,9 @@ Stop an access group reaching a private installation.
 
 ```python
 installation = client.mcp.servers.installations.delete_access_group(
-    id="id",
-    installation_id="installationId",
-    access_group_uid="xxxxx",
+    id="42",
+    installation_id="84",
+    access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
 )
 ```
 

@@ -17,4 +17,4 @@ class AccessGroupCreateParams(TypedDict, total=False):
 
     slug: Slug
 
-    allowed_domains: Annotated[object, PropertyInfo(alias="allowedDomains")]
+    allowed_domains: Annotated[str, PropertyInfo(alias="allowedDomains")]

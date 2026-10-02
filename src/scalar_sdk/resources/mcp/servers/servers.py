@@ -116,7 +116,7 @@ class ServersResource(SyncAPIResource):
         Example:
             ```python
             server = client.mcp.servers.create(
-                name="x",
+                name="Acme MCP",
             )
             ```
         """
@@ -164,7 +164,7 @@ class ServersResource(SyncAPIResource):
         Example:
             ```python
             server = client.mcp.servers.retrieve(
-                id="id",
+                id="42",
             )
             ```
         """
@@ -215,7 +215,7 @@ class ServersResource(SyncAPIResource):
         Example:
             ```python
             server = client.mcp.servers.update(
-                id="id",
+                id="42",
             )
             ```
         """
@@ -266,7 +266,7 @@ class ServersResource(SyncAPIResource):
         Example:
             ```python
             server = client.mcp.servers.delete(
-                id="id",
+                id="42",
             )
             ```
         """
@@ -362,7 +362,7 @@ class AsyncServersResource(AsyncAPIResource):
         Example:
             ```python
             server = await client.mcp.servers.create(
-                name="x",
+                name="Acme MCP",
             )
             ```
         """
@@ -410,7 +410,7 @@ class AsyncServersResource(AsyncAPIResource):
         Example:
             ```python
             server = await client.mcp.servers.retrieve(
-                id="id",
+                id="42",
             )
             ```
         """
@@ -461,7 +461,7 @@ class AsyncServersResource(AsyncAPIResource):
         Example:
             ```python
             server = await client.mcp.servers.update(
-                id="id",
+                id="42",
             )
             ```
         """
@@ -512,7 +512,7 @@ class AsyncServersResource(AsyncAPIResource):
         Example:
             ```python
             server = await client.mcp.servers.delete(
-                id="id",
+                id="42",
             )
             ```
         """
