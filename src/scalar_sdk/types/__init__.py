@@ -25,10 +25,6 @@ from .sdk import Sdk as Sdk
 from .sdk_target_summary import SdkTargetSummary as SdkTargetSummary
 from .sdk_version import SdkVersion as SdkVersion
 from .docs_project import DocsProject as DocsProject
-from .oauth_token import OauthToken as OauthToken
-from .oauth_scope import OauthScope as OauthScope
-from .oauth_error import OauthError as OauthError
-from .oauth_authorization_server_metadata import OauthAuthorizationServerMetadata as OauthAuthorizationServerMetadata
 from .login_portal_email_param import LoginPortalEmailParam as LoginPortalEmailParam
 from .login_portal_page_param import LoginPortalPageParam as LoginPortalPageParam
 from .registry_list_all_api_documents_response import (
@@ -162,11 +158,6 @@ from .sdk_update_params import SdkUpdateParams as SdkUpdateParams
 from .sdk_delete_response import SdkDeleteResponse as SdkDeleteResponse
 from .sdk_build_response import SdkBuildResponse as SdkBuildResponse
 from .sdk_build_params import SdkBuildParams as SdkBuildParams
-from .o_auth_oauth_authorize_response import OAuthOauthAuthorizeResponse as OAuthOauthAuthorizeResponse
-from .o_auth_oauth_token_response import OAuthOauthTokenResponse as OAuthOauthTokenResponse
-from .o_auth_oauth_token_params import OAuthOauthTokenParams as OAuthOauthTokenParams
-from .o_auth_oauth_revoke_response import OAuthOauthRevokeResponse as OAuthOauthRevokeResponse
-from .o_auth_oauth_revoke_params import OAuthOauthRevokeParams as OAuthOauthRevokeParams
 from .shared._400 import _400 as _400
 from .shared._401 import _401 as _401
 from .shared._403 import _403 as _403

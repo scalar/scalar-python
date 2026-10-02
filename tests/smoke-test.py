@@ -977,48 +977,6 @@ def _smoke_case_120() -> None:
     )
 
 
-def _smoke_case_121() -> None:
-    o_auth = client.o_auth.oauth_authorize()
-
-
-def _smoke_case_122() -> None:
-    o_auth = client.o_auth.oauth_token(
-        grant_type="",
-    )
-
-
-def _smoke_case_123() -> None:
-    o_auth = client.o_auth.oauth_token(
-        grant_type="",
-        client_id="",
-        client_secret="",
-        code="",
-        redirect_uri="",
-        code_verifier="",
-        refresh_token="",
-        scope="",
-    )
-
-
-def _smoke_case_124() -> None:
-    o_auth = client.o_auth.oauth_revoke(
-        token="",
-    )
-
-
-def _smoke_case_125() -> None:
-    o_auth = client.o_auth.oauth_revoke(
-        token="",
-        token_type_hint="",
-        client_id="",
-        client_secret="",
-    )
-
-
-def _smoke_case_126() -> None:
-    o_auth = client.o_auth.oauth_authorization_server_metadata()
-
-
 cases: list[SmokeCase] = [
     {
         "operation": "listAllApiDocuments",
@@ -1805,46 +1763,6 @@ cases: list[SmokeCase] = [
         "method": "DELETE",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}/access-group",
         "run": _smoke_case_120,
-    },
-    {
-        "operation": "oauthAuthorize",
-        "method": "GET",
-        "path": "/v1/oauth/authorize",
-        "run": _smoke_case_121,
-    },
-    {
-        "operation": "oauthToken",
-        "method": "POST",
-        "path": "/v1/oauth/token",
-        "label": "required params",
-        "run": _smoke_case_122,
-    },
-    {
-        "operation": "oauthToken",
-        "method": "POST",
-        "path": "/v1/oauth/token",
-        "label": "all params",
-        "run": _smoke_case_123,
-    },
-    {
-        "operation": "oauthRevoke",
-        "method": "POST",
-        "path": "/v1/oauth/revoke",
-        "label": "required params",
-        "run": _smoke_case_124,
-    },
-    {
-        "operation": "oauthRevoke",
-        "method": "POST",
-        "path": "/v1/oauth/revoke",
-        "label": "all params",
-        "run": _smoke_case_125,
-    },
-    {
-        "operation": "oauthAuthorizationServerMetadata",
-        "method": "GET",
-        "path": "/.well-known/oauth-authorization-server",
-        "run": _smoke_case_126,
     },
 ]
 

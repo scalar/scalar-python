@@ -116,11 +116,6 @@ Complete reference of every operation, grouped by resource. See [the README](./R
       - [Delete an installation](#delete-an-installation)
       - [Add an access group](#add-an-access-group)
       - [Remove an access group](#remove-an-access-group)
-- [`OAuth`](#oauth)
-  - [Start an OAuth authorization](#start-an-oauth-authorization)
-  - [Exchange a code or refresh token](#exchange-a-code-or-refresh-token)
-  - [Revoke a refresh token](#revoke-a-refresh-token)
-  - [Authorization server metadata](#authorization-server-metadata)
 
 ## Setup
 
@@ -1621,62 +1616,4 @@ installation = client.mcp.servers.installations.delete_access_group(
     installation_id="84",
     access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
 )
-```
-
-## `OAuth`
-
-OAuth
-
-### Start an OAuth authorization
-
-Authorization endpoint (RFC 6749 §4.1.1 with PKCE, RFC 7636). Validates the request and sends the user to the Scalar dashboard to approve it; the user returns to `redirect_uri` with a `code` to exchange at the token endpoint. Only `response_type=code` with `code_challenge_method=S256` is supported.
-
-| Direction | Type |
-| --- | --- |
-| Response | [`OAuthOauthAuthorizeResponse`](./src/scalar_sdk/types/o_auth_oauth_authorize_response.py) |
-
-```python
-o_auth = client.o_auth.oauth_authorize()
-```
-
-### Exchange a code or refresh token
-
-Token endpoint (RFC 6749 §4.1.3 and §6). Accepts `application/x-www-form-urlencoded`. Confidential clients authenticate with HTTP Basic or `client_secret` in the body; public clients send `client_id` alone. The `authorization_code` grant needs `code`, `redirect_uri` and `code_verifier`; the `refresh_token` grant needs `refresh_token` and may narrow `scope`.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`OAuthOauthTokenParams`](./src/scalar_sdk/types/o_auth_oauth_token_params.py) |
-| Response | [`OAuthOauthTokenResponse`](./src/scalar_sdk/types/o_auth_oauth_token_response.py) |
-
-```python
-o_auth = client.o_auth.oauth_token(
-    grant_type="",
-)
-```
-
-### Revoke a refresh token
-
-Revocation endpoint (RFC 7009). Revokes the refresh token and every token issued alongside it. The client authenticates as it does at the token endpoint. Responds 200 whether or not the token was live, as the RFC requires.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`OAuthOauthRevokeParams`](./src/scalar_sdk/types/o_auth_oauth_revoke_params.py) |
-| Response | [`OAuthOauthRevokeResponse`](./src/scalar_sdk/types/o_auth_oauth_revoke_response.py) |
-
-```python
-o_auth = client.o_auth.oauth_revoke(
-    token="",
-)
-```
-
-### Authorization server metadata
-
-Discovery document for OAuth clients (RFC 8414): where the endpoints are and what they support.
-
-| Direction | Type |
-| --- | --- |
-| Response | [`OauthAuthorizationServerMetadata`](./src/scalar_sdk/types/oauth_authorization_server_metadata.py) |
-
-```python
-o_auth = client.o_auth.oauth_authorization_server_metadata()
 ```

@@ -96,14 +96,6 @@ from .mcp import (
     McpResourceWithStreamingResponse,
     AsyncMcpResourceWithStreamingResponse,
 )
-from .o_auth import (
-    OAuthResource,
-    AsyncOAuthResource,
-    OAuthResourceWithRawResponse,
-    AsyncOAuthResourceWithRawResponse,
-    OAuthResourceWithStreamingResponse,
-    AsyncOAuthResourceWithStreamingResponse,
-)
 
 __all__ = [
     "RegistryResource",
@@ -178,10 +170,4 @@ __all__ = [
     "AsyncMcpResourceWithRawResponse",
     "McpResourceWithStreamingResponse",
     "AsyncMcpResourceWithStreamingResponse",
-    "OAuthResource",
-    "AsyncOAuthResource",
-    "OAuthResourceWithRawResponse",
-    "AsyncOAuthResourceWithRawResponse",
-    "OAuthResourceWithStreamingResponse",
-    "AsyncOAuthResourceWithStreamingResponse",
 ]

@@ -46,7 +46,6 @@ if TYPE_CHECKING:
         authentication,
         sdks,
         mcp,
-        o_auth,
     )
     from .resources.registry import RegistryResource, AsyncRegistryResource
     from .resources.schemas import SchemasResource, AsyncSchemasResource
@@ -60,7 +59,6 @@ if TYPE_CHECKING:
     from .resources.authentication import AuthenticationResource, AsyncAuthenticationResource
     from .resources.sdks import SdksResource, AsyncSdksResource
     from .resources.mcp import McpResource, AsyncMcpResource
-    from .resources.o_auth import OAuthResource, AsyncOAuthResource
 
 # Serializes lazy resource imports so concurrent cold access from multiple
 # threads cannot deadlock on CPython import locks (see CPython 3.14).
@@ -102,12 +100,13 @@ class Scalar(SyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `bearer_auth` from `BEARER_AUTH`
+        - `o_auth2` from `SCALAR_OAUTH_TOKEN`
         """
         if bearer_auth is None:
             bearer_auth = os.environ.get("BEARER_AUTH")
         self.bearer_auth = bearer_auth
         if o_auth2 is None:
-            o_auth2 = os.environ.get("SCALAR_O_AUTH2")
+            o_auth2 = os.environ.get("SCALAR_OAUTH_TOKEN")
         self.o_auth2 = o_auth2
         if base_url is None:
             base_url = os.environ.get("SCALAR_BASE_URL")
@@ -205,12 +204,6 @@ class Scalar(SyncAPIClient):
         with _RESOURCE_IMPORT_LOCK:
             from .resources.mcp import McpResource
         return McpResource(self)
-
-    @cached_property
-    def o_auth(self) -> "OAuthResource":
-        with _RESOURCE_IMPORT_LOCK:
-            from .resources.o_auth import OAuthResource
-        return OAuthResource(self)
 
     @cached_property
     def with_raw_response(self) -> ScalarWithRawResponse:
@@ -382,12 +375,13 @@ class AsyncScalar(AsyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `bearer_auth` from `BEARER_AUTH`
+        - `o_auth2` from `SCALAR_OAUTH_TOKEN`
         """
         if bearer_auth is None:
             bearer_auth = os.environ.get("BEARER_AUTH")
         self.bearer_auth = bearer_auth
         if o_auth2 is None:
-            o_auth2 = os.environ.get("SCALAR_O_AUTH2")
+            o_auth2 = os.environ.get("SCALAR_OAUTH_TOKEN")
         self.o_auth2 = o_auth2
         if base_url is None:
             base_url = os.environ.get("SCALAR_BASE_URL")
@@ -485,12 +479,6 @@ class AsyncScalar(AsyncAPIClient):
         with _RESOURCE_IMPORT_LOCK:
             from .resources.mcp import AsyncMcpResource
         return AsyncMcpResource(self)
-
-    @cached_property
-    def o_auth(self) -> "AsyncOAuthResource":
-        with _RESOURCE_IMPORT_LOCK:
-            from .resources.o_auth import AsyncOAuthResource
-        return AsyncOAuthResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncScalarWithRawResponse:
@@ -707,12 +695,6 @@ class ScalarWithRawResponse:
             from .resources.mcp import McpResourceWithRawResponse
         return McpResourceWithRawResponse(self._client.mcp)
 
-    @cached_property
-    def o_auth(self) -> o_auth.OAuthResourceWithRawResponse:
-        with _RESOURCE_IMPORT_LOCK:
-            from .resources.o_auth import OAuthResourceWithRawResponse
-        return OAuthResourceWithRawResponse(self._client.o_auth)
-
 
 class AsyncScalarWithRawResponse:
     _client: AsyncScalar
@@ -791,12 +773,6 @@ class AsyncScalarWithRawResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.mcp import AsyncMcpResourceWithRawResponse
         return AsyncMcpResourceWithRawResponse(self._client.mcp)
-
-    @cached_property
-    def o_auth(self) -> o_auth.AsyncOAuthResourceWithRawResponse:
-        with _RESOURCE_IMPORT_LOCK:
-            from .resources.o_auth import AsyncOAuthResourceWithRawResponse
-        return AsyncOAuthResourceWithRawResponse(self._client.o_auth)
 
 
 class ScalarWithStreamedResponse:
@@ -877,12 +853,6 @@ class ScalarWithStreamedResponse:
             from .resources.mcp import McpResourceWithStreamingResponse
         return McpResourceWithStreamingResponse(self._client.mcp)
 
-    @cached_property
-    def o_auth(self) -> o_auth.OAuthResourceWithStreamingResponse:
-        with _RESOURCE_IMPORT_LOCK:
-            from .resources.o_auth import OAuthResourceWithStreamingResponse
-        return OAuthResourceWithStreamingResponse(self._client.o_auth)
-
 
 class AsyncScalarWithStreamedResponse:
     _client: AsyncScalar
@@ -961,12 +931,6 @@ class AsyncScalarWithStreamedResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.mcp import AsyncMcpResourceWithStreamingResponse
         return AsyncMcpResourceWithStreamingResponse(self._client.mcp)
-
-    @cached_property
-    def o_auth(self) -> o_auth.AsyncOAuthResourceWithStreamingResponse:
-        with _RESOURCE_IMPORT_LOCK:
-            from .resources.o_auth import AsyncOAuthResourceWithStreamingResponse
-        return AsyncOAuthResourceWithStreamingResponse(self._client.o_auth)
 
 
 # Alias names for the documented `Client` / `AsyncClient` symbols.
