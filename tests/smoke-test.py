@@ -340,12 +340,64 @@ def _smoke_case_32() -> None:
 
 
 def _smoke_case_33() -> None:
+    access_group = client.access_groups.create()
+
+
+def _smoke_case_34() -> None:
+    access_group = client.access_groups.create(
+        name="",
+        slug="x",
+        allowed_domains={},
+    )
+
+
+def _smoke_case_35() -> None:
+    access_group = client.access_groups.retrieve(
+        slug="slug",
+    )
+
+
+def _smoke_case_36() -> None:
+    access_group = client.access_groups.update(
+        path_slug="slug",
+    )
+
+
+def _smoke_case_37() -> None:
+    access_group = client.access_groups.update(
+        path_slug="slug",
+        name="",
+        body_slug="x",
+    )
+
+
+def _smoke_case_38() -> None:
+    access_group = client.access_groups.delete(
+        slug="slug",
+    )
+
+
+def _smoke_case_39() -> None:
+    domain = client.access_groups.domains.create(
+        slug="slug",
+        domain="",
+    )
+
+
+def _smoke_case_40() -> None:
+    domain = client.access_groups.domains.delete(
+        slug="slug",
+        domain="",
+    )
+
+
+def _smoke_case_41() -> None:
     rule = client.rules.list_rulesets(
         namespace="namespace",
     )
 
 
-def _smoke_case_34() -> None:
+def _smoke_case_42() -> None:
     rule = client.rules.create_ruleset(
         namespace="namespace",
         title="",
@@ -354,7 +406,7 @@ def _smoke_case_34() -> None:
     )
 
 
-def _smoke_case_35() -> None:
+def _smoke_case_43() -> None:
     rule = client.rules.create_ruleset(
         namespace="namespace",
         title="",
@@ -365,14 +417,14 @@ def _smoke_case_35() -> None:
     )
 
 
-def _smoke_case_36() -> None:
+def _smoke_case_44() -> None:
     rule = client.rules.update_ruleset(
         path_namespace="namespace",
         path_slug="slug",
     )
 
 
-def _smoke_case_37() -> None:
+def _smoke_case_45() -> None:
     rule = client.rules.update_ruleset(
         path_namespace="namespace",
         path_slug="slug",
@@ -384,21 +436,21 @@ def _smoke_case_37() -> None:
     )
 
 
-def _smoke_case_38() -> None:
+def _smoke_case_46() -> None:
     rule = client.rules.delete_ruleset(
         namespace="namespace",
         slug="slug",
     )
 
 
-def _smoke_case_39() -> None:
+def _smoke_case_47() -> None:
     rule = client.rules.retrieve_ruleset_document(
         namespace="namespace",
         slug="slug",
     )
 
 
-def _smoke_case_40() -> None:
+def _smoke_case_48() -> None:
     rule = client.rules.create_ruleset_access_group(
         namespace="namespace",
         slug="slug",
@@ -406,7 +458,7 @@ def _smoke_case_40() -> None:
     )
 
 
-def _smoke_case_41() -> None:
+def _smoke_case_49() -> None:
     rule = client.rules.delete_ruleset_access_group(
         namespace="namespace",
         slug="slug",
@@ -414,11 +466,11 @@ def _smoke_case_41() -> None:
     )
 
 
-def _smoke_case_42() -> None:
+def _smoke_case_50() -> None:
     theme = client.themes.list()
 
 
-def _smoke_case_43() -> None:
+def _smoke_case_51() -> None:
     theme = client.themes.create(
         name="",
         slug="",
@@ -426,7 +478,7 @@ def _smoke_case_43() -> None:
     )
 
 
-def _smoke_case_44() -> None:
+def _smoke_case_52() -> None:
     theme = client.themes.create(
         name="",
         description="",
@@ -435,13 +487,13 @@ def _smoke_case_44() -> None:
     )
 
 
-def _smoke_case_45() -> None:
+def _smoke_case_53() -> None:
     theme = client.themes.update(
         slug="slug",
     )
 
 
-def _smoke_case_46() -> None:
+def _smoke_case_54() -> None:
     theme = client.themes.update(
         slug="slug",
         name="",
@@ -449,34 +501,70 @@ def _smoke_case_46() -> None:
     )
 
 
-def _smoke_case_47() -> None:
+def _smoke_case_55() -> None:
     theme = client.themes.replace_document(
         slug="slug",
         document="",
     )
 
 
-def _smoke_case_48() -> None:
+def _smoke_case_56() -> None:
     theme = client.themes.delete(
         slug="slug",
     )
 
 
-def _smoke_case_49() -> None:
+def _smoke_case_57() -> None:
     theme = client.themes.retrieve(
         slug="slug",
     )
 
 
-def _smoke_case_50() -> None:
+def _smoke_case_58() -> None:
     team = client.teams.list()
 
 
-def _smoke_case_51() -> None:
+def _smoke_case_59() -> None:
+    member = client.teams.members.list()
+
+
+def _smoke_case_60() -> None:
+    member = client.teams.members.update(
+        uid="uidxx",
+        role="owner",
+    )
+
+
+def _smoke_case_61() -> None:
+    member = client.teams.members.delete(
+        uid="uidxx",
+    )
+
+
+def _smoke_case_62() -> None:
+    invite = client.teams.invites.member(
+        email="user@example.com",
+        role="owner",
+    )
+
+
+def _smoke_case_63() -> None:
+    invite = client.teams.invites.resend(
+        uid="uidxx",
+    )
+
+
+def _smoke_case_64() -> None:
+    invite = client.teams.invites.cancel(
+        uid="uidxx",
+    )
+
+
+def _smoke_case_65() -> None:
     scalar_doc = client.scalar_docs.list_guides()
 
 
-def _smoke_case_52() -> None:
+def _smoke_case_66() -> None:
     scalar_doc = client.scalar_docs.create_guide(
         name="",
         is_private=False,
@@ -485,7 +573,7 @@ def _smoke_case_52() -> None:
     )
 
 
-def _smoke_case_53() -> None:
+def _smoke_case_67() -> None:
     scalar_doc = client.scalar_docs.create_guide(
         name="",
         slug="x",
@@ -495,24 +583,437 @@ def _smoke_case_53() -> None:
     )
 
 
-def _smoke_case_54() -> None:
+def _smoke_case_68() -> None:
     scalar_doc = client.scalar_docs.publish_guide(
         slug="slug",
     )
 
 
-def _smoke_case_55() -> None:
+def _smoke_case_69() -> None:
+    scalar_doc = client.scalar_docs.list_projects()
+
+
+def _smoke_case_70() -> None:
+    scalar_doc = client.scalar_docs.list_projects(
+        limit=1,
+    )
+
+
+def _smoke_case_71() -> None:
+    scalar_doc = client.scalar_docs.create_project(
+        name="",
+        provider="forgejo",
+    )
+
+
+def _smoke_case_72() -> None:
+    scalar_doc = client.scalar_docs.create_project(
+        name="",
+        slug="x",
+        is_private=False,
+        blank=False,
+        provider="forgejo",
+        github_repository={"installation_id": 0, "repo_id": 0},
+        bitbucket_repository={"workspace_uuid": "", "repo_uuid": ""},
+    )
+
+
+def _smoke_case_73() -> None:
+    scalar_doc = client.scalar_docs.retrieve_project(
+        slug="slug",
+    )
+
+
+def _smoke_case_74() -> None:
+    scalar_doc = client.scalar_docs.update_project(
+        slug="slug",
+    )
+
+
+def _smoke_case_75() -> None:
+    scalar_doc = client.scalar_docs.update_project(
+        slug="slug",
+        name="",
+        is_private=False,
+        access_groups=["xxxxx"],
+        login_portal_uid="xxxxx",
+        active_theme_id="xxxxx",
+        agent_enabled=False,
+        analytics_enabled=False,
+    )
+
+
+def _smoke_case_76() -> None:
+    scalar_doc = client.scalar_docs.delete_project(
+        slug="slug",
+    )
+
+
+def _smoke_case_77() -> None:
+    scalar_doc = client.scalar_docs.publish_project(
+        slug="slug",
+    )
+
+
+def _smoke_case_78() -> None:
+    scalar_doc = client.scalar_docs.publish_project(
+        slug="slug",
+        commit_sha="",
+        preview=False,
+        config_path="",
+    )
+
+
+def _smoke_case_79() -> None:
+    scalar_doc = client.scalar_docs.list_project_config(
+        slug="slug",
+    )
+
+
+def _smoke_case_80() -> None:
+    scalar_doc = client.scalar_docs.list_project_config(
+        slug="slug",
+        ref="ref",
+    )
+
+
+def _smoke_case_81() -> None:
+    scalar_doc = client.scalar_docs.update_project_config(
+        slug="slug",
+        content="",
+    )
+
+
+def _smoke_case_82() -> None:
+    scalar_doc = client.scalar_docs.update_project_config(
+        slug="slug",
+        content="",
+        ref="",
+        base_token="",
+        message="",
+        path="",
+    )
+
+
+def _smoke_case_83() -> None:
+    scalar_doc = client.scalar_docs.list_project_domain(
+        slug="slug",
+    )
+
+
+def _smoke_case_84() -> None:
+    scalar_doc = client.scalar_docs.list_project_domain_status(
+        slug="slug",
+    )
+
+
+def _smoke_case_85() -> None:
     namespace = client.namespaces.list()
 
 
-def _smoke_case_56() -> None:
+def _smoke_case_86() -> None:
     authentication = client.authentication.exchange_personal_token(
         personal_token="",
     )
 
 
-def _smoke_case_57() -> None:
+def _smoke_case_87() -> None:
     authentication = client.authentication.list_current_user()
+
+
+def _smoke_case_88() -> None:
+    sdk = client.sdks.list()
+
+
+def _smoke_case_89() -> None:
+    sdk = client.sdks.list(
+        limit=1,
+    )
+
+
+def _smoke_case_90() -> None:
+    sdk = client.sdks.create(
+        api_uid="xxxxx",
+        languages=["typescript"],
+    )
+
+
+def _smoke_case_91() -> None:
+    sdk = client.sdks.create(
+        api_uid="xxxxx",
+        languages=["typescript"],
+        title="",
+        slug="x",
+        class_name="",
+        config="",
+    )
+
+
+def _smoke_case_92() -> None:
+    sdk = client.sdks.retrieve(
+        uid="uidxx",
+    )
+
+
+def _smoke_case_93() -> None:
+    sdk = client.sdks.update(
+        uid="uidxx",
+    )
+
+
+def _smoke_case_94() -> None:
+    sdk = client.sdks.update(
+        uid="uidxx",
+        title="",
+        slug="x",
+        is_private=False,
+        config="",
+        api_uid="xxxxx",
+        api_version="",
+    )
+
+
+def _smoke_case_95() -> None:
+    sdk = client.sdks.delete(
+        uid="uidxx",
+    )
+
+
+def _smoke_case_96() -> None:
+    sdk = client.sdks.build(
+        uid="uidxx",
+    )
+
+
+def _smoke_case_97() -> None:
+    sdk = client.sdks.build(
+        uid="uidxx",
+        version="",
+        languages=["typescript"],
+    )
+
+
+def _smoke_case_98() -> None:
+    version = client.sdks.versions.create(
+        uid="uidxx",
+        version="",
+        api_version="",
+    )
+
+
+def _smoke_case_99() -> None:
+    version = client.sdks.versions.delete(
+        uid="uidxx",
+        version="version",
+    )
+
+
+def _smoke_case_100() -> None:
+    repository = client.sdks.repositories.link(
+        uid="uidxx",
+        language="typescript",
+        repository_id=0,
+        base_branch="",
+    )
+
+
+def _smoke_case_101() -> None:
+    repository = client.sdks.repositories.link(
+        uid="uidxx",
+        language="typescript",
+        repository_id=0,
+        base_branch="",
+        prerelease_type="",
+    )
+
+
+def _smoke_case_102() -> None:
+    repository = client.sdks.repositories.unlink(
+        uid="uidxx",
+        language="typescript",
+    )
+
+
+def _smoke_case_103() -> None:
+    repository = client.sdks.repositories.update_publishing(
+        uid="uidxx",
+        language="typescript",
+        publish_on_merge=False,
+    )
+
+
+def _smoke_case_104() -> None:
+    repository = client.sdks.repositories.update_publishing(
+        uid="uidxx",
+        language="typescript",
+        publish_on_merge=False,
+        auth_method="oidc",
+        access="public",
+        tag="",
+    )
+
+
+def _smoke_case_105() -> None:
+    server = client.mcp.servers.list()
+
+
+def _smoke_case_106() -> None:
+    server = client.mcp.servers.create(
+        name="x",
+    )
+
+
+def _smoke_case_107() -> None:
+    server = client.mcp.servers.create(
+        name="x",
+        slug="x",
+        version_uids=[""],
+        project_uids=[""],
+    )
+
+
+def _smoke_case_108() -> None:
+    server = client.mcp.servers.retrieve(
+        id="id",
+    )
+
+
+def _smoke_case_109() -> None:
+    server = client.mcp.servers.update(
+        id="id",
+    )
+
+
+def _smoke_case_110() -> None:
+    server = client.mcp.servers.update(
+        id="id",
+        name="x",
+        slug="x",
+        auto_add_operations=False,
+        operations=[""],
+        docs_pages=[""],
+    )
+
+
+def _smoke_case_111() -> None:
+    server = client.mcp.servers.delete(
+        id="id",
+    )
+
+
+def _smoke_case_112() -> None:
+    installation = client.mcp.servers.installations.list(
+        id="id",
+    )
+
+
+def _smoke_case_113() -> None:
+    installation = client.mcp.servers.installations.create(
+        id="id",
+        name="x",
+        document_auth={},
+    )
+
+
+def _smoke_case_114() -> None:
+    installation = client.mcp.servers.installations.create(
+        id="id",
+        name="x",
+        slug="x",
+        document_auth={},
+    )
+
+
+def _smoke_case_115() -> None:
+    installation = client.mcp.servers.installations.retrieve(
+        id="id",
+        installation_id="installationId",
+    )
+
+
+def _smoke_case_116() -> None:
+    installation = client.mcp.servers.installations.update(
+        id="id",
+        installation_id="installationId",
+    )
+
+
+def _smoke_case_117() -> None:
+    installation = client.mcp.servers.installations.update(
+        id="id",
+        installation_id="installationId",
+        name="x",
+        slug="x",
+        is_private=False,
+        login_portal_uid="",
+        document_auth={},
+        mcp_version="",
+    )
+
+
+def _smoke_case_118() -> None:
+    installation = client.mcp.servers.installations.delete(
+        id="id",
+        installation_id="installationId",
+    )
+
+
+def _smoke_case_119() -> None:
+    installation = client.mcp.servers.installations.create_access_group(
+        id="id",
+        installation_id="installationId",
+        access_group_uid="xxxxx",
+    )
+
+
+def _smoke_case_120() -> None:
+    installation = client.mcp.servers.installations.delete_access_group(
+        id="id",
+        installation_id="installationId",
+        access_group_uid="xxxxx",
+    )
+
+
+def _smoke_case_121() -> None:
+    o_auth = client.o_auth.oauth_authorize()
+
+
+def _smoke_case_122() -> None:
+    o_auth = client.o_auth.oauth_token(
+        grant_type="",
+    )
+
+
+def _smoke_case_123() -> None:
+    o_auth = client.o_auth.oauth_token(
+        grant_type="",
+        client_id="",
+        client_secret="",
+        code="",
+        redirect_uri="",
+        code_verifier="",
+        refresh_token="",
+        scope="",
+    )
+
+
+def _smoke_case_124() -> None:
+    o_auth = client.o_auth.oauth_revoke(
+        token="",
+    )
+
+
+def _smoke_case_125() -> None:
+    o_auth = client.o_auth.oauth_revoke(
+        token="",
+        token_type_hint="",
+        client_id="",
+        client_secret="",
+    )
+
+
+def _smoke_case_126() -> None:
+    o_auth = client.o_auth.oauth_authorization_server_metadata()
 
 
 cases: list[SmokeCase] = [
@@ -729,164 +1230,618 @@ cases: list[SmokeCase] = [
         "run": _smoke_case_32,
     },
     {
-        "operation": "listRulesets",
-        "method": "GET",
-        "path": "/v1/rulesets/{namespace}",
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/access-groups",
+        "label": "required params",
         "run": _smoke_case_33,
     },
     {
-        "operation": "createRuleset",
+        "operation": "create",
         "method": "POST",
-        "path": "/v1/rulesets/{namespace}",
-        "label": "required params",
+        "path": "/v1/access-groups",
+        "label": "all params",
         "run": _smoke_case_34,
     },
     {
-        "operation": "createRuleset",
-        "method": "POST",
-        "path": "/v1/rulesets/{namespace}",
-        "label": "all params",
+        "operation": "retrieve",
+        "method": "GET",
+        "path": "/v1/access-groups/{slug}",
         "run": _smoke_case_35,
     },
     {
-        "operation": "updateRuleset",
+        "operation": "update",
         "method": "PATCH",
-        "path": "/v1/rulesets/{namespace}/{slug}",
+        "path": "/v1/access-groups/{slug}",
         "label": "required params",
         "run": _smoke_case_36,
     },
     {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/access-groups/{slug}",
+        "label": "all params",
+        "run": _smoke_case_37,
+    },
+    {
+        "operation": "delete",
+        "method": "DELETE",
+        "path": "/v1/access-groups/{slug}",
+        "run": _smoke_case_38,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/access-groups/{slug}/domains",
+        "run": _smoke_case_39,
+    },
+    {
+        "operation": "delete",
+        "method": "DELETE",
+        "path": "/v1/access-groups/{slug}/domains",
+        "run": _smoke_case_40,
+    },
+    {
+        "operation": "listRulesets",
+        "method": "GET",
+        "path": "/v1/rulesets/{namespace}",
+        "run": _smoke_case_41,
+    },
+    {
+        "operation": "createRuleset",
+        "method": "POST",
+        "path": "/v1/rulesets/{namespace}",
+        "label": "required params",
+        "run": _smoke_case_42,
+    },
+    {
+        "operation": "createRuleset",
+        "method": "POST",
+        "path": "/v1/rulesets/{namespace}",
+        "label": "all params",
+        "run": _smoke_case_43,
+    },
+    {
+        "operation": "updateRuleset",
+        "method": "PATCH",
+        "path": "/v1/rulesets/{namespace}/{slug}",
+        "label": "required params",
+        "run": _smoke_case_44,
+    },
+    {
         "operation": "updateRuleset",
         "method": "PATCH",
         "path": "/v1/rulesets/{namespace}/{slug}",
         "label": "all params",
-        "run": _smoke_case_37,
+        "run": _smoke_case_45,
     },
     {
         "operation": "deleteRuleset",
         "method": "DELETE",
         "path": "/v1/rulesets/{namespace}/{slug}",
-        "run": _smoke_case_38,
+        "run": _smoke_case_46,
     },
     {
         "operation": "retrieveRulesetDocument",
         "method": "GET",
         "path": "/v1/rulesets/{namespace}/{slug}",
-        "run": _smoke_case_39,
+        "run": _smoke_case_47,
     },
     {
         "operation": "createRulesetAccessGroup",
         "method": "POST",
         "path": "/v1/rulesets/{namespace}/{slug}/access-group",
-        "run": _smoke_case_40,
+        "run": _smoke_case_48,
     },
     {
         "operation": "deleteRulesetAccessGroup",
         "method": "DELETE",
         "path": "/v1/rulesets/{namespace}/{slug}/access-group",
-        "run": _smoke_case_41,
-    },
-    {
-        "operation": "list",
-        "method": "GET",
-        "path": "/v1/themes",
-        "run": _smoke_case_42,
-    },
-    {
-        "operation": "create",
-        "method": "POST",
-        "path": "/v1/themes",
-        "label": "required params",
-        "run": _smoke_case_43,
-    },
-    {
-        "operation": "create",
-        "method": "POST",
-        "path": "/v1/themes",
-        "label": "all params",
-        "run": _smoke_case_44,
-    },
-    {
-        "operation": "update",
-        "method": "PATCH",
-        "path": "/v1/themes/{slug}",
-        "label": "required params",
-        "run": _smoke_case_45,
-    },
-    {
-        "operation": "update",
-        "method": "PATCH",
-        "path": "/v1/themes/{slug}",
-        "label": "all params",
-        "run": _smoke_case_46,
-    },
-    {
-        "operation": "replaceDocument",
-        "method": "PUT",
-        "path": "/v1/themes/{slug}",
-        "run": _smoke_case_47,
-    },
-    {
-        "operation": "delete",
-        "method": "DELETE",
-        "path": "/v1/themes/{slug}",
-        "run": _smoke_case_48,
-    },
-    {
-        "operation": "retrieve",
-        "method": "GET",
-        "path": "/v1/themes/{slug}",
         "run": _smoke_case_49,
     },
     {
         "operation": "list",
         "method": "GET",
-        "path": "/v1/teams",
+        "path": "/v1/themes",
         "run": _smoke_case_50,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/themes",
+        "label": "required params",
+        "run": _smoke_case_51,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/themes",
+        "label": "all params",
+        "run": _smoke_case_52,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/themes/{slug}",
+        "label": "required params",
+        "run": _smoke_case_53,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/themes/{slug}",
+        "label": "all params",
+        "run": _smoke_case_54,
+    },
+    {
+        "operation": "replaceDocument",
+        "method": "PUT",
+        "path": "/v1/themes/{slug}",
+        "run": _smoke_case_55,
+    },
+    {
+        "operation": "delete",
+        "method": "DELETE",
+        "path": "/v1/themes/{slug}",
+        "run": _smoke_case_56,
+    },
+    {
+        "operation": "retrieve",
+        "method": "GET",
+        "path": "/v1/themes/{slug}",
+        "run": _smoke_case_57,
+    },
+    {
+        "operation": "list",
+        "method": "GET",
+        "path": "/v1/teams",
+        "run": _smoke_case_58,
+    },
+    {
+        "operation": "list",
+        "method": "GET",
+        "path": "/v1/teams/members",
+        "run": _smoke_case_59,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/teams/members/{uid}",
+        "run": _smoke_case_60,
+    },
+    {
+        "operation": "delete",
+        "method": "DELETE",
+        "path": "/v1/teams/members/{uid}",
+        "run": _smoke_case_61,
+    },
+    {
+        "operation": "member",
+        "method": "POST",
+        "path": "/v1/teams/invites",
+        "run": _smoke_case_62,
+    },
+    {
+        "operation": "resend",
+        "method": "PATCH",
+        "path": "/v1/teams/invites/{uid}",
+        "run": _smoke_case_63,
+    },
+    {
+        "operation": "cancel",
+        "method": "DELETE",
+        "path": "/v1/teams/invites/{uid}",
+        "run": _smoke_case_64,
     },
     {
         "operation": "listGuides",
         "method": "GET",
         "path": "/v1/guides",
-        "run": _smoke_case_51,
+        "run": _smoke_case_65,
     },
     {
         "operation": "createGuide",
         "method": "POST",
         "path": "/v1/guides",
         "label": "required params",
-        "run": _smoke_case_52,
+        "run": _smoke_case_66,
     },
     {
         "operation": "createGuide",
         "method": "POST",
         "path": "/v1/guides",
         "label": "all params",
-        "run": _smoke_case_53,
+        "run": _smoke_case_67,
     },
     {
         "operation": "publishGuide",
         "method": "POST",
         "path": "/v1/guides/{slug}/publish",
-        "run": _smoke_case_54,
+        "run": _smoke_case_68,
+    },
+    {
+        "operation": "listProjects",
+        "method": "GET",
+        "path": "/v1/docs",
+        "label": "required params",
+        "run": _smoke_case_69,
+    },
+    {
+        "operation": "listProjects",
+        "method": "GET",
+        "path": "/v1/docs",
+        "label": "all params",
+        "run": _smoke_case_70,
+    },
+    {
+        "operation": "createProject",
+        "method": "POST",
+        "path": "/v1/docs",
+        "label": "required params",
+        "run": _smoke_case_71,
+    },
+    {
+        "operation": "createProject",
+        "method": "POST",
+        "path": "/v1/docs",
+        "label": "all params",
+        "run": _smoke_case_72,
+    },
+    {
+        "operation": "retrieveProject",
+        "method": "GET",
+        "path": "/v1/docs/{slug}",
+        "run": _smoke_case_73,
+    },
+    {
+        "operation": "updateProject",
+        "method": "PATCH",
+        "path": "/v1/docs/{slug}",
+        "label": "required params",
+        "run": _smoke_case_74,
+    },
+    {
+        "operation": "updateProject",
+        "method": "PATCH",
+        "path": "/v1/docs/{slug}",
+        "label": "all params",
+        "run": _smoke_case_75,
+    },
+    {
+        "operation": "deleteProject",
+        "method": "DELETE",
+        "path": "/v1/docs/{slug}",
+        "run": _smoke_case_76,
+    },
+    {
+        "operation": "publishProject",
+        "method": "POST",
+        "path": "/v1/docs/{slug}/publish",
+        "label": "required params",
+        "run": _smoke_case_77,
+    },
+    {
+        "operation": "publishProject",
+        "method": "POST",
+        "path": "/v1/docs/{slug}/publish",
+        "label": "all params",
+        "run": _smoke_case_78,
+    },
+    {
+        "operation": "listProjectConfig",
+        "method": "GET",
+        "path": "/v1/docs/{slug}/config",
+        "label": "required params",
+        "run": _smoke_case_79,
+    },
+    {
+        "operation": "listProjectConfig",
+        "method": "GET",
+        "path": "/v1/docs/{slug}/config",
+        "label": "all params",
+        "run": _smoke_case_80,
+    },
+    {
+        "operation": "updateProjectConfig",
+        "method": "PUT",
+        "path": "/v1/docs/{slug}/config",
+        "label": "required params",
+        "run": _smoke_case_81,
+    },
+    {
+        "operation": "updateProjectConfig",
+        "method": "PUT",
+        "path": "/v1/docs/{slug}/config",
+        "label": "all params",
+        "run": _smoke_case_82,
+    },
+    {
+        "operation": "listProjectDomain",
+        "method": "GET",
+        "path": "/v1/docs/{slug}/domain",
+        "run": _smoke_case_83,
+    },
+    {
+        "operation": "listProjectDomainStatus",
+        "method": "GET",
+        "path": "/v1/docs/{slug}/domain/status",
+        "run": _smoke_case_84,
     },
     {
         "operation": "list",
         "method": "GET",
         "path": "/v1/namespaces",
-        "run": _smoke_case_55,
+        "run": _smoke_case_85,
     },
     {
         "operation": "exchangePersonalToken",
         "method": "POST",
         "path": "/v1/auth/exchange",
-        "run": _smoke_case_56,
+        "run": _smoke_case_86,
     },
     {
         "operation": "listCurrentUser",
         "method": "GET",
         "path": "/v1/auth/me",
-        "run": _smoke_case_57,
+        "run": _smoke_case_87,
+    },
+    {
+        "operation": "list",
+        "method": "GET",
+        "path": "/v1/sdks",
+        "label": "required params",
+        "run": _smoke_case_88,
+    },
+    {
+        "operation": "list",
+        "method": "GET",
+        "path": "/v1/sdks",
+        "label": "all params",
+        "run": _smoke_case_89,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/sdks",
+        "label": "required params",
+        "run": _smoke_case_90,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/sdks",
+        "label": "all params",
+        "run": _smoke_case_91,
+    },
+    {
+        "operation": "retrieve",
+        "method": "GET",
+        "path": "/v1/sdks/{uid}",
+        "run": _smoke_case_92,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/sdks/{uid}",
+        "label": "required params",
+        "run": _smoke_case_93,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/sdks/{uid}",
+        "label": "all params",
+        "run": _smoke_case_94,
+    },
+    {
+        "operation": "delete",
+        "method": "DELETE",
+        "path": "/v1/sdks/{uid}",
+        "run": _smoke_case_95,
+    },
+    {
+        "operation": "build",
+        "method": "POST",
+        "path": "/v1/sdks/{uid}/build",
+        "label": "required params",
+        "run": _smoke_case_96,
+    },
+    {
+        "operation": "build",
+        "method": "POST",
+        "path": "/v1/sdks/{uid}/build",
+        "label": "all params",
+        "run": _smoke_case_97,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/sdks/{uid}/versions",
+        "run": _smoke_case_98,
+    },
+    {
+        "operation": "delete",
+        "method": "DELETE",
+        "path": "/v1/sdks/{uid}/versions/{version}",
+        "run": _smoke_case_99,
+    },
+    {
+        "operation": "link",
+        "method": "POST",
+        "path": "/v1/sdks/{uid}/repositories",
+        "label": "required params",
+        "run": _smoke_case_100,
+    },
+    {
+        "operation": "link",
+        "method": "POST",
+        "path": "/v1/sdks/{uid}/repositories",
+        "label": "all params",
+        "run": _smoke_case_101,
+    },
+    {
+        "operation": "unlink",
+        "method": "DELETE",
+        "path": "/v1/sdks/{uid}/repositories/{language}",
+        "run": _smoke_case_102,
+    },
+    {
+        "operation": "updatePublishing",
+        "method": "POST",
+        "path": "/v1/sdks/{uid}/repositories/{language}/publishing",
+        "label": "required params",
+        "run": _smoke_case_103,
+    },
+    {
+        "operation": "updatePublishing",
+        "method": "POST",
+        "path": "/v1/sdks/{uid}/repositories/{language}/publishing",
+        "label": "all params",
+        "run": _smoke_case_104,
+    },
+    {
+        "operation": "list",
+        "method": "GET",
+        "path": "/v1/mcp/servers",
+        "run": _smoke_case_105,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/mcp/servers",
+        "label": "required params",
+        "run": _smoke_case_106,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/mcp/servers",
+        "label": "all params",
+        "run": _smoke_case_107,
+    },
+    {
+        "operation": "retrieve",
+        "method": "GET",
+        "path": "/v1/mcp/servers/{id}",
+        "run": _smoke_case_108,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/mcp/servers/{id}",
+        "label": "required params",
+        "run": _smoke_case_109,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/mcp/servers/{id}",
+        "label": "all params",
+        "run": _smoke_case_110,
+    },
+    {
+        "operation": "delete",
+        "method": "DELETE",
+        "path": "/v1/mcp/servers/{id}",
+        "run": _smoke_case_111,
+    },
+    {
+        "operation": "list",
+        "method": "GET",
+        "path": "/v1/mcp/servers/{id}/installations",
+        "run": _smoke_case_112,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/mcp/servers/{id}/installations",
+        "label": "required params",
+        "run": _smoke_case_113,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/mcp/servers/{id}/installations",
+        "label": "all params",
+        "run": _smoke_case_114,
+    },
+    {
+        "operation": "retrieve",
+        "method": "GET",
+        "path": "/v1/mcp/servers/{id}/installations/{installationId}",
+        "run": _smoke_case_115,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/mcp/servers/{id}/installations/{installationId}",
+        "label": "required params",
+        "run": _smoke_case_116,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/mcp/servers/{id}/installations/{installationId}",
+        "label": "all params",
+        "run": _smoke_case_117,
+    },
+    {
+        "operation": "delete",
+        "method": "DELETE",
+        "path": "/v1/mcp/servers/{id}/installations/{installationId}",
+        "run": _smoke_case_118,
+    },
+    {
+        "operation": "createAccessGroup",
+        "method": "POST",
+        "path": "/v1/mcp/servers/{id}/installations/{installationId}/access-group",
+        "run": _smoke_case_119,
+    },
+    {
+        "operation": "deleteAccessGroup",
+        "method": "DELETE",
+        "path": "/v1/mcp/servers/{id}/installations/{installationId}/access-group",
+        "run": _smoke_case_120,
+    },
+    {
+        "operation": "oauthAuthorize",
+        "method": "GET",
+        "path": "/v1/oauth/authorize",
+        "run": _smoke_case_121,
+    },
+    {
+        "operation": "oauthToken",
+        "method": "POST",
+        "path": "/v1/oauth/token",
+        "label": "required params",
+        "run": _smoke_case_122,
+    },
+    {
+        "operation": "oauthToken",
+        "method": "POST",
+        "path": "/v1/oauth/token",
+        "label": "all params",
+        "run": _smoke_case_123,
+    },
+    {
+        "operation": "oauthRevoke",
+        "method": "POST",
+        "path": "/v1/oauth/revoke",
+        "label": "required params",
+        "run": _smoke_case_124,
+    },
+    {
+        "operation": "oauthRevoke",
+        "method": "POST",
+        "path": "/v1/oauth/revoke",
+        "label": "all params",
+        "run": _smoke_case_125,
+    },
+    {
+        "operation": "oauthAuthorizationServerMetadata",
+        "method": "GET",
+        "path": "/.well-known/oauth-authorization-server",
+        "run": _smoke_case_126,
     },
 ]
 

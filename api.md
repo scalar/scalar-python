@@ -35,6 +35,14 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Delete a login portal](#delete-a-login-portal)
   - [Create a portal](#create-a-portal)
   - [List all portals](#list-all-portals)
+- [`AccessGroups`](#accessgroups)
+  - [Create an access group](#create-an-access-group)
+  - [Get an access group](#get-an-access-group)
+  - [Update an access group](#update-an-access-group)
+  - [Delete an access group](#delete-an-access-group)
+  - [`AccessGroups Domains`](#accessgroups-domains)
+    - [Add an allowed email domain](#add-an-allowed-email-domain)
+    - [Remove an allowed email domain](#remove-an-allowed-email-domain)
 - [`Rules`](#rules)
   - [List all rules](#list-all-rules)
   - [Create a rule](#create-a-rule)
@@ -52,15 +60,67 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [Get a theme](#get-a-theme)
 - [`Teams`](#teams)
   - [List teams](#list-teams)
+  - [`Teams Members`](#teams-members)
+    - [List team members](#list-team-members)
+    - [Change a member role](#change-a-member-role)
+    - [Remove a member](#remove-a-member)
+  - [`Teams Invites`](#teams-invites)
+    - [Invite a member](#invite-a-member)
+    - [Resend an invite](#resend-an-invite)
+    - [Cancel an invite](#cancel-an-invite)
 - [`ScalarDocs`](#scalardocs)
   - [List all projects](#list-all-projects)
   - [Create a project](#create-a-project)
   - [Publish a project](#publish-a-project)
+  - [List all docs projects](#list-all-docs-projects)
+  - [Create a docs project](#create-a-docs-project)
+  - [Get a docs project](#get-a-docs-project)
+  - [Update a docs project](#update-a-docs-project)
+  - [Delete a docs project](#delete-a-docs-project)
+  - [Publish a docs project](#publish-a-docs-project)
+  - [Read the site config](#read-the-site-config)
+  - [Write the site config](#write-the-site-config)
+  - [Get the site domains](#get-the-site-domains)
+  - [Check domain DNS](#check-domain-dns)
 - [`Namespaces`](#namespaces)
   - [List namespaces](#list-namespaces)
 - [`Authentication`](#authentication)
   - [Exchange token](#exchange-token)
   - [Get current user](#get-current-user)
+- [`Sdks`](#sdks)
+  - [List all SDKs](#list-all-sdks)
+  - [Create an SDK](#create-an-sdk)
+  - [Get an SDK](#get-an-sdk)
+  - [Update an SDK](#update-an-sdk)
+  - [Delete an SDK](#delete-an-sdk)
+  - [Build an SDK](#build-an-sdk)
+  - [`Sdks Versions`](#sdks-versions)
+    - [Create an SDK version](#create-an-sdk-version)
+    - [Delete an SDK version](#delete-an-sdk-version)
+  - [`Sdks Repositories`](#sdks-repositories)
+    - [Link a repository](#link-a-repository)
+    - [Unlink a repository](#unlink-a-repository)
+    - [Update publishing settings](#update-publishing-settings)
+- [`Mcp`](#mcp)
+  - [`Mcp Servers`](#mcp-servers)
+    - [List all MCP servers](#list-all-mcp-servers)
+    - [Create an MCP server](#create-an-mcp-server)
+    - [Get an MCP server](#get-an-mcp-server)
+    - [Update an MCP server](#update-an-mcp-server)
+    - [Delete an MCP server](#delete-an-mcp-server)
+    - [`Mcp Servers Installations`](#mcp-servers-installations)
+      - [List installations](#list-installations)
+      - [Create an installation](#create-an-installation)
+      - [Get an installation](#get-an-installation)
+      - [Update an installation](#update-an-installation)
+      - [Delete an installation](#delete-an-installation)
+      - [Add an access group](#add-an-access-group)
+      - [Remove an access group](#remove-an-access-group)
+- [`OAuth`](#oauth)
+  - [Start an OAuth authorization](#start-an-oauth-authorization)
+  - [Exchange a code or refresh token](#exchange-a-code-or-refresh-token)
+  - [Revoke a refresh token](#revoke-a-refresh-token)
+  - [Authorization server metadata](#authorization-server-metadata)
 
 ## Setup
 
@@ -536,6 +596,102 @@ List all login portals for the current team.
 login_portal = client.login_portals.list()
 ```
 
+## `AccessGroups`
+
+Access Groups
+
+### Create an access group
+
+Create a group for the current team. Requires docs edit permission and the access groups billing feature. Domains are exact email domains, without wildcards or implicit subdomain matching.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`AccessGroupCreateParams`](./src/scalar_sdk/types/access_group_create_params.py) |
+| Response | [`AccessGroupCreateResponse`](./src/scalar_sdk/types/access_group_create_response.py) |
+
+```python
+access_group = client.access_groups.create()
+```
+
+### Get an access group
+
+Get a group and its email and domain allowlists by slug.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`AccessGroupRetrieveResponse`](./src/scalar_sdk/types/access_group_retrieve_response.py) |
+
+```python
+access_group = client.access_groups.retrieve(
+    slug="slug",
+)
+```
+
+### Update an access group
+
+Update group metadata. Requires docs edit permission. After changing the slug, use the new slug in subsequent requests.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`AccessGroupUpdateParams`](./src/scalar_sdk/types/access_group_update_params.py) |
+| Response | [`AccessGroupUpdateResponse`](./src/scalar_sdk/types/access_group_update_response.py) |
+
+```python
+access_group = client.access_groups.update(
+    path_slug="slug",
+)
+```
+
+### Delete an access group
+
+Delete a group and remove its project assignments. Requires docs edit permission.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`AccessGroupDeleteResponse`](./src/scalar_sdk/types/access_group_delete_response.py) |
+
+```python
+access_group = client.access_groups.delete(
+    slug="slug",
+)
+```
+
+### `AccessGroups Domains`
+
+Access Groups
+
+#### Add an allowed email domain
+
+Allow an exact email domain in a group. Requires docs edit permission. A group supports up to 1000 domains.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`DomainCreateParams`](./src/scalar_sdk/types/access_groups/domain_create_params.py) |
+| Response | [`DomainCreateResponse`](./src/scalar_sdk/types/access_groups/domain_create_response.py) |
+
+```python
+domain = client.access_groups.domains.create(
+    slug="slug",
+    domain="",
+)
+```
+
+#### Remove an allowed email domain
+
+Remove an exact email domain from a group. Requires docs edit permission. Other allowed domains and emails are preserved.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`DomainDeleteParams`](./src/scalar_sdk/types/access_groups/domain_delete_params.py) |
+| Response | [`DomainDeleteResponse`](./src/scalar_sdk/types/access_groups/domain_delete_response.py) |
+
+```python
+domain = client.access_groups.domains.delete(
+    slug="slug",
+    domain="",
+)
+```
+
 ## `Rules`
 
 Rules
@@ -760,6 +916,100 @@ List all available teams
 team = client.teams.list()
 ```
 
+### `Teams Members`
+
+Teams
+
+#### List team members
+
+List the members of the current team, along with the invites still outstanding.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`MemberListResponse`](./src/scalar_sdk/types/teams/member_list_response.py) |
+
+```python
+member = client.teams.members.list()
+```
+
+#### Change a member role
+
+Change what a member of the current team is allowed to do.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`MemberUpdateParams`](./src/scalar_sdk/types/teams/member_update_params.py) |
+| Response | [`MemberUpdateResponse`](./src/scalar_sdk/types/teams/member_update_response.py) |
+
+```python
+member = client.teams.members.update(
+    uid="uidxx",
+    role="owner",
+)
+```
+
+#### Remove a member
+
+Remove someone from the current team.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`MemberDeleteResponse`](./src/scalar_sdk/types/teams/member_delete_response.py) |
+
+```python
+member = client.teams.members.delete(
+    uid="uidxx",
+)
+```
+
+### `Teams Invites`
+
+Teams
+
+#### Invite a member
+
+Invite someone to the current team by email.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`InviteMemberParams`](./src/scalar_sdk/types/teams/invite_member_params.py) |
+| Response | [`InviteMemberResponse`](./src/scalar_sdk/types/teams/invite_member_response.py) |
+
+```python
+invite = client.teams.invites.member(
+    email="user@example.com",
+    role="owner",
+)
+```
+
+#### Resend an invite
+
+Send the invite email again.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`InviteResendResponse`](./src/scalar_sdk/types/teams/invite_resend_response.py) |
+
+```python
+invite = client.teams.invites.resend(
+    uid="uidxx",
+)
+```
+
+#### Cancel an invite
+
+Withdraw an invite that has not been accepted.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`InviteCancelResponse`](./src/scalar_sdk/types/teams/invite_cancel_response.py) |
+
+```python
+invite = client.teams.invites.cancel(
+    uid="uidxx",
+)
+```
+
 ## `ScalarDocs`
 
 Scalar Docs
@@ -808,6 +1058,152 @@ scalar_doc = client.scalar_docs.publish_guide(
 )
 ```
 
+### List all docs projects
+
+List every docs project on the team.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`ScalarDocListProjectsParams`](./src/scalar_sdk/types/scalar_doc_list_projects_params.py) |
+| Response | [`ScalarDocListProjectsResponse`](./src/scalar_sdk/types/scalar_doc_list_projects_response.py) |
+
+```python
+scalar_doc = client.scalar_docs.list_projects()
+```
+
+### Create a docs project
+
+Create a docs project. Omit `provider` to have Scalar host the repository.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`ScalarDocCreateProjectParams`](./src/scalar_sdk/types/scalar_doc_create_project_params.py) |
+| Response | [`DocsProject`](./src/scalar_sdk/types/docs_project.py) |
+
+```python
+scalar_doc = client.scalar_docs.create_project(
+    name="",
+    provider="forgejo",
+)
+```
+
+### Get a docs project
+
+Get a single docs project by its slug.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`DocsProject`](./src/scalar_sdk/types/docs_project.py) |
+
+```python
+scalar_doc = client.scalar_docs.retrieve_project(
+    slug="slug",
+)
+```
+
+### Update a docs project
+
+Update project settings. Set `isPrivate` with `accessGroups` to put the site behind a login.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`ScalarDocUpdateProjectParams`](./src/scalar_sdk/types/scalar_doc_update_project_params.py) |
+| Response | [`ScalarDocUpdateProjectResponse`](./src/scalar_sdk/types/scalar_doc_update_project_response.py) |
+
+```python
+scalar_doc = client.scalar_docs.update_project(
+    slug="slug",
+)
+```
+
+### Delete a docs project
+
+Delete a docs project, its deploys, its publish records and its cached builds.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`ScalarDocDeleteProjectResponse`](./src/scalar_sdk/types/scalar_doc_delete_project_response.py) |
+
+```python
+scalar_doc = client.scalar_docs.delete_project(
+    slug="slug",
+)
+```
+
+### Publish a docs project
+
+Start a build and deploy. The returned `publishUid` identifies the publish record.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`ScalarDocPublishProjectParams`](./src/scalar_sdk/types/scalar_doc_publish_project_params.py) |
+| Response | [`ScalarDocPublishProjectResponse`](./src/scalar_sdk/types/scalar_doc_publish_project_response.py) |
+
+```python
+scalar_doc = client.scalar_docs.publish_project(
+    slug="slug",
+)
+```
+
+### Read the site config
+
+Read `scalar.config.json` straight from the project repository, without cloning it. `baseToken` is the compare-and-swap handle for a later write.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`ScalarDocListProjectConfigParams`](./src/scalar_sdk/types/scalar_doc_list_project_config_params.py) |
+| Response | [`ScalarDocListProjectConfigResponse`](./src/scalar_sdk/types/scalar_doc_list_project_config_response.py) |
+
+```python
+scalar_doc = client.scalar_docs.list_project_config(
+    slug="slug",
+)
+```
+
+### Write the site config
+
+Commit `scalar.config.json` straight to the project repository. Pass the `baseToken` from the read this edit was based on; a conflict means the file moved underneath it.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`ScalarDocUpdateProjectConfigParams`](./src/scalar_sdk/types/scalar_doc_update_project_config_params.py) |
+| Response | [`ScalarDocUpdateProjectConfigResponse`](./src/scalar_sdk/types/scalar_doc_update_project_config_response.py) |
+
+```python
+scalar_doc = client.scalar_docs.update_project_config(
+    slug="slug",
+    content="",
+)
+```
+
+### Get the site domains
+
+The domains the project serves on — the Scalar-hosted one and the custom one, when set.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`ScalarDocListProjectDomainResponse`](./src/scalar_sdk/types/scalar_doc_list_project_domain_response.py) |
+
+```python
+scalar_doc = client.scalar_docs.list_project_domain(
+    slug="slug",
+)
+```
+
+### Check domain DNS
+
+Whether the project custom domain points at Scalar yet. `expected` is the CNAME record to create; `found` is what resolves today. A project with no custom domain reports `verified` with no expected record, because Scalar serves its own subdomain directly.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`ScalarDocListProjectDomainStatusResponse`](./src/scalar_sdk/types/scalar_doc_list_project_domain_status_response.py) |
+
+```python
+scalar_doc = client.scalar_docs.list_project_domain_status(
+    slug="slug",
+)
+```
+
 ## `Namespaces`
 
 Namespaces
@@ -849,8 +1245,438 @@ Get the authenticated user, including their available teams and theme.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`AuthenticationListCurrentUserResponse`](./src/scalar_sdk/types/authentication_list_current_user_response.py) |
+| Response | [`User`](./src/scalar_sdk/types/teams/user.py) |
 
 ```python
 authentication = client.authentication.list_current_user()
+```
+
+## `Sdks`
+
+SDKs
+
+### List all SDKs
+
+List every SDK on the team.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`SdkListParams`](./src/scalar_sdk/types/sdk_list_params.py) |
+| Response | [`SdkListResponse`](./src/scalar_sdk/types/sdk_list_response.py) |
+
+```python
+sdk = client.sdks.list()
+```
+
+### Create an SDK
+
+Create an SDK from an API document, targeting one or more languages.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`SdkCreateParams`](./src/scalar_sdk/types/sdk_create_params.py) |
+| Response | [`UID`](./src/scalar_sdk/types/shared/uid.py) |
+
+```python
+sdk = client.sdks.create(
+    api_uid="xxxxx",
+    languages=["typescript"],
+)
+```
+
+### Get an SDK
+
+Get a single SDK by its uid.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`Sdk`](./src/scalar_sdk/types/sdk.py) |
+
+```python
+sdk = client.sdks.retrieve(
+    uid="uidxx",
+)
+```
+
+### Update an SDK
+
+Update SDK metadata, its linked API, or its config.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`SdkUpdateParams`](./src/scalar_sdk/types/sdk_update_params.py) |
+| Response | [`SdkUpdateResponse`](./src/scalar_sdk/types/sdk_update_response.py) |
+
+```python
+sdk = client.sdks.update(
+    uid="uidxx",
+)
+```
+
+### Delete an SDK
+
+Delete an SDK and every version it holds.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`SdkDeleteResponse`](./src/scalar_sdk/types/sdk_delete_response.py) |
+
+```python
+sdk = client.sdks.delete(
+    uid="uidxx",
+)
+```
+
+### Build an SDK
+
+Start a build. Omit `version` to build the current work — the open draft, else the latest version — and the resolved version comes back in the response.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`SdkBuildParams`](./src/scalar_sdk/types/sdk_build_params.py) |
+| Response | [`SdkBuildResponse`](./src/scalar_sdk/types/sdk_build_response.py) |
+
+```python
+sdk = client.sdks.build(
+    uid="uidxx",
+)
+```
+
+### `Sdks Versions`
+
+SDKs
+
+#### Create an SDK version
+
+Create a new SDK version against a specific API version.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`VersionCreateParams`](./src/scalar_sdk/types/sdks/version_create_params.py) |
+| Response | [`VersionCreateResponse`](./src/scalar_sdk/types/sdks/version_create_response.py) |
+
+```python
+version = client.sdks.versions.create(
+    uid="uidxx",
+    version="",
+    api_version="",
+)
+```
+
+#### Delete an SDK version
+
+Permanently delete one version of an SDK.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`VersionDeleteResponse`](./src/scalar_sdk/types/sdks/version_delete_response.py) |
+
+```python
+version = client.sdks.versions.delete(
+    uid="uidxx",
+    version="version",
+)
+```
+
+### `Sdks Repositories`
+
+SDKs
+
+#### Link a repository
+
+Link one language target to a GitHub repository, so builds sync there.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`RepositoryLinkParams`](./src/scalar_sdk/types/sdks/repository_link_params.py) |
+| Response | [`RepositoryLinkResponse`](./src/scalar_sdk/types/sdks/repository_link_response.py) |
+
+```python
+repository = client.sdks.repositories.link(
+    uid="uidxx",
+    language="typescript",
+    repository_id=0,
+    base_branch="",
+)
+```
+
+#### Unlink a repository
+
+Unlink one language target from its repository.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`RepositoryUnlinkResponse`](./src/scalar_sdk/types/sdks/repository_unlink_response.py) |
+
+```python
+repository = client.sdks.repositories.unlink(
+    uid="uidxx",
+    language="typescript",
+)
+```
+
+#### Update publishing settings
+
+Toggle publish-on-merge and the release settings for a linked target.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`RepositoryUpdatePublishingParams`](./src/scalar_sdk/types/sdks/repository_update_publishing_params.py) |
+| Response | [`RepositoryUpdatePublishingResponse`](./src/scalar_sdk/types/sdks/repository_update_publishing_response.py) |
+
+```python
+repository = client.sdks.repositories.update_publishing(
+    uid="uidxx",
+    language="typescript",
+    publish_on_merge=False,
+)
+```
+
+## `Mcp`
+
+### `Mcp Servers`
+
+MCP
+
+#### List all MCP servers
+
+List every MCP server on the team.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`ServerListResponse`](./src/scalar_sdk/types/mcp/server_list_response.py) |
+
+```python
+server = client.mcp.servers.list()
+```
+
+#### Create an MCP server
+
+Create an MCP server over one or more API document versions. The response carries the server and its first installation.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`ServerCreateParams`](./src/scalar_sdk/types/mcp/server_create_params.py) |
+| Response | [`ServerCreateResponse`](./src/scalar_sdk/types/mcp/server_create_response.py) |
+
+```python
+server = client.mcp.servers.create(
+    name="x",
+)
+```
+
+#### Get an MCP server
+
+Get a single MCP server by its id.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`McpServer`](./src/scalar_sdk/types/mcp/mcp_server.py) |
+
+```python
+server = client.mcp.servers.retrieve(
+    id="id",
+)
+```
+
+#### Update an MCP server
+
+Update MCP server metadata and which tools it exposes.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`ServerUpdateParams`](./src/scalar_sdk/types/mcp/server_update_params.py) |
+| Response | [`McpServer`](./src/scalar_sdk/types/mcp/mcp_server.py) |
+
+```python
+server = client.mcp.servers.update(
+    id="id",
+)
+```
+
+#### Delete an MCP server
+
+Delete an MCP server and every installation it serves.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`ServerDeleteResponse`](./src/scalar_sdk/types/mcp/server_delete_response.py) |
+
+```python
+server = client.mcp.servers.delete(
+    id="id",
+)
+```
+
+#### `Mcp Servers Installations`
+
+MCP
+
+##### List installations
+
+List the installations of an MCP server. An installation is what an MCP client connects to.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`InstallationListResponse`](./src/scalar_sdk/types/mcp/servers/installation_list_response.py) |
+
+```python
+installation = client.mcp.servers.installations.list(
+    id="id",
+)
+```
+
+##### Create an installation
+
+Create an installation of an MCP server. `documentAuth` holds the credentials the server presents to the upstream API and is never returned.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`InstallationCreateParams`](./src/scalar_sdk/types/mcp/servers/installation_create_params.py) |
+| Response | [`McpInstallation`](./src/scalar_sdk/types/mcp/mcp_installation.py) |
+
+```python
+installation = client.mcp.servers.installations.create(
+    id="id",
+    name="x",
+    document_auth={},
+)
+```
+
+##### Get an installation
+
+Get a single installation of an MCP server.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`McpInstallation`](./src/scalar_sdk/types/mcp/mcp_installation.py) |
+
+```python
+installation = client.mcp.servers.installations.retrieve(
+    id="id",
+    installation_id="installationId",
+)
+```
+
+##### Update an installation
+
+Update an installation. Set `isPrivate` and add access groups to put it behind a login.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`InstallationUpdateParams`](./src/scalar_sdk/types/mcp/servers/installation_update_params.py) |
+| Response | [`McpInstallation`](./src/scalar_sdk/types/mcp/mcp_installation.py) |
+
+```python
+installation = client.mcp.servers.installations.update(
+    id="id",
+    installation_id="installationId",
+)
+```
+
+##### Delete an installation
+
+Delete an installation of an MCP server.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`InstallationDeleteResponse`](./src/scalar_sdk/types/mcp/servers/installation_delete_response.py) |
+
+```python
+installation = client.mcp.servers.installations.delete(
+    id="id",
+    installation_id="installationId",
+)
+```
+
+##### Add an access group
+
+Let an access group reach a private installation.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`InstallationCreateAccessGroupParams`](./src/scalar_sdk/types/mcp/servers/installation_create_access_group_params.py) |
+| Response | [`InstallationCreateAccessGroupResponse`](./src/scalar_sdk/types/mcp/servers/installation_create_access_group_response.py) |
+
+```python
+installation = client.mcp.servers.installations.create_access_group(
+    id="id",
+    installation_id="installationId",
+    access_group_uid="xxxxx",
+)
+```
+
+##### Remove an access group
+
+Stop an access group reaching a private installation.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`InstallationDeleteAccessGroupParams`](./src/scalar_sdk/types/mcp/servers/installation_delete_access_group_params.py) |
+| Response | [`InstallationDeleteAccessGroupResponse`](./src/scalar_sdk/types/mcp/servers/installation_delete_access_group_response.py) |
+
+```python
+installation = client.mcp.servers.installations.delete_access_group(
+    id="id",
+    installation_id="installationId",
+    access_group_uid="xxxxx",
+)
+```
+
+## `OAuth`
+
+OAuth
+
+### Start an OAuth authorization
+
+Authorization endpoint (RFC 6749 §4.1.1 with PKCE, RFC 7636). Validates the request and sends the user to the Scalar dashboard to approve it; the user returns to `redirect_uri` with a `code` to exchange at the token endpoint. Only `response_type=code` with `code_challenge_method=S256` is supported.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`OAuthOauthAuthorizeResponse`](./src/scalar_sdk/types/o_auth_oauth_authorize_response.py) |
+
+```python
+o_auth = client.o_auth.oauth_authorize()
+```
+
+### Exchange a code or refresh token
+
+Token endpoint (RFC 6749 §4.1.3 and §6). Accepts `application/x-www-form-urlencoded`. Confidential clients authenticate with HTTP Basic or `client_secret` in the body; public clients send `client_id` alone. The `authorization_code` grant needs `code`, `redirect_uri` and `code_verifier`; the `refresh_token` grant needs `refresh_token` and may narrow `scope`.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`OAuthOauthTokenParams`](./src/scalar_sdk/types/o_auth_oauth_token_params.py) |
+| Response | [`OAuthOauthTokenResponse`](./src/scalar_sdk/types/o_auth_oauth_token_response.py) |
+
+```python
+o_auth = client.o_auth.oauth_token(
+    grant_type="",
+)
+```
+
+### Revoke a refresh token
+
+Revocation endpoint (RFC 7009). Revokes the refresh token and every token issued alongside it. The client authenticates as it does at the token endpoint. Responds 200 whether or not the token was live, as the RFC requires.
+
+| Direction | Type |
+| --- | --- |
+| Request | [`OAuthOauthRevokeParams`](./src/scalar_sdk/types/o_auth_oauth_revoke_params.py) |
+| Response | [`OAuthOauthRevokeResponse`](./src/scalar_sdk/types/o_auth_oauth_revoke_response.py) |
+
+```python
+o_auth = client.o_auth.oauth_revoke(
+    token="",
+)
+```
+
+### Authorization server metadata
+
+Discovery document for OAuth clients (RFC 8414): where the endpoints are and what they support.
+
+| Direction | Type |
+| --- | --- |
+| Response | [`OauthAuthorizationServerMetadata`](./src/scalar_sdk/types/oauth_authorization_server_metadata.py) |
+
+```python
+o_auth = client.o_auth.oauth_authorization_server_metadata()
 ```
