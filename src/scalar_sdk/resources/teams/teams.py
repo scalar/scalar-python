@@ -4,22 +4,46 @@ from __future__ import annotations
 
 import httpx
 
-from .._types import Body, Query, Headers, NotGiven, not_given
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.team_list_response import TeamListResponse
+from ..._base_client import make_request_options
+from .members import (
+    MembersResource,
+    AsyncMembersResource,
+    MembersResourceWithRawResponse,
+    AsyncMembersResourceWithRawResponse,
+    MembersResourceWithStreamingResponse,
+    AsyncMembersResourceWithStreamingResponse,
+)
+from .invites import (
+    InvitesResource,
+    AsyncInvitesResource,
+    InvitesResourceWithRawResponse,
+    AsyncInvitesResourceWithRawResponse,
+    InvitesResourceWithStreamingResponse,
+    AsyncInvitesResourceWithStreamingResponse,
+)
+from ...types.team_list_response import TeamListResponse
 
 __all__ = ["TeamsResource", "AsyncTeamsResource"]
 
 
 class TeamsResource(SyncAPIResource):
+    @cached_property
+    def members(self) -> MembersResource:
+        return MembersResource(self._client)
+
+    @cached_property
+    def invites(self) -> InvitesResource:
+        return InvitesResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> TeamsResourceWithRawResponse:
         return TeamsResourceWithRawResponse(self)
@@ -65,6 +89,14 @@ class TeamsResource(SyncAPIResource):
 
 
 class AsyncTeamsResource(AsyncAPIResource):
+    @cached_property
+    def members(self) -> AsyncMembersResource:
+        return AsyncMembersResource(self._client)
+
+    @cached_property
+    def invites(self) -> AsyncInvitesResource:
+        return AsyncInvitesResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncTeamsResourceWithRawResponse:
         return AsyncTeamsResourceWithRawResponse(self)
@@ -117,6 +149,14 @@ class TeamsResourceWithRawResponse:
             teams.list,
         )
 
+    @cached_property
+    def members(self) -> MembersResourceWithRawResponse:
+        return MembersResourceWithRawResponse(self._teams.members)
+
+    @cached_property
+    def invites(self) -> InvitesResourceWithRawResponse:
+        return InvitesResourceWithRawResponse(self._teams.invites)
+
 
 class AsyncTeamsResourceWithRawResponse:
     def __init__(self, teams: AsyncTeamsResource) -> None:
@@ -125,6 +165,14 @@ class AsyncTeamsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             teams.list,
         )
+
+    @cached_property
+    def members(self) -> AsyncMembersResourceWithRawResponse:
+        return AsyncMembersResourceWithRawResponse(self._teams.members)
+
+    @cached_property
+    def invites(self) -> AsyncInvitesResourceWithRawResponse:
+        return AsyncInvitesResourceWithRawResponse(self._teams.invites)
 
 
 class TeamsResourceWithStreamingResponse:
@@ -135,6 +183,14 @@ class TeamsResourceWithStreamingResponse:
             teams.list,
         )
 
+    @cached_property
+    def members(self) -> MembersResourceWithStreamingResponse:
+        return MembersResourceWithStreamingResponse(self._teams.members)
+
+    @cached_property
+    def invites(self) -> InvitesResourceWithStreamingResponse:
+        return InvitesResourceWithStreamingResponse(self._teams.invites)
+
 
 class AsyncTeamsResourceWithStreamingResponse:
     def __init__(self, teams: AsyncTeamsResource) -> None:
@@ -143,3 +199,11 @@ class AsyncTeamsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             teams.list,
         )
+
+    @cached_property
+    def members(self) -> AsyncMembersResourceWithStreamingResponse:
+        return AsyncMembersResourceWithStreamingResponse(self._teams.members)
+
+    @cached_property
+    def invites(self) -> AsyncInvitesResourceWithStreamingResponse:
+        return AsyncInvitesResourceWithStreamingResponse(self._teams.invites)

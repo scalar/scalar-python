@@ -23,7 +23,7 @@ from ._types import (
 )
 from ._utils import is_given, is_mapping_t, get_async_library
 from ._compat import cached_property
-from ._exceptions import APIStatusError, ScalarError
+from ._exceptions import APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -37,22 +37,28 @@ if TYPE_CHECKING:
         registry,
         schemas,
         login_portals,
+        access_groups,
         rules,
         themes,
         teams,
         scalar_docs,
         namespaces,
         authentication,
+        sdks,
+        mcp,
     )
     from .resources.registry import RegistryResource, AsyncRegistryResource
     from .resources.schemas import SchemasResource, AsyncSchemasResource
     from .resources.login_portals import LoginPortalsResource, AsyncLoginPortalsResource
+    from .resources.access_groups import AccessGroupsResource, AsyncAccessGroupsResource
     from .resources.rules import RulesResource, AsyncRulesResource
     from .resources.themes import ThemesResource, AsyncThemesResource
     from .resources.teams import TeamsResource, AsyncTeamsResource
     from .resources.scalar_docs import ScalarDocsResource, AsyncScalarDocsResource
     from .resources.namespaces import NamespacesResource, AsyncNamespacesResource
     from .resources.authentication import AuthenticationResource, AsyncAuthenticationResource
+    from .resources.sdks import SdksResource, AsyncSdksResource
+    from .resources.mcp import McpResource, AsyncMcpResource
 
 # Serializes lazy resource imports so concurrent cold access from multiple
 # threads cannot deadlock on CPython import locks (see CPython 3.14).
@@ -63,12 +69,14 @@ __all__ = ["Scalar", "AsyncScalar", "Client", "AsyncClient", "Timeout", "Transpo
 
 class Scalar(SyncAPIClient):
     # client options
-    bearer_auth: str
+    bearer_auth: str | None
+    o_auth2: str | None
 
     def __init__(
         self,
         *,
         bearer_auth: str | None = None,
+        o_auth2: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -92,14 +100,14 @@ class Scalar(SyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `bearer_auth` from `BEARER_AUTH`
+        - `o_auth2` from `SCALAR_OAUTH_TOKEN`
         """
         if bearer_auth is None:
             bearer_auth = os.environ.get("BEARER_AUTH")
-        if bearer_auth is None:
-            raise ScalarError(
-                "The bearer_auth client option must be set either by passing bearer_auth to the client or by setting the BEARER_AUTH environment variable"
-            )
         self.bearer_auth = bearer_auth
+        if o_auth2 is None:
+            o_auth2 = os.environ.get("SCALAR_OAUTH_TOKEN")
+        self.o_auth2 = o_auth2
         if base_url is None:
             base_url = os.environ.get("SCALAR_BASE_URL")
         if base_url is None:
@@ -144,6 +152,12 @@ class Scalar(SyncAPIClient):
         return LoginPortalsResource(self)
 
     @cached_property
+    def access_groups(self) -> "AccessGroupsResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AccessGroupsResource
+        return AccessGroupsResource(self)
+
+    @cached_property
     def rules(self) -> "RulesResource":
         with _RESOURCE_IMPORT_LOCK:
             from .resources.rules import RulesResource
@@ -180,6 +194,18 @@ class Scalar(SyncAPIClient):
         return AuthenticationResource(self)
 
     @cached_property
+    def sdks(self) -> "SdksResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import SdksResource
+        return SdksResource(self)
+
+    @cached_property
+    def mcp(self) -> "McpResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import McpResource
+        return McpResource(self)
+
+    @cached_property
     def with_raw_response(self) -> ScalarWithRawResponse:
         return ScalarWithRawResponse(self)
 
@@ -197,6 +223,7 @@ class Scalar(SyncAPIClient):
     def auth_headers(self) -> dict[str, str]:
         return {
             **self._bearer_auth_header_auth,
+            **self._o_auth2_header_auth,
         }
 
     @override
@@ -212,6 +239,13 @@ class Scalar(SyncAPIClient):
     @property
     def _bearer_auth_header_auth(self) -> dict[str, str]:
         value = self.bearer_auth
+        if value is None:
+            return {}
+        return {"Authorization": f"Bearer {value}"}
+
+    @property
+    def _o_auth2_header_auth(self) -> dict[str, str]:
+        value = self.o_auth2
         if value is None:
             return {}
         return {"Authorization": f"Bearer {value}"}
@@ -238,13 +272,14 @@ class Scalar(SyncAPIClient):
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
         raise TypeError(
-            '"Could not resolve authentication method. Expected the bearer_auth to be set. Or for the `Authorization` headers to be explicitly omitted"'
+            '"Could not resolve authentication method. Expected either bearer_auth or o_auth2 to be set. Or for the `Authorization` headers to be explicitly omitted"'
         )
 
     def copy(
         self,
         *,
         bearer_auth: str | None = None,
+        o_auth2: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -273,6 +308,7 @@ class Scalar(SyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             bearer_auth=bearer_auth or self.bearer_auth,
+            o_auth2=o_auth2 or self.o_auth2,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -308,12 +344,14 @@ class Scalar(SyncAPIClient):
 
 class AsyncScalar(AsyncAPIClient):
     # client options
-    bearer_auth: str
+    bearer_auth: str | None
+    o_auth2: str | None
 
     def __init__(
         self,
         *,
         bearer_auth: str | None = None,
+        o_auth2: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -337,14 +375,14 @@ class AsyncScalar(AsyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `bearer_auth` from `BEARER_AUTH`
+        - `o_auth2` from `SCALAR_OAUTH_TOKEN`
         """
         if bearer_auth is None:
             bearer_auth = os.environ.get("BEARER_AUTH")
-        if bearer_auth is None:
-            raise ScalarError(
-                "The bearer_auth client option must be set either by passing bearer_auth to the client or by setting the BEARER_AUTH environment variable"
-            )
         self.bearer_auth = bearer_auth
+        if o_auth2 is None:
+            o_auth2 = os.environ.get("SCALAR_OAUTH_TOKEN")
+        self.o_auth2 = o_auth2
         if base_url is None:
             base_url = os.environ.get("SCALAR_BASE_URL")
         if base_url is None:
@@ -389,6 +427,12 @@ class AsyncScalar(AsyncAPIClient):
         return AsyncLoginPortalsResource(self)
 
     @cached_property
+    def access_groups(self) -> "AsyncAccessGroupsResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AsyncAccessGroupsResource
+        return AsyncAccessGroupsResource(self)
+
+    @cached_property
     def rules(self) -> "AsyncRulesResource":
         with _RESOURCE_IMPORT_LOCK:
             from .resources.rules import AsyncRulesResource
@@ -425,6 +469,18 @@ class AsyncScalar(AsyncAPIClient):
         return AsyncAuthenticationResource(self)
 
     @cached_property
+    def sdks(self) -> "AsyncSdksResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import AsyncSdksResource
+        return AsyncSdksResource(self)
+
+    @cached_property
+    def mcp(self) -> "AsyncMcpResource":
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import AsyncMcpResource
+        return AsyncMcpResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncScalarWithRawResponse:
         return AsyncScalarWithRawResponse(self)
 
@@ -442,6 +498,7 @@ class AsyncScalar(AsyncAPIClient):
     def auth_headers(self) -> dict[str, str]:
         return {
             **self._bearer_auth_header_auth,
+            **self._o_auth2_header_auth,
         }
 
     @override
@@ -457,6 +514,13 @@ class AsyncScalar(AsyncAPIClient):
     @property
     def _bearer_auth_header_auth(self) -> dict[str, str]:
         value = self.bearer_auth
+        if value is None:
+            return {}
+        return {"Authorization": f"Bearer {value}"}
+
+    @property
+    def _o_auth2_header_auth(self) -> dict[str, str]:
+        value = self.o_auth2
         if value is None:
             return {}
         return {"Authorization": f"Bearer {value}"}
@@ -483,13 +547,14 @@ class AsyncScalar(AsyncAPIClient):
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
         raise TypeError(
-            '"Could not resolve authentication method. Expected the bearer_auth to be set. Or for the `Authorization` headers to be explicitly omitted"'
+            '"Could not resolve authentication method. Expected either bearer_auth or o_auth2 to be set. Or for the `Authorization` headers to be explicitly omitted"'
         )
 
     def copy(
         self,
         *,
         bearer_auth: str | None = None,
+        o_auth2: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -518,6 +583,7 @@ class AsyncScalar(AsyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             bearer_auth=bearer_auth or self.bearer_auth,
+            o_auth2=o_auth2 or self.o_auth2,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -576,6 +642,12 @@ class ScalarWithRawResponse:
         return LoginPortalsResourceWithRawResponse(self._client.login_portals)
 
     @cached_property
+    def access_groups(self) -> access_groups.AccessGroupsResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AccessGroupsResourceWithRawResponse
+        return AccessGroupsResourceWithRawResponse(self._client.access_groups)
+
+    @cached_property
     def rules(self) -> rules.RulesResourceWithRawResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.rules import RulesResourceWithRawResponse
@@ -611,6 +683,18 @@ class ScalarWithRawResponse:
             from .resources.authentication import AuthenticationResourceWithRawResponse
         return AuthenticationResourceWithRawResponse(self._client.authentication)
 
+    @cached_property
+    def sdks(self) -> sdks.SdksResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import SdksResourceWithRawResponse
+        return SdksResourceWithRawResponse(self._client.sdks)
+
+    @cached_property
+    def mcp(self) -> mcp.McpResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import McpResourceWithRawResponse
+        return McpResourceWithRawResponse(self._client.mcp)
+
 
 class AsyncScalarWithRawResponse:
     _client: AsyncScalar
@@ -635,6 +719,12 @@ class AsyncScalarWithRawResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.login_portals import AsyncLoginPortalsResourceWithRawResponse
         return AsyncLoginPortalsResourceWithRawResponse(self._client.login_portals)
+
+    @cached_property
+    def access_groups(self) -> access_groups.AsyncAccessGroupsResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AsyncAccessGroupsResourceWithRawResponse
+        return AsyncAccessGroupsResourceWithRawResponse(self._client.access_groups)
 
     @cached_property
     def rules(self) -> rules.AsyncRulesResourceWithRawResponse:
@@ -672,6 +762,18 @@ class AsyncScalarWithRawResponse:
             from .resources.authentication import AsyncAuthenticationResourceWithRawResponse
         return AsyncAuthenticationResourceWithRawResponse(self._client.authentication)
 
+    @cached_property
+    def sdks(self) -> sdks.AsyncSdksResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import AsyncSdksResourceWithRawResponse
+        return AsyncSdksResourceWithRawResponse(self._client.sdks)
+
+    @cached_property
+    def mcp(self) -> mcp.AsyncMcpResourceWithRawResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import AsyncMcpResourceWithRawResponse
+        return AsyncMcpResourceWithRawResponse(self._client.mcp)
+
 
 class ScalarWithStreamedResponse:
     _client: Scalar
@@ -696,6 +798,12 @@ class ScalarWithStreamedResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.login_portals import LoginPortalsResourceWithStreamingResponse
         return LoginPortalsResourceWithStreamingResponse(self._client.login_portals)
+
+    @cached_property
+    def access_groups(self) -> access_groups.AccessGroupsResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AccessGroupsResourceWithStreamingResponse
+        return AccessGroupsResourceWithStreamingResponse(self._client.access_groups)
 
     @cached_property
     def rules(self) -> rules.RulesResourceWithStreamingResponse:
@@ -733,6 +841,18 @@ class ScalarWithStreamedResponse:
             from .resources.authentication import AuthenticationResourceWithStreamingResponse
         return AuthenticationResourceWithStreamingResponse(self._client.authentication)
 
+    @cached_property
+    def sdks(self) -> sdks.SdksResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import SdksResourceWithStreamingResponse
+        return SdksResourceWithStreamingResponse(self._client.sdks)
+
+    @cached_property
+    def mcp(self) -> mcp.McpResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import McpResourceWithStreamingResponse
+        return McpResourceWithStreamingResponse(self._client.mcp)
+
 
 class AsyncScalarWithStreamedResponse:
     _client: AsyncScalar
@@ -757,6 +877,12 @@ class AsyncScalarWithStreamedResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.login_portals import AsyncLoginPortalsResourceWithStreamingResponse
         return AsyncLoginPortalsResourceWithStreamingResponse(self._client.login_portals)
+
+    @cached_property
+    def access_groups(self) -> access_groups.AsyncAccessGroupsResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.access_groups import AsyncAccessGroupsResourceWithStreamingResponse
+        return AsyncAccessGroupsResourceWithStreamingResponse(self._client.access_groups)
 
     @cached_property
     def rules(self) -> rules.AsyncRulesResourceWithStreamingResponse:
@@ -793,6 +919,18 @@ class AsyncScalarWithStreamedResponse:
         with _RESOURCE_IMPORT_LOCK:
             from .resources.authentication import AsyncAuthenticationResourceWithStreamingResponse
         return AsyncAuthenticationResourceWithStreamingResponse(self._client.authentication)
+
+    @cached_property
+    def sdks(self) -> sdks.AsyncSdksResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.sdks import AsyncSdksResourceWithStreamingResponse
+        return AsyncSdksResourceWithStreamingResponse(self._client.sdks)
+
+    @cached_property
+    def mcp(self) -> mcp.AsyncMcpResourceWithStreamingResponse:
+        with _RESOURCE_IMPORT_LOCK:
+            from .resources.mcp import AsyncMcpResourceWithStreamingResponse
+        return AsyncMcpResourceWithStreamingResponse(self._client.mcp)
 
 
 # Alias names for the documented `Client` / `AsyncClient` symbols.

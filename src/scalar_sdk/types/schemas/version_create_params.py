@@ -15,3 +15,5 @@ class VersionCreateParams(TypedDict, total=False):
     version: Required[Version]
 
     document: Required[str]
+
+    force: bool
