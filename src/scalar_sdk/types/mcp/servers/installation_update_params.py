@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Optional
 from typing_extensions import Annotated, Required, TypedDict
 
 from ...._utils import PropertyInfo
@@ -18,11 +18,6 @@ class InstallationUpdateParams(TypedDict, total=False):
     name: str
 
     slug: Slug
-
-    is_private: Annotated[bool, PropertyInfo(alias="isPrivate")]
-
-    login_portal_uid: Annotated[Optional[str], PropertyInfo(alias="loginPortalUid")]
-
-    document_auth: Annotated[Dict[str, object], PropertyInfo(alias="documentAuth")]
+    """The environment’s current slug. An environment cannot be renamed, so any other slug is refused."""
 
     mcp_version: Annotated[Optional[str], PropertyInfo(alias="mcpVersion")]

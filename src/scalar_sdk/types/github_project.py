@@ -34,6 +34,8 @@ class GithubProject(BaseModel):
 
     user_info_hook_url: str = FieldInfo(alias="userInfoHookUrl")
 
+    user_info_hook_secret_uid: Optional[Nanoid] = FieldInfo(alias="userInfoHookSecretUid", default=None)
+
     active_theme_id: str = FieldInfo(alias="activeThemeId")
 
     typesense_id: Optional[float] = FieldInfo(alias="typesenseId", default=None)
