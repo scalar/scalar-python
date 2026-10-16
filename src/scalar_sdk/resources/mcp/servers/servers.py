@@ -184,7 +184,6 @@ class ServersResource(SyncAPIResource):
         *,
         name: str | Omit = omit,
         slug: Slug | Omit = omit,
-        auto_add_operations: bool | Omit = omit,
         operations: SequenceNotStr[str] | Omit = omit,
         docs_pages: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -201,7 +200,6 @@ class ServersResource(SyncAPIResource):
             id: Path parameter.
             name: Body parameter.
             slug: Body parameter.
-            auto_add_operations: Body parameter.
             operations: Body parameter.
             docs_pages: Body parameter.
             extra_headers: Send extra headers with the request.
@@ -227,7 +225,6 @@ class ServersResource(SyncAPIResource):
                 {
                     "name": name,
                     "slug": slug,
-                    "auto_add_operations": auto_add_operations,
                     "operations": operations,
                     "docs_pages": docs_pages,
                 },
@@ -430,7 +427,6 @@ class AsyncServersResource(AsyncAPIResource):
         *,
         name: str | Omit = omit,
         slug: Slug | Omit = omit,
-        auto_add_operations: bool | Omit = omit,
         operations: SequenceNotStr[str] | Omit = omit,
         docs_pages: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -447,7 +443,6 @@ class AsyncServersResource(AsyncAPIResource):
             id: Path parameter.
             name: Body parameter.
             slug: Body parameter.
-            auto_add_operations: Body parameter.
             operations: Body parameter.
             docs_pages: Body parameter.
             extra_headers: Send extra headers with the request.
@@ -473,7 +468,6 @@ class AsyncServersResource(AsyncAPIResource):
                 {
                     "name": name,
                     "slug": slug,
-                    "auto_add_operations": auto_add_operations,
                     "operations": operations,
                     "docs_pages": docs_pages,
                 },
