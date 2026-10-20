@@ -1239,7 +1239,7 @@ Get the authenticated user, including their available teams and theme.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`User`](./src/scalar_sdk/types/teams/user.py) |
+| Response | [`User`](./src/scalar_sdk/types/user.py) |
 
 ```python
 authentication = client.authentication.list_current_user()

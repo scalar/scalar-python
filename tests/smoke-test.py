@@ -853,6 +853,9 @@ def _smoke_case_104() -> None:
         auth_method="oidc",
         access="public",
         tag="latest",
+        artifact_id="scalar-galaxy",
+        tap_repo="scalar/homebrew-tap",
+        registry="npm",
     )
 
 
