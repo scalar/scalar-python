@@ -46,6 +46,8 @@ class GithubProject(BaseModel):
 
     analytics_enabled: bool = FieldInfo(alias="analyticsEnabled")
 
+    chat_insights_enabled: bool = FieldInfo(alias="chatInsightsEnabled")
+
     access_groups: object = FieldInfo(alias="accessGroups")
 
     slug: Slug
