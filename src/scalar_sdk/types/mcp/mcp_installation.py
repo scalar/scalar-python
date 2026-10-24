@@ -20,8 +20,6 @@ class McpInstallation(BaseModel):
 
     slug: Slug
 
-    is_private: bool = FieldInfo(alias="isPrivate")
-
     access_groups: List[str] = FieldInfo(alias="accessGroups")
 
     login_portal_uid: Optional[str] = FieldInfo(alias="loginPortalUid", default=None)

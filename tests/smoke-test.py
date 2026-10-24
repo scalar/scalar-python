@@ -853,6 +853,9 @@ def _smoke_case_104() -> None:
         auth_method="oidc",
         access="public",
         tag="latest",
+        artifact_id="scalar-galaxy",
+        tap_repo="scalar/homebrew-tap",
+        registry="npm",
     )
 
 
@@ -892,7 +895,6 @@ def _smoke_case_110() -> None:
         id="42",
         name="Acme MCP",
         slug="acme-mcp",
-        auto_add_operations=True,
         operations=["42"],
         docs_pages=["getting-started"],
     )
@@ -911,57 +913,37 @@ def _smoke_case_112() -> None:
 
 
 def _smoke_case_113() -> None:
-    installation = client.mcp.servers.installations.create(
-        id="42",
-        name="Acme MCP",
-        document_auth={},
-    )
-
-
-def _smoke_case_114() -> None:
-    installation = client.mcp.servers.installations.create(
-        id="42",
-        name="Acme MCP",
-        slug="acme-mcp",
-        document_auth={},
-    )
-
-
-def _smoke_case_115() -> None:
     installation = client.mcp.servers.installations.retrieve(
         id="42",
         installation_id="84",
     )
 
 
-def _smoke_case_116() -> None:
+def _smoke_case_114() -> None:
     installation = client.mcp.servers.installations.update(
         id="42",
         installation_id="84",
     )
 
 
-def _smoke_case_117() -> None:
+def _smoke_case_115() -> None:
     installation = client.mcp.servers.installations.update(
         id="42",
         installation_id="84",
         name="Acme MCP",
-        slug="acme-mcp",
-        is_private=False,
-        login_portal_uid="LakgbKJ5m9gl0JDMbcJqL",
-        document_auth={},
+        slug="staging",
         mcp_version="1.2.0",
     )
 
 
-def _smoke_case_118() -> None:
+def _smoke_case_116() -> None:
     installation = client.mcp.servers.installations.delete(
         id="42",
         installation_id="84",
     )
 
 
-def _smoke_case_119() -> None:
+def _smoke_case_117() -> None:
     installation = client.mcp.servers.installations.create_access_group(
         id="42",
         installation_id="84",
@@ -969,7 +951,7 @@ def _smoke_case_119() -> None:
     )
 
 
-def _smoke_case_120() -> None:
+def _smoke_case_118() -> None:
     installation = client.mcp.servers.installations.delete_access_group(
         id="42",
         installation_id="84",
@@ -1713,56 +1695,42 @@ cases: list[SmokeCase] = [
         "run": _smoke_case_112,
     },
     {
-        "operation": "create",
-        "method": "POST",
-        "path": "/v1/mcp/servers/{id}/installations",
-        "label": "required params",
-        "run": _smoke_case_113,
-    },
-    {
-        "operation": "create",
-        "method": "POST",
-        "path": "/v1/mcp/servers/{id}/installations",
-        "label": "all params",
-        "run": _smoke_case_114,
-    },
-    {
         "operation": "retrieve",
         "method": "GET",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}",
-        "run": _smoke_case_115,
+        "run": _smoke_case_113,
     },
     {
         "operation": "update",
         "method": "PATCH",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}",
         "label": "required params",
-        "run": _smoke_case_116,
+        "run": _smoke_case_114,
     },
     {
         "operation": "update",
         "method": "PATCH",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}",
         "label": "all params",
-        "run": _smoke_case_117,
+        "run": _smoke_case_115,
     },
     {
         "operation": "delete",
         "method": "DELETE",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}",
-        "run": _smoke_case_118,
+        "run": _smoke_case_116,
     },
     {
         "operation": "createAccessGroup",
         "method": "POST",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}/access-group",
-        "run": _smoke_case_119,
+        "run": _smoke_case_117,
     },
     {
         "operation": "deleteAccessGroup",
         "method": "DELETE",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}/access-group",
-        "run": _smoke_case_120,
+        "run": _smoke_case_118,
     },
 ]
 

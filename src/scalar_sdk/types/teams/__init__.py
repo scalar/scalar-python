@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
+from .email import Email as Email
 from .team_member import TeamMember as TeamMember
 from .role import Role as Role
 from .team_invite import TeamInvite as TeamInvite
-from .email import Email as Email
-from .user import User as User
 from .member_list_response import MemberListResponse as MemberListResponse
 from .member_update_response import MemberUpdateResponse as MemberUpdateResponse
 from .member_update_params import MemberUpdateParams as MemberUpdateParams

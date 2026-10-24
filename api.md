@@ -110,7 +110,6 @@ Complete reference of every operation, grouped by resource. See [the README](./R
     - [Delete an MCP server](#delete-an-mcp-server)
     - [`Mcp Servers Installations`](#mcp-servers-installations)
       - [List installations](#list-installations)
-      - [Create an installation](#create-an-installation)
       - [Get an installation](#get-an-installation)
       - [Update an installation](#update-an-installation)
       - [Delete an installation](#delete-an-installation)
@@ -1240,7 +1239,7 @@ Get the authenticated user, including their available teams and theme.
 
 | Direction | Type |
 | --- | --- |
-| Response | [`User`](./src/scalar_sdk/types/teams/user.py) |
+| Response | [`User`](./src/scalar_sdk/types/user.py) |
 
 ```python
 authentication = client.authentication.list_current_user()
@@ -1521,26 +1520,9 @@ installation = client.mcp.servers.installations.list(
 )
 ```
 
-##### Create an installation
-
-Create an installation of an MCP server. `documentAuth` holds the credentials the server presents to the upstream API and is never returned.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`InstallationCreateParams`](./src/scalar_sdk/types/mcp/servers/installation_create_params.py) |
-| Response | [`McpInstallation`](./src/scalar_sdk/types/mcp/mcp_installation.py) |
-
-```python
-installation = client.mcp.servers.installations.create(
-    id="42",
-    name="Acme MCP",
-    document_auth={},
-)
-```
-
 ##### Get an installation
 
-Get a single installation of an MCP server.
+Get a single installation of an MCP server. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
 | Direction | Type |
 | --- | --- |
@@ -1555,7 +1537,7 @@ installation = client.mcp.servers.installations.retrieve(
 
 ##### Update an installation
 
-Update an installation. Set `isPrivate` and add access groups to put it behind a login.
+Update an installation. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
 | Direction | Type |
 | --- | --- |
@@ -1571,7 +1553,7 @@ installation = client.mcp.servers.installations.update(
 
 ##### Delete an installation
 
-Delete an installation of an MCP server.
+Delete an installation of an MCP server. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
 | Direction | Type |
 | --- | --- |
@@ -1586,7 +1568,7 @@ installation = client.mcp.servers.installations.delete(
 
 ##### Add an access group
 
-Let an access group reach a private installation.
+Let an access group reach a private installation. Requires a team admin. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
 | Direction | Type |
 | --- | --- |
@@ -1603,7 +1585,7 @@ installation = client.mcp.servers.installations.create_access_group(
 
 ##### Remove an access group
 
-Stop an access group reaching a private installation.
+Stop an access group reaching a private installation. Requires a team admin. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
 | Direction | Type |
 | --- | --- |
