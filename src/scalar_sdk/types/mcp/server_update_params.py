@@ -17,8 +17,6 @@ class ServerUpdateParams(TypedDict, total=False):
 
     slug: Slug
 
-    auto_add_operations: Annotated[bool, PropertyInfo(alias="autoAddOperations")]
-
     operations: SequenceNotStr[str]
 
     docs_pages: Annotated[SequenceNotStr[str], PropertyInfo(alias="docsPages")]

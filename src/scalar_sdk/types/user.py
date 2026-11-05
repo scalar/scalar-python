@@ -4,12 +4,12 @@ from typing import List, Optional
 
 from pydantic import Field as FieldInfo
 
-from ..._models import BaseModel
+from .._models import BaseModel
 
-from ..shared.nanoid import Nanoid
-from ..shared.timestamp import Timestamp
-from .email import Email
-from ..team_summary import TeamSummary
+from .shared.nanoid import Nanoid
+from .shared.timestamp import Timestamp
+from .teams.email import Email
+from .team_summary import TeamSummary
 
 __all__ = ["User"]
 

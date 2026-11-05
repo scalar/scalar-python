@@ -18,6 +18,4 @@ class McpInstallationListItem(BaseModel):
 
     slug: Slug
 
-    is_private: bool = FieldInfo(alias="isPrivate")
-
     mcp_version: Optional[str] = FieldInfo(alias="mcpVersion", default=None)

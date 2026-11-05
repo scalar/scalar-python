@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from typing import Dict, Optional
+from typing import Optional
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import path_template, maybe_transform, async_maybe_transform
@@ -21,7 +21,6 @@ from ....types.mcp.servers.installation_list_response import InstallationListRes
 from ....types.mcp.mcp_installation import McpInstallation
 from ....types.slug import Slug
 from ....types.mcp.servers import (
-    installation_create_params,
     installation_update_params,
     installation_create_access_group_params,
     installation_delete_access_group_params,
@@ -84,63 +83,6 @@ class InstallationsResource(SyncAPIResource):
             cast_to=InstallationListResponse,
         )
 
-    def create(
-        self,
-        id: str,
-        *,
-        name: str,
-        slug: Slug | Omit = omit,
-        document_auth: Dict[str, object],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> McpInstallation:
-        """
-        Create an installation of an MCP server. `documentAuth` holds the credentials the server presents to the upstream API and is never returned.
-
-        Args:
-            id: Path parameter.
-            name: Body parameter.
-            slug: Body parameter.
-            document_auth: Body parameter.
-            extra_headers: Send extra headers with the request.
-            extra_query: Send extra query parameters with the request.
-            extra_body: Send extra JSON properties with the request.
-            timeout: Override the client-level default timeout for this request, in seconds.
-
-        Returns:
-            McpInstallation: Default Response
-
-        Example:
-            ```python
-            installation = client.mcp.servers.installations.create(
-                id="42",
-                name="Acme MCP",
-                document_auth={},
-            )
-            ```
-        """
-        if id is None or (isinstance(id, str) and not id):
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._post(
-            path_template("/v1/mcp/servers/{id}/installations", **{"id": id}),
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "slug": slug,
-                    "document_auth": document_auth,
-                },
-                installation_create_params.InstallationCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=McpInstallation,
-        )
-
     def retrieve(
         self,
         installation_id: str,
@@ -154,7 +96,7 @@ class InstallationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpInstallation:
         """
-        Get a single installation of an MCP server.
+        Get a single installation of an MCP server. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
         Args:
             installation_id: Path parameter.
@@ -174,6 +116,8 @@ class InstallationsResource(SyncAPIResource):
                 installation_id="84",
             )
             ```
+
+        Deprecated: this method is deprecated.
         """
         if id is None or (isinstance(id, str) and not id):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
@@ -196,9 +140,6 @@ class InstallationsResource(SyncAPIResource):
         id: str,
         name: str | Omit = omit,
         slug: Slug | Omit = omit,
-        is_private: bool | Omit = omit,
-        login_portal_uid: Optional[str] | Omit = omit,
-        document_auth: Dict[str, object] | Omit = omit,
         mcp_version: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -208,16 +149,13 @@ class InstallationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpInstallation:
         """
-        Update an installation. Set `isPrivate` and add access groups to put it behind a login.
+        Update an installation. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
         Args:
             installation_id: Path parameter.
             id: Path parameter.
             name: Body parameter.
-            slug: Body parameter.
-            is_private: Body parameter.
-            login_portal_uid: Body parameter.
-            document_auth: Body parameter.
+            slug: The environment’s current slug. An environment cannot be renamed, so any other slug is refused.
             mcp_version: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
@@ -234,6 +172,8 @@ class InstallationsResource(SyncAPIResource):
                 installation_id="84",
             )
             ```
+
+        Deprecated: this method is deprecated.
         """
         if id is None or (isinstance(id, str) and not id):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
@@ -247,9 +187,6 @@ class InstallationsResource(SyncAPIResource):
                 {
                     "name": name,
                     "slug": slug,
-                    "is_private": is_private,
-                    "login_portal_uid": login_portal_uid,
-                    "document_auth": document_auth,
                     "mcp_version": mcp_version,
                 },
                 installation_update_params.InstallationUpdateParams,
@@ -273,7 +210,7 @@ class InstallationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstallationDeleteResponse:
         """
-        Delete an installation of an MCP server.
+        Delete an installation of an MCP server. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
         Args:
             installation_id: Path parameter.
@@ -293,6 +230,8 @@ class InstallationsResource(SyncAPIResource):
                 installation_id="84",
             )
             ```
+
+        Deprecated: this method is deprecated.
         """
         if id is None or (isinstance(id, str) and not id):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
@@ -322,7 +261,7 @@ class InstallationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstallationCreateAccessGroupResponse:
         """
-        Let an access group reach a private installation.
+        Let an access group reach a private installation. Requires a team admin. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
         Args:
             installation_id: Path parameter.
@@ -344,6 +283,8 @@ class InstallationsResource(SyncAPIResource):
                 access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
+
+        Deprecated: this method is deprecated.
         """
         if id is None or (isinstance(id, str) and not id):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
@@ -378,7 +319,7 @@ class InstallationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstallationDeleteAccessGroupResponse:
         """
-        Stop an access group reaching a private installation.
+        Stop an access group reaching a private installation. Requires a team admin. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
         Args:
             installation_id: Path parameter.
@@ -400,6 +341,8 @@ class InstallationsResource(SyncAPIResource):
                 access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
+
+        Deprecated: this method is deprecated.
         """
         if id is None or (isinstance(id, str) and not id):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
@@ -471,63 +414,6 @@ class AsyncInstallationsResource(AsyncAPIResource):
             cast_to=InstallationListResponse,
         )
 
-    async def create(
-        self,
-        id: str,
-        *,
-        name: str,
-        slug: Slug | Omit = omit,
-        document_auth: Dict[str, object],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> McpInstallation:
-        """
-        Create an installation of an MCP server. `documentAuth` holds the credentials the server presents to the upstream API and is never returned.
-
-        Args:
-            id: Path parameter.
-            name: Body parameter.
-            slug: Body parameter.
-            document_auth: Body parameter.
-            extra_headers: Send extra headers with the request.
-            extra_query: Send extra query parameters with the request.
-            extra_body: Send extra JSON properties with the request.
-            timeout: Override the client-level default timeout for this request, in seconds.
-
-        Returns:
-            McpInstallation: Default Response
-
-        Example:
-            ```python
-            installation = await client.mcp.servers.installations.create(
-                id="42",
-                name="Acme MCP",
-                document_auth={},
-            )
-            ```
-        """
-        if id is None or (isinstance(id, str) and not id):
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._post(
-            path_template("/v1/mcp/servers/{id}/installations", **{"id": id}),
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "slug": slug,
-                    "document_auth": document_auth,
-                },
-                installation_create_params.InstallationCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=McpInstallation,
-        )
-
     async def retrieve(
         self,
         installation_id: str,
@@ -541,7 +427,7 @@ class AsyncInstallationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpInstallation:
         """
-        Get a single installation of an MCP server.
+        Get a single installation of an MCP server. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
         Args:
             installation_id: Path parameter.
@@ -561,6 +447,8 @@ class AsyncInstallationsResource(AsyncAPIResource):
                 installation_id="84",
             )
             ```
+
+        Deprecated: this method is deprecated.
         """
         if id is None or (isinstance(id, str) and not id):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
@@ -583,9 +471,6 @@ class AsyncInstallationsResource(AsyncAPIResource):
         id: str,
         name: str | Omit = omit,
         slug: Slug | Omit = omit,
-        is_private: bool | Omit = omit,
-        login_portal_uid: Optional[str] | Omit = omit,
-        document_auth: Dict[str, object] | Omit = omit,
         mcp_version: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -595,16 +480,13 @@ class AsyncInstallationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> McpInstallation:
         """
-        Update an installation. Set `isPrivate` and add access groups to put it behind a login.
+        Update an installation. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
         Args:
             installation_id: Path parameter.
             id: Path parameter.
             name: Body parameter.
-            slug: Body parameter.
-            is_private: Body parameter.
-            login_portal_uid: Body parameter.
-            document_auth: Body parameter.
+            slug: The environment’s current slug. An environment cannot be renamed, so any other slug is refused.
             mcp_version: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
@@ -621,6 +503,8 @@ class AsyncInstallationsResource(AsyncAPIResource):
                 installation_id="84",
             )
             ```
+
+        Deprecated: this method is deprecated.
         """
         if id is None or (isinstance(id, str) and not id):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
@@ -634,9 +518,6 @@ class AsyncInstallationsResource(AsyncAPIResource):
                 {
                     "name": name,
                     "slug": slug,
-                    "is_private": is_private,
-                    "login_portal_uid": login_portal_uid,
-                    "document_auth": document_auth,
                     "mcp_version": mcp_version,
                 },
                 installation_update_params.InstallationUpdateParams,
@@ -660,7 +541,7 @@ class AsyncInstallationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstallationDeleteResponse:
         """
-        Delete an installation of an MCP server.
+        Delete an installation of an MCP server. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
         Args:
             installation_id: Path parameter.
@@ -680,6 +561,8 @@ class AsyncInstallationsResource(AsyncAPIResource):
                 installation_id="84",
             )
             ```
+
+        Deprecated: this method is deprecated.
         """
         if id is None or (isinstance(id, str) and not id):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
@@ -709,7 +592,7 @@ class AsyncInstallationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstallationCreateAccessGroupResponse:
         """
-        Let an access group reach a private installation.
+        Let an access group reach a private installation. Requires a team admin. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
         Args:
             installation_id: Path parameter.
@@ -731,6 +614,8 @@ class AsyncInstallationsResource(AsyncAPIResource):
                 access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
+
+        Deprecated: this method is deprecated.
         """
         if id is None or (isinstance(id, str) and not id):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
@@ -765,7 +650,7 @@ class AsyncInstallationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InstallationDeleteAccessGroupResponse:
         """
-        Stop an access group reaching a private installation.
+        Stop an access group reaching a private installation. Requires a team admin. Deprecated: address the environment by slug with the `/environments/:environment` form.
 
         Args:
             installation_id: Path parameter.
@@ -787,6 +672,8 @@ class AsyncInstallationsResource(AsyncAPIResource):
                 access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
             )
             ```
+
+        Deprecated: this method is deprecated.
         """
         if id is None or (isinstance(id, str) and not id):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
@@ -815,9 +702,6 @@ class InstallationsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             installations.list,
         )
-        self.create = to_raw_response_wrapper(
-            installations.create,
-        )
         self.retrieve = to_raw_response_wrapper(
             installations.retrieve,
         )
@@ -841,9 +725,6 @@ class AsyncInstallationsResourceWithRawResponse:
 
         self.list = async_to_raw_response_wrapper(
             installations.list,
-        )
-        self.create = async_to_raw_response_wrapper(
-            installations.create,
         )
         self.retrieve = async_to_raw_response_wrapper(
             installations.retrieve,
@@ -869,9 +750,6 @@ class InstallationsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             installations.list,
         )
-        self.create = to_streamed_response_wrapper(
-            installations.create,
-        )
         self.retrieve = to_streamed_response_wrapper(
             installations.retrieve,
         )
@@ -895,9 +773,6 @@ class AsyncInstallationsResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             installations.list,
-        )
-        self.create = async_to_streamed_response_wrapper(
-            installations.create,
         )
         self.retrieve = async_to_streamed_response_wrapper(
             installations.retrieve,

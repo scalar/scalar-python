@@ -17,7 +17,7 @@ from .._response import (
 from .._base_client import make_request_options
 from ..types.authentication_exchange_personal_token_response import AuthenticationExchangePersonalTokenResponse
 from ..types import authentication_exchange_personal_token_params
-from ..types.teams.user import User
+from ..types.user import User
 
 __all__ = ["AuthenticationResource", "AsyncAuthenticationResource"]
 
