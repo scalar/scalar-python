@@ -12,4 +12,5 @@ __all__ = ["VersionCreateParams"]
 class VersionCreateParams(TypedDict, total=False):
     version: Required[str]
 
-    api_version: Required[Annotated[str, PropertyInfo(alias="apiVersion")]]
+    api_version: Annotated[object, PropertyInfo(alias="apiVersion")]
+    """Removed. A request that carries it is refused with a 400."""

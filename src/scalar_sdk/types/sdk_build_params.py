@@ -3,13 +3,17 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Annotated, Literal, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["SdkBuildParams"]
 
 
 class SdkBuildParams(TypedDict, total=False):
     version: str
+
+    custom_code_ref: Annotated[str, PropertyInfo(alias="customCodeRef")]
 
     languages: List[
         Literal[

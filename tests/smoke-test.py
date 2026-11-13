@@ -772,7 +772,7 @@ def _smoke_case_94() -> None:
         is_private=False,
         config='{"targets":{"typescript":{"packageName":"@acme/sdk"}}}',
         api_uid="UakgbKJ5m9gl0JDMbcJqL",
-        api_version="1.2.0",
+        api_version={},
     )
 
 
@@ -792,6 +792,7 @@ def _smoke_case_97() -> None:
     sdk = client.sdks.build(
         uid="UakgbKJ5m9gl0JDMbcJqL",
         version="1.2.0",
+        custom_code_ref="scalar-next",
         languages=["typescript"],
     )
 
@@ -800,23 +801,21 @@ def _smoke_case_98() -> None:
     version = client.sdks.versions.create(
         uid="UakgbKJ5m9gl0JDMbcJqL",
         version="1.2.0",
-        api_version="1.2.0",
     )
 
 
 def _smoke_case_99() -> None:
-    version = client.sdks.versions.delete(
+    version = client.sdks.versions.create(
         uid="UakgbKJ5m9gl0JDMbcJqL",
         version="1.2.0",
+        api_version={},
     )
 
 
 def _smoke_case_100() -> None:
-    repository = client.sdks.repositories.link(
+    version = client.sdks.versions.delete(
         uid="UakgbKJ5m9gl0JDMbcJqL",
-        language="typescript",
-        repository_id=123456789,
-        base_branch="main",
+        version="1.2.0",
     )
 
 
@@ -826,18 +825,27 @@ def _smoke_case_101() -> None:
         language="typescript",
         repository_id=123456789,
         base_branch="main",
-        prerelease_type="beta",
     )
 
 
 def _smoke_case_102() -> None:
+    repository = client.sdks.repositories.link(
+        uid="UakgbKJ5m9gl0JDMbcJqL",
+        language="typescript",
+        repository_id=123456789,
+        base_branch="main",
+        prerelease_type="beta",
+    )
+
+
+def _smoke_case_103() -> None:
     repository = client.sdks.repositories.unlink(
         uid="UakgbKJ5m9gl0JDMbcJqL",
         language="typescript",
     )
 
 
-def _smoke_case_103() -> None:
+def _smoke_case_104() -> None:
     repository = client.sdks.repositories.update_publishing(
         uid="UakgbKJ5m9gl0JDMbcJqL",
         language="typescript",
@@ -845,7 +853,7 @@ def _smoke_case_103() -> None:
     )
 
 
-def _smoke_case_104() -> None:
+def _smoke_case_105() -> None:
     repository = client.sdks.repositories.update_publishing(
         uid="UakgbKJ5m9gl0JDMbcJqL",
         language="typescript",
@@ -859,17 +867,17 @@ def _smoke_case_104() -> None:
     )
 
 
-def _smoke_case_105() -> None:
+def _smoke_case_106() -> None:
     server = client.mcp.servers.list()
 
 
-def _smoke_case_106() -> None:
+def _smoke_case_107() -> None:
     server = client.mcp.servers.create(
         name="Acme MCP",
     )
 
 
-def _smoke_case_107() -> None:
+def _smoke_case_108() -> None:
     server = client.mcp.servers.create(
         name="Acme MCP",
         slug="acme-mcp",
@@ -878,19 +886,19 @@ def _smoke_case_107() -> None:
     )
 
 
-def _smoke_case_108() -> None:
+def _smoke_case_109() -> None:
     server = client.mcp.servers.retrieve(
         id="42",
     )
 
 
-def _smoke_case_109() -> None:
+def _smoke_case_110() -> None:
     server = client.mcp.servers.update(
         id="42",
     )
 
 
-def _smoke_case_110() -> None:
+def _smoke_case_111() -> None:
     server = client.mcp.servers.update(
         id="42",
         name="Acme MCP",
@@ -900,27 +908,20 @@ def _smoke_case_110() -> None:
     )
 
 
-def _smoke_case_111() -> None:
+def _smoke_case_112() -> None:
     server = client.mcp.servers.delete(
         id="42",
     )
 
 
-def _smoke_case_112() -> None:
+def _smoke_case_113() -> None:
     installation = client.mcp.servers.installations.list(
         id="42",
     )
 
 
-def _smoke_case_113() -> None:
-    installation = client.mcp.servers.installations.retrieve(
-        id="42",
-        installation_id="84",
-    )
-
-
 def _smoke_case_114() -> None:
-    installation = client.mcp.servers.installations.update(
+    installation = client.mcp.servers.installations.retrieve(
         id="42",
         installation_id="84",
     )
@@ -930,20 +931,27 @@ def _smoke_case_115() -> None:
     installation = client.mcp.servers.installations.update(
         id="42",
         installation_id="84",
+    )
+
+
+def _smoke_case_116() -> None:
+    installation = client.mcp.servers.installations.update(
+        id="42",
+        installation_id="84",
         name="Acme MCP",
         slug="staging",
         mcp_version="1.2.0",
     )
 
 
-def _smoke_case_116() -> None:
+def _smoke_case_117() -> None:
     installation = client.mcp.servers.installations.delete(
         id="42",
         installation_id="84",
     )
 
 
-def _smoke_case_117() -> None:
+def _smoke_case_118() -> None:
     installation = client.mcp.servers.installations.create_access_group(
         id="42",
         installation_id="84",
@@ -951,7 +959,7 @@ def _smoke_case_117() -> None:
     )
 
 
-def _smoke_case_118() -> None:
+def _smoke_case_119() -> None:
     installation = client.mcp.servers.installations.delete_access_group(
         id="42",
         installation_id="84",
@@ -1600,137 +1608,145 @@ cases: list[SmokeCase] = [
         "operation": "create",
         "method": "POST",
         "path": "/v1/sdks/{uid}/versions",
+        "label": "required params",
         "run": _smoke_case_98,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/sdks/{uid}/versions",
+        "label": "all params",
+        "run": _smoke_case_99,
     },
     {
         "operation": "delete",
         "method": "DELETE",
         "path": "/v1/sdks/{uid}/versions/{version}",
-        "run": _smoke_case_99,
-    },
-    {
-        "operation": "link",
-        "method": "POST",
-        "path": "/v1/sdks/{uid}/repositories",
-        "label": "required params",
         "run": _smoke_case_100,
     },
     {
         "operation": "link",
         "method": "POST",
         "path": "/v1/sdks/{uid}/repositories",
-        "label": "all params",
+        "label": "required params",
         "run": _smoke_case_101,
+    },
+    {
+        "operation": "link",
+        "method": "POST",
+        "path": "/v1/sdks/{uid}/repositories",
+        "label": "all params",
+        "run": _smoke_case_102,
     },
     {
         "operation": "unlink",
         "method": "DELETE",
         "path": "/v1/sdks/{uid}/repositories/{language}",
-        "run": _smoke_case_102,
-    },
-    {
-        "operation": "updatePublishing",
-        "method": "POST",
-        "path": "/v1/sdks/{uid}/repositories/{language}/publishing",
-        "label": "required params",
         "run": _smoke_case_103,
     },
     {
         "operation": "updatePublishing",
         "method": "POST",
         "path": "/v1/sdks/{uid}/repositories/{language}/publishing",
-        "label": "all params",
+        "label": "required params",
         "run": _smoke_case_104,
+    },
+    {
+        "operation": "updatePublishing",
+        "method": "POST",
+        "path": "/v1/sdks/{uid}/repositories/{language}/publishing",
+        "label": "all params",
+        "run": _smoke_case_105,
     },
     {
         "operation": "list",
         "method": "GET",
         "path": "/v1/mcp/servers",
-        "run": _smoke_case_105,
-    },
-    {
-        "operation": "create",
-        "method": "POST",
-        "path": "/v1/mcp/servers",
-        "label": "required params",
         "run": _smoke_case_106,
     },
     {
         "operation": "create",
         "method": "POST",
         "path": "/v1/mcp/servers",
-        "label": "all params",
+        "label": "required params",
         "run": _smoke_case_107,
+    },
+    {
+        "operation": "create",
+        "method": "POST",
+        "path": "/v1/mcp/servers",
+        "label": "all params",
+        "run": _smoke_case_108,
     },
     {
         "operation": "retrieve",
         "method": "GET",
         "path": "/v1/mcp/servers/{id}",
-        "run": _smoke_case_108,
-    },
-    {
-        "operation": "update",
-        "method": "PATCH",
-        "path": "/v1/mcp/servers/{id}",
-        "label": "required params",
         "run": _smoke_case_109,
     },
     {
         "operation": "update",
         "method": "PATCH",
         "path": "/v1/mcp/servers/{id}",
-        "label": "all params",
+        "label": "required params",
         "run": _smoke_case_110,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/mcp/servers/{id}",
+        "label": "all params",
+        "run": _smoke_case_111,
     },
     {
         "operation": "delete",
         "method": "DELETE",
         "path": "/v1/mcp/servers/{id}",
-        "run": _smoke_case_111,
+        "run": _smoke_case_112,
     },
     {
         "operation": "list",
         "method": "GET",
         "path": "/v1/mcp/servers/{id}/installations",
-        "run": _smoke_case_112,
+        "run": _smoke_case_113,
     },
     {
         "operation": "retrieve",
         "method": "GET",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}",
-        "run": _smoke_case_113,
-    },
-    {
-        "operation": "update",
-        "method": "PATCH",
-        "path": "/v1/mcp/servers/{id}/installations/{installationId}",
-        "label": "required params",
         "run": _smoke_case_114,
     },
     {
         "operation": "update",
         "method": "PATCH",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}",
-        "label": "all params",
+        "label": "required params",
         "run": _smoke_case_115,
+    },
+    {
+        "operation": "update",
+        "method": "PATCH",
+        "path": "/v1/mcp/servers/{id}/installations/{installationId}",
+        "label": "all params",
+        "run": _smoke_case_116,
     },
     {
         "operation": "delete",
         "method": "DELETE",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}",
-        "run": _smoke_case_116,
+        "run": _smoke_case_117,
     },
     {
         "operation": "createAccessGroup",
         "method": "POST",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}/access-group",
-        "run": _smoke_case_117,
+        "run": _smoke_case_118,
     },
     {
         "operation": "deleteAccessGroup",
         "method": "DELETE",
         "path": "/v1/mcp/servers/{id}/installations/{installationId}/access-group",
-        "run": _smoke_case_118,
+        "run": _smoke_case_119,
     },
 ]
 

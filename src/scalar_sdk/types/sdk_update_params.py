@@ -24,4 +24,5 @@ class SdkUpdateParams(TypedDict, total=False):
 
     api_uid: Annotated[Optional[Nanoid], PropertyInfo(alias="apiUid")]
 
-    api_version: Annotated[Optional[str], PropertyInfo(alias="apiVersion")]
+    api_version: Annotated[object, PropertyInfo(alias="apiVersion")]
+    """Removed. A request that carries it is refused with a 400."""
