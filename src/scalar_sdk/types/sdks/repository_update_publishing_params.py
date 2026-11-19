@@ -26,4 +26,8 @@ class RepositoryUpdatePublishingParams(TypedDict, total=False):
 
     tap_repo: Annotated[str, PropertyInfo(alias="tapRepo")]
 
+    cask: bool
+
+    replace_formula: Annotated[bool, PropertyInfo(alias="replaceFormula")]
+
     registry: str
