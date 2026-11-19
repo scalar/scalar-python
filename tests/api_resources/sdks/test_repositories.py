@@ -60,5 +60,7 @@ class TestRepositories:
             tag="latest",
             artifact_id="scalar-galaxy",
             tap_repo="scalar/homebrew-tap",
+            cask=True,
+            replace_formula=False,
             registry="npm",
         )
