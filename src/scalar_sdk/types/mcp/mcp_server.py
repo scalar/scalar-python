@@ -16,8 +16,6 @@ class McpServer(BaseModel):
 
     slug: Slug
 
-    auto_add_operations: bool = FieldInfo(alias="autoAddOperations")
-
     created_at: str = FieldInfo(alias="createdAt")
 
     updated_at: str = FieldInfo(alias="updatedAt")

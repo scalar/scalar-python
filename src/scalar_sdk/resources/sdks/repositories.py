@@ -192,6 +192,11 @@ class RepositoriesResource(SyncAPIResource):
         auth_method: Literal["oidc", "access-token"] | Omit = omit,
         access: Literal["public", "restricted"] | Omit = omit,
         tag: str | Omit = omit,
+        artifact_id: str | Omit = omit,
+        tap_repo: str | Omit = omit,
+        cask: bool | Omit = omit,
+        replace_formula: bool | Omit = omit,
+        registry: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -209,6 +214,11 @@ class RepositoriesResource(SyncAPIResource):
             auth_method: Body parameter.
             access: Body parameter.
             tag: Body parameter.
+            artifact_id: Body parameter.
+            tap_repo: Body parameter.
+            cask: Body parameter.
+            replace_formula: Body parameter.
+            registry: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
@@ -238,6 +248,11 @@ class RepositoriesResource(SyncAPIResource):
                     "auth_method": auth_method,
                     "access": access,
                     "tag": tag,
+                    "artifact_id": artifact_id,
+                    "tap_repo": tap_repo,
+                    "cask": cask,
+                    "replace_formula": replace_formula,
+                    "registry": registry,
                 },
                 repository_update_publishing_params.RepositoryUpdatePublishingParams,
             ),
@@ -415,6 +430,11 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         auth_method: Literal["oidc", "access-token"] | Omit = omit,
         access: Literal["public", "restricted"] | Omit = omit,
         tag: str | Omit = omit,
+        artifact_id: str | Omit = omit,
+        tap_repo: str | Omit = omit,
+        cask: bool | Omit = omit,
+        replace_formula: bool | Omit = omit,
+        registry: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -432,6 +452,11 @@ class AsyncRepositoriesResource(AsyncAPIResource):
             auth_method: Body parameter.
             access: Body parameter.
             tag: Body parameter.
+            artifact_id: Body parameter.
+            tap_repo: Body parameter.
+            cask: Body parameter.
+            replace_formula: Body parameter.
+            registry: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
@@ -461,6 +486,11 @@ class AsyncRepositoriesResource(AsyncAPIResource):
                     "auth_method": auth_method,
                     "access": access,
                     "tag": tag,
+                    "artifact_id": artifact_id,
+                    "tap_repo": tap_repo,
+                    "cask": cask,
+                    "replace_formula": replace_formula,
+                    "registry": registry,
                 },
                 repository_update_publishing_params.RepositoryUpdatePublishingParams,
             ),

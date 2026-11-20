@@ -21,3 +21,13 @@ class RepositoryUpdatePublishingParams(TypedDict, total=False):
     access: Literal["public", "restricted"]
 
     tag: str
+
+    artifact_id: Annotated[str, PropertyInfo(alias="artifactId")]
+
+    tap_repo: Annotated[str, PropertyInfo(alias="tapRepo")]
+
+    cask: bool
+
+    replace_formula: Annotated[bool, PropertyInfo(alias="replaceFormula")]
+
+    registry: str

@@ -21,6 +21,7 @@ from .github_project import GithubProject as GithubProject
 from .active_deployment import ActiveDeployment as ActiveDeployment
 from .github_project_repository import GithubProjectRepository as GithubProjectRepository
 from .team_summary import TeamSummary as TeamSummary
+from .user import User as User
 from .sdk import Sdk as Sdk
 from .sdk_target_summary import SdkTargetSummary as SdkTargetSummary
 from .sdk_version import SdkVersion as SdkVersion

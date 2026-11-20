@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -36,7 +36,7 @@ class VersionsResource(SyncAPIResource):
         uid: str,
         *,
         version: str,
-        api_version: str,
+        api_version: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -45,12 +45,12 @@ class VersionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionCreateResponse:
         """
-        Create a new SDK version against a specific API version.
+        Create a version label from a version of the SDK's API document and start its build. The label is the document version, and it becomes `latestVersion` when it is the highest.
 
         Args:
             uid: Path parameter.
             version: Body parameter.
-            api_version: Body parameter.
+            api_version: Removed. A request that carries it is refused with a 400.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
@@ -64,7 +64,6 @@ class VersionsResource(SyncAPIResource):
             version = client.sdks.versions.create(
                 uid="UakgbKJ5m9gl0JDMbcJqL",
                 version="1.2.0",
-                api_version="1.2.0",
             )
             ```
         """
@@ -98,7 +97,7 @@ class VersionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionDeleteResponse:
         """
-        Permanently delete one version of an SDK.
+        Permanently delete one version label of an SDK and its builds. A label that is the current build of any language promoting manually is refused with 409 and nothing is deleted; promote or roll back to another build for that language first. Each other language whose current build was of that label moves to the active build of the highest remaining label that has one for the language, and has no current build when none has; `currentVersion` shows the result. Each language that moved to another build syncs it to its linked repository unless the repository already holds it. When it was `latestVersion`, that tag moves to the highest remaining label holding an active build. An SDK's last version cannot be deleted.
 
         Args:
             version: Path parameter.
@@ -146,7 +145,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         uid: str,
         *,
         version: str,
-        api_version: str,
+        api_version: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -155,12 +154,12 @@ class AsyncVersionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionCreateResponse:
         """
-        Create a new SDK version against a specific API version.
+        Create a version label from a version of the SDK's API document and start its build. The label is the document version, and it becomes `latestVersion` when it is the highest.
 
         Args:
             uid: Path parameter.
             version: Body parameter.
-            api_version: Body parameter.
+            api_version: Removed. A request that carries it is refused with a 400.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
@@ -174,7 +173,6 @@ class AsyncVersionsResource(AsyncAPIResource):
             version = await client.sdks.versions.create(
                 uid="UakgbKJ5m9gl0JDMbcJqL",
                 version="1.2.0",
-                api_version="1.2.0",
             )
             ```
         """
@@ -208,7 +206,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionDeleteResponse:
         """
-        Permanently delete one version of an SDK.
+        Permanently delete one version label of an SDK and its builds. A label that is the current build of any language promoting manually is refused with 409 and nothing is deleted; promote or roll back to another build for that language first. Each other language whose current build was of that label moves to the active build of the highest remaining label that has one for the language, and has no current build when none has; `currentVersion` shows the result. Each language that moved to another build syncs it to its linked repository unless the repository already holds it. When it was `latestVersion`, that tag moves to the highest remaining label holding an active build. An SDK's last version cannot be deleted.
 
         Args:
             version: Path parameter.
