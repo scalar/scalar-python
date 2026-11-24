@@ -105,16 +105,6 @@ Complete reference of every operation, grouped by resource. See [the README](./R
   - [`Mcp Servers`](#mcp-servers)
     - [List all MCP servers](#list-all-mcp-servers)
     - [Create an MCP server](#create-an-mcp-server)
-    - [Get an MCP server](#get-an-mcp-server)
-    - [Update an MCP server](#update-an-mcp-server)
-    - [Delete an MCP server](#delete-an-mcp-server)
-    - [`Mcp Servers Installations`](#mcp-servers-installations)
-      - [List installations](#list-installations)
-      - [Get an installation](#get-an-installation)
-      - [Update an installation](#update-an-installation)
-      - [Delete an installation](#delete-an-installation)
-      - [Add an access group](#add-an-access-group)
-      - [Remove an access group](#remove-an-access-group)
 
 ## Setup
 
@@ -1433,7 +1423,7 @@ MCP
 
 #### List all MCP servers
 
-List every MCP server on the team.
+List every MCP server on the team, each with its environments and the version tag a request that names no version gets there.
 
 | Direction | Type |
 | --- | --- |
@@ -1445,7 +1435,7 @@ server = client.mcp.servers.list()
 
 #### Create an MCP server
 
-Create an MCP server over one or more API document versions. The response carries the server and its first installation.
+Create an MCP server linking the API documents of the named versions and the named docs projects. The server builds from each linked document’s versions, not only the version named.
 
 | Direction | Type |
 | --- | --- |
@@ -1455,146 +1445,5 @@ Create an MCP server over one or more API document versions. The response carrie
 ```python
 server = client.mcp.servers.create(
     name="Acme MCP",
-)
-```
-
-#### Get an MCP server
-
-Get a single MCP server by its id.
-
-| Direction | Type |
-| --- | --- |
-| Response | [`McpServer`](./src/scalar_sdk/types/mcp/mcp_server.py) |
-
-```python
-server = client.mcp.servers.retrieve(
-    id="42",
-)
-```
-
-#### Update an MCP server
-
-Update MCP server metadata and which tools it exposes.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`ServerUpdateParams`](./src/scalar_sdk/types/mcp/server_update_params.py) |
-| Response | [`McpServer`](./src/scalar_sdk/types/mcp/mcp_server.py) |
-
-```python
-server = client.mcp.servers.update(
-    id="42",
-)
-```
-
-#### Delete an MCP server
-
-Delete an MCP server and every installation it serves.
-
-| Direction | Type |
-| --- | --- |
-| Response | [`ServerDeleteResponse`](./src/scalar_sdk/types/mcp/server_delete_response.py) |
-
-```python
-server = client.mcp.servers.delete(
-    id="42",
-)
-```
-
-#### `Mcp Servers Installations`
-
-MCP
-
-##### List installations
-
-List the installations of an MCP server. An installation is what an MCP client connects to.
-
-| Direction | Type |
-| --- | --- |
-| Response | [`InstallationListResponse`](./src/scalar_sdk/types/mcp/servers/installation_list_response.py) |
-
-```python
-installation = client.mcp.servers.installations.list(
-    id="42",
-)
-```
-
-##### Get an installation
-
-Get a single installation of an MCP server. Deprecated: address the environment by slug with the `/environments/:environment` form.
-
-| Direction | Type |
-| --- | --- |
-| Response | [`McpInstallation`](./src/scalar_sdk/types/mcp/mcp_installation.py) |
-
-```python
-installation = client.mcp.servers.installations.retrieve(
-    id="42",
-    installation_id="84",
-)
-```
-
-##### Update an installation
-
-Update an installation. Deprecated: address the environment by slug with the `/environments/:environment` form.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`InstallationUpdateParams`](./src/scalar_sdk/types/mcp/servers/installation_update_params.py) |
-| Response | [`McpInstallation`](./src/scalar_sdk/types/mcp/mcp_installation.py) |
-
-```python
-installation = client.mcp.servers.installations.update(
-    id="42",
-    installation_id="84",
-)
-```
-
-##### Delete an installation
-
-Delete an installation of an MCP server. Deprecated: address the environment by slug with the `/environments/:environment` form.
-
-| Direction | Type |
-| --- | --- |
-| Response | [`InstallationDeleteResponse`](./src/scalar_sdk/types/mcp/servers/installation_delete_response.py) |
-
-```python
-installation = client.mcp.servers.installations.delete(
-    id="42",
-    installation_id="84",
-)
-```
-
-##### Add an access group
-
-Let an access group reach a private installation. Requires a team admin. Deprecated: address the environment by slug with the `/environments/:environment` form.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`InstallationCreateAccessGroupParams`](./src/scalar_sdk/types/mcp/servers/installation_create_access_group_params.py) |
-| Response | [`InstallationCreateAccessGroupResponse`](./src/scalar_sdk/types/mcp/servers/installation_create_access_group_response.py) |
-
-```python
-installation = client.mcp.servers.installations.create_access_group(
-    id="42",
-    installation_id="84",
-    access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
-)
-```
-
-##### Remove an access group
-
-Stop an access group reaching a private installation. Requires a team admin. Deprecated: address the environment by slug with the `/environments/:environment` form.
-
-| Direction | Type |
-| --- | --- |
-| Request | [`InstallationDeleteAccessGroupParams`](./src/scalar_sdk/types/mcp/servers/installation_delete_access_group_params.py) |
-| Response | [`InstallationDeleteAccessGroupResponse`](./src/scalar_sdk/types/mcp/servers/installation_delete_access_group_response.py) |
-
-```python
-installation = client.mcp.servers.installations.delete_access_group(
-    id="42",
-    installation_id="84",
-    access_group_uid="UakgbKJ5m9gl0JDMbcJqL",
 )
 ```

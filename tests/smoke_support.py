@@ -33,7 +33,7 @@ from scalar_sdk import Scalar
 # Fingerprint of the case list the generator's smoke runner checks this suite against (written only
 # for generator tooling). The runner refuses a list whose digest differs, so a list left by an
 # earlier generation is never trusted.
-SMOKE_CASE_LIST_DIGEST = "3378c158933801c1"
+SMOKE_CASE_LIST_DIGEST = "f9b9e899109d9126"
 
 _BASE_URL = os.environ.get("TEST_API_BASE_URL") or None
 
