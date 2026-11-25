@@ -55,6 +55,7 @@ class RepositoriesResource(SyncAPIResource):
         ],
         repository_id: int,
         base_branch: str,
+        promotion: Literal["automatic", "manual"] | Omit = omit,
         prerelease_type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -64,13 +65,14 @@ class RepositoriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RepositoryLinkResponse:
         """
-        Link one language target to a GitHub repository, so builds sync there.
+        Link an existing language target to a GitHub repository accessible through the Scalar GitHub App. Requires team edit permission and a paid SDK automation plan. Native delivery writes at the repository root; use a separate repository for each target. Directory fields are unsupported. Linking can immediately sync the current build under automatic promotion; pass promotion: manual to hold it back. If GitHub access is missing, connect GitHub and grant the App access in Scalar Dashboard before retrying.
 
         Args:
             uid: Path parameter.
             language: Body parameter.
             repository_id: Body parameter.
-            base_branch: Body parameter.
+            base_branch: Release promote branch. Platform-managed branches such as scalar-next and scalar-generated are reserved.
+            promotion: Controls when a build becomes current and syncs to GitHub. Omit to preserve the saved policy.
             prerelease_type: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
@@ -99,6 +101,7 @@ class RepositoriesResource(SyncAPIResource):
                     "language": language,
                     "repository_id": repository_id,
                     "base_branch": base_branch,
+                    "promotion": promotion,
                     "prerelease_type": prerelease_type,
                 },
                 repository_link_params.RepositoryLinkParams,
@@ -293,6 +296,7 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         ],
         repository_id: int,
         base_branch: str,
+        promotion: Literal["automatic", "manual"] | Omit = omit,
         prerelease_type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -302,13 +306,14 @@ class AsyncRepositoriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RepositoryLinkResponse:
         """
-        Link one language target to a GitHub repository, so builds sync there.
+        Link an existing language target to a GitHub repository accessible through the Scalar GitHub App. Requires team edit permission and a paid SDK automation plan. Native delivery writes at the repository root; use a separate repository for each target. Directory fields are unsupported. Linking can immediately sync the current build under automatic promotion; pass promotion: manual to hold it back. If GitHub access is missing, connect GitHub and grant the App access in Scalar Dashboard before retrying.
 
         Args:
             uid: Path parameter.
             language: Body parameter.
             repository_id: Body parameter.
-            base_branch: Body parameter.
+            base_branch: Release promote branch. Platform-managed branches such as scalar-next and scalar-generated are reserved.
+            promotion: Controls when a build becomes current and syncs to GitHub. Omit to preserve the saved policy.
             prerelease_type: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
@@ -337,6 +342,7 @@ class AsyncRepositoriesResource(AsyncAPIResource):
                     "language": language,
                     "repository_id": repository_id,
                     "base_branch": base_branch,
+                    "promotion": promotion,
                     "prerelease_type": prerelease_type,
                 },
                 repository_link_params.RepositoryLinkParams,

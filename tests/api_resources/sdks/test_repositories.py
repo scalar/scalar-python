@@ -23,6 +23,7 @@ class TestRepositories:
             language="typescript",
             repository_id=123456789,
             base_branch="main",
+            promotion="automatic",
             prerelease_type="beta",
         )
 
