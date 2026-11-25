@@ -76,7 +76,7 @@ class SdksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SdkListResponse:
         """
-        List every SDK on the team.
+        List every SDK on the team. `targets` are the languages its config declares, which the next build builds. `current` (the version label per language a request without a version serves) and each version label’s `languages`, highest label first, are what is served, and can include a language a later config dropped: a version keeps the languages its builds produced. Also returns the `currentVersion` and `latestVersion` tags.
 
         Args:
             limit: Query parameter.
@@ -125,7 +125,8 @@ class SdksResource(SyncAPIResource):
                 "cpp",
                 "dart",
             ]
-        ],
+        ]
+        | Omit = omit,
         title: str | Omit = omit,
         slug: Slug | Omit = omit,
         class_name: str | Omit = omit,
@@ -138,11 +139,11 @@ class SdksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UID:
         """
-        Create an SDK from an API document, targeting one or more languages.
+        Create an SDK from an existing API document on the team. Its current version must have content. Send languages or a config declaring targets; omit languages to derive them from config. SDK and target counts must fit the team plan. Config is a JSON string.
 
         Args:
             api_uid: Body parameter.
-            languages: Body parameter.
+            languages: Languages to create. Defaults to the targets declared by config.
             title: Body parameter.
             slug: Body parameter.
             class_name: Body parameter.
@@ -159,7 +160,6 @@ class SdksResource(SyncAPIResource):
             ```python
             sdk = client.sdks.create(
                 api_uid="UakgbKJ5m9gl0JDMbcJqL",
-                languages=["typescript"],
             )
             ```
         """
@@ -194,7 +194,7 @@ class SdksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sdk:
         """
-        Get a single SDK by its uid.
+        Get a single SDK by its uid. `targets` are the languages its config declares, which the next build builds. `current` (the version label per language a request without a version serves) and each version label’s `languages`, highest label first, are what is served, and can include a language a later config dropped: a version keeps the languages its builds produced. Also returns the `currentVersion` and `latestVersion` tags.
 
         Args:
             uid: Path parameter.
@@ -232,7 +232,7 @@ class SdksResource(SyncAPIResource):
         is_private: bool | Omit = omit,
         config: str | Omit = omit,
         api_uid: Optional[Nanoid] | Omit = omit,
-        api_version: Optional[str] | Omit = omit,
+        api_version: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -241,7 +241,7 @@ class SdksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SdkUpdateResponse:
         """
-        Update SDK metadata, its linked API, or its config.
+        Update SDK metadata, its linked API, or its JSON-string config. Targets using native GitHub delivery need separate repositories; delivery writes each package at the repository root. Sharing a repository across language targets in this SDK and using reserved promote branches are rejected before config saves.
 
         Args:
             uid: Path parameter.
@@ -250,7 +250,7 @@ class SdksResource(SyncAPIResource):
             is_private: Body parameter.
             config: Body parameter.
             api_uid: Body parameter.
-            api_version: Body parameter.
+            api_version: Removed. A request that carries it is refused with a 400.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
@@ -333,6 +333,7 @@ class SdksResource(SyncAPIResource):
         uid: str,
         *,
         version: str | Omit = omit,
+        custom_code_ref: str | Omit = omit,
         languages: List[
             Literal[
                 "typescript",
@@ -359,11 +360,12 @@ class SdksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SdkBuildResponse:
         """
-        Start a build. Omit `version` to build the current work — the open draft, else the latest version — and the resolved version comes back in the response.
+        Start a build with the SDK's saved config. Every input is optional: `version` is the version of the linked API description to build (default: its latest version), `customCodeRef` the branch, tag or commit each language merges as custom code (default: each language's `scalar-next` branch), and `languages` the languages to build (default: every language the config declares). The response names the version built. A 503 means the custom code could not be read from GitHub and nothing was built; try again.
 
         Args:
             uid: Path parameter.
             version: Body parameter.
+            custom_code_ref: Body parameter.
             languages: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
@@ -387,6 +389,7 @@ class SdksResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "version": version,
+                    "custom_code_ref": custom_code_ref,
                     "languages": languages,
                 },
                 sdk_build_params.SdkBuildParams,
@@ -427,7 +430,7 @@ class AsyncSdksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SdkListResponse:
         """
-        List every SDK on the team.
+        List every SDK on the team. `targets` are the languages its config declares, which the next build builds. `current` (the version label per language a request without a version serves) and each version label’s `languages`, highest label first, are what is served, and can include a language a later config dropped: a version keeps the languages its builds produced. Also returns the `currentVersion` and `latestVersion` tags.
 
         Args:
             limit: Query parameter.
@@ -476,7 +479,8 @@ class AsyncSdksResource(AsyncAPIResource):
                 "cpp",
                 "dart",
             ]
-        ],
+        ]
+        | Omit = omit,
         title: str | Omit = omit,
         slug: Slug | Omit = omit,
         class_name: str | Omit = omit,
@@ -489,11 +493,11 @@ class AsyncSdksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UID:
         """
-        Create an SDK from an API document, targeting one or more languages.
+        Create an SDK from an existing API document on the team. Its current version must have content. Send languages or a config declaring targets; omit languages to derive them from config. SDK and target counts must fit the team plan. Config is a JSON string.
 
         Args:
             api_uid: Body parameter.
-            languages: Body parameter.
+            languages: Languages to create. Defaults to the targets declared by config.
             title: Body parameter.
             slug: Body parameter.
             class_name: Body parameter.
@@ -510,7 +514,6 @@ class AsyncSdksResource(AsyncAPIResource):
             ```python
             sdk = await client.sdks.create(
                 api_uid="UakgbKJ5m9gl0JDMbcJqL",
-                languages=["typescript"],
             )
             ```
         """
@@ -545,7 +548,7 @@ class AsyncSdksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Sdk:
         """
-        Get a single SDK by its uid.
+        Get a single SDK by its uid. `targets` are the languages its config declares, which the next build builds. `current` (the version label per language a request without a version serves) and each version label’s `languages`, highest label first, are what is served, and can include a language a later config dropped: a version keeps the languages its builds produced. Also returns the `currentVersion` and `latestVersion` tags.
 
         Args:
             uid: Path parameter.
@@ -583,7 +586,7 @@ class AsyncSdksResource(AsyncAPIResource):
         is_private: bool | Omit = omit,
         config: str | Omit = omit,
         api_uid: Optional[Nanoid] | Omit = omit,
-        api_version: Optional[str] | Omit = omit,
+        api_version: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -592,7 +595,7 @@ class AsyncSdksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SdkUpdateResponse:
         """
-        Update SDK metadata, its linked API, or its config.
+        Update SDK metadata, its linked API, or its JSON-string config. Targets using native GitHub delivery need separate repositories; delivery writes each package at the repository root. Sharing a repository across language targets in this SDK and using reserved promote branches are rejected before config saves.
 
         Args:
             uid: Path parameter.
@@ -601,7 +604,7 @@ class AsyncSdksResource(AsyncAPIResource):
             is_private: Body parameter.
             config: Body parameter.
             api_uid: Body parameter.
-            api_version: Body parameter.
+            api_version: Removed. A request that carries it is refused with a 400.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
             extra_body: Send extra JSON properties with the request.
@@ -684,6 +687,7 @@ class AsyncSdksResource(AsyncAPIResource):
         uid: str,
         *,
         version: str | Omit = omit,
+        custom_code_ref: str | Omit = omit,
         languages: List[
             Literal[
                 "typescript",
@@ -710,11 +714,12 @@ class AsyncSdksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SdkBuildResponse:
         """
-        Start a build. Omit `version` to build the current work — the open draft, else the latest version — and the resolved version comes back in the response.
+        Start a build with the SDK's saved config. Every input is optional: `version` is the version of the linked API description to build (default: its latest version), `customCodeRef` the branch, tag or commit each language merges as custom code (default: each language's `scalar-next` branch), and `languages` the languages to build (default: every language the config declares). The response names the version built. A 503 means the custom code could not be read from GitHub and nothing was built; try again.
 
         Args:
             uid: Path parameter.
             version: Body parameter.
+            custom_code_ref: Body parameter.
             languages: Body parameter.
             extra_headers: Send extra headers with the request.
             extra_query: Send extra query parameters with the request.
@@ -738,6 +743,7 @@ class AsyncSdksResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "version": version,
+                    "custom_code_ref": custom_code_ref,
                     "languages": languages,
                 },
                 sdk_build_params.SdkBuildParams,

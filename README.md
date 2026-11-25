@@ -148,6 +148,7 @@ Generated clients support request timeouts and retry temporary failures such as 
 
 - Set the `SCALAR_LOG` environment variable to `info` or `debug` to enable HTTP logging.
 - Logs are emitted through the standard `logging` module under the `scalar_sdk` logger.
+- Importing the SDK wraps the process's log record factory: records from the SDK, `httpx`, `httpcore`, `hpack` and `websockets` loggers have credential headers, credential query parameters and URL userinfo logged as `***`. A record factory installed later that does not chain to the previous one turns this off.
 
 <br />
 

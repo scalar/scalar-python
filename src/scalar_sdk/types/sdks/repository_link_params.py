@@ -31,5 +31,9 @@ class RepositoryLinkParams(TypedDict, total=False):
     repository_id: Required[Annotated[int, PropertyInfo(alias="repositoryId")]]
 
     base_branch: Required[Annotated[str, PropertyInfo(alias="baseBranch")]]
+    """Release promote branch. Platform-managed branches such as scalar-next and scalar-generated are reserved."""
+
+    promotion: Literal["automatic", "manual"]
+    """Controls when a build becomes current and syncs to GitHub. Omit to preserve the saved policy."""
 
     prerelease_type: Annotated[str, PropertyInfo(alias="prereleaseType")]

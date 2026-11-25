@@ -30,6 +30,6 @@ class APIDocument(BaseModel):
 
     is_private: bool = FieldInfo(alias="isPrivate")
 
-    tags: str
+    tags: object
 
     versions: List[ManagedDocVersion]

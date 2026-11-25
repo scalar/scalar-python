@@ -1,5 +1,89 @@
 # Changelog
 
+## [0.8.0](https://github.com/scalar/scalar-python/compare/v0.7.0...v0.8.0) (2026-11-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** request-shape POST v1/sdks.languages — optional wrapper only in after (review: direction-dependent; read the hunk)
+* **api:** 31 breaking changes to the SDK surface.
+    - operation-coverage DELETE v1/mcp/servers/{p} — operation only in before (breaking: the new snapshot no longer has it)
+    - operation-coverage DELETE v1/mcp/servers/{p}/installations/{p} — operation only in before (breaking: the new snapshot no longer has it)
+    - operation-coverage DELETE v1/mcp/servers/{p}/installations/{p}/access-group — operation only in before (breaking: the new snapshot no longer has it)
+    - operation-coverage GET v1/mcp/servers/{p} — operation only in before (breaking: the new snapshot no longer has it)
+    - operation-coverage GET v1/mcp/servers/{p}/installations — operation only in before (breaking: the new snapshot no longer has it)
+    - operation-coverage GET v1/mcp/servers/{p}/installations/{p} — operation only in before (breaking: the new snapshot no longer has it)
+    - operation-coverage PATCH v1/mcp/servers/{p} — operation only in before (breaking: the new snapshot no longer has it)
+    - operation-coverage PATCH v1/mcp/servers/{p}/installations/{p} — operation only in before (breaking: the new snapshot no longer has it)
+    - operation-coverage POST v1/mcp/servers/{p}/installations/{p}/access-group — operation only in before (breaking: the new snapshot no longer has it)
+    - response-shape GET v1/mcp/servers→[].createdAt — primitive types differ (breaking: changed in a way existing callers can observe)
+    - response-shape GET v1/mcp/servers→[].updatedAt — primitive types differ (breaking: changed in a way existing callers can observe)
+    - response-shape GET v1/mcp/servers→[].id — field only in before (breaking: removed; uid, domain, namespace (and 1 more) appeared in its place, likely a rename)
+    - response-shape POST v1/mcp/servers→.server.createdAt — primitive types differ (breaking: changed in a way existing callers can observe)
+    - response-shape POST v1/mcp/servers→.server.updatedAt — primitive types differ (breaking: changed in a way existing callers can observe)
+    - response-shape POST v1/mcp/servers→.server.id — field only in before (breaking: removed; uid, domain, namespace appeared in its place, likely a rename)
+    - response-shape POST v1/mcp/servers→.installation — field only in before (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/mcp_installation.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/server_delete_response.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/server_update_params.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/servers/__init__.py — type file only in before (8 members: 0 matched by name and kind elsewhere in after, 8 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/servers/installation_create_access_group_params.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/servers/installation_create_access_group_response.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/servers/installation_delete_access_group_params.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/servers/installation_delete_access_group_response.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/servers/installation_delete_response.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/servers/installation_list_response.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/servers/installation_update_params.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/mcp/servers/mcp_installation_list_item.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-classes types/mcp/__init__.py:McpInstallation — reexport only in before (breaking: the new snapshot no longer has it)
+    - types-classes types/mcp/__init__.py:ServerDeleteResponse — reexport only in before (breaking: the new snapshot no longer has it)
+    - types-classes types/mcp/__init__.py:ServerUpdateParams — reexport only in before (breaking: the new snapshot no longer has it)
+* **api:** 9 breaking changes to the SDK surface.
+    - Added required property `sdk.current`.
+    - Property `sdk.currentVersion` type changed from `version` to `string`.
+    - Added required property `sdk.latestVersion`.
+    - Removed optional property `sdk.apiVersion`.
+    - Property `sdk_version.version` type changed from `version` to `string`.
+    - Property `sdk_version.createdAt` is now required.
+    - Removed required property `sdk_version.apiVersion`.
+    - Removed required property `sdk_version.status`.
+    - Removed optional property `sdk_version.publishedAt`.
+* **api:** Added required property `github_project.chatInsightsEnabled`.
+* **api:** 3 breaking changes to the SDK surface.
+    - Property `api_document.tags` type changed from `string` to `unknown`.
+    - Property `github_project.accessGroups` type changed from `string` to `unknown`.
+    - Property `docs_project.accessGroups` type changed from `string` to `unknown`.
+* **api:** 8 breaking changes to the SDK surface.
+    - Removed body field `autoAddOperations` from `mcp.servers.update`.
+    - Removed body field `isPrivate` from `mcp.servers.installations.update`.
+    - Removed body field `loginPortalUid` from `mcp.servers.installations.update`.
+    - Removed body field `documentAuth` from `mcp.servers.installations.update`.
+    - Removed operation `mcp.servers.installations.create` (`POST /v1/mcp/servers/{id}/installations`).
+    - Removed required property `mcp_server.autoAddOperations`.
+    - Removed required property `mcp_installation.isPrivate`.
+    - Removed required property `mcp_installation_list_item.isPrivate`.
+
+### Features
+
+* **api:** add property github_project.chatInsightsEnabled ([4959010](https://github.com/scalar/scalar-python/commit/495901009683ee1cdbf4d87740052975f827f428))
+* **api:** add property sdk.current (+9 more changes) ([d14e5d6](https://github.com/scalar/scalar-python/commit/d14e5d6a92b6c4a308353b1f0a2836a99eb5ec65))
+* **api:** update property api_document.tags (+3 more changes) ([f8318c0](https://github.com/scalar/scalar-python/commit/f8318c0e33dd5caf1489ea05b67d6c53aa91960c))
+* **api:** update SDK surface (14 changes) ([fbe5ab5](https://github.com/scalar/scalar-python/commit/fbe5ab543a82a53093106e12ad58790168aef095))
+* **api:** update SDK surface (3 changes) ([fb19ad6](https://github.com/scalar/scalar-python/commit/fb19ad6204c4ada9f4e40b709d58fe534dd27364))
+* **api:** update SDK surface (3 changes) ([1cbd975](https://github.com/scalar/scalar-python/commit/1cbd9755c0b74235aa9aedf8e9303d1140da00ae))
+* **api:** update SDK surface (4 changes) ([aa1e404](https://github.com/scalar/scalar-python/commit/aa1e4048054c02e012705922faf4ab90b46b607c))
+* **api:** update SDK surface (40 changes) ([27688bb](https://github.com/scalar/scalar-python/commit/27688bb1af3f7772380ec38b85385f73a78d4cb9))
+
+
+### Chores
+
+* **api:** regenerate SDK ([6110007](https://github.com/scalar/scalar-python/commit/611000786f34da04ee00f0faab7e653ff23993ae))
+* **api:** regenerate SDK ([acd3a29](https://github.com/scalar/scalar-python/commit/acd3a29b4db9f63fdc3f59ab10dc8d6e73b5aa58))
+* **api:** regenerate SDK ([d50cde1](https://github.com/scalar/scalar-python/commit/d50cde172b9d5a13acfff3b2e64f8ff9bdab99b4))
+* **api:** regenerate SDK ([254602d](https://github.com/scalar/scalar-python/commit/254602deccb95a2772ebe70c2dd4bbf9ea39da57))
+* **api:** update generated SDK content ([d39ee92](https://github.com/scalar/scalar-python/commit/d39ee925c3e903fece5462611dfec925f61fbc1b))
+* **api:** update generated SDK content ([78b319c](https://github.com/scalar/scalar-python/commit/78b319c8ce655b174bf745761dc7add761a30dfa))
+
 ## [0.7.0](https://github.com/scalar/scalar-python/compare/v0.6.0...v0.7.0) (2026-10-09)
 
 
