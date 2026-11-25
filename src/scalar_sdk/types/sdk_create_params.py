@@ -16,25 +16,24 @@ __all__ = ["SdkCreateParams"]
 class SdkCreateParams(TypedDict, total=False):
     api_uid: Required[Annotated[Nanoid, PropertyInfo(alias="apiUid")]]
 
-    languages: Required[
-        List[
-            Literal[
-                "typescript",
-                "python",
-                "cli",
-                "csharp",
-                "java",
-                "ruby",
-                "php",
-                "go",
-                "rust",
-                "kotlin",
-                "swift",
-                "cpp",
-                "dart",
-            ]
+    languages: List[
+        Literal[
+            "typescript",
+            "python",
+            "cli",
+            "csharp",
+            "java",
+            "ruby",
+            "php",
+            "go",
+            "rust",
+            "kotlin",
+            "swift",
+            "cpp",
+            "dart",
         ]
     ]
+    """Languages to create. Defaults to the targets declared by config."""
 
     title: str
 

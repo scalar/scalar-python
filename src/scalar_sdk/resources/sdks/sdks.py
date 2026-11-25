@@ -125,7 +125,8 @@ class SdksResource(SyncAPIResource):
                 "cpp",
                 "dart",
             ]
-        ],
+        ]
+        | Omit = omit,
         title: str | Omit = omit,
         slug: Slug | Omit = omit,
         class_name: str | Omit = omit,
@@ -138,11 +139,11 @@ class SdksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UID:
         """
-        Create an SDK from an API document, targeting one or more languages.
+        Create an SDK from an existing API document on the team. Its current version must have content. Send languages or a config declaring targets; omit languages to derive them from config. SDK and target counts must fit the team plan. Config is a JSON string.
 
         Args:
             api_uid: Body parameter.
-            languages: Body parameter.
+            languages: Languages to create. Defaults to the targets declared by config.
             title: Body parameter.
             slug: Body parameter.
             class_name: Body parameter.
@@ -159,7 +160,6 @@ class SdksResource(SyncAPIResource):
             ```python
             sdk = client.sdks.create(
                 api_uid="UakgbKJ5m9gl0JDMbcJqL",
-                languages=["typescript"],
             )
             ```
         """
@@ -241,7 +241,7 @@ class SdksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SdkUpdateResponse:
         """
-        Update SDK metadata, its linked API, or its config.
+        Update SDK metadata, its linked API, or its JSON-string config. Targets using native GitHub delivery need separate repositories; delivery writes each package at the repository root. Sharing a repository across language targets in this SDK and using reserved promote branches are rejected before config saves.
 
         Args:
             uid: Path parameter.
@@ -479,7 +479,8 @@ class AsyncSdksResource(AsyncAPIResource):
                 "cpp",
                 "dart",
             ]
-        ],
+        ]
+        | Omit = omit,
         title: str | Omit = omit,
         slug: Slug | Omit = omit,
         class_name: str | Omit = omit,
@@ -492,11 +493,11 @@ class AsyncSdksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> UID:
         """
-        Create an SDK from an API document, targeting one or more languages.
+        Create an SDK from an existing API document on the team. Its current version must have content. Send languages or a config declaring targets; omit languages to derive them from config. SDK and target counts must fit the team plan. Config is a JSON string.
 
         Args:
             api_uid: Body parameter.
-            languages: Body parameter.
+            languages: Languages to create. Defaults to the targets declared by config.
             title: Body parameter.
             slug: Body parameter.
             class_name: Body parameter.
@@ -513,7 +514,6 @@ class AsyncSdksResource(AsyncAPIResource):
             ```python
             sdk = await client.sdks.create(
                 api_uid="UakgbKJ5m9gl0JDMbcJqL",
-                languages=["typescript"],
             )
             ```
         """
@@ -595,7 +595,7 @@ class AsyncSdksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SdkUpdateResponse:
         """
-        Update SDK metadata, its linked API, or its config.
+        Update SDK metadata, its linked API, or its JSON-string config. Targets using native GitHub delivery need separate repositories; delivery writes each package at the repository root. Sharing a repository across language targets in this SDK and using reserved promote branches are rejected before config saves.
 
         Args:
             uid: Path parameter.

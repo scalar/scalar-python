@@ -21,7 +21,6 @@ class TestSdks:
     def test_method_create(self) -> None:
         sdk = client.sdks.create(
             api_uid="UakgbKJ5m9gl0JDMbcJqL",
-            languages=["typescript"],
         )
 
     @smoke_case("sdks.create:all", operation="create", path="/v1/sdks")
