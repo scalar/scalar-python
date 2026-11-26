@@ -449,7 +449,7 @@ class ScalarDocsResource(SyncAPIResource):
         self,
         slug: str,
         *,
-        commit_sha: str | Omit = omit,
+        commit_sha: Union[Literal[""], str] | Omit = omit,
         preview: bool | Omit = omit,
         config_path: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1099,7 +1099,7 @@ class AsyncScalarDocsResource(AsyncAPIResource):
         self,
         slug: str,
         *,
-        commit_sha: str | Omit = omit,
+        commit_sha: Union[Literal[""], str] | Omit = omit,
         preview: bool | Omit = omit,
         config_path: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

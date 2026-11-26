@@ -126,7 +126,7 @@ client = Scalar(
 | `base_url` | `str \| httpx.URL \| None` | - | Override the default API base URL. |
 | `timeout` | `float \| Timeout \| None` | `60.0` | Maximum time in seconds to wait for a response before aborting a request. |
 | `max_retries` | `int` | `2` | Number of retries for temporary failures. |
-| `default_headers` | `Mapping[str, str] \| None` | - | Headers sent with every request. |
+| `default_headers` | `Mapping[str, str \| Omit] \| None` | - | Headers sent with every request. `{"Authorization": Omit()}` sends every request without that credential header, matched in any case; a value a call sets still wins. |
 | `default_query` | `Mapping[str, object] \| None` | - | Query parameters sent with every request. |
 
 <br />
