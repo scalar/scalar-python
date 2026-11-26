@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.9.0](https://github.com/scalar/scalar-python/compare/v0.8.0...v0.9.0) (2026-11-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** request-shape POST v1/docs/{p}/publish.commit_sha — union on one side only (review: direction-dependent; read the hunk)
+
+### Features
+
+* **api:** update request-shape POST v1/docs/{p}/publish.commit_sha ([a02fdc2](https://github.com/scalar/scalar-python/commit/a02fdc23c6bacd41d1fac477cf75373e0fdd0d2a))
+
 ## [0.8.0](https://github.com/scalar/scalar-python/compare/v0.7.0...v0.8.0) (2026-11-25)
 
 
