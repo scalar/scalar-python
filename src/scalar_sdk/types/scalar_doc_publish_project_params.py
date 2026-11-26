@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing import Union
+from typing_extensions import Annotated, Literal, TypedDict
 
 from .._utils import PropertyInfo
 
@@ -10,7 +11,7 @@ __all__ = ["ScalarDocPublishProjectParams"]
 
 
 class ScalarDocPublishProjectParams(TypedDict, total=False):
-    commit_sha: Annotated[str, PropertyInfo(alias="commitSha")]
+    commit_sha: Annotated[Union[Literal[""], str], PropertyInfo(alias="commitSha")]
 
     preview: bool
 
